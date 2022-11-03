@@ -69,10 +69,37 @@ var Template;
         // };
         Template.ƒS.Speech.hide();
         await Template.ƒS.Location.show(Template.location.oldStreet);
-        await Template.ƒS.Character.show(Template.characters.Ai, Template.characters.Ai.pose.neutral, Template.ƒS.positionPercent(60, 120));
+        await Template.ƒS.Character.show(Template.characters.Ai, Template.characters.Ai.pose.neutral, Template.ƒS.positions.bottomcenter);
+        //await ƒS.Character.show(characters.Ai, characters.Ai.pose.neutral, ƒS.positionPercent(60, 120));
         await Template.ƒS.update();
         await Template.ƒS.Speech.tell(Template.characters.Ai, "Text in einer Zeile");
         await Template.ƒS.Speech.tell(Template.characters.Ai, "Zweiter Text in einer Zeile");
+        let dialogue = {
+            iSayYes: "Ja",
+            iSayOk: "Okay.",
+            iSayNo: "Nein",
+            iSayMaybe: "Vielleicht"
+        };
+        let dialogueElement = await Template.ƒS.Menu.getInput(dialogue, "choicesCSSClass");
+        switch (dialogueElement) {
+            case dialogue.iSayYes:
+                //Continue path here
+                console.log("test");
+                await Template.ƒS.Speech.tell(Template.characters.Ai, "Ich sage JA!");
+                break;
+            case dialogue.iSayOk:
+                //Continue path here
+                await Template.ƒS.Speech.tell(Template.characters.Ai, "Ich sage OK!");
+                break;
+            case dialogue.iSayNo:
+                //Continue path here
+                await Template.ƒS.Speech.tell(Template.characters.Ai, "Ich sage Nein!");
+                break;
+            case dialogue.iSayMaybe:
+                //Continue path here
+                await Template.ƒS.Speech.tell(Template.characters.Ai, "Ich sage Vielleicht!");
+                break;
+        }
     }
     Template.firstScene = firstScene;
 })(Template || (Template = {}));
