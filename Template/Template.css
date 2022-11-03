@@ -1,11 +1,11 @@
 scene {
-  width: 1280px;
-  height: 720px;
+  width: 1980px;
+  height: 1200px;
   display: inline-block;
 }
 
 dialog[type=splash] {
-  margin: 0px;
+  /* margin: 0px;
   padding: 0px;
   width: 100vw;
   height: 100vh;
@@ -13,7 +13,12 @@ dialog[type=splash] {
   color: white;
   border: none;
   cursor: pointer;
-  text-align: center;
+  text-align: center; */
+  background-image: url("Images/Backgrounds/starry.gif");
+  background-repeat: repeat;
+  /* background-size: contain; */
+  width: 100%;
+  height: 100%
 }
 dialog[type=splash]>img#FudgeStoryLogo {
   width: 100%;

@@ -7,7 +7,7 @@ namespace Template {
     export let transition = {
         spiral: {
             duration: 1,
-            alpha: "Template/Images/Transitions/023.png", //relativen Pfad benutzen
+            alpha: "Images/Transitions/023.png", 
             edge: 1
         }
     };
@@ -15,7 +15,7 @@ namespace Template {
     export let sound = {
         // Themes
         // SFX
-        outside: "Template/Sounds/outside.wav" 
+        outside: "Sounds/outside.wav" 
     };
 
     export let dataForSave = {
@@ -23,9 +23,9 @@ namespace Template {
     };
 
     export let location = {
-      beachDay: {
+      oldStreet: {
         name: "Old_Street",
-        background: "Template/Images/Backgrounds/Old_Street.png"
+        background: "Images/Backgrounds/Old_Cafe.png"
         //foreground: ""
       }
     };
@@ -37,15 +37,15 @@ namespace Template {
       protagonist: {
         name: ""
       },
-      ai: {
+      Ai: {
         name: "Ai",
         origin: ƒS.ORIGIN.BOTTOMCENTER,
         pose: {
-          neutral: "Template/Images/Character/Ai/girl1Neutral.png",
-          angry: "Template/Images/Character/Ai/girl1Angry.png", 
-          happy: "Template/Images/Character/Ai/girl1Happy.png", 
-          shocked: "Template/Images/Character/Ai/girl1Shocked.png", 
-          sad: "Template/Images/Character/Ai/girl1Sad.png" 
+          neutral: "Images/Character/Ai/girl1Neutral.png",
+          angry: "Images/Character/Ai/girl1Angry.png", 
+          happy: "Images/Character/Ai/girl1Happy.png", 
+          shocked: "Images/Character/Ai/girl1Shocked.png", 
+          sad: "Images/Character/Ai/girl1Sad.png" 
         }
       }
 
@@ -53,7 +53,9 @@ namespace Template {
 
     window.addEventListener("load", start);
     function start(_event: Event): void {
-        let scenes: ƒS.Scenes = [{ scene: Scene, name: "Scene" }];
+        let scenes: ƒS.Scenes = [
+          { scene: firstScene, name: "First Scene" }
+        ];
 
         let uiElement: HTMLElement = document.querySelector("[type=interface]");
         dataForSave = ƒS.Progress.setData(dataForSave, uiElement);
