@@ -69,9 +69,10 @@ var Template;
         // };
         Template.ƒS.Speech.hide();
         await Template.ƒS.Location.show(Template.location.oldStreet);
-        await Template.ƒS.Character.show(Template.characters.Ai, Template.characters.Ai.pose.neutral, Template.ƒS.positionPercent(70, 100));
+        await Template.ƒS.Character.show(Template.characters.Ai, Template.characters.Ai.pose.neutral, Template.ƒS.positionPercent(60, 120));
         await Template.ƒS.update();
         await Template.ƒS.Speech.tell(Template.characters.Ai, "Text in einer Zeile");
+        await Template.ƒS.Speech.tell(Template.characters.Ai, "Zweiter Text in einer Zeile");
     }
     Template.firstScene = firstScene;
 })(Template || (Template = {}));
