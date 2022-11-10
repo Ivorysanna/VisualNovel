@@ -16,9 +16,6 @@ var Template;
         // SFX
         outside: "Sounds/outside.wav"
     };
-    Template.dataForSave = {
-        nameProtagonist: ""
-    };
     Template.location = {
         oldStreet: {
             name: "Old_Street",
@@ -45,11 +42,67 @@ var Template;
             }
         }
     };
+    // *** DATA THAT WILL BE SAVED (GAME PROGRESS)
+    Template.dataForSave = {
+        nameProtagonist: ""
+    };
+    // *** DATA THAT WILL BE SAVED (GAME PROGRESS)
+    //Menu shortcuts
+    let inGameMenuButtons = {
+        save: "Save",
+        load: "Load",
+        close: "Close"
+    };
+    let gameMenu;
+    //open = true, closed = false
+    let menuIsOpen = true;
+    async function buttonFunctionalities(_option) {
+        console.log(_option);
+        switch (_option) {
+            case inGameMenuButtons.save:
+                await Template.ƒS.Progress.save();
+                break;
+            case inGameMenuButtons.load:
+                await Template.ƒS.Progress.load();
+                break;
+            case inGameMenuButtons.close:
+                gameMenu.close();
+                menuIsOpen = false;
+                break;
+        }
+    }
+    // Menu shortcuts
+    document.addEventListener("keydown", hndKeyPres);
+    async function hndKeyPres(_event) {
+        switch (_event.code) {
+            case Template.ƒ.KEYBOARD_CODE.S:
+                console.log("Save...");
+                await Template.ƒS.Progress.save();
+                break;
+            case Template.ƒ.KEYBOARD_CODE.L:
+                console.log("Load");
+                await Template.ƒS.Progress.load();
+                break;
+            case Template.ƒ.KEYBOARD_CODE.M:
+                if (menuIsOpen) {
+                    console.log("Close");
+                    gameMenu.close();
+                    menuIsOpen = false;
+                }
+                else {
+                    console.log("Open");
+                    gameMenu.open();
+                    menuIsOpen = true;
+                }
+                break;
+        }
+    }
     window.addEventListener("load", start);
     function start(_event) {
-        let scenes = [
-            { scene: Template.firstScene, name: "First Scene" }
-        ];
+        gameMenu = Template.ƒS.Menu.create(inGameMenuButtons, buttonFunctionalities, "gameMenuCSSClass");
+        buttonFunctionalities("Close");
+        /*** SCENE HIERARCHY ***/
+        let scenes = [{ scene: Template.firstScene, name: "First Scene" }];
         let uiElement = document.querySelector("[type=interface]");
         Template.dataForSave = Template.ƒS.Progress.setData(Template.dataForSave, uiElement);
         // start the sequence
@@ -78,6 +131,7 @@ var Template;
         let pickedNo;
         let pickedMaybe;
         let pickedOk;
+        let readEverything = false;
         let dialogue = {
             iSayYes: "Ja",
             iSayOk: "Okay.",
@@ -85,30 +139,50 @@ var Template;
             iSayMaybe: "Vielleicht"
         };
         //Muss um eine do-while Schleife
-        if (pickedMaybe) {
-            //Möglichkeit zum löschen von Auswahlmöglichkeiten
-            delete dialogue.iSayMaybe;
-        }
-        let dialogueElement = await Template.ƒS.Menu.getInput(dialogue, "choicesCSSClass");
-        switch (dialogueElement) {
-            case dialogue.iSayYes:
-                //Continue path here
-                console.log("test");
-                await Template.ƒS.Speech.tell(Template.characters.Ai, "Ich sage JA!");
-                break;
-            case dialogue.iSayOk:
-                //Continue path here
-                await Template.ƒS.Speech.tell(Template.characters.Ai, "Ich sage OK!");
-                break;
-            case dialogue.iSayNo:
-                //Continue path here
-                await Template.ƒS.Speech.tell(Template.characters.Ai, "Ich sage Nein!");
-                break;
-            case dialogue.iSayMaybe:
-                //Continue path here
-                await Template.ƒS.Speech.tell(Template.characters.Ai, "Ich sage Vielleicht!");
-                break;
-        }
+        do {
+            if (pickedMaybe) {
+                //Möglichkeit zum löschen von Auswahlmöglichkeiten
+                delete dialogue.iSayMaybe;
+            }
+            else if (pickedNo) {
+                delete dialogue.iSayNo;
+            }
+            else if (pickedOk) {
+                delete dialogue.iSayOk;
+            }
+            else if (pickedYes) {
+                delete dialogue.iSayYes;
+            }
+            let dialogueElement = await Template.ƒS.Menu.getInput(dialogue, "choicesCSSClass");
+            switch (dialogueElement) {
+                case dialogue.iSayYes:
+                    //Continue path here
+                    console.log("test");
+                    await Template.ƒS.Speech.tell(Template.characters.Ai, "Ich sage JA!");
+                    pickedYes = true;
+                    break;
+                case dialogue.iSayOk:
+                    //Continue path here
+                    await Template.ƒS.Speech.tell(Template.characters.Ai, "Ich sage OK!");
+                    pickedOk = true;
+                    break;
+                case dialogue.iSayNo:
+                    //Continue path here
+                    await Template.ƒS.Speech.tell(Template.characters.Ai, "Ich sage Nein!");
+                    pickedNo = true;
+                    break;
+                case dialogue.iSayMaybe:
+                    //Continue path here
+                    await Template.ƒS.Speech.tell(Template.characters.Ai, "Ich sage Vielleicht!");
+                    pickedMaybe = true;
+                    break;
+            }
+            if (pickedMaybe && pickedOk && pickedNo && pickedYes) {
+                readEverything = true;
+            }
+        } while (readEverything == false);
+        // } while (!(pickedMaybe || pickedNo || pickedOk || pickedYes == true));
+        console.log("Passt");
     }
     Template.firstScene = firstScene;
 })(Template || (Template = {}));

@@ -11,9 +11,6 @@ declare namespace Template {
     let sound: {
         outside: string;
     };
-    let dataForSave: {
-        nameProtagonist: string;
-    };
     let location: {
         oldStreet: {
             name: string;
@@ -38,6 +35,9 @@ declare namespace Template {
                 sad: string;
             };
         };
+    };
+    let dataForSave: {
+        nameProtagonist: string;
     };
 }
 declare namespace Template {

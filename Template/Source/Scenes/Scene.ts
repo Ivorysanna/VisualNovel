@@ -22,8 +22,7 @@ namespace Template {
         let pickedNo: boolean;
         let pickedMaybe: boolean;
         let pickedOk: boolean;
-        
-
+        let readEverything: boolean = false;
         
         let dialogue = {
             iSayYes: "Ja",
@@ -32,31 +31,47 @@ namespace Template {
             iSayMaybe: "Vielleicht"
         };
         //Muss um eine do-while Schleife
-        if (pickedMaybe){
-            //Möglichkeit zum löschen von Auswahlmöglichkeiten
-            delete dialogue.iSayMaybe;
-        }
-        let dialogueElement = await  ƒS.Menu.getInput(dialogue, "choicesCSSClass");
+        do {
+            if (pickedMaybe) {
+                //Möglichkeit zum löschen von Auswahlmöglichkeiten
+                delete dialogue.iSayMaybe;
+            } else if (pickedNo) {
+                delete dialogue.iSayNo;
+            } else if (pickedOk) {
+                delete dialogue.iSayOk;
+            } else if (pickedYes) {
+                delete dialogue.iSayYes;
+            } 
+
+            let dialogueElement = await  ƒS.Menu.getInput(dialogue, "choicesCSSClass");
         
-        switch(dialogueElement){
-            case dialogue.iSayYes:
-                //Continue path here
-                console.log("test");
-                await ƒS.Speech.tell(characters.Ai, "Ich sage JA!");
-                break; 
-            case dialogue.iSayOk:
-                //Continue path here
-                await ƒS.Speech.tell(characters.Ai, "Ich sage OK!");
-                break; 
-            case dialogue.iSayNo:
-                //Continue path here
-                await ƒS.Speech.tell(characters.Ai, "Ich sage Nein!");
-                break; 
-            case dialogue.iSayMaybe:
-                //Continue path here
-                await ƒS.Speech.tell(characters.Ai, "Ich sage Vielleicht!");
-                break; 
-            
+            switch (dialogueElement) {
+                case dialogue.iSayYes:
+                    //Continue path here
+                    console.log("test");
+                    await ƒS.Speech.tell(characters.Ai, "Ich sage JA!");
+                    pickedYes = true;
+                    break; 
+                case dialogue.iSayOk:
+                    //Continue path here
+                    await ƒS.Speech.tell(characters.Ai, "Ich sage OK!");
+                    pickedOk = true;
+                    break; 
+                case dialogue.iSayNo:
+                    //Continue path here
+                    await ƒS.Speech.tell(characters.Ai, "Ich sage Nein!");
+                    pickedNo = true;
+                    break; 
+                case dialogue.iSayMaybe:
+                    //Continue path here
+                    await ƒS.Speech.tell(characters.Ai, "Ich sage Vielleicht!");
+                    pickedMaybe = true;
+                    break;
+            }
+
+            if (pickedMaybe && pickedOk && pickedNo && pickedYes) {
+                    readEverything = true;
+            } 
+        } while (readEverything == false);      
         }
-    }
 }

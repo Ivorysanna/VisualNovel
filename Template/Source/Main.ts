@@ -15,7 +15,7 @@ namespace Template {
     export let sound = {
         // Themes
         // SFX
-        outside: "Sounds/outside.wav",
+        outside: "Sounds/outside.wav"
     };
 
     export let location = {
@@ -23,7 +23,7 @@ namespace Template {
             name: "Old_Street",
             background: "Images/Backgrounds/Old_Cafe.png"
             //foreground: ""
-        },
+        }
     };
 
     export let characters = {
@@ -42,7 +42,7 @@ namespace Template {
                 happy: "Images/Character/Ai/girl1Happy.png",
                 shocked: "Images/Character/Ai/girl1Shocked.png",
                 sad: "Images/Character/Ai/girl1Sad.png"
-            },
+            }
         }
     };
 
