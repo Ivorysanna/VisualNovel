@@ -74,12 +74,21 @@ var Template;
         await Template.ƒS.update();
         await Template.ƒS.Speech.tell(Template.characters.Ai, "Text in einer Zeile");
         await Template.ƒS.Speech.tell(Template.characters.Ai, "Zweiter Text in einer Zeile");
+        let pickedYes;
+        let pickedNo;
+        let pickedMaybe;
+        let pickedOk;
         let dialogue = {
             iSayYes: "Ja",
             iSayOk: "Okay.",
             iSayNo: "Nein",
             iSayMaybe: "Vielleicht"
         };
+        //Muss um eine do-while Schleife
+        if (pickedMaybe) {
+            //Möglichkeit zum löschen von Auswahlmöglichkeiten
+            delete dialogue.iSayMaybe;
+        }
         let dialogueElement = await Template.ƒS.Menu.getInput(dialogue, "choicesCSSClass");
         switch (dialogueElement) {
             case dialogue.iSayYes:
