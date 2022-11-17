@@ -1,8 +1,8 @@
 "use strict";
 var Template;
 (function (Template) {
-    Template.ƒ = FudgeCore;
-    Template.ƒS = FudgeStory;
+    Template.f = FudgeCore;
+    Template.fS = FudgeStory;
     console.log("FudgeStory template starting");
     Template.transition = {
         spiral: {
@@ -32,7 +32,7 @@ var Template;
         },
         Ai: {
             name: "Ai",
-            origin: Template.ƒS.ORIGIN.BOTTOMCENTER,
+            origin: Template.fS.ORIGIN.BOTTOMCENTER,
             pose: {
                 neutral: "Images/Character/Ai/girl1Neutral.png",
                 angry: "Images/Character/Ai/girl1Angry.png",
@@ -46,6 +46,16 @@ var Template;
     Template.dataForSave = {
         nameProtagonist: ""
     };
+    // *** ANIMATION ***
+    function animation() {
+        return {
+            start: { translation: Template.fS.positions.bottomcenter, color: Template.fS.Color.CSS("blue", 1) },
+            end: { translation: Template.fS.positions.bottomright, color: Template.fS.Color.CSS("green", 0) },
+            duration: 3,
+            playmode: Template.fS.ANIMATION_PLAYMODE.LOOP
+        };
+    }
+    Template.animation = animation;
     // *** DATA THAT WILL BE SAVED (GAME PROGRESS)
     //Menu shortcuts
     let inGameMenuButtons = {
@@ -60,10 +70,10 @@ var Template;
         console.log(_option);
         switch (_option) {
             case inGameMenuButtons.save:
-                await Template.ƒS.Progress.save();
+                await Template.fS.Progress.save();
                 break;
             case inGameMenuButtons.load:
-                await Template.ƒS.Progress.load();
+                await Template.fS.Progress.load();
                 break;
             case inGameMenuButtons.close:
                 gameMenu.close();
@@ -75,15 +85,15 @@ var Template;
     document.addEventListener("keydown", hndKeyPres);
     async function hndKeyPres(_event) {
         switch (_event.code) {
-            case Template.ƒ.KEYBOARD_CODE.S:
+            case Template.f.KEYBOARD_CODE.S:
                 console.log("Save...");
-                await Template.ƒS.Progress.save();
+                await Template.fS.Progress.save();
                 break;
-            case Template.ƒ.KEYBOARD_CODE.L:
+            case Template.f.KEYBOARD_CODE.L:
                 console.log("Load");
-                await Template.ƒS.Progress.load();
+                await Template.fS.Progress.load();
                 break;
-            case Template.ƒ.KEYBOARD_CODE.M:
+            case Template.f.KEYBOARD_CODE.M:
                 if (menuIsOpen) {
                     console.log("Close");
                     gameMenu.close();
@@ -99,14 +109,17 @@ var Template;
     }
     window.addEventListener("load", start);
     function start(_event) {
-        gameMenu = Template.ƒS.Menu.create(inGameMenuButtons, buttonFunctionalities, "gameMenuCSSClass");
+        gameMenu = Template.fS.Menu.create(inGameMenuButtons, buttonFunctionalities, "gameMenuCSSClass");
         buttonFunctionalities("Close");
         /*** SCENE HIERARCHY ***/
-        let scenes = [{ scene: Template.firstScene, name: "First Scene" }];
+        let scenes = [
+            //{ scene: firstScene, name: "First Scene" },
+            { scene: Template.secondScene, name: "Second Scene" }
+        ];
         let uiElement = document.querySelector("[type=interface]");
-        Template.dataForSave = Template.ƒS.Progress.setData(Template.dataForSave, uiElement);
+        Template.dataForSave = Template.fS.Progress.setData(Template.dataForSave, uiElement);
         // start the sequence
-        Template.ƒS.Progress.go(scenes);
+        Template.fS.Progress.go(scenes);
     }
 })(Template || (Template = {}));
 var Template;
@@ -120,13 +133,13 @@ var Template;
         //         T0003: "Text Nummer 3",
         //     },
         // };
-        Template.ƒS.Speech.hide();
-        await Template.ƒS.Location.show(Template.location.oldStreet);
-        await Template.ƒS.Character.show(Template.characters.Ai, Template.characters.Ai.pose.neutral, Template.ƒS.positions.bottomcenter);
+        Template.fS.Speech.hide();
+        await Template.fS.Location.show(Template.location.oldStreet);
+        await Template.fS.Character.show(Template.characters.Ai, Template.characters.Ai.pose.neutral, Template.fS.positions.bottomcenter);
         //await ƒS.Character.show(characters.Ai, characters.Ai.pose.neutral, ƒS.positionPercent(60, 120));
-        await Template.ƒS.update();
-        await Template.ƒS.Speech.tell(Template.characters.Ai, "Text in einer Zeile");
-        await Template.ƒS.Speech.tell(Template.characters.Ai, "Zweiter Text in einer Zeile");
+        await Template.fS.update();
+        await Template.fS.Speech.tell(Template.characters.Ai, "Text in einer Zeile");
+        await Template.fS.Speech.tell(Template.characters.Ai, "Zweiter Text in einer Zeile");
         let pickedYes;
         let pickedNo;
         let pickedMaybe;
@@ -153,27 +166,27 @@ var Template;
             else if (pickedYes) {
                 delete dialogue.iSayYes;
             }
-            let dialogueElement = await Template.ƒS.Menu.getInput(dialogue, "choicesCSSClass");
+            let dialogueElement = await Template.fS.Menu.getInput(dialogue, "choicesCSSClass");
             switch (dialogueElement) {
                 case dialogue.iSayYes:
                     //Continue path here
                     console.log("test");
-                    await Template.ƒS.Speech.tell(Template.characters.Ai, "Ich sage JA!");
+                    await Template.fS.Speech.tell(Template.characters.Ai, "Ich sage JA!");
                     pickedYes = true;
                     break;
                 case dialogue.iSayOk:
                     //Continue path here
-                    await Template.ƒS.Speech.tell(Template.characters.Ai, "Ich sage OK!");
+                    await Template.fS.Speech.tell(Template.characters.Ai, "Ich sage OK!");
                     pickedOk = true;
                     break;
                 case dialogue.iSayNo:
                     //Continue path here
-                    await Template.ƒS.Speech.tell(Template.characters.Ai, "Ich sage Nein!");
+                    await Template.fS.Speech.tell(Template.characters.Ai, "Ich sage Nein!");
                     pickedNo = true;
                     break;
                 case dialogue.iSayMaybe:
                     //Continue path here
-                    await Template.ƒS.Speech.tell(Template.characters.Ai, "Ich sage Vielleicht!");
+                    await Template.fS.Speech.tell(Template.characters.Ai, "Ich sage Vielleicht!");
                     pickedMaybe = true;
                     break;
             }
@@ -181,9 +194,17 @@ var Template;
                 readEverything = true;
             }
         } while (readEverything == false);
-        // } while (!(pickedMaybe || pickedNo || pickedOk || pickedYes == true));
-        console.log("Passt");
     }
     Template.firstScene = firstScene;
+})(Template || (Template = {}));
+var Template;
+(function (Template) {
+    async function secondScene() {
+        console.log("Second Scene starting");
+        await Template.fS.Character.show(Template.characters.Ai, Template.characters.Ai.pose.happy, Template.fS.positions.bottomcenter);
+        Template.fS.update();
+        await Template.fS.Character.animate(Template.characters.Ai, Template.characters.Ai.pose.happy, Template.animation());
+    }
+    Template.secondScene = secondScene;
 })(Template || (Template = {}));
 //# sourceMappingURL=Template.js.map

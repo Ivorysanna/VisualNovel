@@ -1,6 +1,6 @@
 namespace Template {
-    export import ƒ = FudgeCore;
-    export import ƒS = FudgeStory;
+    export import f = FudgeCore;
+    export import fS = FudgeStory;
 
     console.log("FudgeStory template starting");
 
@@ -35,7 +35,7 @@ namespace Template {
         },
         Ai: {
             name: "Ai",
-            origin: ƒS.ORIGIN.BOTTOMCENTER,
+            origin: fS.ORIGIN.BOTTOMCENTER,
             pose: {
                 neutral: "Images/Character/Ai/girl1Neutral.png",
                 angry: "Images/Character/Ai/girl1Angry.png",
@@ -51,6 +51,16 @@ namespace Template {
         nameProtagonist: ""
     };
 
+    // *** ANIMATION ***
+    export function animation(): fS.AnimationDefinition {
+        return {
+            start: { translation: fS.positions.bottomcenter, color: fS.Color.CSS("blue", 1) },
+            end: { translation: fS.positions.bottomright, color: fS.Color.CSS("green", 0) },
+            duration: 3,
+            playmode: fS.ANIMATION_PLAYMODE.LOOP
+        };
+    }
+
     // *** DATA THAT WILL BE SAVED (GAME PROGRESS)
 
     //Menu shortcuts
@@ -60,7 +70,7 @@ namespace Template {
         close: "Close"
     };
 
-    let gameMenu: ƒS.Menu;
+    let gameMenu: fS.Menu;
     //open = true, closed = false
     let menuIsOpen: boolean = true;
 
@@ -68,10 +78,10 @@ namespace Template {
         console.log(_option);
         switch (_option) {
             case inGameMenuButtons.save:
-                await ƒS.Progress.save();
+                await fS.Progress.save();
                 break;
             case inGameMenuButtons.load:
-                await ƒS.Progress.load();
+                await fS.Progress.load();
                 break;
             case inGameMenuButtons.close:
                 gameMenu.close();
@@ -84,15 +94,15 @@ namespace Template {
     document.addEventListener("keydown", hndKeyPres);
     async function hndKeyPres(_event: KeyboardEvent): Promise<void> {
         switch (_event.code) {
-            case ƒ.KEYBOARD_CODE.S:
+            case f.KEYBOARD_CODE.S:
                 console.log("Save...");
-                await ƒS.Progress.save();
+                await fS.Progress.save();
                 break;
-            case ƒ.KEYBOARD_CODE.L:
+            case f.KEYBOARD_CODE.L:
                 console.log("Load");
-                await ƒS.Progress.load();
+                await fS.Progress.load();
                 break;
-            case ƒ.KEYBOARD_CODE.M:
+            case f.KEYBOARD_CODE.M:
                 if (menuIsOpen) {
                     console.log("Close");
                     gameMenu.close();
@@ -108,15 +118,18 @@ namespace Template {
 
     window.addEventListener("load", start);
     function start(_event: Event): void {
-        gameMenu = ƒS.Menu.create(inGameMenuButtons, buttonFunctionalities, "gameMenuCSSClass");
+        gameMenu = fS.Menu.create(inGameMenuButtons, buttonFunctionalities, "gameMenuCSSClass");
         buttonFunctionalities("Close");
         /*** SCENE HIERARCHY ***/
-        let scenes: ƒS.Scenes = [{ scene: firstScene, name: "First Scene" }];
+        let scenes: fS.Scenes = [
+            //{ scene: firstScene, name: "First Scene" },
+            { scene: secondScene, name: "Second Scene" }
+        ];
 
         let uiElement: HTMLElement = document.querySelector("[type=interface]");
-        dataForSave = ƒS.Progress.setData(dataForSave, uiElement);
+        dataForSave = fS.Progress.setData(dataForSave, uiElement);
 
         // start the sequence
-        ƒS.Progress.go(scenes);
+        fS.Progress.go(scenes);
     }
 }

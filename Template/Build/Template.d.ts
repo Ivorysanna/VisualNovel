@@ -1,6 +1,6 @@
 declare namespace Template {
-    export import ƒ = FudgeCore;
-    export import ƒS = FudgeStory;
+    export import f = FudgeCore;
+    export import fS = FudgeStory;
     let transition: {
         spiral: {
             duration: number;
@@ -26,7 +26,7 @@ declare namespace Template {
         };
         Ai: {
             name: string;
-            origin: ƒ.ORIGIN2D;
+            origin: f.ORIGIN2D;
             pose: {
                 neutral: string;
                 angry: string;
@@ -39,7 +39,11 @@ declare namespace Template {
     let dataForSave: {
         nameProtagonist: string;
     };
+    function animation(): fS.AnimationDefinition;
 }
 declare namespace Template {
-    function firstScene(): ƒS.SceneReturn;
+    function firstScene(): fS.SceneReturn;
+}
+declare namespace Template {
+    function secondScene(): fS.SceneReturn;
 }
