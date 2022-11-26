@@ -59,6 +59,27 @@ declare namespace Template {
                 sad: string;
             };
         };
+        TestChara: {
+            name: string;
+            origin: f.ORIGIN2D;
+            pose: {
+                neutral: string;
+            };
+        };
+        Rika: {
+            name: string;
+            origin: f.ORIGIN2D;
+            pose: {
+                neutral: string;
+            };
+        };
+        RikasMutter: {
+            name: string;
+            origin: f.ORIGIN2D;
+            pose: {
+                neutral: string;
+            };
+        };
     };
     let dataForSave: {
         nameProtagonist: string;

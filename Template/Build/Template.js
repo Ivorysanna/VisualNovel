@@ -68,6 +68,27 @@ var Template;
                 shocked: "Images/Character/Ai/girl1Shocked.png",
                 sad: "Images/Character/Ai/girl1Sad.png"
             }
+        },
+        TestChara: {
+            name: "TestChara",
+            origin: Template.fS.ORIGIN.BOTTOMCENTER,
+            pose: {
+                neutral: "Images/Character/aisaka_happy.png"
+            }
+        },
+        Rika: {
+            name: "Rika",
+            origin: Template.fS.ORIGIN.BOTTOMCENTER,
+            pose: {
+                neutral: "Images/Character/aisaka_happy.png"
+            }
+        },
+        RikasMutter: {
+            name: "Rikas Mutter",
+            origin: Template.fS.ORIGIN.BOTTOMCENTER,
+            pose: {
+                neutral: "Images/Character/aisaka_happy.png"
+            }
         }
     };
     // *** DATA THAT WILL BE SAVED (GAME PROGRESS)
@@ -238,21 +259,15 @@ var Template;
 var Template;
 (function (Template) {
     async function wakingUp() {
-        console.log("First Scene starting");
-        // let text = {
-        //     Ai: {
-        //         T0001: "Hallo",
-        //         T0002: "Anderer Text",
-        //         T0003: "Text Nummer 3",
-        //     },
-        // };
+        console.log("Waking Up starting");
         Template.fS.Speech.hide();
-        await Template.fS.Location.show(Template.location.uni);
-        await Template.fS.Character.show(Template.characters.Ai, Template.characters.Ai.pose.neutral, Template.fS.positions.bottomcenter);
-        //await ƒS.Character.show(characters.Ai, characters.Ai.pose.neutral, ƒS.positionPercent(60, 120));
+        await Template.fS.Location.show(Template.location.bedroom);
+        //await fS.Character.show(characters.TestChara, characters.TestChara.pose.neutral, fS.positions.bottomcenter);
+        //*** WECKER KLINGELN *** 
         await Template.fS.update();
-        await Template.fS.Speech.tell(Template.characters.Ai, "Text in einer Zeile");
-        await Template.fS.Speech.tell(Template.characters.Ai, "Zweiter Text in einer Zeile");
+        await Template.fS.Speech.tell(Template.characters.RikasMutter, "Rika wach auf, sonst kommst du zu spät!");
+        await Template.fS.Speech.tell(Template.characters.Rika, "Ja, ich bin schon wach.");
+        await Template.fS.Speech.tell(Template.characters.Rika, "<i>Ich sollte mich schnell anziehen, nicht dass Sagi auf mich wieder warten muss …</i>");
     }
     Template.wakingUp = wakingUp;
 })(Template || (Template = {}));

@@ -71,6 +71,41 @@ namespace Template {
                 shocked: "Images/Character/Ai/girl1Shocked.png",
                 sad: "Images/Character/Ai/girl1Sad.png"
             }
+        },
+        TestChara: {
+            name: "TestChara",
+            origin: fS.ORIGIN.BOTTOMCENTER,
+            pose: {
+                neutral: "Images/Character/aisaka_happy.png"
+            }
+        },
+        Rika: {
+            name: "Rika Satō",
+            origin: fS.ORIGIN.BOTTOMCENTER,
+            pose: {
+                neutral: "Images/Character/aisaka_happy.png"
+            }
+        },
+        RikasMutter: {
+            name: "Rikas Mutter",
+            origin: fS.ORIGIN.BOTTOMCENTER,
+            pose: {
+                neutral: "Images/Character/aisaka_happy.png"
+            }
+        },
+        Sagi: {
+            name: "Sagi Aoki",
+            origin: fS.ORIGIN.BOTTOMCENTER,
+            pose: {
+                neutral: "Images/Character/aisaka_happy.png"
+            }
+        },
+        Sho: {
+            name: "Shō Rai",
+            origin: fS.ORIGIN.BOTTOMCENTER,
+            pose: {
+                neutral: "Images/Character/aisaka_happy.png"
+            }
         }
     };
 
