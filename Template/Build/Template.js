@@ -4,6 +4,7 @@ var Template;
     Template.f = FudgeCore;
     Template.fS = FudgeStory;
     console.log("FudgeStory template starting");
+    //*** TRANSITIONS ***
     Template.transition = {
         spiral: {
             duration: 1,
@@ -11,18 +12,45 @@ var Template;
             edge: 1
         }
     };
+    //*** SOUND ***
     Template.sound = {
         // Themes
         // SFX
         outside: "Sounds/outside.wav"
     };
+    //*** BACKGROUNDS ***
     Template.location = {
-        oldStreet: {
-            name: "Old_Street",
-            background: "Images/Backgrounds/Old_Cafe.png"
+        alley: {
+            name: "Alley",
+            background: "Images/Backgrounds/alley.png"
             //foreground: ""
+        },
+        bedroom: {
+            name: "Bedroom",
+            background: "Images/Backgrounds/bedroom.png"
+        },
+        classroom: {
+            name: "Classroom",
+            background: "Images/Backgrounds/classroom.png"
+        },
+        library: {
+            name: "Library",
+            background: "Images/Backgrounds/library.png"
+        },
+        steps: {
+            name: "Steps",
+            background: "Images/Backgrounds/steps.png"
+        },
+        street: {
+            name: "Street",
+            background: "Images/Backgrounds/street.png"
+        },
+        uni: {
+            name: "Uni",
+            background: "Images/Backgrounds/uni.png"
         }
     };
+    //*** CHARACTERS ***
     Template.characters = {
         narrator: {
             name: ""
@@ -113,8 +141,8 @@ var Template;
         buttonFunctionalities("Close");
         /*** SCENE HIERARCHY ***/
         let scenes = [
-            //{ scene: firstScene, name: "First Scene" },
-            { scene: Template.secondScene, name: "Second Scene" }
+            { scene: Template.wakingUp, name: "Waking up" }
+            //{ scene: secondScene, name: "Second Scene" }
         ];
         let uiElement = document.querySelector("[type=interface]");
         Template.dataForSave = Template.fS.Progress.setData(Template.dataForSave, uiElement);
@@ -134,7 +162,7 @@ var Template;
         //     },
         // };
         Template.fS.Speech.hide();
-        await Template.fS.Location.show(Template.location.oldStreet);
+        await Template.fS.Location.show(Template.location.alley);
         await Template.fS.Character.show(Template.characters.Ai, Template.characters.Ai.pose.neutral, Template.fS.positions.bottomcenter);
         //await ƒS.Character.show(characters.Ai, characters.Ai.pose.neutral, ƒS.positionPercent(60, 120));
         await Template.fS.update();
@@ -206,5 +234,26 @@ var Template;
         await Template.fS.Character.animate(Template.characters.Ai, Template.characters.Ai.pose.happy, Template.animation());
     }
     Template.secondScene = secondScene;
+})(Template || (Template = {}));
+var Template;
+(function (Template) {
+    async function wakingUp() {
+        console.log("First Scene starting");
+        // let text = {
+        //     Ai: {
+        //         T0001: "Hallo",
+        //         T0002: "Anderer Text",
+        //         T0003: "Text Nummer 3",
+        //     },
+        // };
+        Template.fS.Speech.hide();
+        await Template.fS.Location.show(Template.location.uni);
+        await Template.fS.Character.show(Template.characters.Ai, Template.characters.Ai.pose.neutral, Template.fS.positions.bottomcenter);
+        //await ƒS.Character.show(characters.Ai, characters.Ai.pose.neutral, ƒS.positionPercent(60, 120));
+        await Template.fS.update();
+        await Template.fS.Speech.tell(Template.characters.Ai, "Text in einer Zeile");
+        await Template.fS.Speech.tell(Template.characters.Ai, "Zweiter Text in einer Zeile");
+    }
+    Template.wakingUp = wakingUp;
 })(Template || (Template = {}));
 //# sourceMappingURL=Template.js.map

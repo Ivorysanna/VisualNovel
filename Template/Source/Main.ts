@@ -4,6 +4,7 @@ namespace Template {
 
     console.log("FudgeStory template starting");
 
+    //*** TRANSITIONS ***
     export let transition = {
         spiral: {
             duration: 1,
@@ -12,20 +13,47 @@ namespace Template {
         }
     };
 
+    //*** SOUND ***
     export let sound = {
         // Themes
         // SFX
         outside: "Sounds/outside.wav"
     };
 
+    //*** BACKGROUNDS ***
     export let location = {
-        oldStreet: {
-            name: "Old_Street",
-            background: "Images/Backgrounds/Old_Cafe.png"
+        alley: {
+            name: "Alley",
+            background: "Images/Backgrounds/alley.png"
             //foreground: ""
+        },
+        bedroom: {
+            name: "Bedroom",
+            background: "Images/Backgrounds/bedroom.png"
+        },
+        classroom: {
+            name: "Classroom",
+            background: "Images/Backgrounds/classroom.png"
+        },
+        library: {
+            name: "Library",
+            background: "Images/Backgrounds/library.png"
+        },
+        steps: {
+            name: "Steps",
+            background: "Images/Backgrounds/steps.png"
+        },
+        street: {
+            name: "Street",
+            background: "Images/Backgrounds/street.png"
+        },
+        uni: {
+            name: "Uni",
+            background: "Images/Backgrounds/uni.png"
         }
     };
 
+    //*** CHARACTERS ***
     export let characters = {
         narrator: {
             name: ""
@@ -122,8 +150,8 @@ namespace Template {
         buttonFunctionalities("Close");
         /*** SCENE HIERARCHY ***/
         let scenes: fS.Scenes = [
-            //{ scene: firstScene, name: "First Scene" },
-            { scene: secondScene, name: "Second Scene" }
+            { scene: wakingUp, name: "Waking up" }
+            //{ scene: secondScene, name: "Second Scene" }
         ];
 
         let uiElement: HTMLElement = document.querySelector("[type=interface]");

@@ -12,7 +12,31 @@ declare namespace Template {
         outside: string;
     };
     let location: {
-        oldStreet: {
+        alley: {
+            name: string;
+            background: string;
+        };
+        bedroom: {
+            name: string;
+            background: string;
+        };
+        classroom: {
+            name: string;
+            background: string;
+        };
+        library: {
+            name: string;
+            background: string;
+        };
+        steps: {
+            name: string;
+            background: string;
+        };
+        street: {
+            name: string;
+            background: string;
+        };
+        uni: {
             name: string;
             background: string;
         };
@@ -46,4 +70,7 @@ declare namespace Template {
 }
 declare namespace Template {
     function secondScene(): fS.SceneReturn;
+}
+declare namespace Template {
+    function wakingUp(): fS.SceneReturn;
 }

@@ -11,7 +11,7 @@ namespace Template {
         // };
         
         fS.Speech.hide();
-        await fS.Location.show(location.oldStreet);
+        await fS.Location.show(location.alley);
         await fS.Character.show(characters.Ai, characters.Ai.pose.neutral, fS.positions.bottomcenter);
         //await ƒS.Character.show(characters.Ai, characters.Ai.pose.neutral, ƒS.positionPercent(60, 120));
         await fS.update();
