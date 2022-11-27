@@ -2,7 +2,7 @@ declare namespace Template {
     export import f = FudgeCore;
     export import fS = FudgeStory;
     let transition: {
-        spiral: {
+        swirl: {
             duration: number;
             alpha: string;
             edge: number;
@@ -10,6 +10,7 @@ declare namespace Template {
     };
     let sound: {
         outside: string;
+        alarmClock: string;
     };
     let location: {
         alley: {
@@ -106,6 +107,7 @@ declare namespace Template {
         nameProtagonist: string;
     };
     function animation(): fS.AnimationDefinition;
+    function leavingLeft(): fS.AnimationDefinition;
 }
 declare namespace Template {
     let Rika: {
@@ -160,6 +162,9 @@ declare namespace Template {
     };
 }
 declare namespace Template {
+    function wakingUp(): fS.SceneReturn;
+}
+declare namespace Template {
     function goingToSchool(): fS.SceneReturn;
 }
 declare namespace Template {
@@ -167,7 +172,4 @@ declare namespace Template {
 }
 declare namespace Template {
     function secondScene(): fS.SceneReturn;
-}
-declare namespace Template {
-    function wakingUp(): fS.SceneReturn;
 }

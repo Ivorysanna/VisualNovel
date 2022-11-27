@@ -6,9 +6,9 @@ namespace Template {
 
     //*** TRANSITIONS ***
     export let transition = {
-        spiral: {
+        swirl: {
             duration: 1,
-            alpha: "Images/Transitions/023.png",
+            alpha: "Images/Splash.png",
             edge: 1
         }
     };
@@ -17,7 +17,8 @@ namespace Template {
     export let sound = {
         // Themes
         // SFX
-        outside: "Sounds/outside.wav"
+        outside: "Sounds/outside.wav",
+        alarmClock: "Sounds/alarmClock.wav"
     };
 
     //*** BACKGROUNDS ***
@@ -128,6 +129,15 @@ namespace Template {
             end: { translation: fS.positions.bottomright, color: fS.Color.CSS("green", 0) },
             duration: 3,
             playmode: fS.ANIMATION_PLAYMODE.LOOP
+        };
+    }
+
+    export function leavingLeft(): fS.AnimationDefinition {
+        return {
+            start: {translation: fS.positionPercent(40, 100), color: fS.Color.CSS("", 1) },
+            end: {translation: fS.positionPercent(20, 100), color: fS.Color.CSS("", 0) },
+            duration: 3,
+            playmode: fS.ANIMATION_PLAYMODE.PLAYONCE
         };
     }
 

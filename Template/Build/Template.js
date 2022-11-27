@@ -6,9 +6,9 @@ var Template;
     console.log("FudgeStory template starting");
     //*** TRANSITIONS ***
     Template.transition = {
-        spiral: {
+        swirl: {
             duration: 1,
-            alpha: "Images/Transitions/023.png",
+            alpha: "Images/Splash.png",
             edge: 1
         }
     };
@@ -16,7 +16,8 @@ var Template;
     Template.sound = {
         // Themes
         // SFX
-        outside: "Sounds/outside.wav"
+        outside: "Sounds/outside.wav",
+        alarmClock: "Sounds/alarmClock.wav"
     };
     //*** BACKGROUNDS ***
     Template.location = {
@@ -126,6 +127,15 @@ var Template;
         };
     }
     Template.animation = animation;
+    function leavingLeft() {
+        return {
+            start: { translation: Template.fS.positionPercent(40, 100), color: Template.fS.Color.CSS("", 1) },
+            end: { translation: Template.fS.positionPercent(20, 100), color: Template.fS.Color.CSS("", 0) },
+            duration: 3,
+            playmode: Template.fS.ANIMATION_PLAYMODE.PLAYONCE
+        };
+    }
+    Template.leavingLeft = leavingLeft;
     // *** DATA THAT WILL BE SAVED (GAME PROGRESS)
     //Menu shortcuts
     let inGameMenuButtons = {
@@ -209,6 +219,32 @@ var Template;
     //*** TEACHER ***
     Template.Teacher = Template.characters.Teacher;
     Template.TeacherPose = Template.characters.Teacher.pose;
+})(Template || (Template = {}));
+var Template;
+(function (Template) {
+    async function wakingUp() {
+        console.log("Waking Up starting");
+        Template.fS.Speech.hide();
+        await Template.fS.Sound.play(Template.sound.alarmClock, 0.5, false);
+        //await fS.Progress.delay(4);
+        await Template.fS.Location.show(Template.location.bedroom);
+        await Template.fS.update(Template.transition.swirl.duration, Template.transition.swirl.alpha, Template.transition.swirl.edge);
+        // *** WECKER KLINGELN ***
+        await Template.fS.update();
+        //await fS.Progress.delay(3);
+        await Template.fS.Speech.tell(Template.RikaMother, "Rika wach auf, sonst kommst du zu spät!");
+        await Template.fS.Speech.tell(Template.Rika, "Ja, ich bin schon wach.");
+        await Template.fS.Speech.tell(Template.Rika, "<i>Ich sollte mich schnell fertig machen, nicht dass Sagi wieder auf mich warten muss …</i>");
+        //await fS.Progress.delay(3);
+        //TODO *** AUSFADEN EINFADEN***
+        await Template.fS.Character.show(Template.Rika, Template.RikaPose.neutral, Template.fS.positionPercent(40, 100));
+        await Template.fS.update(0.5);
+        await Template.fS.Speech.tell(Template.Rika, "Mama, ich gehe jetzt los. Bis heute Abend.");
+        Template.fS.Speech.tell(Template.RikaMother, "Okay, viel Erfolg!");
+        await Template.fS.Character.animate(Template.Rika, Template.RikaPose.neutral, Template.leavingLeft());
+        await Template.fS.Progress.delay(1);
+    }
+    Template.wakingUp = wakingUp;
 })(Template || (Template = {}));
 var Template;
 (function (Template) {
@@ -335,24 +371,5 @@ var Template;
         await Template.fS.Character.animate(Template.characters.Ai, Template.characters.Ai.pose.happy, Template.animation());
     }
     Template.secondScene = secondScene;
-})(Template || (Template = {}));
-var Template;
-(function (Template) {
-    async function wakingUp() {
-        console.log("Waking Up starting");
-        Template.fS.Speech.hide();
-        await Template.fS.Location.show(Template.location.bedroom);
-        //TODO *** WECKER KLINGELN ***
-        await Template.fS.update();
-        await Template.fS.Speech.tell(Template.RikaMother, "Rika wach auf, sonst kommst du zu spät!");
-        await Template.fS.Speech.tell(Template.Rika, "Ja, ich bin schon wach.");
-        await Template.fS.Speech.tell(Template.Rika, "<i>Ich sollte mich schnell anziehen, nicht dass Sagi wieder auf mich warten muss …</i>");
-        //TODO *** AUSFADEN EINFADEN***
-        await Template.fS.Character.show(Template.Rika, Template.RikaPose.neutral, Template.fS.positions.bottomcenter);
-        await Template.fS.update();
-        await Template.fS.Speech.tell(Template.Rika, "Mama, ich gehe jetzt los. Bis heute Abend.");
-        await Template.fS.Speech.tell(Template.RikaMother, "Okay, viel Erfolg!");
-    }
-    Template.wakingUp = wakingUp;
 })(Template || (Template = {}));
 //# sourceMappingURL=Template.js.map
