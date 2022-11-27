@@ -10,11 +10,11 @@ namespace Template {
         await fS.Character.show(Rika, SagiPose.neutral, fS.positions.bottomcenter);
         await fS.Speech.tell(Sagi, "Na, da bist du ja endlich. Komm, sonst kommen wir zu spät!");
         await fS.Speech.tell(Rika, "Tut mir leid, zurzeit schlafe ich wirklich schlecht. Ich frage mich wirklich, woran das liegt …");
-        await fS.Speech.tell(Sagi, "Vielleicht bist du ja nur nervös, du weißt ja heute kommt der neue Schüler. Ich frage mich, wie er drauf ist");
-        await fS.Speech.tell(Sagi, "Hey, dann bekommst du ja vielleicht auch mal einen Freund");
+        await fS.Speech.tell(Sagi, "Vielleicht bist du ja nur nervös, du weißt ja heute kommt der neue Schüler. Ich frage mich, wie er drauf ist.");
+        await fS.Speech.tell(Sagi, "Hey, dann bekommst du ja vielleicht auch mal einen Freund.");
         
         // TODO: *** LEICHTER BILD WACKELN***
-        await fS.Speech.tell(Rika, "Ugh");
+        await fS.Speech.tell(Rika, "Ugh...");
         //await fS.Character.show(Sagi, SagiPose.neutral, fS.positions.bottomcenter);
         //await fS.update();
         await fS.Speech.tell(Sagi, "Was ist los?!");

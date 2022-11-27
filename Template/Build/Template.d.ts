@@ -73,7 +73,7 @@ declare namespace Template {
                 neutral: string;
             };
         };
-        RikasMutter: {
+        RikaMother: {
             name: string;
             origin: f.ORIGIN2D;
             pose: {
@@ -88,6 +88,13 @@ declare namespace Template {
             };
         };
         Sho: {
+            name: string;
+            origin: f.ORIGIN2D;
+            pose: {
+                neutral: string;
+            };
+        };
+        Teacher: {
             name: string;
             origin: f.ORIGIN2D;
             pose: {
@@ -131,16 +138,29 @@ declare namespace Template {
     let ShoPose: {
         neutral: string;
     };
-    let RikasMutter: {
+    let RikaMother: {
         name: string;
         origin: f.ORIGIN2D;
         pose: {
             neutral: string;
         };
     };
-    let RikasMutterPose: {
+    let RikaMotherPose: {
         neutral: string;
     };
+    let Teacher: {
+        name: string;
+        origin: f.ORIGIN2D;
+        pose: {
+            neutral: string;
+        };
+    };
+    let TeacherPose: {
+        neutral: string;
+    };
+}
+declare namespace Template {
+    function goingToSchool(): fS.SceneReturn;
 }
 declare namespace Template {
     function firstScene(): fS.SceneReturn;

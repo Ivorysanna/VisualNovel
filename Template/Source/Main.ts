@@ -192,8 +192,8 @@ namespace Template {
         buttonFunctionalities("Close");
         /*** SCENE HIERARCHY ***/
         let scenes: fS.Scenes = [
-            { scene: wakingUp, name: "Waking up" }
-            //{ scene: secondScene, name: "Second Scene" }
+            { scene: wakingUp, name: "Waking up" },
+            { scene: goingToSchool, name: "Goining to School" }
         ];
 
         let uiElement: HTMLElement = document.querySelector("[type=interface]");
