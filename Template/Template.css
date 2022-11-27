@@ -41,26 +41,40 @@ dialog[type=splash]>img#FudgeStoryLogo {
 /***** SPEECH, CONTENT, NAMES *****/
 speech {
   position: absolute;
-  bottom: 0px;
+  background-image: url(Images/Textbox/textbox.png);
+  /* bottom: 0px;
   left: 0px;
   color: beige;
   background-color: rgba(28, 94, 85, 0.9);
   width: 100%;
-  height: 13%;
+  height: 28%; */
+  background-size: 100%;
+  background-repeat: no-repeat;
+  bottom: 0;
+  left: 2%;
+  height: 39%;
+  width: 80%;
+  color: #333333;
 }
 
 speech content {
-  color: rgb(230, 205, 222);
-  font-size: 2.7vmin;
+  color: rgb(0, 0, 0);
+  font-size: 28.6px;
   position: absolute;
-  left: 20px;
+  display: block;
+  height: 20%;
+  width: 75%;
+  top: 33%;
+  left: 12%;
 }
 
 name {
-  font-size: 3vmin;
   display: block;
-  color: rgb(230, 205, 222);
-  margin-bottom: 10px;
-  margin-left: 10px;
-  
+  position: absolute;
+  padding: 2px;
+  color: rgb(0, 0, 0);
+  top: 8%;
+  left: 20.5%;
+  font-size: 32px;
+  font-weight: 600;
 }

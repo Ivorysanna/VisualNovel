@@ -224,6 +224,7 @@ var Template;
 (function (Template) {
     async function wakingUp() {
         console.log("Waking Up starting");
+        // *** DONT FORGET DELAYS *** 
         Template.fS.Speech.hide();
         await Template.fS.Sound.play(Template.sound.alarmClock, 0.5, false);
         //await fS.Progress.delay(4);
@@ -242,7 +243,7 @@ var Template;
         await Template.fS.Speech.tell(Template.Rika, "Mama, ich gehe jetzt los. Bis heute Abend.");
         Template.fS.Speech.tell(Template.RikaMother, "Okay, viel Erfolg!");
         await Template.fS.Character.animate(Template.Rika, Template.RikaPose.neutral, Template.leavingLeft());
-        await Template.fS.Progress.delay(1);
+        //await fS.Progress.delay(1);
     }
     Template.wakingUp = wakingUp;
 })(Template || (Template = {}));
