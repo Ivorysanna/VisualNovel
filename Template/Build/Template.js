@@ -77,7 +77,7 @@ var Template;
             }
         },
         Rika: {
-            name: "Rika",
+            name: "Rika Satō",
             origin: Template.fS.ORIGIN.BOTTOMCENTER,
             pose: {
                 neutral: "Images/Character/aisaka_happy.png"
@@ -85,6 +85,20 @@ var Template;
         },
         RikasMutter: {
             name: "Rikas Mutter",
+            origin: Template.fS.ORIGIN.BOTTOMCENTER,
+            pose: {
+                neutral: "Images/Character/aisaka_happy.png"
+            }
+        },
+        Sagi: {
+            name: "Sagi Aoki",
+            origin: Template.fS.ORIGIN.BOTTOMCENTER,
+            pose: {
+                neutral: "Images/Character/aisaka_happy.png"
+            }
+        },
+        Sho: {
+            name: "Shō Rai",
             origin: Template.fS.ORIGIN.BOTTOMCENTER,
             pose: {
                 neutral: "Images/Character/aisaka_happy.png"
@@ -170,6 +184,21 @@ var Template;
         // start the sequence
         Template.fS.Progress.go(scenes);
     }
+})(Template || (Template = {}));
+var Template;
+(function (Template) {
+    //*** RIKA *** 
+    Template.Rika = Template.characters.Rika;
+    Template.RikaPose = Template.characters.Rika.pose;
+    //*** SAGI ***
+    Template.Sagi = Template.characters.Sagi;
+    Template.SagiPose = Template.characters.Sagi.pose;
+    //*** SHO ***
+    Template.Sho = Template.characters.Sho;
+    Template.ShoPose = Template.characters.Sho.pose;
+    //*** RIKAS MUTTER ***
+    Template.RikasMutter = Template.characters.RikasMutter;
+    Template.RikasMutterPose = Template.characters.RikasMutter.pose;
 })(Template || (Template = {}));
 var Template;
 (function (Template) {
@@ -265,9 +294,14 @@ var Template;
         //await fS.Character.show(characters.TestChara, characters.TestChara.pose.neutral, fS.positions.bottomcenter);
         //*** WECKER KLINGELN *** 
         await Template.fS.update();
-        await Template.fS.Speech.tell(Template.characters.RikasMutter, "Rika wach auf, sonst kommst du zu spät!");
-        await Template.fS.Speech.tell(Template.characters.Rika, "Ja, ich bin schon wach.");
-        await Template.fS.Speech.tell(Template.characters.Rika, "<i>Ich sollte mich schnell anziehen, nicht dass Sagi auf mich wieder warten muss …</i>");
+        await Template.fS.Speech.tell(Template.RikasMutter, "Rika wach auf, sonst kommst du zu spät!");
+        await Template.fS.Speech.tell(Template.Rika, "Ja, ich bin schon wach.");
+        await Template.fS.Speech.tell(Template.Rika, "<i>Ich sollte mich schnell anziehen, nicht dass Sagi wieder auf mich warten muss …</i>");
+        //*** AUSFADEN EINFADEN***
+        await Template.fS.Character.show(Template.Rika, Template.RikaPose.neutral, Template.fS.positions.bottomcenter);
+        await Template.fS.update();
+        await Template.fS.Speech.tell(Template.Rika, "Mama, ich gehe jetzt los. Bis heute Abend.");
+        await Template.fS.Speech.tell(Template.RikasMutter, "Okay, viel Erfolg!");
     }
     Template.wakingUp = wakingUp;
 })(Template || (Template = {}));

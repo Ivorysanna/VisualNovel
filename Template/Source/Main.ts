@@ -86,7 +86,7 @@ namespace Template {
                 neutral: "Images/Character/aisaka_happy.png"
             }
         },
-        RikasMutter: {
+        RikaMother: {
             name: "Rikas Mutter",
             origin: fS.ORIGIN.BOTTOMCENTER,
             pose: {
@@ -102,6 +102,13 @@ namespace Template {
         },
         Sho: {
             name: "Shō Rai",
+            origin: fS.ORIGIN.BOTTOMCENTER,
+            pose: {
+                neutral: "Images/Character/aisaka_happy.png"
+            }
+        },
+        Teacher: {
+            name: "Lehrerin",
             origin: fS.ORIGIN.BOTTOMCENTER,
             pose: {
                 neutral: "Images/Character/aisaka_happy.png"
