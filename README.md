@@ -1,6 +1,9 @@
 # FUDGE_Story
+Bei dieser Visual Novel handelt es sich um kein fertiges Spiel. Weshalb die Charaktere und Story in einem schnelleren Tempo erzählt wird, um dem Spieler eine komplette Geschichte zu erzählen.
+
+# Links
 Game:
-Repositrory: 
+Repository:
 Konzept:
 
 
