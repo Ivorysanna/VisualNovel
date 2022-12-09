@@ -25,7 +25,7 @@ namespace Template {
         await fS.Location.show(location.uni);
         await fS.update();
 
-        // TODO *** GLOCKE KLINGELT SOUND ***
+        // TODO: *** GLOCKE KLINGELT SOUND ***
         await fS.Character.show(Sagi, SagiPose.neutral, fS.positions.bottomcenter);
         await fS.update();
         await fS.Speech.tell(Sagi, "Komm schnell, wir schaffen es gerade so rechtzeitig.");
@@ -41,7 +41,7 @@ namespace Template {
         await fS.update();
         await fS.Speech.tell(Sho, "Hi, ich bin Sho Rai. Freut mich, euch kennenzulernen.");
 
-        // TODO ***GETUSCHEL VON ANDEREN SCHUELERN SOUND ***
+        // TODO: ***GETUSCHEL VON ANDEREN SCHUELERN SOUND ***
         await fS.Speech.tell(Teacher, "Okay, beruhigt euch wieder. Ihr könnt in der Pause noch mal miteinander reden.");
 
     

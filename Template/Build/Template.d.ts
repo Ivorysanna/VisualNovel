@@ -72,6 +72,9 @@ declare namespace Template {
             origin: f.ORIGIN2D;
             pose: {
                 neutral: string;
+                happy: string;
+                angry: string;
+                sad: string;
             };
         };
         RikaMother: {
@@ -86,6 +89,10 @@ declare namespace Template {
             origin: f.ORIGIN2D;
             pose: {
                 neutral: string;
+                happy: string;
+                angry: string;
+                sad: string;
+                insane: string;
             };
         };
         Sho: {
@@ -93,6 +100,9 @@ declare namespace Template {
             origin: f.ORIGIN2D;
             pose: {
                 neutral: string;
+                happy: string;
+                angry: string;
+                sad: string;
             };
         };
         Teacher: {
@@ -115,30 +125,50 @@ declare namespace Template {
         origin: f.ORIGIN2D;
         pose: {
             neutral: string;
+            happy: string;
+            angry: string;
+            sad: string;
         };
     };
     let RikaPose: {
         neutral: string;
+        happy: string;
+        angry: string;
+        sad: string;
     };
     let Sagi: {
         name: string;
         origin: f.ORIGIN2D;
         pose: {
             neutral: string;
+            happy: string;
+            angry: string;
+            sad: string;
+            insane: string;
         };
     };
     let SagiPose: {
         neutral: string;
+        happy: string;
+        angry: string;
+        sad: string;
+        insane: string;
     };
     let Sho: {
         name: string;
         origin: f.ORIGIN2D;
         pose: {
             neutral: string;
+            happy: string;
+            angry: string;
+            sad: string;
         };
     };
     let ShoPose: {
         neutral: string;
+        happy: string;
+        angry: string;
+        sad: string;
     };
     let RikaMother: {
         name: string;

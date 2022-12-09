@@ -81,7 +81,10 @@ var Template;
             name: "Rika Satō",
             origin: Template.fS.ORIGIN.BOTTOMCENTER,
             pose: {
-                neutral: "Images/Character/aisaka_happy.png"
+                neutral: "Images/Character/Rika/rika_neutral.png",
+                happy: "Images/Character/Rika/rika_happy.png",
+                angry: "Images/Character/Rika/rika_angry.png",
+                sad: "Images/Character/Rika/rika_sad.png"
             }
         },
         RikaMother: {
@@ -95,21 +98,28 @@ var Template;
             name: "Sagi Aoki",
             origin: Template.fS.ORIGIN.BOTTOMCENTER,
             pose: {
-                neutral: "Images/Character/aisaka_happy.png"
+                neutral: "Images/Character/Sagi/sagi_neutral.png",
+                happy: "Images/Character/Sagi/sagi_happy.png",
+                angry: "Images/Character/Sagi/sagi_angry.png",
+                sad: "Images/Character/Sagi/sagi_happy.png",
+                insane: "Images/Character/Rika/rika_insane.png"
             }
         },
         Sho: {
             name: "Shō Rai",
             origin: Template.fS.ORIGIN.BOTTOMCENTER,
             pose: {
-                neutral: "Images/Character/aisaka_happy.png"
+                neutral: "Images/Character/Sho/sho_neutral.png",
+                happy: "Images/Character/Sho/sho_neutral.png",
+                angry: "Images/Character/Sho/sho_neutral.png",
+                sad: "Images/Character/Sho/sho_neutral.png"
             }
         },
         Teacher: {
             name: "Lehrerin",
             origin: Template.fS.ORIGIN.BOTTOMCENTER,
             pose: {
-                neutral: "Images/Character/aisaka_happy.png"
+                neutral: "Images/Character/Teeacher/teacher_neutral.png"
             }
         }
     };
