@@ -51,6 +51,10 @@ namespace Template {
         uni: {
             name: "Uni",
             background: "Images/Backgrounds/uni.png"
+        },
+        darkBackground: {
+            name: "DarkBackground",
+            background: "Images/Backgrounds/darkbackground.png"
         }
     };
 
@@ -211,6 +215,7 @@ namespace Template {
         gameMenu = fS.Menu.create(inGameMenuButtons, buttonFunctionalities, "gameMenuCSSClass");
         buttonFunctionalities("Close");
         /*** SCENE HIERARCHY ***/
+        fS.Speech.hide();
         let scenes: fS.Scenes = [
             { scene: wakingUp, name: "Waking up" },
             { scene: goingToSchool, name: "Goining to School" }
