@@ -217,8 +217,8 @@ namespace Template {
         /*** SCENE HIERARCHY ***/
         fS.Speech.hide();
         let scenes: fS.Scenes = [
-            { scene: wakingUp, name: "Waking up" },
-            { scene: goingToSchool, name: "Goining to School" }
+            { id: "wakingUp1", scene: wakingUp, name: "Waking up" },
+            { id: "toSchool1", scene: goingToSchool, name: "Going to School firstTime", next: "" }
         ];
 
         let uiElement: HTMLElement = document.querySelector("[type=interface]");

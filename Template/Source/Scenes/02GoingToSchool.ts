@@ -13,7 +13,7 @@ namespace Template {
         await fS.Speech.tell(Sagi, "Vielleicht bist du ja nur nervös, du weißt ja heute kommt der neue Schüler. Ich frage mich, wie er drauf ist.");
         await fS.Speech.tell(Sagi, "Hey, dann bekommst du ja vielleicht auch mal einen Freund.");
         
-        // TODO: *** LEICHTER BILD WACKELN***
+        // TODO: *** LEICHTES BILD WACKELN***
         await fS.Speech.tell(Rika, "Ugh...");
         //await fS.Character.show(Sagi, SagiPose.neutral, fS.positions.bottomcenter);
         //await fS.update();

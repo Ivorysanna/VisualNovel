@@ -243,21 +243,19 @@ var Template;
         //TODO: *** DONT FORGET DELAYS ***
         if (!firstWakingUp) {
             await Template.fS.Sound.play(Template.sound.alarmClock, 0.5, false);
-            //await fS.Progress.delay(4);
+            //TODO: await fS.Progress.delay(4);
             await Template.fS.Location.show(Template.location.bedroom);
             await Template.fS.update(Template.transition.swirl.duration, Template.transition.swirl.alpha, Template.transition.swirl.edge);
-            // *** WECKER KLINGELN ***
             await Template.fS.update();
             //await fS.Progress.delay(3);
             await Template.fS.Speech.tell(Template.RikaMother, "Rika wach auf, sonst kommst du zu spät!");
             await Template.fS.Speech.tell(Template.Rika, "Ja, ich bin schon wach.");
             await Template.fS.Speech.tell(Template.Rika, "<i>Ich sollte mich schnell fertig machen, nicht dass Sagi wieder auf mich warten muss …</i>");
             //await fS.Progress.delay(3);
-            //TODO: *** AUSFADEN EINFADEN***
             await Template.fS.Location.show(Template.location.darkBackground);
             Template.fS.Speech.hide();
             Template.fS.Character.hideAll();
-            await Template.fS.update(0.5);
+            await Template.fS.update();
             await Template.fS.Progress.delay(5);
             await Template.fS.Location.show(Template.location.bedroom);
             await Template.fS.Character.show(Template.Rika, Template.RikaPose.neutral, Template.fS.positionPercent(40, 100));
@@ -266,10 +264,14 @@ var Template;
             Template.fS.Speech.tell(Template.RikaMother, "Okay, viel Erfolg!");
             await Template.fS.Character.animate(Template.Rika, Template.RikaPose.neutral, Template.leavingLeft());
             firstWakingUp = true;
-            //await fS.Progress.delay(1);
         }
         else {
+            //TODO: AFTER ACCIDENT SCENE BAUEN
             //*** After Car Accident***
+            await Template.fS.Sound.play(Template.sound.alarmClock, 0.5, false);
+            //await fS.Progress.delay(4);
+            await Template.fS.Location.show(Template.location.bedroom);
+            await Template.fS.update(Template.transition.swirl.duration, Template.transition.swirl.alpha, Template.transition.swirl.edge);
         }
     }
     Template.wakingUp = wakingUp;
@@ -287,7 +289,7 @@ var Template;
         await Template.fS.Speech.tell(Template.Rika, "Tut mir leid, zurzeit schlafe ich wirklich schlecht. Ich frage mich wirklich, woran das liegt …");
         await Template.fS.Speech.tell(Template.Sagi, "Vielleicht bist du ja nur nervös, du weißt ja heute kommt der neue Schüler. Ich frage mich, wie er drauf ist.");
         await Template.fS.Speech.tell(Template.Sagi, "Hey, dann bekommst du ja vielleicht auch mal einen Freund.");
-        // TODO: *** LEICHTER BILD WACKELN***
+        // TODO: *** LEICHTES BILD WACKELN***
         await Template.fS.Speech.tell(Template.Rika, "Ugh...");
         //await fS.Character.show(Sagi, SagiPose.neutral, fS.positions.bottomcenter);
         //await fS.update();
