@@ -205,7 +205,8 @@ namespace Template {
         let scenes: fS.Scenes = [
             //{ id: "wakingUp1", scene: WakingUp, name: "Waking up" },
             //{ id: "toSchool1", scene: GoingToSchool, name: "Going to School firstTime"},
-            { id: "inClassFirstTime", scene: InKlasseErste, name: "In Class for firstTime"}
+            { id: "inClassFirstTime", scene: InKlasseErste, name: "In Class for firstTime"},
+            { id: "carCrash", scene: CarCrash, name: "CarCrash"}
         ];
 
         let uiElement: HTMLElement = document.querySelector("[type=interface]");

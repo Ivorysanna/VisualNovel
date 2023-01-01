@@ -1,6 +1,8 @@
 namespace Template {
     export async function InKlasseErste(): fS.SceneReturn {
+        console.log("First Class starting");
         // Sagi und Rika sind im Klassenzimmer
+        fS.Speech.hide();
         await fS.Location.show(location.classroom);
         await fS.update();
 
@@ -94,6 +96,6 @@ namespace Template {
         await fS.Speech.tell(Sho, "Nun, dann gehen wir mal den etwas längeren, außer du hast es eilig.");
         await fS.Speech.tell(Rika, "Ne, ich habe heute nichts mehr vor. Dann kann ich dir etwas von der Stadt zeigen. Vor allem das große Einkaufszentrum. ");
         await fS.Speech.tell(Sho, "Oh, ich wusste gar nicht, dass es hier sowas gibt.");
-        
+
     }
 }

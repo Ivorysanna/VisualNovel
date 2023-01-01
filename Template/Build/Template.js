@@ -196,7 +196,8 @@ var Template;
         let scenes = [
             //{ id: "wakingUp1", scene: WakingUp, name: "Waking up" },
             //{ id: "toSchool1", scene: GoingToSchool, name: "Going to School firstTime"},
-            { id: "inClassFirstTime", scene: Template.InKlasseErste, name: "In Class for firstTime" }
+            { id: "inClassFirstTime", scene: Template.InKlasseErste, name: "In Class for firstTime" },
+            { id: "carCrash", scene: Template.CarCrash, name: "CarCrash" }
         ];
         let uiElement = document.querySelector("[type=interface]");
         Template.dataForSave = Template.fS.Progress.setData(Template.dataForSave, uiElement);
@@ -221,6 +222,21 @@ var Template;
     //*** TEACHER ***
     Template.Teacher = Template.characters.Teacher;
     Template.TeacherPose = Template.characters.Teacher.pose;
+    //*** GLOBAL VARIABLES***
+    Template.carCrashHappend = false;
+})(Template || (Template = {}));
+var Template;
+(function (Template) {
+    async function CarCrash() {
+        console.log("Starting Car Crash");
+        Template.fS.Speech.hide();
+        await Template.fS.Location.show(Template.location.streetCity);
+        await Template.fS.update();
+        await Template.fS.Speech.tell(Template.Rika, "So, hier um die Ecke ist auch schon das Einkaufszentrum. Wenn du möchtest, können wir uns hier am Wochenende auf einen Bubble Tea treffen und vielleicht…");
+        //TODO: *** AUTO HUPEN UND REIFEN QUIETSCHEN EINBAUEN ***
+        //TODO: *** SZENENBILD ANZEIGEN AUTO ÜBERFAHREN***  
+    }
+    Template.CarCrash = CarCrash;
 })(Template || (Template = {}));
 var Template;
 (function (Template) {
@@ -256,7 +272,9 @@ var Template;
 var Template;
 (function (Template) {
     async function InKlasseErste() {
+        console.log("First Class starting");
         // Sagi und Rika sind im Klassenzimmer
+        Template.fS.Speech.hide();
         await Template.fS.Location.show(Template.location.classroom);
         await Template.fS.update();
         await Template.fS.Character.show(Template.Teacher, Template.TeacherPose.neutral, Template.fS.positionPercent(70, 100));

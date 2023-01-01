@@ -18,4 +18,8 @@ namespace Template {
     //*** TEACHER ***
     export  let Teacher = characters.Teacher;
     export  let TeacherPose = characters.Teacher.pose;
+
+    //*** GLOBAL VARIABLES***
+    export let carCrashHappend = false;
+    
 }

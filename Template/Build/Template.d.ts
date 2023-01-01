@@ -180,6 +180,10 @@ declare namespace Template {
     let TeacherPose: {
         neutral: string;
     };
+    let carCrashHappend: boolean;
+}
+declare namespace Template {
+    function CarCrash(): fS.SceneReturn;
 }
 declare namespace Template {
     function GoingToSchool(): fS.SceneReturn;
