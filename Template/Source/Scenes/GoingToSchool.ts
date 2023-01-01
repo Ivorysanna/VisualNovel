@@ -1,5 +1,5 @@
 namespace Template {
-    export async function goingToSchool(): fS.SceneReturn {
+    export async function GoingToSchool(): fS.SceneReturn {
         console.log("Going to School starting");
 
         fS.Speech.hide();
@@ -29,22 +29,6 @@ namespace Template {
         await fS.Character.show(Sagi, SagiPose.neutral, fS.positions.bottomcenter);
         await fS.update();
         await fS.Speech.tell(Sagi, "Komm schnell, wir schaffen es gerade so rechtzeitig.");
-
-        // Sagi und Rika sind im Klassenzimmer
-        await fS.Location.show(location.classroom);
-        await fS.update();
-
-        await fS.Character.show(Teacher, TeacherPose.neutral, fS.positions.bottomcenter);
-        await fS.update();
-        await fS.Speech.tell(Teacher, "Guten Morgen. Bevor wir heute mit dem Unterricht anfangen, möchte ich euch zunächst euren neuen Mitschüler vorstellen.");
-        await fS.Character.show(Sho, ShoPose.neutral, fS.positions.bottomcenter);
-        await fS.update();
-        await fS.Speech.tell(Sho, "Hi, ich bin Sho Rai. Freut mich, euch kennenzulernen.");
-
-        // TODO: ***GETUSCHEL VON ANDEREN SCHUELERN SOUND ***
-        await fS.Speech.tell(Teacher, "Okay, beruhigt euch wieder. Ihr könnt in der Pause noch mal miteinander reden.");
-
-    
-
+        fS.Character.hideAll();
     }
 }

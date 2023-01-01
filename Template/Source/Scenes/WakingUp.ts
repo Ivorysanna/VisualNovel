@@ -1,11 +1,11 @@
 namespace Template {
-    export async function wakingUp(): fS.SceneReturn {
+    export async function WakingUp(): fS.SceneReturn {
         console.log("Waking Up starting");
         let firstWakingUp: boolean = false;
         //TODO: *** DONT FORGET DELAYS ***
 
         if (!firstWakingUp) {
-            await fS.Sound.play(sound.alarmClock, 0.5, false);
+            //fS.Sound.play(sound.alarmClock, 0.5, false);
             //TODO: await fS.Progress.delay(4);
             await fS.Location.show(location.bedroom);
             await fS.update(transition.swirl.duration, transition.swirl.alpha, transition.swirl.edge);

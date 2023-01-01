@@ -63,24 +63,6 @@ var Template;
         protagonist: {
             name: ""
         },
-        Ai: {
-            name: "Ai",
-            origin: Template.fS.ORIGIN.BOTTOMCENTER,
-            pose: {
-                neutral: "Images/Character/Ai/girl1Neutral.png",
-                angry: "Images/Character/Ai/girl1Angry.png",
-                happy: "Images/Character/Ai/girl1Happy.png",
-                shocked: "Images/Character/Ai/girl1Shocked.png",
-                sad: "Images/Character/Ai/girl1Sad.png"
-            }
-        },
-        TestChara: {
-            name: "TestChara",
-            origin: Template.fS.ORIGIN.BOTTOMCENTER,
-            pose: {
-                neutral: "Images/Character/aisaka_happy.png"
-            }
-        },
         Rika: {
             name: "Rika Satō",
             origin: Template.fS.ORIGIN.BOTTOMCENTER,
@@ -114,16 +96,16 @@ var Template;
             origin: Template.fS.ORIGIN.BOTTOMCENTER,
             pose: {
                 neutral: "Images/Character/Sho/sho_neutral.png",
-                happy: "Images/Character/Sho/sho_neutral.png",
-                angry: "Images/Character/Sho/sho_neutral.png",
-                sad: "Images/Character/Sho/sho_neutral.png"
+                happy: "Images/Character/Sho/sho_happy.png",
+                angry: "Images/Character/Sho/sho_angry.png",
+                sad: "Images/Character/Sho/sho_sad.png"
             }
         },
         Teacher: {
             name: "Lehrerin",
             origin: Template.fS.ORIGIN.BOTTOMCENTER,
             pose: {
-                neutral: "Images/Character/Teeacher/teacher_neutral.png"
+                neutral: "Images/Character/Teacher/teacher_neutral.png"
             }
         }
     };
@@ -208,8 +190,9 @@ var Template;
         /*** SCENE HIERARCHY ***/
         Template.fS.Speech.hide();
         let scenes = [
-            { scene: Template.wakingUp, name: "Waking up" },
-            { scene: Template.goingToSchool, name: "Goining to School" }
+            //{ id: "wakingUp1", scene: WakingUp, name: "Waking up" },
+            //{ id: "toSchool1", scene: GoingToSchool, name: "Going to School firstTime"},
+            { id: "inClassFirstTime", scene: Template.InKlasseErste, name: "In Class for firstTime" }
         ];
         let uiElement = document.querySelector("[type=interface]");
         Template.dataForSave = Template.fS.Progress.setData(Template.dataForSave, uiElement);
@@ -237,48 +220,7 @@ var Template;
 })(Template || (Template = {}));
 var Template;
 (function (Template) {
-    async function wakingUp() {
-        console.log("Waking Up starting");
-        let firstWakingUp = false;
-        //TODO: *** DONT FORGET DELAYS ***
-        if (!firstWakingUp) {
-            await Template.fS.Sound.play(Template.sound.alarmClock, 0.5, false);
-            //TODO: await fS.Progress.delay(4);
-            await Template.fS.Location.show(Template.location.bedroom);
-            await Template.fS.update(Template.transition.swirl.duration, Template.transition.swirl.alpha, Template.transition.swirl.edge);
-            await Template.fS.update();
-            //await fS.Progress.delay(3);
-            await Template.fS.Speech.tell(Template.RikaMother, "Rika wach auf, sonst kommst du zu spät!");
-            await Template.fS.Speech.tell(Template.Rika, "Ja, ich bin schon wach.");
-            await Template.fS.Speech.tell(Template.Rika, "<i>Ich sollte mich schnell fertig machen, nicht dass Sagi wieder auf mich warten muss …</i>");
-            //await fS.Progress.delay(3);
-            await Template.fS.Location.show(Template.location.darkBackground);
-            Template.fS.Speech.hide();
-            Template.fS.Character.hideAll();
-            await Template.fS.update();
-            await Template.fS.Progress.delay(5);
-            await Template.fS.Location.show(Template.location.bedroom);
-            await Template.fS.Character.show(Template.Rika, Template.RikaPose.neutral, Template.fS.positionPercent(40, 100));
-            await Template.fS.update(0.5);
-            await Template.fS.Speech.tell(Template.Rika, "Mama, ich gehe jetzt los. Bis heute Abend.");
-            Template.fS.Speech.tell(Template.RikaMother, "Okay, viel Erfolg!");
-            await Template.fS.Character.animate(Template.Rika, Template.RikaPose.neutral, Template.leavingLeft());
-            firstWakingUp = true;
-        }
-        else {
-            //TODO: AFTER ACCIDENT SCENE BAUEN
-            //*** After Car Accident***
-            await Template.fS.Sound.play(Template.sound.alarmClock, 0.5, false);
-            //await fS.Progress.delay(4);
-            await Template.fS.Location.show(Template.location.bedroom);
-            await Template.fS.update(Template.transition.swirl.duration, Template.transition.swirl.alpha, Template.transition.swirl.edge);
-        }
-    }
-    Template.wakingUp = wakingUp;
-})(Template || (Template = {}));
-var Template;
-(function (Template) {
-    async function goingToSchool() {
+    async function GoingToSchool() {
         console.log("Going to School starting");
         Template.fS.Speech.hide();
         await Template.fS.Location.show(Template.location.alley);
@@ -303,19 +245,52 @@ var Template;
         await Template.fS.Character.show(Template.Sagi, Template.SagiPose.neutral, Template.fS.positions.bottomcenter);
         await Template.fS.update();
         await Template.fS.Speech.tell(Template.Sagi, "Komm schnell, wir schaffen es gerade so rechtzeitig.");
+        Template.fS.Character.hideAll();
+    }
+    Template.GoingToSchool = GoingToSchool;
+})(Template || (Template = {}));
+var Template;
+(function (Template) {
+    async function InKlasseErste() {
         // Sagi und Rika sind im Klassenzimmer
         await Template.fS.Location.show(Template.location.classroom);
         await Template.fS.update();
-        await Template.fS.Character.show(Template.Teacher, Template.TeacherPose.neutral, Template.fS.positions.bottomcenter);
+        await Template.fS.Character.show(Template.Teacher, Template.TeacherPose.neutral, Template.fS.positionPercent(70, 100));
         await Template.fS.update();
         await Template.fS.Speech.tell(Template.Teacher, "Guten Morgen. Bevor wir heute mit dem Unterricht anfangen, möchte ich euch zunächst euren neuen Mitschüler vorstellen.");
-        await Template.fS.Character.show(Template.Sho, Template.ShoPose.neutral, Template.fS.positions.bottomcenter);
+        await Template.fS.Character.show(Template.Sho, Template.ShoPose.neutral, Template.fS.positionPercent(30, 100));
         await Template.fS.update();
         await Template.fS.Speech.tell(Template.Sho, "Hi, ich bin Sho Rai. Freut mich, euch kennenzulernen.");
         // TODO: ***GETUSCHEL VON ANDEREN SCHUELERN SOUND ***
         await Template.fS.Speech.tell(Template.Teacher, "Okay, beruhigt euch wieder. Ihr könnt in der Pause noch mal miteinander reden.");
+        //TODO: *** PAUSEN GONG EINFÜGEN
+        //TODO: *** MENSCHEN DIE IN DER PAUSE REDEN EINFÜGEN ***
+        await Template.fS.Location.show(Template.location.darkBackground);
+        Template.fS.Speech.hide();
+        Template.fS.Character.hideAll();
+        await Template.fS.update();
+        Template.fS.Location.show(Template.location.classroom);
+        await Template.fS.update();
+        await Template.fS.Character.show(Template.Sho, Template.ShoPose.neutral, Template.fS.positionPercent(20, 100));
+        await Template.fS.Character.show(Template.Rika, Template.RikaPose.neutral, Template.fS.positionPercent(55, 100));
+        await Template.fS.Character.show(Template.Sagi, Template.SagiPose.neutral, Template.fS.positionPercent(85, 100));
+        await Template.fS.update();
+        await Template.fS.Speech.tell(Template.Rika, "Hey Sho. Ich bin Rika Sato.");
+        await Template.fS.Speech.tell(Template.Sagi, "Hi, ich bin Sagi Aoki.");
+        await Template.fS.Speech.tell(Template.Sho, "Hi, nett euch kennenzulernen.");
+        await Template.fS.Speech.tell(Template.Sagi, "Bist du erst vor kurzem hier hergezogen, oder warum wechselst du die Schule mitten im Jahr?");
+        await Template.fS.Speech.tell(Template.Rika, "SAGI! Du kannst doch nicht einfach so fragen.");
+        await Template.fS.Speech.tell(Template.Sagi, "Ach komm schon Rika. Du bist doch sicher auch neugierig.");
+        Template.fS.Character.hide(Template.Sho);
+        await Template.fS.Character.show(Template.Sho, Template.ShoPose.happy, Template.fS.positionPercent(20, 100));
+        await Template.fS.update();
+        await Template.fS.Speech.tell(Template.Sho, "Haha. Ach, das macht doch nichts.");
+        Template.fS.Character.hide(Template.Sho);
+        await Template.fS.Character.show(Template.Sho, Template.ShoPose.neutral, Template.fS.positionPercent(20, 100));
+        await Template.fS.update();
+        await Template.fS.Speech.tell(Template.Sho, "Meine Familie muss recht oft umziehen, da mein Vater wegen seiner Arbeit oft in eine andere Stadt versetzt wird. Aber das macht mir nicht so viel aus.");
     }
-    Template.goingToSchool = goingToSchool;
+    Template.InKlasseErste = InKlasseErste;
 })(Template || (Template = {}));
 var Template;
 (function (Template) {
@@ -401,5 +376,46 @@ var Template;
         await Template.fS.Character.animate(Template.characters.Ai, Template.characters.Ai.pose.happy, Template.animation());
     }
     Template.secondScene = secondScene;
+})(Template || (Template = {}));
+var Template;
+(function (Template) {
+    async function WakingUp() {
+        console.log("Waking Up starting");
+        let firstWakingUp = false;
+        //TODO: *** DONT FORGET DELAYS ***
+        if (!firstWakingUp) {
+            //fS.Sound.play(sound.alarmClock, 0.5, false);
+            //TODO: await fS.Progress.delay(4);
+            await Template.fS.Location.show(Template.location.bedroom);
+            await Template.fS.update(Template.transition.swirl.duration, Template.transition.swirl.alpha, Template.transition.swirl.edge);
+            await Template.fS.update();
+            //await fS.Progress.delay(3);
+            await Template.fS.Speech.tell(Template.RikaMother, "Rika wach auf, sonst kommst du zu spät!");
+            await Template.fS.Speech.tell(Template.Rika, "Ja, ich bin schon wach.");
+            await Template.fS.Speech.tell(Template.Rika, "<i>Ich sollte mich schnell fertig machen, nicht dass Sagi wieder auf mich warten muss …</i>");
+            //await fS.Progress.delay(3);
+            await Template.fS.Location.show(Template.location.darkBackground);
+            Template.fS.Speech.hide();
+            Template.fS.Character.hideAll();
+            await Template.fS.update();
+            await Template.fS.Progress.delay(5);
+            await Template.fS.Location.show(Template.location.bedroom);
+            await Template.fS.Character.show(Template.Rika, Template.RikaPose.neutral, Template.fS.positionPercent(40, 100));
+            await Template.fS.update(0.5);
+            await Template.fS.Speech.tell(Template.Rika, "Mama, ich gehe jetzt los. Bis heute Abend.");
+            Template.fS.Speech.tell(Template.RikaMother, "Okay, viel Erfolg!");
+            await Template.fS.Character.animate(Template.Rika, Template.RikaPose.neutral, Template.leavingLeft());
+            firstWakingUp = true;
+        }
+        else {
+            //TODO: AFTER ACCIDENT SCENE BAUEN
+            //*** After Car Accident***
+            await Template.fS.Sound.play(Template.sound.alarmClock, 0.5, false);
+            //await fS.Progress.delay(4);
+            await Template.fS.Location.show(Template.location.bedroom);
+            await Template.fS.update(Template.transition.swirl.duration, Template.transition.swirl.alpha, Template.transition.swirl.edge);
+        }
+    }
+    Template.WakingUp = WakingUp;
 })(Template || (Template = {}));
 //# sourceMappingURL=Template.js.map

@@ -66,24 +66,6 @@ namespace Template {
         protagonist: {
             name: ""
         },
-        Ai: {
-            name: "Ai",
-            origin: fS.ORIGIN.BOTTOMCENTER,
-            pose: {
-                neutral: "Images/Character/Ai/girl1Neutral.png",
-                angry: "Images/Character/Ai/girl1Angry.png",
-                happy: "Images/Character/Ai/girl1Happy.png",
-                shocked: "Images/Character/Ai/girl1Shocked.png",
-                sad: "Images/Character/Ai/girl1Sad.png"
-            }
-        },
-        TestChara: {
-            name: "TestChara",
-            origin: fS.ORIGIN.BOTTOMCENTER,
-            pose: {
-                neutral: "Images/Character/aisaka_happy.png"
-            }
-        },
         Rika: {
             name: "Rika Satō",
             origin: fS.ORIGIN.BOTTOMCENTER,
@@ -117,16 +99,16 @@ namespace Template {
             origin: fS.ORIGIN.BOTTOMCENTER,
             pose: {
                 neutral: "Images/Character/Sho/sho_neutral.png",
-                happy: "Images/Character/Sho/sho_neutral.png",
-                angry: "Images/Character/Sho/sho_neutral.png",
-                sad: "Images/Character/Sho/sho_neutral.png"
+                happy: "Images/Character/Sho/sho_happy.png",
+                angry: "Images/Character/Sho/sho_angry.png",
+                sad: "Images/Character/Sho/sho_sad.png"
             }
         },
         Teacher: {
             name: "Lehrerin",
             origin: fS.ORIGIN.BOTTOMCENTER,
             pose: {
-                neutral: "Images/Character/Teeacher/teacher_neutral.png"
+                neutral: "Images/Character/Teacher/teacher_neutral.png"
             }
         }
     };
@@ -217,8 +199,9 @@ namespace Template {
         /*** SCENE HIERARCHY ***/
         fS.Speech.hide();
         let scenes: fS.Scenes = [
-            { id: "wakingUp1", scene: wakingUp, name: "Waking up" },
-            { id: "toSchool1", scene: goingToSchool, name: "Going to School firstTime", next: "" }
+            //{ id: "wakingUp1", scene: WakingUp, name: "Waking up" },
+            //{ id: "toSchool1", scene: GoingToSchool, name: "Going to School firstTime"},
+            { id: "inClassFirstTime", scene: InKlasseErste, name: "In Class for firstTime"}
         ];
 
         let uiElement: HTMLElement = document.querySelector("[type=interface]");

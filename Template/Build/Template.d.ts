@@ -53,24 +53,6 @@ declare namespace Template {
         protagonist: {
             name: string;
         };
-        Ai: {
-            name: string;
-            origin: f.ORIGIN2D;
-            pose: {
-                neutral: string;
-                angry: string;
-                happy: string;
-                shocked: string;
-                sad: string;
-            };
-        };
-        TestChara: {
-            name: string;
-            origin: f.ORIGIN2D;
-            pose: {
-                neutral: string;
-            };
-        };
         Rika: {
             name: string;
             origin: f.ORIGIN2D;
@@ -196,14 +178,17 @@ declare namespace Template {
     };
 }
 declare namespace Template {
-    function wakingUp(): fS.SceneReturn;
+    function GoingToSchool(): fS.SceneReturn;
 }
 declare namespace Template {
-    function goingToSchool(): fS.SceneReturn;
+    function InKlasseErste(): fS.SceneReturn;
 }
 declare namespace Template {
     function firstScene(): fS.SceneReturn;
 }
 declare namespace Template {
     function secondScene(): fS.SceneReturn;
+}
+declare namespace Template {
+    function WakingUp(): fS.SceneReturn;
 }
