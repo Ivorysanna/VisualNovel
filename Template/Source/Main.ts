@@ -203,10 +203,11 @@ namespace Template {
         /*** SCENE HIERARCHY ***/
         fS.Speech.hide();
         let scenes: fS.Scenes = [
-            //{ id: "wakingUp1", scene: WakingUp, name: "Waking up" },
-            //{ id: "toSchool1", scene: GoingToSchool, name: "Going to School firstTime"},
-            { id: "inClassFirstTime", scene: InKlasseErste, name: "In Class for firstTime"},
-            { id: "carCrash", scene: CarCrash, name: "CarCrash"}
+            // { id: "wakingUpFirstTime", scene: WakingUp, name: "Waking up" },
+            // { id: "toSchool1", scene: GoingToSchool, name: "Going to School firstTime"},
+            // { id: "inClassFirstTime", scene: InKlasseErste, name: "In Class for firstTime"},
+            { id: "carCrash", scene: CarCrash, name: "CarCrash"},
+            { id: "wakingUpCarCrash", scene: WakingUp, name: "Waking up Carcrash" }
         ];
 
         let uiElement: HTMLElement = document.querySelector("[type=interface]");

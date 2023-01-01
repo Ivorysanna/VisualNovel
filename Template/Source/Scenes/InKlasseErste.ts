@@ -26,7 +26,7 @@ namespace Template {
         await fS.Progress.delay(3);
 
         // *** PAUSE ***
-        fS.Location.show(location.classroom);
+        await fS.Location.show(location.classroom);
         await fS.update();
 
         await fS.Character.show(Sho, ShoPose.neutral, fS.positionPercent(20, 100));

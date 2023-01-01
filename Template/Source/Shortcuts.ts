@@ -20,6 +20,6 @@ namespace Template {
     export  let TeacherPose = characters.Teacher.pose;
 
     //*** GLOBAL VARIABLES***
-    export let carCrashHappend = false;
-    
+    export let storyState: String = "";
+
 }

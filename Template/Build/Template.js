@@ -194,10 +194,11 @@ var Template;
         /*** SCENE HIERARCHY ***/
         Template.fS.Speech.hide();
         let scenes = [
-            //{ id: "wakingUp1", scene: WakingUp, name: "Waking up" },
-            //{ id: "toSchool1", scene: GoingToSchool, name: "Going to School firstTime"},
-            { id: "inClassFirstTime", scene: Template.InKlasseErste, name: "In Class for firstTime" },
-            { id: "carCrash", scene: Template.CarCrash, name: "CarCrash" }
+            // { id: "wakingUpFirstTime", scene: WakingUp, name: "Waking up" },
+            // { id: "toSchool1", scene: GoingToSchool, name: "Going to School firstTime"},
+            // { id: "inClassFirstTime", scene: InKlasseErste, name: "In Class for firstTime"},
+            { id: "carCrash", scene: Template.CarCrash, name: "CarCrash" },
+            { id: "wakingUpCarCrash", scene: Template.WakingUp, name: "Waking up Carcrash" }
         ];
         let uiElement = document.querySelector("[type=interface]");
         Template.dataForSave = Template.fS.Progress.setData(Template.dataForSave, uiElement);
@@ -223,16 +224,21 @@ var Template;
     Template.Teacher = Template.characters.Teacher;
     Template.TeacherPose = Template.characters.Teacher.pose;
     //*** GLOBAL VARIABLES***
-    Template.carCrashHappend = false;
+    Template.storyState = "";
 })(Template || (Template = {}));
 var Template;
 (function (Template) {
     async function CarCrash() {
         console.log("Starting Car Crash");
+        console.log(Template.storyState);
         Template.fS.Speech.hide();
         await Template.fS.Location.show(Template.location.streetCity);
         await Template.fS.update();
         await Template.fS.Speech.tell(Template.Rika, "So, hier um die Ecke ist auch schon das Einkaufszentrum. Wenn du möchtest, können wir uns hier am Wochenende auf einen Bubble Tea treffen und vielleicht…");
+        Template.storyState = "carCrashHappend";
+        console.log(Template.storyState);
+        Template.fS.Speech.hide();
+        Template.fS.Character.hideAll();
         //TODO: *** AUTO HUPEN UND REIFEN QUIETSCHEN EINBAUEN ***
         //TODO: *** SZENENBILD ANZEIGEN AUTO ÜBERFAHREN***  
     }
@@ -293,7 +299,7 @@ var Template;
         await Template.fS.update();
         await Template.fS.Progress.delay(3);
         // *** PAUSE ***
-        Template.fS.Location.show(Template.location.classroom);
+        await Template.fS.Location.show(Template.location.classroom);
         await Template.fS.update();
         await Template.fS.Character.show(Template.Sho, Template.ShoPose.neutral, Template.fS.positionPercent(20, 100));
         await Template.fS.Character.show(Template.Rika, Template.RikaPose.neutral, Template.fS.positionPercent(55, 100));
@@ -358,39 +364,50 @@ var Template;
 (function (Template) {
     async function WakingUp() {
         console.log("Waking Up starting");
-        let firstWakingUp = false;
         //TODO: *** DONT FORGET DELAYS ***
-        if (!firstWakingUp) {
-            //fS.Sound.play(sound.alarmClock, 0.5, false);
-            //TODO: await fS.Progress.delay(4);
-            await Template.fS.Location.show(Template.location.bedroom);
-            await Template.fS.update(Template.transition.swirl.duration, Template.transition.swirl.alpha, Template.transition.swirl.edge);
-            await Template.fS.update();
-            //await fS.Progress.delay(3);
-            await Template.fS.Speech.tell(Template.RikaMother, "Rika wach auf, sonst kommst du zu spät!");
-            await Template.fS.Speech.tell(Template.Rika, "Ja, ich bin schon wach.");
-            await Template.fS.Speech.tell(Template.Rika, "<i>Ich sollte mich schnell fertig machen, nicht dass Sagi wieder auf mich warten muss …</i>");
-            //await fS.Progress.delay(3);
-            await Template.fS.Location.show(Template.location.darkBackground);
-            Template.fS.Speech.hide();
-            Template.fS.Character.hideAll();
-            await Template.fS.update();
-            await Template.fS.Progress.delay(5);
-            await Template.fS.Location.show(Template.location.bedroom);
-            await Template.fS.Character.show(Template.Rika, Template.RikaPose.neutral, Template.fS.positionPercent(40, 100));
-            await Template.fS.update(0.5);
-            await Template.fS.Speech.tell(Template.Rika, "Mama, ich gehe jetzt los. Bis heute Abend.");
-            Template.fS.Speech.tell(Template.RikaMother, "Okay, viel Erfolg!");
-            await Template.fS.Character.animate(Template.Rika, Template.RikaPose.neutral, Template.leavingLeft());
-            firstWakingUp = true;
-        }
-        else {
-            //TODO: AFTER ACCIDENT SCENE BAUEN
-            //*** After Car Accident***
-            await Template.fS.Sound.play(Template.sound.alarmClock, 0.5, false);
-            //await fS.Progress.delay(4);
-            await Template.fS.Location.show(Template.location.bedroom);
-            await Template.fS.update(Template.transition.swirl.duration, Template.transition.swirl.alpha, Template.transition.swirl.edge);
+        switch (Template.storyState) {
+            case "":
+                //TODO:fS.Sound.play(sound.alarmClock, 0.5, false);
+                //TODO: await fS.Progress.delay(4);
+                await Template.fS.Location.show(Template.location.bedroom);
+                await Template.fS.update(Template.transition.swirl.duration, Template.transition.swirl.alpha, Template.transition.swirl.edge);
+                await Template.fS.update();
+                //await fS.Progress.delay(3);
+                await Template.fS.Speech.tell(Template.RikaMother, "Rika wach auf, sonst kommst du zu spät!");
+                await Template.fS.Speech.tell(Template.Rika, "Ja, ich bin schon wach.");
+                await Template.fS.Speech.tell(Template.Rika, "<i>Ich sollte mich schnell fertig machen, nicht dass Sagi wieder auf mich warten muss …</i>");
+                //TODO: await fS.Progress.delay(3);
+                await Template.fS.Location.show(Template.location.darkBackground);
+                Template.fS.Speech.hide();
+                Template.fS.Character.hideAll();
+                await Template.fS.update();
+                await Template.fS.Progress.delay(5);
+                await Template.fS.Location.show(Template.location.bedroom);
+                await Template.fS.Character.show(Template.Rika, Template.RikaPose.neutral, Template.fS.positionPercent(40, 100));
+                await Template.fS.update(0.5);
+                await Template.fS.Speech.tell(Template.Rika, "Mama, ich gehe jetzt los. Bis heute Abend.");
+                await Template.fS.Speech.tell(Template.RikaMother, "Okay, viel Erfolg!");
+                await Template.fS.Character.animate(Template.Rika, Template.RikaPose.neutral, Template.leavingLeft());
+            case "carCrashHappend":
+                //TODO: AFTER ACCIDENT SCENE BAUEN
+                //*** After Car Accident***
+                Template.fS.Sound.play(Template.sound.alarmClock, 0.5, false);
+                //TODO: await fS.Progress.delay(4);
+                await Template.fS.Location.show(Template.location.bedroom);
+                await Template.fS.update(Template.transition.swirl.duration, Template.transition.swirl.alpha, Template.transition.swirl.edge);
+                await Template.fS.Speech.tell(Template.RikaMother, "Rika wach auf, sonst kommst du zu spät!");
+                await Template.fS.Speech.tell(Template.Rika, "<i>Was… Was war das für ein Traum…</i>");
+                await Template.fS.Speech.tell(Template.Rika, "Ja ich bin schon wach.");
+                await Template.fS.Speech.tell(Template.Rika, "<i>Ich sollte mich schnell anziehen, nicht, dass Sagi auf mich warten muss.</i>");
+                await Template.fS.Location.show(Template.location.darkBackground);
+                Template.fS.Speech.hide();
+                Template.fS.Character.hideAll();
+                await Template.fS.update();
+                await Template.fS.Location.show(Template.location.bedroom);
+                await Template.fS.Character.show(Template.Rika, Template.RikaPose.neutral, Template.fS.positionPercent(40, 100));
+                await Template.fS.update(0.5);
+                await Template.fS.Speech.tell(Template.Rika, "Mama, ich gehe jetzt los. Bis heute Abend.");
+                await Template.fS.Speech.tell(Template.RikaMother, "Okay, viel Erfolg!");
         }
     }
     Template.WakingUp = WakingUp;
