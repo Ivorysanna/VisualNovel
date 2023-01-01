@@ -204,10 +204,11 @@ namespace Template {
         fS.Speech.hide();
         let scenes: fS.Scenes = [
             // { id: "wakingUpFirstTime", scene: WakingUp, name: "Waking up" },
-            // { id: "toSchool1", scene: GoingToSchool, name: "Going to School firstTime"},
+            // { id: "toSchoolFirstTime", scene: GoingToSchool, name: "Going to School firstTime"},
             // { id: "inClassFirstTime", scene: InKlasseErste, name: "In Class for firstTime"},
             { id: "carCrash", scene: CarCrash, name: "CarCrash"},
-            { id: "wakingUpCarCrash", scene: WakingUp, name: "Waking up Carcrash" }
+            { id: "wakingUpCarCrash", scene: WakingUp, name: "Waking up Carcrash" },
+            { id: "toSchoolAfterCarCrash", scene: GoingToSchool, name: "Going to School after Carcrash"}
         ];
 
         let uiElement: HTMLElement = document.querySelector("[type=interface]");

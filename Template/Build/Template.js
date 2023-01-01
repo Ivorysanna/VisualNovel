@@ -195,10 +195,11 @@ var Template;
         Template.fS.Speech.hide();
         let scenes = [
             // { id: "wakingUpFirstTime", scene: WakingUp, name: "Waking up" },
-            // { id: "toSchool1", scene: GoingToSchool, name: "Going to School firstTime"},
+            // { id: "toSchoolFirstTime", scene: GoingToSchool, name: "Going to School firstTime"},
             // { id: "inClassFirstTime", scene: InKlasseErste, name: "In Class for firstTime"},
             { id: "carCrash", scene: Template.CarCrash, name: "CarCrash" },
-            { id: "wakingUpCarCrash", scene: Template.WakingUp, name: "Waking up Carcrash" }
+            { id: "wakingUpCarCrash", scene: Template.WakingUp, name: "Waking up Carcrash" },
+            { id: "toSchoolAfterCarCrash", scene: Template.GoingToSchool, name: "Going to School after Carcrash" }
         ];
         let uiElement = document.querySelector("[type=interface]");
         Template.dataForSave = Template.fS.Progress.setData(Template.dataForSave, uiElement);
@@ -248,30 +249,44 @@ var Template;
 (function (Template) {
     async function GoingToSchool() {
         console.log("Going to School starting");
-        Template.fS.Speech.hide();
-        await Template.fS.Location.show(Template.location.alley);
-        await Template.fS.update();
-        await Template.fS.Character.show(Template.Sagi, Template.SagiPose.neutral, Template.fS.positions.bottomcenter);
-        await Template.fS.Character.show(Template.Rika, Template.SagiPose.neutral, Template.fS.positions.bottomcenter);
-        await Template.fS.Speech.tell(Template.Sagi, "Na, da bist du ja endlich. Komm, sonst kommen wir zu spät!");
-        await Template.fS.Speech.tell(Template.Rika, "Tut mir leid, zurzeit schlafe ich wirklich schlecht. Ich frage mich wirklich, woran das liegt …");
-        await Template.fS.Speech.tell(Template.Sagi, "Vielleicht bist du ja nur nervös, du weißt ja heute kommt der neue Schüler. Ich frage mich, wie er drauf ist.");
-        await Template.fS.Speech.tell(Template.Sagi, "Hey, dann bekommst du ja vielleicht auch mal einen Freund.");
-        // TODO: *** LEICHTES BILD WACKELN***
-        await Template.fS.Speech.tell(Template.Rika, "Ugh...");
-        //await fS.Character.show(Sagi, SagiPose.neutral, fS.positions.bottomcenter);
-        //await fS.update();
-        await Template.fS.Speech.tell(Template.Sagi, "Was ist los?!");
-        await Template.fS.Speech.tell(Template.Rika, "Ich weiß nicht … irgendwie habe ich gerade ganz schlimme Kopfschmerzen bekommen. Hoffentlich ist es gleich vorbei.");
-        await Template.fS.Speech.tell(Template.Sagi, "Hmm … du solltest wirklich mehr trinken, Rika.");
-        // Sagi und Rika sind auf dem Campus
-        await Template.fS.Location.show(Template.location.uni);
-        await Template.fS.update();
-        // TODO: *** GLOCKE KLINGELT SOUND ***
-        await Template.fS.Character.show(Template.Sagi, Template.SagiPose.neutral, Template.fS.positions.bottomcenter);
-        await Template.fS.update();
-        await Template.fS.Speech.tell(Template.Sagi, "Komm schnell, wir schaffen es gerade so rechtzeitig.");
-        Template.fS.Character.hideAll();
+        switch (Template.storyState) {
+            case "":
+                Template.fS.Speech.hide();
+                await Template.fS.Location.show(Template.location.alley);
+                await Template.fS.update();
+                await Template.fS.Character.show(Template.Sagi, Template.SagiPose.neutral, Template.fS.positions.bottomcenter);
+                await Template.fS.Character.show(Template.Rika, Template.SagiPose.neutral, Template.fS.positions.bottomcenter);
+                await Template.fS.Speech.tell(Template.Sagi, "Na, da bist du ja endlich. Komm, sonst kommen wir zu spät!");
+                await Template.fS.Speech.tell(Template.Rika, "Tut mir leid, zurzeit schlafe ich wirklich schlecht. Ich frage mich wirklich, woran das liegt …");
+                await Template.fS.Speech.tell(Template.Sagi, "Vielleicht bist du ja nur nervös, du weißt ja heute kommt der neue Schüler. Ich frage mich, wie er drauf ist.");
+                await Template.fS.Speech.tell(Template.Sagi, "Hey, dann bekommst du ja vielleicht auch mal einen Freund.");
+                // TODO: *** LEICHTES BILD WACKELN***
+                await Template.fS.Speech.tell(Template.Rika, "Ugh...");
+                //await fS.Character.show(Sagi, SagiPose.neutral, fS.positions.bottomcenter);
+                //await fS.update();
+                await Template.fS.Speech.tell(Template.Sagi, "Was ist los?!");
+                await Template.fS.Speech.tell(Template.Rika, "Ich weiß nicht … irgendwie habe ich gerade ganz schlimme Kopfschmerzen bekommen. Hoffentlich ist es gleich vorbei.");
+                await Template.fS.Speech.tell(Template.Sagi, "Hmm … du solltest wirklich mehr trinken, Rika.");
+                // Sagi und Rika sind auf dem Campus
+                await Template.fS.Location.show(Template.location.uni);
+                await Template.fS.update();
+                // TODO: *** GLOCKE KLINGELT SOUND ***
+                await Template.fS.Character.show(Template.Sagi, Template.SagiPose.neutral, Template.fS.positions.bottomcenter);
+                await Template.fS.update();
+                await Template.fS.Speech.tell(Template.Sagi, "Komm schnell, wir schaffen es gerade so rechtzeitig.");
+                Template.fS.Character.hideAll();
+                break;
+            case "carCrashHappend":
+                Template.fS.Speech.hide();
+                await Template.fS.Location.show(Template.location.alley);
+                await Template.fS.update();
+                await Template.fS.Character.show(Template.Sagi, Template.SagiPose.neutral, Template.fS.positions.bottomcenter);
+                await Template.fS.Character.show(Template.Rika, Template.SagiPose.neutral, Template.fS.positions.bottomcenter);
+                await Template.fS.Speech.tell(Template.Sagi, "Na, da bist du ja endlich. Komm, sonst kommen wir zu spät!");
+                await Template.fS.Speech.tell(Template.Rika, "Tut mir leid, zurzeit schlafe ich wirklich schlecht. Ich frage mich wirklich, woran das liegt …");
+                await Template.fS.Speech.tell(Template.Sagi, "Vielleicht bist du ja nur nervös, du weißt ja heute kommt der neue Schüler. Ich frage mich, wie er darauf ist. Hey, dann bekommst du ja vielleicht auch mal einen Freund.");
+                await Template.fS.Speech.tell(Template.Rika, "Was hast du gerade gesagt?");
+        }
     }
     Template.GoingToSchool = GoingToSchool;
 })(Template || (Template = {}));
@@ -388,6 +403,7 @@ var Template;
                 await Template.fS.Speech.tell(Template.Rika, "Mama, ich gehe jetzt los. Bis heute Abend.");
                 await Template.fS.Speech.tell(Template.RikaMother, "Okay, viel Erfolg!");
                 await Template.fS.Character.animate(Template.Rika, Template.RikaPose.neutral, Template.leavingLeft());
+                break;
             case "carCrashHappend":
                 //TODO: AFTER ACCIDENT SCENE BAUEN
                 //*** After Car Accident***

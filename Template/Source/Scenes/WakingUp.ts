@@ -29,6 +29,7 @@ namespace Template {
                 await fS.Speech.tell(Rika, "Mama, ich gehe jetzt los. Bis heute Abend.");
                 await fS.Speech.tell(RikaMother, "Okay, viel Erfolg!");
                 await fS.Character.animate(Rika, RikaPose.neutral, leavingLeft());
+                break;
 
             case "carCrashHappend":
                 //TODO: AFTER ACCIDENT SCENE BAUEN
