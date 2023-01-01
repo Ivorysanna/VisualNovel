@@ -53,6 +53,10 @@ var Template;
         darkBackground: {
             name: "DarkBackground",
             background: "Images/Backgrounds/darkbackground.png"
+        },
+        streetCity: {
+            name: "Streetcity",
+            background: "Images/Backgrounds/streetCity.png"
         }
     };
     //*** CHARACTERS ***
@@ -269,6 +273,8 @@ var Template;
         Template.fS.Speech.hide();
         Template.fS.Character.hideAll();
         await Template.fS.update();
+        await Template.fS.Progress.delay(3);
+        // *** PAUSE ***
         Template.fS.Location.show(Template.location.classroom);
         await Template.fS.update();
         await Template.fS.Character.show(Template.Sho, Template.ShoPose.neutral, Template.fS.positionPercent(20, 100));
@@ -289,93 +295,46 @@ var Template;
         await Template.fS.Character.show(Template.Sho, Template.ShoPose.neutral, Template.fS.positionPercent(20, 100));
         await Template.fS.update();
         await Template.fS.Speech.tell(Template.Sho, "Meine Familie muss recht oft umziehen, da mein Vater wegen seiner Arbeit oft in eine andere Stadt versetzt wird. Aber das macht mir nicht so viel aus.");
+        await Template.fS.Speech.tell(Template.Sagi, "Aber vermisst du deine Freunde denn nicht?");
+        await Template.fS.Speech.tell(Template.Sho, "Na ja, meistens bleibe ich nicht lange genug in einer Stadt, um wirklich gute Freunde zu finden. Und hin und wieder kann ich mich mit ein paar Bekannten treffen, aber das ist eher selten der Fall.");
+        await Template.fS.Speech.tell(Template.Rika, "Mh, aber vielleicht findest du hier jemanden. Kyoto ist eine große Stadt und die Schule auch.");
+        await Template.fS.Speech.tell(Template.Sagi, "Wir können dich auch gerne mal in der Stadt herumführen, nicht wahr, Rika?");
+        await Template.fS.Speech.tell(Template.Rika, "Ehm… Ja klar.");
+        await Template.fS.Speech.tell(Template.Sho, "Das wäre echt cool. Manchmal verlaufe ich mich immer noch. Hoffentlich schaffe ich es heute nach Hause nach der Schule.");
+        await Template.fS.Speech.tell(Template.Rika, "Oh, wo wohnst du denn?");
+        await Template.fS.Speech.tell(Template.Sho, "Ah…Eh… Gegenüber vom Umekoji Park. Ich kann mir leider die Straße nie merken.");
+        await Template.fS.Speech.tell(Template.Rika, "An der Kitsuya-bashi Dori? Da wohne ich auch in der Nähe.");
+        await Template.fS.Speech.tell(Template.Sho, "Oh, wirklich?! Dann kannst du mich eventuell heute begleiten. Haha.");
+        await Template.fS.Speech.tell(Template.Sagi, "Dann müsst ihr wohl ohne mich heute gehen. Ich treffe mich heute mit meiner Mutter nach der Schule.");
+        await Template.fS.Speech.tell(Template.Rika, "Ja, kein Problem. Können gerne zusammen gehen.");
+        // *** Pause Beendet***
+        //TODO: *** PAUSEN GONG EINBAUEN***
+        await Template.fS.Speech.tell(Template.Sagi, "Das war eine schnelle Pause. Komm, wir gehen wieder an unseren Platz.");
+        await Template.fS.Location.show(Template.location.darkBackground);
+        Template.fS.Speech.hide();
+        Template.fS.Character.hideAll();
+        await Template.fS.update();
+        await Template.fS.Progress.delay(3);
+        // *** Unterricht zu Ende***
+        //TODO: *** GONG EINBAUEN ***
+        await Template.fS.Location.show(Template.location.classroom);
+        await Template.fS.update();
+        await Template.fS.Character.show(Template.Sho, Template.ShoPose.neutral, Template.fS.positionPercent(40, 100));
+        await Template.fS.Character.show(Template.Rika, Template.RikaPose.neutral, Template.fS.positionPercent(80, 100));
+        await Template.fS.update();
+        await Template.fS.Speech.tell(Template.Rika, "Okay, können wir los?");
+        await Template.fS.Speech.tell(Template.Sho, "Ja, ich packe nur schnell meine Sachen zusammen.");
+        // *** Auf dem Weg nach Hause*** 
+        await Template.fS.Location.show(Template.location.uni);
+        await Template.fS.update();
+        await Template.fS.Character.show(Template.Sho, Template.ShoPose.neutral, Template.fS.positionPercent(40, 100));
+        await Template.fS.Speech.tell(Template.Rika, "Okay, dir nach.");
+        await Template.fS.Speech.tell(Template.Rika, "Also wir können tatsächlich zwei verschiedene Routen nehmen, die ungefähr gleich lang sind. Aber der etwas längere Weg ist schöner.");
+        await Template.fS.Speech.tell(Template.Sho, "Nun, dann gehen wir mal den etwas längeren, außer du hast es eilig.");
+        await Template.fS.Speech.tell(Template.Rika, "Ne, ich habe heute nichts mehr vor. Dann kann ich dir etwas von der Stadt zeigen. Vor allem das große Einkaufszentrum. ");
+        await Template.fS.Speech.tell(Template.Sho, "Oh, ich wusste gar nicht, dass es hier sowas gibt.");
     }
     Template.InKlasseErste = InKlasseErste;
-})(Template || (Template = {}));
-var Template;
-(function (Template) {
-    async function firstScene() {
-        console.log("First Scene starting");
-        // let text = {
-        //     Ai: {
-        //         T0001: "Hallo",
-        //         T0002: "Anderer Text",
-        //         T0003: "Text Nummer 3",
-        //     },
-        // };
-        Template.fS.Speech.hide();
-        await Template.fS.Location.show(Template.location.alley);
-        await Template.fS.Character.show(Template.characters.Ai, Template.characters.Ai.pose.neutral, Template.fS.positions.bottomcenter);
-        //await ƒS.Character.show(characters.Ai, characters.Ai.pose.neutral, ƒS.positionPercent(60, 120));
-        await Template.fS.update();
-        await Template.fS.Speech.tell(Template.characters.Ai, "Text in einer Zeile");
-        await Template.fS.Speech.tell(Template.characters.Ai, "Zweiter Text in einer Zeile");
-        let pickedYes;
-        let pickedNo;
-        let pickedMaybe;
-        let pickedOk;
-        let readEverything = false;
-        let dialogue = {
-            iSayYes: "Ja",
-            iSayOk: "Okay.",
-            iSayNo: "Nein",
-            iSayMaybe: "Vielleicht"
-        };
-        //Muss um eine do-while Schleife
-        do {
-            if (pickedMaybe) {
-                //Möglichkeit zum löschen von Auswahlmöglichkeiten
-                delete dialogue.iSayMaybe;
-            }
-            else if (pickedNo) {
-                delete dialogue.iSayNo;
-            }
-            else if (pickedOk) {
-                delete dialogue.iSayOk;
-            }
-            else if (pickedYes) {
-                delete dialogue.iSayYes;
-            }
-            let dialogueElement = await Template.fS.Menu.getInput(dialogue, "choicesCSSClass");
-            switch (dialogueElement) {
-                case dialogue.iSayYes:
-                    //Continue path here
-                    console.log("test");
-                    await Template.fS.Speech.tell(Template.characters.Ai, "Ich sage JA!");
-                    pickedYes = true;
-                    break;
-                case dialogue.iSayOk:
-                    //Continue path here
-                    await Template.fS.Speech.tell(Template.characters.Ai, "Ich sage OK!");
-                    pickedOk = true;
-                    break;
-                case dialogue.iSayNo:
-                    //Continue path here
-                    await Template.fS.Speech.tell(Template.characters.Ai, "Ich sage Nein!");
-                    pickedNo = true;
-                    break;
-                case dialogue.iSayMaybe:
-                    //Continue path here
-                    await Template.fS.Speech.tell(Template.characters.Ai, "Ich sage Vielleicht!");
-                    pickedMaybe = true;
-                    break;
-            }
-            if (pickedMaybe && pickedOk && pickedNo && pickedYes) {
-                readEverything = true;
-            }
-        } while (readEverything == false);
-    }
-    Template.firstScene = firstScene;
-})(Template || (Template = {}));
-var Template;
-(function (Template) {
-    async function secondScene() {
-        console.log("Second Scene starting");
-        await Template.fS.Character.show(Template.characters.Ai, Template.characters.Ai.pose.happy, Template.fS.positions.bottomcenter);
-        Template.fS.update();
-        await Template.fS.Character.animate(Template.characters.Ai, Template.characters.Ai.pose.happy, Template.animation());
-    }
-    Template.secondScene = secondScene;
 })(Template || (Template = {}));
 var Template;
 (function (Template) {

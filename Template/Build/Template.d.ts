@@ -45,6 +45,10 @@ declare namespace Template {
             name: string;
             background: string;
         };
+        streetCity: {
+            name: string;
+            background: string;
+        };
     };
     let characters: {
         narrator: {
@@ -182,12 +186,6 @@ declare namespace Template {
 }
 declare namespace Template {
     function InKlasseErste(): fS.SceneReturn;
-}
-declare namespace Template {
-    function firstScene(): fS.SceneReturn;
-}
-declare namespace Template {
-    function secondScene(): fS.SceneReturn;
 }
 declare namespace Template {
     function WakingUp(): fS.SceneReturn;

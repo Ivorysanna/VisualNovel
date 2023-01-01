@@ -55,6 +55,10 @@ namespace Template {
         darkBackground: {
             name: "DarkBackground",
             background: "Images/Backgrounds/darkbackground.png"
+        },
+        streetCity: {
+            name: "Streetcity",
+            background: "Images/Backgrounds/streetCity.png"
         }
     };
 
