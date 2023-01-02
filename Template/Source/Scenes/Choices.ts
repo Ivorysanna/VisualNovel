@@ -5,28 +5,46 @@ namespace Template {
             movedLongAgo: "Wohnst du schon lange hier?",
         };
 
+        let livingWhereChoice = {
+            livingInPark: "Wohnst gegenüber vom Park?",
+            goingToCityTogether: "<i>Anbieten zusammen die Stadt anschauen</i>"
+        };
+
         let dialogueElement = await fS.Menu.getInput(livingHereChoice, "choicesCSSClass");
 
-        if (storyState == "") {
-            switch (dialogueElement) {
-                case livingHereChoice.movedrecently:
-                    // continue path here
-                    await fS.Speech.tell(Rika, "Du bist erst vor kurzem hier hergezogen, oder? ");
-                    loveOMeter -= 10;
-                    await fS.Speech.tell(Sho, "Ehm…ja…");
+        switch (choicesState) {
+            case "firstChoice":
+                switch (dialogueElement) {
+                    case livingHereChoice.movedrecently:
+                        // continue path here
+                        await fS.Speech.tell(Rika, "Du bist erst vor kurzem hier hergezogen, oder? ");
+                        loveOMeter -= 10;
+                        await fS.Speech.tell(Sho, "Ehm…ja…");
 
-                    console.log("Love-O-Meter: " + loveOMeter);
-                    break;
-                case livingHereChoice.movedLongAgo:
-                    // continue path here
-                    await fS.Speech.tell(Rika, "Wohnst du schon lange hier? ");
-                    await fS.Speech.tell(Rika, "Nein, meine Familie musste umziehen, da mein Vater oft wegen der Arbeit woanders stationiert wird.");
-                    loveOMeter += 5;
-                    console.log("Love-O-Meter: " + loveOMeter);
-                    break;
-            }
+                        console.log("Love-O-Meter: " + loveOMeter);
+                        break;
+                    case livingHereChoice.movedLongAgo:
+                        // continue path here
+                        await fS.Speech.tell(Rika, "Wohnst du schon lange hier? ");
+                        await fS.Speech.tell(Rika, "Nein, meine Familie musste umziehen, da mein Vater oft wegen der Arbeit woanders stationiert wird.");
+                        loveOMeter += 10;
+                        console.log("Love-O-Meter: " + loveOMeter);
+                        break;
+                }
+            case "secondChoice":
+                switch (dialogueElement) {
+                        case livingWhereChoice.livingInPark:
+                            await fS.Speech.tell(Rika, "Du wohnst gegenüber vom Umekoji Park, nicht wahr? ");
+                            await fS.Speech.tell(Sho, "… J-ja, woher weißt du das?");
+                            await fS.Speech.tell(Sho, "Oh, ehm ich habe einfach geraten…");
+                            loveOMeter -= 10;
+
+                        case livingWhereChoice.goingToCityTogether:
+                            await fS.Speech.tell(Rika, "Wenn du möchtest, können wir uns mal am Wochenende treffen und wir zeigen dir ein bisschen die Stadt. ");
+                            await fS.Speech.tell(Rika, "Ja, gerne, dann verlaufe ich mich vielleicht nicht mehr so oft. Ich glaube, die Straße, in der ich wohne, heißt Kitsuya-bashi Dori.");
+                            loveOMeter += 10;
+                }
         }
-
         // NEXT CHOICE
     }
 }

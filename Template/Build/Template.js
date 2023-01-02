@@ -197,8 +197,8 @@ var Template;
             // { id: "wakingUpFirstTime", scene: WakingUp, name: "Waking up" },
             // { id: "toSchoolFirstTime", scene: GoingToSchool, name: "Going to School firstTime"},
             // { id: "inClassFirstTime", scene: InClass, name: "In Class for firstTime"},
-            // { id: "carCrash", scene: CarCrash, name: "CarCrash"},
-            // { id: "wakingUpCarCrash", scene: WakingUp, name: "Waking up Carcrash" },
+            { id: "carCrash", scene: Template.CarCrash, name: "CarCrash" },
+            { id: "wakingUpCarCrash", scene: Template.WakingUp, name: "Waking up Carcrash" },
             { id: "toSchoolAfterCarCrash", scene: Template.GoingToSchool, name: "Going to School after Carcrash" },
             { id: "inClassAfterCarCrash", scene: Template.InClass, name: "In Class after Carcrash" }
         ];
@@ -228,6 +228,7 @@ var Template;
     //*** GLOBAL VARIABLES***
     Template.storyState = "";
     Template.loveOMeter = 0;
+    Template.choicesState = "";
 })(Template || (Template = {}));
 var Template;
 (function (Template) {
@@ -254,24 +255,41 @@ var Template;
             movedrecently: "Vor kurzem hergezogen?",
             movedLongAgo: "Wohnst du schon lange hier?",
         };
+        let livingWhereChoice = {
+            livingInPark: "Wohnst gegenüber vom Park?",
+            goingToCityTogether: "<i>Anbieten zusammen die Stadt anschauen</i>"
+        };
         let dialogueElement = await Template.fS.Menu.getInput(livingHereChoice, "choicesCSSClass");
-        if (Template.storyState == "") {
-            switch (dialogueElement) {
-                case livingHereChoice.movedrecently:
-                    // continue path here
-                    await Template.fS.Speech.tell(Template.Rika, "Du bist erst vor kurzem hier hergezogen, oder? ");
-                    Template.loveOMeter -= 10;
-                    await Template.fS.Speech.tell(Template.Sho, "Ehm…ja…");
-                    console.log("Love-O-Meter: " + Template.loveOMeter);
-                    break;
-                case livingHereChoice.movedLongAgo:
-                    // continue path here
-                    await Template.fS.Speech.tell(Template.Rika, "Wohnst du schon lange hier? ");
-                    await Template.fS.Speech.tell(Template.Rika, "Nein, meine Familie musste umziehen, da mein Vater oft wegen der Arbeit woanders stationiert wird.");
-                    Template.loveOMeter += 5;
-                    console.log("Love-O-Meter: " + Template.loveOMeter);
-                    break;
-            }
+        switch (Template.choicesState) {
+            case "firstChoice":
+                switch (dialogueElement) {
+                    case livingHereChoice.movedrecently:
+                        // continue path here
+                        await Template.fS.Speech.tell(Template.Rika, "Du bist erst vor kurzem hier hergezogen, oder? ");
+                        Template.loveOMeter -= 10;
+                        await Template.fS.Speech.tell(Template.Sho, "Ehm…ja…");
+                        console.log("Love-O-Meter: " + Template.loveOMeter);
+                        break;
+                    case livingHereChoice.movedLongAgo:
+                        // continue path here
+                        await Template.fS.Speech.tell(Template.Rika, "Wohnst du schon lange hier? ");
+                        await Template.fS.Speech.tell(Template.Rika, "Nein, meine Familie musste umziehen, da mein Vater oft wegen der Arbeit woanders stationiert wird.");
+                        Template.loveOMeter += 10;
+                        console.log("Love-O-Meter: " + Template.loveOMeter);
+                        break;
+                }
+            case "secondChoice":
+                switch (dialogueElement) {
+                    case livingWhereChoice.livingInPark:
+                        await Template.fS.Speech.tell(Template.Rika, "Du wohnst gegenüber vom Umekoji Park, nicht wahr? ");
+                        await Template.fS.Speech.tell(Template.Sho, "… J-ja, woher weißt du das?");
+                        await Template.fS.Speech.tell(Template.Sho, "Oh, ehm ich habe einfach geraten…");
+                        Template.loveOMeter -= 10;
+                    case livingWhereChoice.goingToCityTogether:
+                        await Template.fS.Speech.tell(Template.Rika, "Wenn du möchtest, können wir uns mal am Wochenende treffen und wir zeigen dir ein bisschen die Stadt. ");
+                        await Template.fS.Speech.tell(Template.Rika, "Ja, gerne, dann verlaufe ich mich vielleicht nicht mehr so oft. Ich glaube, die Straße, in der ich wohne, heißt Kitsuya-bashi Dori.");
+                        Template.loveOMeter += 10;
+                }
         }
         // NEXT CHOICE
     }
@@ -446,10 +464,19 @@ var Template;
                 await Template.fS.Character.show(Template.Sagi, Template.SagiPose.neutral, Template.fS.positionPercent(20, 100));
                 await Template.fS.Character.show(Template.Sho, Template.ShoPose.neutral, Template.fS.positionPercent(55, 100));
                 await Template.fS.Character.show(Template.Rika, Template.RikaPose.neutral, Template.fS.positionPercent(85, 100));
+                await Template.fS.update();
                 await Template.fS.Speech.tell(Template.Sagi, "Hi, ich bin Sagi Aoki.");
                 await Template.fS.Speech.tell(Template.Rika, "Hey Sho. Ich bin Rika Sato.");
                 await Template.fS.Speech.tell(Template.Sho, "Hey, freut mich euch kennenzulernen.");
-            //-- -- --  Choice -- -- --  
+                //-- -- --  Choice -- -- --
+                Template.choicesState = "firstChoice";
+                await Template.Choices();
+                await Template.fS.Speech.tell(Template.Sagi, "Kennst du dich denn schon in Kyoto etwas aus?");
+                await Template.fS.Speech.tell(Template.Sho, "Nein, nicht wirklich. Ich verlaufe mich manchmal noch auf dem Weg nach Hause. Haha.");
+                //-- -- --  Choice -- -- --
+                Template.choicesState = "secondChoice";
+                await Template.Choices();
+                await Template.fS.Speech.tell(Template.Sagi, "Na ja, dann könnt ihr beiden heute zusammen nach Hause laufen, dann findest du sicher den Weg. Rika wohnt auch in der Straße.");
         }
     }
     Template.InClass = InClass;

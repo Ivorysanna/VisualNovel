@@ -131,13 +131,24 @@ namespace Template {
                 await fS.Character.show(Sagi, SagiPose.neutral, fS.positionPercent(20, 100));
                 await fS.Character.show(Sho, ShoPose.neutral, fS.positionPercent(55, 100));
                 await fS.Character.show(Rika, RikaPose.neutral, fS.positionPercent(85, 100));
+                await fS.update();
 
                 await fS.Speech.tell(Sagi, "Hi, ich bin Sagi Aoki.");
                 await fS.Speech.tell(Rika, "Hey Sho. Ich bin Rika Sato.");
                 await fS.Speech.tell(Sho, "Hey, freut mich euch kennenzulernen.");
 
-                //-- -- --  Choice -- -- --  
-                
+                //-- -- --  Choice -- -- --
+                choicesState = "firstChoice";
+                await Template.Choices();
+
+                await fS.Speech.tell(Sagi, "Kennst du dich denn schon in Kyoto etwas aus?");
+                await fS.Speech.tell(Sho, "Nein, nicht wirklich. Ich verlaufe mich manchmal noch auf dem Weg nach Hause. Haha.");
+
+                //-- -- --  Choice -- -- --
+                choicesState = "secondChoice";
+                await Template.Choices();
+
+                await fS.Speech.tell(Sagi, "Na ja, dann könnt ihr beiden heute zusammen nach Hause laufen, dann findest du sicher den Weg. Rika wohnt auch in der Straße.");
         }
     }
 }
