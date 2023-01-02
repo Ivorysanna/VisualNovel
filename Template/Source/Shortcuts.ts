@@ -21,5 +21,7 @@ namespace Template {
 
     //*** GLOBAL VARIABLES***
     export let storyState: String = "";
+    
+    export let loveOMeter: number = 0;
 
 }

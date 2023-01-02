@@ -196,10 +196,11 @@ var Template;
         let scenes = [
             // { id: "wakingUpFirstTime", scene: WakingUp, name: "Waking up" },
             // { id: "toSchoolFirstTime", scene: GoingToSchool, name: "Going to School firstTime"},
-            // { id: "inClassFirstTime", scene: InKlasseErste, name: "In Class for firstTime"},
-            { id: "carCrash", scene: Template.CarCrash, name: "CarCrash" },
-            { id: "wakingUpCarCrash", scene: Template.WakingUp, name: "Waking up Carcrash" },
-            { id: "toSchoolAfterCarCrash", scene: Template.GoingToSchool, name: "Going to School after Carcrash" }
+            // { id: "inClassFirstTime", scene: InClass, name: "In Class for firstTime"},
+            // { id: "carCrash", scene: CarCrash, name: "CarCrash"},
+            // { id: "wakingUpCarCrash", scene: WakingUp, name: "Waking up Carcrash" },
+            { id: "toSchoolAfterCarCrash", scene: Template.GoingToSchool, name: "Going to School after Carcrash" },
+            { id: "inClassAfterCarCrash", scene: Template.InClass, name: "In Class after Carcrash" }
         ];
         let uiElement = document.querySelector("[type=interface]");
         Template.dataForSave = Template.fS.Progress.setData(Template.dataForSave, uiElement);
@@ -226,6 +227,7 @@ var Template;
     Template.TeacherPose = Template.characters.Teacher.pose;
     //*** GLOBAL VARIABLES***
     Template.storyState = "";
+    Template.loveOMeter = 0;
 })(Template || (Template = {}));
 var Template;
 (function (Template) {
@@ -244,6 +246,36 @@ var Template;
         //TODO: *** SZENENBILD ANZEIGEN AUTO ÜBERFAHREN***  
     }
     Template.CarCrash = CarCrash;
+})(Template || (Template = {}));
+var Template;
+(function (Template) {
+    async function Choices() {
+        let livingHereChoice = {
+            movedrecently: "Vor kurzem hergezogen?",
+            movedLongAgo: "Wohnst du schon lange hier?",
+        };
+        let dialogueElement = await Template.fS.Menu.getInput(livingHereChoice, "choicesCSSClass");
+        if (Template.storyState == "") {
+            switch (dialogueElement) {
+                case livingHereChoice.movedrecently:
+                    // continue path here
+                    await Template.fS.Speech.tell(Template.Rika, "Du bist erst vor kurzem hier hergezogen, oder? ");
+                    Template.loveOMeter -= 10;
+                    await Template.fS.Speech.tell(Template.Sho, "Ehm…ja…");
+                    console.log("Love-O-Meter: " + Template.loveOMeter);
+                    break;
+                case livingHereChoice.movedLongAgo:
+                    // continue path here
+                    await Template.fS.Speech.tell(Template.Rika, "Wohnst du schon lange hier? ");
+                    await Template.fS.Speech.tell(Template.Rika, "Nein, meine Familie musste umziehen, da mein Vater oft wegen der Arbeit woanders stationiert wird.");
+                    Template.loveOMeter += 5;
+                    console.log("Love-O-Meter: " + Template.loveOMeter);
+                    break;
+            }
+        }
+        // NEXT CHOICE
+    }
+    Template.Choices = Choices;
 })(Template || (Template = {}));
 var Template;
 (function (Template) {
@@ -286,94 +318,141 @@ var Template;
                 await Template.fS.Speech.tell(Template.Rika, "Tut mir leid, zurzeit schlafe ich wirklich schlecht. Ich frage mich wirklich, woran das liegt …");
                 await Template.fS.Speech.tell(Template.Sagi, "Vielleicht bist du ja nur nervös, du weißt ja heute kommt der neue Schüler. Ich frage mich, wie er darauf ist. Hey, dann bekommst du ja vielleicht auch mal einen Freund.");
                 await Template.fS.Speech.tell(Template.Rika, "Was hast du gerade gesagt?");
+                await Template.fS.Speech.tell(Template.Sagi, "Ein neuer Schüler kommt heute in unsere Klasse. Bist du wirklich okay? Du siehst etwas blass aus…");
+                await Template.fS.Speech.tell(Template.Rika, "Ja, ich denke schon. Du hast recht, ich sollte wirklich mehr trinken.");
+                await Template.fS.Speech.tell(Template.Sagi, "Trinken? Das habe ich jetzt nicht gesagt, aber ja, das könnte helfen.");
+                await Template.fS.Speech.tell(Template.Rika, "Hast du nicht? Ich dachte, dass du das gesagt hättest…");
+                await Template.fS.Speech.tell(Template.Sagi, "Komm, wir gehen los. Sonst kommen wir zu spät.");
+                await Template.fS.Location.show(Template.location.uni);
+                await Template.fS.update();
+                //TODO: *** GONG KLINGELT***
+                await Template.fS.Speech.tell(Template.Sagi, "Komm wir…");
+                await Template.fS.Speech.tell(Template.Rika, "Wir schaffen es zum Unterricht, keine Sorge.");
+                await Template.fS.Speech.tell(Template.Sagi, "...");
+                break;
         }
     }
     Template.GoingToSchool = GoingToSchool;
 })(Template || (Template = {}));
 var Template;
 (function (Template) {
-    async function InKlasseErste() {
+    async function InClass() {
         console.log("First Class starting");
-        // Sagi und Rika sind im Klassenzimmer
-        Template.fS.Speech.hide();
-        await Template.fS.Location.show(Template.location.classroom);
-        await Template.fS.update();
-        await Template.fS.Character.show(Template.Teacher, Template.TeacherPose.neutral, Template.fS.positionPercent(70, 100));
-        await Template.fS.update();
-        await Template.fS.Speech.tell(Template.Teacher, "Guten Morgen. Bevor wir heute mit dem Unterricht anfangen, möchte ich euch zunächst euren neuen Mitschüler vorstellen.");
-        await Template.fS.Character.show(Template.Sho, Template.ShoPose.neutral, Template.fS.positionPercent(30, 100));
-        await Template.fS.update();
-        await Template.fS.Speech.tell(Template.Sho, "Hi, ich bin Sho Rai. Freut mich, euch kennenzulernen.");
-        // TODO: ***GETUSCHEL VON ANDEREN SCHUELERN SOUND ***
-        await Template.fS.Speech.tell(Template.Teacher, "Okay, beruhigt euch wieder. Ihr könnt in der Pause noch mal miteinander reden.");
-        //TODO: *** PAUSEN GONG EINFÜGEN
-        //TODO: *** MENSCHEN DIE IN DER PAUSE REDEN EINFÜGEN ***
-        await Template.fS.Location.show(Template.location.darkBackground);
-        Template.fS.Speech.hide();
-        Template.fS.Character.hideAll();
-        await Template.fS.update();
-        await Template.fS.Progress.delay(3);
-        // *** PAUSE ***
-        await Template.fS.Location.show(Template.location.classroom);
-        await Template.fS.update();
-        await Template.fS.Character.show(Template.Sho, Template.ShoPose.neutral, Template.fS.positionPercent(20, 100));
-        await Template.fS.Character.show(Template.Rika, Template.RikaPose.neutral, Template.fS.positionPercent(55, 100));
-        await Template.fS.Character.show(Template.Sagi, Template.SagiPose.neutral, Template.fS.positionPercent(85, 100));
-        await Template.fS.update();
-        await Template.fS.Speech.tell(Template.Rika, "Hey Sho. Ich bin Rika Sato.");
-        await Template.fS.Speech.tell(Template.Sagi, "Hi, ich bin Sagi Aoki.");
-        await Template.fS.Speech.tell(Template.Sho, "Hi, nett euch kennenzulernen.");
-        await Template.fS.Speech.tell(Template.Sagi, "Bist du erst vor kurzem hier hergezogen, oder warum wechselst du die Schule mitten im Jahr?");
-        await Template.fS.Speech.tell(Template.Rika, "SAGI! Du kannst doch nicht einfach so fragen.");
-        await Template.fS.Speech.tell(Template.Sagi, "Ach komm schon Rika. Du bist doch sicher auch neugierig.");
-        Template.fS.Character.hide(Template.Sho);
-        await Template.fS.Character.show(Template.Sho, Template.ShoPose.happy, Template.fS.positionPercent(20, 100));
-        await Template.fS.update();
-        await Template.fS.Speech.tell(Template.Sho, "Haha. Ach, das macht doch nichts.");
-        Template.fS.Character.hide(Template.Sho);
-        await Template.fS.Character.show(Template.Sho, Template.ShoPose.neutral, Template.fS.positionPercent(20, 100));
-        await Template.fS.update();
-        await Template.fS.Speech.tell(Template.Sho, "Meine Familie muss recht oft umziehen, da mein Vater wegen seiner Arbeit oft in eine andere Stadt versetzt wird. Aber das macht mir nicht so viel aus.");
-        await Template.fS.Speech.tell(Template.Sagi, "Aber vermisst du deine Freunde denn nicht?");
-        await Template.fS.Speech.tell(Template.Sho, "Na ja, meistens bleibe ich nicht lange genug in einer Stadt, um wirklich gute Freunde zu finden. Und hin und wieder kann ich mich mit ein paar Bekannten treffen, aber das ist eher selten der Fall.");
-        await Template.fS.Speech.tell(Template.Rika, "Mh, aber vielleicht findest du hier jemanden. Kyoto ist eine große Stadt und die Schule auch.");
-        await Template.fS.Speech.tell(Template.Sagi, "Wir können dich auch gerne mal in der Stadt herumführen, nicht wahr, Rika?");
-        await Template.fS.Speech.tell(Template.Rika, "Ehm… Ja klar.");
-        await Template.fS.Speech.tell(Template.Sho, "Das wäre echt cool. Manchmal verlaufe ich mich immer noch. Hoffentlich schaffe ich es heute nach Hause nach der Schule.");
-        await Template.fS.Speech.tell(Template.Rika, "Oh, wo wohnst du denn?");
-        await Template.fS.Speech.tell(Template.Sho, "Ah…Eh… Gegenüber vom Umekoji Park. Ich kann mir leider die Straße nie merken.");
-        await Template.fS.Speech.tell(Template.Rika, "An der Kitsuya-bashi Dori? Da wohne ich auch in der Nähe.");
-        await Template.fS.Speech.tell(Template.Sho, "Oh, wirklich?! Dann kannst du mich eventuell heute begleiten. Haha.");
-        await Template.fS.Speech.tell(Template.Sagi, "Dann müsst ihr wohl ohne mich heute gehen. Ich treffe mich heute mit meiner Mutter nach der Schule.");
-        await Template.fS.Speech.tell(Template.Rika, "Ja, kein Problem. Können gerne zusammen gehen.");
-        // *** Pause Beendet***
-        //TODO: *** PAUSEN GONG EINBAUEN***
-        await Template.fS.Speech.tell(Template.Sagi, "Das war eine schnelle Pause. Komm, wir gehen wieder an unseren Platz.");
-        await Template.fS.Location.show(Template.location.darkBackground);
-        Template.fS.Speech.hide();
-        Template.fS.Character.hideAll();
-        await Template.fS.update();
-        await Template.fS.Progress.delay(3);
-        // *** Unterricht zu Ende***
-        //TODO: *** GONG EINBAUEN ***
-        await Template.fS.Location.show(Template.location.classroom);
-        await Template.fS.update();
-        await Template.fS.Character.show(Template.Sho, Template.ShoPose.neutral, Template.fS.positionPercent(40, 100));
-        await Template.fS.Character.show(Template.Rika, Template.RikaPose.neutral, Template.fS.positionPercent(80, 100));
-        await Template.fS.update();
-        await Template.fS.Speech.tell(Template.Rika, "Okay, können wir los?");
-        await Template.fS.Speech.tell(Template.Sho, "Ja, ich packe nur schnell meine Sachen zusammen.");
-        // *** Auf dem Weg nach Hause*** 
-        await Template.fS.Location.show(Template.location.uni);
-        await Template.fS.update();
-        await Template.fS.Character.show(Template.Sho, Template.ShoPose.neutral, Template.fS.positionPercent(40, 100));
-        await Template.fS.Speech.tell(Template.Rika, "Okay, dir nach.");
-        await Template.fS.Speech.tell(Template.Rika, "Also wir können tatsächlich zwei verschiedene Routen nehmen, die ungefähr gleich lang sind. Aber der etwas längere Weg ist schöner.");
-        await Template.fS.Speech.tell(Template.Sho, "Nun, dann gehen wir mal den etwas längeren, außer du hast es eilig.");
-        await Template.fS.Speech.tell(Template.Rika, "Ne, ich habe heute nichts mehr vor. Dann kann ich dir etwas von der Stadt zeigen. Vor allem das große Einkaufszentrum. ");
-        await Template.fS.Speech.tell(Template.Sho, "Oh, ich wusste gar nicht, dass es hier sowas gibt.");
+        switch (Template.storyState) {
+            case "":
+                // Sagi und Rika sind im Klassenzimmer
+                Template.fS.Speech.hide();
+                await Template.fS.Location.show(Template.location.classroom);
+                await Template.fS.update();
+                await Template.fS.Character.show(Template.Teacher, Template.TeacherPose.neutral, Template.fS.positionPercent(70, 100));
+                await Template.fS.update();
+                await Template.fS.Speech.tell(Template.Teacher, "Guten Morgen. Bevor wir heute mit dem Unterricht anfangen, möchte ich euch zunächst euren neuen Mitschüler vorstellen.");
+                await Template.fS.Character.show(Template.Sho, Template.ShoPose.neutral, Template.fS.positionPercent(30, 100));
+                await Template.fS.update();
+                await Template.fS.Speech.tell(Template.Sho, "Hi, ich bin Sho Rai. Freut mich, euch kennenzulernen.");
+                // TODO: ***GETUSCHEL VON ANDEREN SCHUELERN SOUND ***
+                await Template.fS.Speech.tell(Template.Teacher, "Okay, beruhigt euch wieder. Ihr könnt in der Pause noch mal miteinander reden.");
+                //TODO: *** PAUSEN GONG EINFÜGEN
+                //TODO: *** MENSCHEN DIE IN DER PAUSE REDEN EINFÜGEN ***
+                await Template.fS.Location.show(Template.location.darkBackground);
+                Template.fS.Speech.hide();
+                Template.fS.Character.hideAll();
+                await Template.fS.update();
+                await Template.fS.Progress.delay(3);
+                // *** PAUSE ***
+                await Template.fS.Location.show(Template.location.classroom);
+                await Template.fS.update();
+                await Template.fS.Character.show(Template.Sho, Template.ShoPose.neutral, Template.fS.positionPercent(20, 100));
+                await Template.fS.Character.show(Template.Rika, Template.RikaPose.neutral, Template.fS.positionPercent(55, 100));
+                await Template.fS.Character.show(Template.Sagi, Template.SagiPose.neutral, Template.fS.positionPercent(85, 100));
+                await Template.fS.update();
+                await Template.fS.Speech.tell(Template.Rika, "Hey Sho. Ich bin Rika Sato.");
+                await Template.fS.Speech.tell(Template.Sagi, "Hi, ich bin Sagi Aoki.");
+                await Template.fS.Speech.tell(Template.Sho, "Hi, nett euch kennenzulernen.");
+                await Template.fS.Speech.tell(Template.Sagi, "Bist du erst vor kurzem hier hergezogen, oder warum wechselst du die Schule mitten im Jahr?");
+                await Template.fS.Speech.tell(Template.Rika, "SAGI! Du kannst doch nicht einfach so fragen.");
+                await Template.fS.Speech.tell(Template.Sagi, "Ach komm schon Rika. Du bist doch sicher auch neugierig.");
+                Template.fS.Character.hide(Template.Sho);
+                await Template.fS.Character.show(Template.Sho, Template.ShoPose.happy, Template.fS.positionPercent(20, 100));
+                await Template.fS.update();
+                await Template.fS.Speech.tell(Template.Sho, "Haha. Ach, das macht doch nichts.");
+                Template.fS.Character.hide(Template.Sho);
+                await Template.fS.Character.show(Template.Sho, Template.ShoPose.neutral, Template.fS.positionPercent(20, 100));
+                await Template.fS.update();
+                await Template.fS.Speech.tell(Template.Sho, "Meine Familie muss recht oft umziehen, da mein Vater wegen seiner Arbeit oft in eine andere Stadt versetzt wird. Aber das macht mir nicht so viel aus.");
+                await Template.fS.Speech.tell(Template.Sagi, "Aber vermisst du deine Freunde denn nicht?");
+                await Template.fS.Speech.tell(Template.Sho, "Na ja, meistens bleibe ich nicht lange genug in einer Stadt, um wirklich gute Freunde zu finden. Und hin und wieder kann ich mich mit ein paar Bekannten treffen, aber das ist eher selten der Fall.");
+                await Template.fS.Speech.tell(Template.Rika, "Mh, aber vielleicht findest du hier jemanden. Kyoto ist eine große Stadt und die Schule auch.");
+                await Template.fS.Speech.tell(Template.Sagi, "Wir können dich auch gerne mal in der Stadt herumführen, nicht wahr, Rika?");
+                await Template.fS.Speech.tell(Template.Rika, "Ehm… Ja klar.");
+                await Template.fS.Speech.tell(Template.Sho, "Das wäre echt cool. Manchmal verlaufe ich mich immer noch. Hoffentlich schaffe ich es heute nach Hause nach der Schule.");
+                await Template.fS.Speech.tell(Template.Rika, "Oh, wo wohnst du denn?");
+                await Template.fS.Speech.tell(Template.Sho, "Ah…Eh… Gegenüber vom Umekoji Park. Ich kann mir leider die Straße nie merken.");
+                await Template.fS.Speech.tell(Template.Rika, "An der Kitsuya-bashi Dori? Da wohne ich auch in der Nähe.");
+                await Template.fS.Speech.tell(Template.Sho, "Oh, wirklich?! Dann kannst du mich eventuell heute begleiten. Haha.");
+                await Template.fS.Speech.tell(Template.Sagi, "Dann müsst ihr wohl ohne mich heute gehen. Ich treffe mich heute mit meiner Mutter nach der Schule.");
+                await Template.fS.Speech.tell(Template.Rika, "Ja, kein Problem. Können gerne zusammen gehen.");
+                // *** Pause Beendet***
+                //TODO: *** PAUSEN GONG EINBAUEN***
+                await Template.fS.Speech.tell(Template.Sagi, "Das war eine schnelle Pause. Komm, wir gehen wieder an unseren Platz.");
+                await Template.fS.Location.show(Template.location.darkBackground);
+                Template.fS.Speech.hide();
+                Template.fS.Character.hideAll();
+                await Template.fS.update();
+                await Template.fS.Progress.delay(3);
+                // *** Unterricht zu Ende***
+                //TODO: *** GONG EINBAUEN ***
+                await Template.fS.Location.show(Template.location.classroom);
+                await Template.fS.update();
+                await Template.fS.Character.show(Template.Sho, Template.ShoPose.neutral, Template.fS.positionPercent(40, 100));
+                await Template.fS.Character.show(Template.Rika, Template.RikaPose.neutral, Template.fS.positionPercent(80, 100));
+                await Template.fS.update();
+                await Template.fS.Speech.tell(Template.Rika, "Okay, können wir los?");
+                await Template.fS.Speech.tell(Template.Sho, "Ja, ich packe nur schnell meine Sachen zusammen.");
+                // *** Auf dem Weg nach Hause***
+                await Template.fS.Location.show(Template.location.uni);
+                await Template.fS.update();
+                await Template.fS.Character.show(Template.Sho, Template.ShoPose.neutral, Template.fS.positionPercent(40, 100));
+                await Template.fS.Speech.tell(Template.Rika, "Okay, dir nach.");
+                await Template.fS.Speech.tell(Template.Rika, "Also wir können tatsächlich zwei verschiedene Routen nehmen, die ungefähr gleich lang sind. Aber der etwas längere Weg ist schöner.");
+                await Template.fS.Speech.tell(Template.Sho, "Nun, dann gehen wir mal den etwas längeren, außer du hast es eilig.");
+                await Template.fS.Speech.tell(Template.Rika, "Ne, ich habe heute nichts mehr vor. Dann kann ich dir etwas von der Stadt zeigen. Vor allem das große Einkaufszentrum. ");
+                await Template.fS.Speech.tell(Template.Sho, "Oh, ich wusste gar nicht, dass es hier sowas gibt.");
+            case "carCrashHappend":
+                Template.fS.Speech.hide();
+                await Template.fS.Location.show(Template.location.classroom);
+                await Template.fS.update();
+                await Template.fS.Character.show(Template.Teacher, Template.TeacherPose.neutral, Template.fS.positionPercent(70, 100));
+                await Template.fS.update();
+                await Template.fS.Speech.tell(Template.Teacher, "Guten Morgen. Bevor wir heute mit dem Unterricht anfangen, möchte ich euch zunächst euren neuen Mitschüler vorstellen.");
+                await Template.fS.Character.show(Template.Sho, Template.ShoPose.neutral, Template.fS.positionPercent(30, 100));
+                await Template.fS.update();
+                await Template.fS.Speech.tell(Template.Sho, "Hi, ich bin Sho Rai. Freut mich, euch kennenzulernen.");
+                // TODO: ***GETUSCHEL VON ANDEREN SCHUELERN SOUND ***
+                await Template.fS.Speech.tell(Template.Teacher, "Okay, beruhigt euch wieder. Ihr könnt in der Pause noch mal miteinander reden.");
+                //TODO: *** PAUSEN GONG EINFÜGEN
+                //TODO: *** MENSCHEN DIE IN DER PAUSE REDEN EINFÜGEN ***
+                await Template.fS.Character.show(Template.Sagi, Template.SagiPose.neutral, Template.fS.positionPercent(70, 100));
+                await Template.fS.update();
+                await Template.fS.Speech.tell(Template.Sagi, "Rika du bist schon die ganze Zeit abwesend. Ist alles in Ordnung?");
+                await Template.fS.Character.show(Template.Rika, Template.RikaPose.neutral, Template.fS.positionPercent(30, 100));
+                await Template.fS.update();
+                await Template.fS.Speech.tell(Template.Rika, "Ja. Ich habe nur irgendwie das Gefühl, dass ich Sho schon mal getroffen habe.");
+                await Template.fS.Speech.tell(Template.Sagi, "Mh, sollen wir mit ihm reden? Vielleicht kennt ihr euch.");
+                Template.fS.Speech.hide();
+                Template.fS.Character.hideAll();
+                await Template.fS.update();
+                await Template.fS.Progress.delay(1);
+                await Template.fS.Character.show(Template.Sagi, Template.SagiPose.neutral, Template.fS.positionPercent(20, 100));
+                await Template.fS.Character.show(Template.Sho, Template.ShoPose.neutral, Template.fS.positionPercent(55, 100));
+                await Template.fS.Character.show(Template.Rika, Template.RikaPose.neutral, Template.fS.positionPercent(85, 100));
+                await Template.fS.Speech.tell(Template.Sagi, "Hi, ich bin Sagi Aoki.");
+                await Template.fS.Speech.tell(Template.Rika, "Hey Sho. Ich bin Rika Sato.");
+                await Template.fS.Speech.tell(Template.Sho, "Hey, freut mich euch kennenzulernen.");
+            //-- -- --  Choice -- -- --  
+        }
     }
-    Template.InKlasseErste = InKlasseErste;
+    Template.InClass = InClass;
 })(Template || (Template = {}));
 var Template;
 (function (Template) {

@@ -44,8 +44,20 @@ namespace Template {
                 await fS.Speech.tell(Rika, "Tut mir leid, zurzeit schlafe ich wirklich schlecht. Ich frage mich wirklich, woran das liegt …");
                 await fS.Speech.tell(Sagi, "Vielleicht bist du ja nur nervös, du weißt ja heute kommt der neue Schüler. Ich frage mich, wie er darauf ist. Hey, dann bekommst du ja vielleicht auch mal einen Freund.");
                 await fS.Speech.tell(Rika, "Was hast du gerade gesagt?");
+                await fS.Speech.tell(Sagi, "Ein neuer Schüler kommt heute in unsere Klasse. Bist du wirklich okay? Du siehst etwas blass aus…");
+                await fS.Speech.tell(Rika, "Ja, ich denke schon. Du hast recht, ich sollte wirklich mehr trinken.");
+                await fS.Speech.tell(Sagi, "Trinken? Das habe ich jetzt nicht gesagt, aber ja, das könnte helfen.");
+                await fS.Speech.tell(Rika, "Hast du nicht? Ich dachte, dass du das gesagt hättest…");
+                await fS.Speech.tell(Sagi, "Komm, wir gehen los. Sonst kommen wir zu spät.");
 
+                await fS.Location.show(location.uni);
+                await fS.update();
 
+                //TODO: *** GONG KLINGELT***
+                await fS.Speech.tell(Sagi, "Komm wir…");
+                await fS.Speech.tell(Rika, "Wir schaffen es zum Unterricht, keine Sorge.");
+                await fS.Speech.tell(Sagi, "...");
+                break;
         }
     }
 }

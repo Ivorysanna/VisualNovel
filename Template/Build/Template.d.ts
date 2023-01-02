@@ -181,15 +181,19 @@ declare namespace Template {
         neutral: string;
     };
     let storyState: String;
+    let loveOMeter: number;
 }
 declare namespace Template {
     function CarCrash(): fS.SceneReturn;
 }
 declare namespace Template {
+    function Choices(): fS.SceneReturn;
+}
+declare namespace Template {
     function GoingToSchool(): fS.SceneReturn;
 }
 declare namespace Template {
-    function InKlasseErste(): fS.SceneReturn;
+    function InClass(): fS.SceneReturn;
 }
 declare namespace Template {
     function WakingUp(): fS.SceneReturn;
