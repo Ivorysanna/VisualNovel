@@ -233,18 +233,22 @@ var Template;
 var Template;
 (function (Template) {
     async function CarCrash() {
-        console.log("Starting Car Crash");
-        console.log(Template.storyState);
         Template.fS.Speech.hide();
-        await Template.fS.Location.show(Template.location.streetCity);
-        await Template.fS.update();
-        await Template.fS.Speech.tell(Template.Rika, "So, hier um die Ecke ist auch schon das Einkaufszentrum. Wenn du möchtest, können wir uns hier am Wochenende auf einen Bubble Tea treffen und vielleicht…");
-        Template.storyState = "carCrashHappend";
-        console.log(Template.storyState);
-        Template.fS.Speech.hide();
-        Template.fS.Character.hideAll();
-        //TODO: *** AUTO HUPEN UND REIFEN QUIETSCHEN EINBAUEN ***
-        //TODO: *** SZENENBILD ANZEIGEN AUTO ÜBERFAHREN***  
+        if (Template.storyState == "") {
+            await Template.fS.Location.show(Template.location.streetCity);
+            await Template.fS.update();
+            await Template.fS.Speech.tell(Template.Rika, "So, hier um die Ecke ist auch schon das Einkaufszentrum. Wenn du möchtest, können wir uns hier am Wochenende auf einen Bubble Tea treffen und vielleicht…");
+            Template.storyState = "carCrashHappend";
+            console.log(Template.storyState);
+            Template.fS.Speech.hide();
+            Template.fS.Character.hideAll();
+            //TODO: *** AUTO HUPEN UND REIFEN QUIETSCHEN EINBAUEN ***
+            //TODO: *** SZENENBILD ANZEIGEN AUTO ÜBERFAHREN***
+        }
+        else if (Template.storyState == "carCrashHappend") {
+            //TODO: *** SZENENBILD ANZEIGEN AUTO ÜBERFAHREN***
+            //TODO: *** ENDING THE GAME***
+        }
     }
     Template.CarCrash = CarCrash;
 })(Template || (Template = {}));
@@ -265,17 +269,15 @@ var Template;
                 switch (dialogueElement) {
                     case livingHereChoice.movedrecently:
                         // continue path here
-                        await Template.fS.Speech.tell(Template.Rika, "Du bist erst vor kurzem hier hergezogen, oder? ");
+                        await Template.fS.Speech.tell(Template.Rika, "Du bist erst vor kurzem hier hergezogen, oder?");
                         Template.loveOMeter -= 10;
                         await Template.fS.Speech.tell(Template.Sho, "Ehm…ja…");
-                        console.log("Love-O-Meter: " + Template.loveOMeter);
                         break;
                     case livingHereChoice.movedLongAgo:
                         // continue path here
                         await Template.fS.Speech.tell(Template.Rika, "Wohnst du schon lange hier? ");
-                        await Template.fS.Speech.tell(Template.Rika, "Nein, meine Familie musste umziehen, da mein Vater oft wegen der Arbeit woanders stationiert wird.");
+                        await Template.fS.Speech.tell(Template.Sho, "Nein, meine Familie musste umziehen, da mein Vater oft wegen der Arbeit woanders stationiert wird.");
                         Template.loveOMeter += 10;
-                        console.log("Love-O-Meter: " + Template.loveOMeter);
                         break;
                 }
             case "secondChoice":
@@ -283,12 +285,14 @@ var Template;
                     case livingWhereChoice.livingInPark:
                         await Template.fS.Speech.tell(Template.Rika, "Du wohnst gegenüber vom Umekoji Park, nicht wahr? ");
                         await Template.fS.Speech.tell(Template.Sho, "… J-ja, woher weißt du das?");
-                        await Template.fS.Speech.tell(Template.Sho, "Oh, ehm ich habe einfach geraten…");
+                        await Template.fS.Speech.tell(Template.Rika, "Oh, ehm ich habe einfach geraten…");
                         Template.loveOMeter -= 10;
+                        break;
                     case livingWhereChoice.goingToCityTogether:
                         await Template.fS.Speech.tell(Template.Rika, "Wenn du möchtest, können wir uns mal am Wochenende treffen und wir zeigen dir ein bisschen die Stadt. ");
-                        await Template.fS.Speech.tell(Template.Rika, "Ja, gerne, dann verlaufe ich mich vielleicht nicht mehr so oft. Ich glaube, die Straße, in der ich wohne, heißt Kitsuya-bashi Dori.");
+                        await Template.fS.Speech.tell(Template.Sho, "Ja, gerne, dann verlaufe ich mich vielleicht nicht mehr so oft. Ich glaube, die Straße, in der ich wohne, heißt Kitsuya-bashi Dori.");
                         Template.loveOMeter += 10;
+                        break;
                 }
         }
         // NEXT CHOICE
@@ -477,6 +481,24 @@ var Template;
                 Template.choicesState = "secondChoice";
                 await Template.Choices();
                 await Template.fS.Speech.tell(Template.Sagi, "Na ja, dann könnt ihr beiden heute zusammen nach Hause laufen, dann findest du sicher den Weg. Rika wohnt auch in der Straße.");
+                await Template.fS.Speech.tell(Template.Sagi, "Ich kann leider nicht mitkommen, treffe mich heute nach der Schule mit meiner Mutter.");
+                await Template.fS.Speech.tell(Template.Sho, "Wirklich?! Ja, das wäre ganz gut.");
+                await Template.fS.Speech.tell(Template.Sho, "Können wir gerne machen, dann kann ich dir noch etwas die Stadt zeigen.");
+                // *** Pause Beendet***
+                //TODO: *** PAUSEN GONG EINBAUEN***
+                await Template.fS.Speech.tell(Template.Sagi, "Komm, wir gehen an unseren Platz.");
+                //*** Unterricht beendet***
+                //TODO: *** GONG EINBAUEN ***
+                await Template.fS.Location.show(Template.location.darkBackground);
+                Template.fS.Speech.hide();
+                Template.fS.Character.hideAll();
+                await Template.fS.update();
+                await Template.fS.Progress.delay(3);
+                await Template.fS.Location.show(Template.location.classroom);
+                await Template.fS.update();
+                await Template.fS.Character.show(Template.Rika, Template.RikaPose.neutral, Template.fS.positionPercent(40, 100));
+                await Template.fS.Character.show(Template.Sho, Template.ShoPose.neutral, Template.fS.positionPercent(70, 100));
+                await Template.fS.Speech.tell(Template.Sagi, "Okay, wir können losgehen.");
         }
     }
     Template.InClass = InClass;

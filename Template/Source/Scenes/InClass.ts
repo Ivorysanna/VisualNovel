@@ -149,6 +149,35 @@ namespace Template {
                 await Template.Choices();
 
                 await fS.Speech.tell(Sagi, "Na ja, dann könnt ihr beiden heute zusammen nach Hause laufen, dann findest du sicher den Weg. Rika wohnt auch in der Straße.");
+                await fS.Speech.tell(Sagi, "Ich kann leider nicht mitkommen, treffe mich heute nach der Schule mit meiner Mutter.");
+                await fS.Speech.tell(Sho, "Wirklich?! Ja, das wäre ganz gut.");
+                await fS.Speech.tell(Sho, "Können wir gerne machen, dann kann ich dir noch etwas die Stadt zeigen.");
+
+                // *** Pause Beendet***
+                //TODO: *** PAUSEN GONG EINBAUEN***
+                await fS.Speech.tell(Sagi, "Komm, wir gehen an unseren Platz.");
+
+                //*** Unterricht beendet***
+                //TODO: *** GONG EINBAUEN ***
+                await fS.Location.show(location.darkBackground);
+                fS.Speech.hide();
+                fS.Character.hideAll();
+                await fS.update();
+
+                await fS.Progress.delay(3);
+
+                await fS.Location.show(location.classroom);
+                await fS.update();
+
+                await fS.Character.show(Rika, RikaPose.neutral, fS.positionPercent(40, 100));
+                await fS.Character.show(Sho, ShoPose.neutral, fS.positionPercent(70, 100));
+
+                await fS.Speech.tell(Sagi, "Okay, wir können losgehen.");
+                
+
+
+
+
         }
     }
 }
