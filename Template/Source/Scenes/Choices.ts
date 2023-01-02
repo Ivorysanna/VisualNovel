@@ -10,11 +10,12 @@ namespace Template {
             goingToCityTogether: "<i>Anbieten zusammen die Stadt anschauen</i>"
         };
 
-        let dialogueElement = await fS.Menu.getInput(livingHereChoice, "choicesCSSClass");
+        let firstDialogueElement = await fS.Menu.getInput(livingHereChoice, "choicesCSSClass");
+        let secondDialogueElement = await fS.Menu.getInput(livingWhereChoice, "choicesCSSClass");
 
         switch (choicesState) {
             case "firstChoice":
-                switch (dialogueElement) {
+                switch (firstDialogueElement) {
                     case livingHereChoice.movedrecently:
                         // continue path here
                         await fS.Speech.tell(Rika, "Du bist erst vor kurzem hier hergezogen, oder?");
@@ -31,7 +32,7 @@ namespace Template {
                         break;
                 }
             case "secondChoice":
-                switch (dialogueElement) {
+                switch (secondDialogueElement) {
                         case livingWhereChoice.livingInPark:
                             await fS.Speech.tell(Rika, "Du wohnst gegenüber vom Umekoji Park, nicht wahr? ");
                             await fS.Speech.tell(Sho, "… J-ja, woher weißt du das?");

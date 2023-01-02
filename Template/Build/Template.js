@@ -219,7 +219,7 @@ var Template;
     //*** SHO ***
     Template.Sho = Template.characters.Sho;
     Template.ShoPose = Template.characters.Sho.pose;
-    //*** RIKAS MUTTER ***
+    //*** RIKAS MOTHER ***
     Template.RikaMother = Template.characters.RikaMother;
     Template.RikaMotherPose = Template.characters.RikaMother.pose;
     //*** TEACHER ***
@@ -229,6 +229,7 @@ var Template;
     Template.storyState = "";
     Template.loveOMeter = 0;
     Template.choicesState = "";
+    Template.endingState = "";
 })(Template || (Template = {}));
 var Template;
 (function (Template) {
@@ -263,10 +264,11 @@ var Template;
             livingInPark: "Wohnst gegenüber vom Park?",
             goingToCityTogether: "<i>Anbieten zusammen die Stadt anschauen</i>"
         };
-        let dialogueElement = await Template.fS.Menu.getInput(livingHereChoice, "choicesCSSClass");
+        let firstDialogueElement = await Template.fS.Menu.getInput(livingHereChoice, "choicesCSSClass");
+        let secondDialogueElement = await Template.fS.Menu.getInput(livingWhereChoice, "choicesCSSClass");
         switch (Template.choicesState) {
             case "firstChoice":
-                switch (dialogueElement) {
+                switch (firstDialogueElement) {
                     case livingHereChoice.movedrecently:
                         // continue path here
                         await Template.fS.Speech.tell(Template.Rika, "Du bist erst vor kurzem hier hergezogen, oder?");
@@ -281,7 +283,7 @@ var Template;
                         break;
                 }
             case "secondChoice":
-                switch (dialogueElement) {
+                switch (secondDialogueElement) {
                     case livingWhereChoice.livingInPark:
                         await Template.fS.Speech.tell(Template.Rika, "Du wohnst gegenüber vom Umekoji Park, nicht wahr? ");
                         await Template.fS.Speech.tell(Template.Sho, "… J-ja, woher weißt du das?");
@@ -298,6 +300,21 @@ var Template;
         // NEXT CHOICE
     }
     Template.Choices = Choices;
+})(Template || (Template = {}));
+var Template;
+(function (Template) {
+    async function ChoicesEndings() {
+        let endingOneChoice = {
+            movedrecently: "Vor kurzem hergezogen?",
+            movedLongAgo: "Wohnst du schon lange hier?"
+        };
+        let firstendingDialogue = await Template.fS.Menu.getInput(endingOneChoice, "choicesCSSClass");
+        if (Template.storyState == "endingOne") {
+            switch (dialogueElement) {
+            }
+        }
+    }
+    Template.ChoicesEndings = ChoicesEndings;
 })(Template || (Template = {}));
 var Template;
 (function (Template) {
@@ -498,7 +515,11 @@ var Template;
                 await Template.fS.update();
                 await Template.fS.Character.show(Template.Rika, Template.RikaPose.neutral, Template.fS.positionPercent(40, 100));
                 await Template.fS.Character.show(Template.Sho, Template.ShoPose.neutral, Template.fS.positionPercent(70, 100));
-                await Template.fS.Speech.tell(Template.Sagi, "Okay, wir können losgehen.");
+                await Template.fS.Speech.tell(Template.Rika, "Okay, wir können losgehen.");
+                await Template.fS.Speech.tell(Template.Sho, "Ja, ein Moment, ich packe schnell meine Sachen zusammen.");
+                // -- -- -- Choice Endingrelevant -- -- --
+                Template.endingState = "endingOne";
+                await Template.ChoicesEndings();
         }
     }
     Template.InClass = InClass;

@@ -172,8 +172,13 @@ namespace Template {
                 await fS.Character.show(Rika, RikaPose.neutral, fS.positionPercent(40, 100));
                 await fS.Character.show(Sho, ShoPose.neutral, fS.positionPercent(70, 100));
 
-                await fS.Speech.tell(Sagi, "Okay, wir können losgehen.");
-                
+                await fS.Speech.tell(Rika, "Okay, wir können losgehen.");
+                await fS.Speech.tell(Sho, "Ja, ein Moment, ich packe schnell meine Sachen zusammen.");
+
+                // -- -- -- Choice Endingrelevant -- -- --
+                endingState = "endingOne";
+                await Template.ChoicesEndings();
+
 
 
 

@@ -11,7 +11,7 @@ namespace Template {
     export  let Sho = characters.Sho;
     export  let ShoPose = characters.Sho.pose;
 
-    //*** RIKAS MUTTER ***
+    //*** RIKAS MOTHER ***
     export  let RikaMother = characters.RikaMother;
     export  let RikaMotherPose = characters.RikaMother.pose;
 
@@ -25,5 +25,7 @@ namespace Template {
     export let loveOMeter: number = 0;
 
     export let choicesState: String = "";
+
+    export let endingState: String = "";
 
 }
