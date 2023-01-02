@@ -8,7 +8,7 @@ namespace Template {
         let firstendingDialogue = await fS.Menu.getInput(endingOneChoice, "choicesCSSClass");
 
         if (storyState == "endingOne") {
-            switch(dialogueElement){
+            switch(endingOneChoice){
 
             }
         }

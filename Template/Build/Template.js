@@ -310,7 +310,7 @@ var Template;
         };
         let firstendingDialogue = await Template.fS.Menu.getInput(endingOneChoice, "choicesCSSClass");
         if (Template.storyState == "endingOne") {
-            switch (dialogueElement) {
+            switch (endingOneChoice) {
             }
         }
     }
