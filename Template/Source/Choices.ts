@@ -1,17 +1,13 @@
-namespace Template{
-    class Choices {
-        // constructor(fieldValue: string) {
-        //     this.myField = fieldValue;
-        // }
-    
-        async livingHereChoice(): Promise <void> {
+namespace Template {
+    export class Choices {
+        public static async livingHereChoice() {
             let livingHereChoice = {
                 movedRecently: "Vor kurzem hergezogen?",
-                movedLongAgo: "Wohnst du schon lange hier?"
+                movedLongAgo: "Wohnst du schon lange hier?",
             };
-    
+
             let firstDialogueElement = await fS.Menu.getInput(livingHereChoice, "choicesCSSClass");
-    
+
             switch (firstDialogueElement) {
                 case livingHereChoice.movedRecently:
                     // continue path here
@@ -31,10 +27,10 @@ namespace Template{
             }
         }
 
-        async livingWhereChoice(): Promise <void> {
+        public static async livingWhereChoice() {
             let livingWhereChoice = {
                 livingInPark: "Wohnst gegenüber vom Park?",
-                goingToCityTogether: "<i>Anbieten zusammen die Stadt anschauen</i>"
+                goingToCityTogether: "<i>Anbieten zusammen die Stadt anschauen</i>",
             };
             let secondDialogueElement = await fS.Menu.getInput(livingWhereChoice, "choicesCSSClass");
 
@@ -54,7 +50,4 @@ namespace Template{
             }
         }
     }
-
 }
-
-

@@ -53,6 +53,27 @@ var Template;
 })(Template || (Template = {}));
 var Template;
 (function (Template) {
+    async function ChoicesEndings() {
+        let endingOneChoice = {
+            longPath: "<i>Langen aber schönen Weg vorschlagen</i>",
+            shortPath: "<i>Kurzen Weg vorschlagen</i>"
+        };
+        let firstendingDialogue = await Template.fS.Menu.getInput(endingOneChoice, "choicesCSSClass");
+        if (Template.storyState == "endingOne") {
+            switch (firstendingDialogue) {
+                case endingOneChoice.longPath:
+                    Template.CarCrash();
+                    console.log("Passt!");
+                    break;
+                case endingOneChoice.shortPath:
+                    await Template.fS.Speech.tell(Template.Rika, "Lass uns den längeren Weg gehen, er ist nicht viel länger, aber dafür viel schöner.");
+            }
+        }
+    }
+    Template.ChoicesEndings = ChoicesEndings;
+})(Template || (Template = {}));
+var Template;
+(function (Template) {
     Template.f = FudgeCore;
     Template.fS = FudgeStory;
     console.log("FudgeStory template starting");
@@ -354,27 +375,6 @@ var Template;
         }
     }
     Template.Choices = Choices;
-})(Template || (Template = {}));
-var Template;
-(function (Template) {
-    async function ChoicesEndings() {
-        let endingOneChoice = {
-            longPath: "<i>Langen aber schönen Weg vorschlagen</i>",
-            shortPath: "<i>Kurzen Weg vorschlagen</i>"
-        };
-        let firstendingDialogue = await Template.fS.Menu.getInput(endingOneChoice, "choicesCSSClass");
-        if (Template.storyState == "endingOne") {
-            switch (firstendingDialogue) {
-                case endingOneChoice.longPath:
-                    Template.CarCrash();
-                    console.log("Passt!");
-                    break;
-                case endingOneChoice.shortPath:
-                    await Template.fS.Speech.tell(Template.Rika, "Lass uns den längeren Weg gehen, er ist nicht viel länger, aber dafür viel schöner.");
-            }
-        }
-    }
-    Template.ChoicesEndings = ChoicesEndings;
 })(Template || (Template = {}));
 var Template;
 (function (Template) {

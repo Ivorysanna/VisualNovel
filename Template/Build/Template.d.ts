@@ -1,6 +1,9 @@
 declare namespace Template {
 }
 declare namespace Template {
+    function ChoicesEndings(): fS.SceneReturn;
+}
+declare namespace Template {
     export import f = FudgeCore;
     export import fS = FudgeStory;
     let transition: {
@@ -195,9 +198,6 @@ declare namespace Template {
         static livingHereChoice(): Promise<void>;
         static livingWhereChoice(): Promise<void>;
     }
-}
-declare namespace Template {
-    function ChoicesEndings(): fS.SceneReturn;
 }
 declare namespace Template {
     function GoingToSchool(): fS.SceneReturn;
