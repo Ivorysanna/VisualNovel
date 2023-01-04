@@ -4,6 +4,7 @@ namespace Template {
 
         switch (storyState) {
             case "":
+                console.log("First Run!");
                 fS.Speech.hide();
                 await fS.Location.show(location.alley);
                 await fS.update();
@@ -35,6 +36,7 @@ namespace Template {
                 break;
 
             case "carCrashHappend":
+                console.log("Crash Happend!");
                 fS.Speech.hide();
                 await fS.Location.show(location.alley);
                 await fS.update();

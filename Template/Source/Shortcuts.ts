@@ -24,7 +24,7 @@ namespace Template {
     
     export let loveOMeter: number = 0;
 
-    export let choicesState: String = "";
+    export let choicesState: String = "firstChoice";
 
     export let endingState: String = "";
 

@@ -4,6 +4,7 @@ namespace Template {
         switch (storyState) {
             case "":
                 // Sagi und Rika sind im Klassenzimmer
+                console.log("First Run!");
                 fS.Speech.hide();
                 await fS.Location.show(location.classroom);
                 await fS.update();
@@ -98,7 +99,9 @@ namespace Template {
                 await fS.Speech.tell(Sho, "Nun, dann gehen wir mal den etwas längeren, außer du hast es eilig.");
                 await fS.Speech.tell(Rika, "Ne, ich habe heute nichts mehr vor. Dann kann ich dir etwas von der Stadt zeigen. Vor allem das große Einkaufszentrum. ");
                 await fS.Speech.tell(Sho, "Oh, ich wusste gar nicht, dass es hier sowas gibt.");
+                break;
             case "carCrashHappend":
+                console.log("Crash Happend!");
                 fS.Speech.hide();
                 await fS.Location.show(location.classroom);
                 await fS.update();
@@ -138,15 +141,13 @@ namespace Template {
                 await fS.Speech.tell(Sho, "Hey, freut mich euch kennenzulernen.");
 
                 //-- -- --  Choice -- -- --
-                choicesState = "firstChoice";
-                await Template.Choices();
+                await Template.Choices.livingHereChoice();
 
                 await fS.Speech.tell(Sagi, "Kennst du dich denn schon in Kyoto etwas aus?");
                 await fS.Speech.tell(Sho, "Nein, nicht wirklich. Ich verlaufe mich manchmal noch auf dem Weg nach Hause. Haha.");
 
                 //-- -- --  Choice -- -- --
-                choicesState = "secondChoice";
-                await Template.Choices();
+                await Template.Choices.livingWhereChoice();
 
                 await fS.Speech.tell(Sagi, "Na ja, dann könnt ihr beiden heute zusammen nach Hause laufen, dann findest du sicher den Weg. Rika wohnt auch in der Straße.");
                 await fS.Speech.tell(Sagi, "Ich kann leider nicht mitkommen, treffe mich heute nach der Schule mit meiner Mutter.");
@@ -178,10 +179,7 @@ namespace Template {
                 // -- -- -- Choice Endingrelevant -- -- --
                 endingState = "endingOne";
                 await Template.ChoicesEndings();
-
-
-
-
+                break;
 
         }
     }

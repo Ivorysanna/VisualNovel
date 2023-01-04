@@ -24,6 +24,11 @@ canvas {
   height: 90%;
 }
 
+#buttonDL{
+  position: absolute;
+  top: 0;
+  right: 0;
+}
 
 /***** SPLASH SCREEN *****/
 dialog[type="splash"] {
