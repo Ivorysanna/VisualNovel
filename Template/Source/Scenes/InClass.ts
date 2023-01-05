@@ -118,7 +118,13 @@ namespace Template {
                 // TODO: ***GETUSCHEL VON ANDEREN SCHUELERN SOUND ***
                 await fS.Speech.tell(Teacher, "Okay, beruhigt euch wieder. Ihr könnt in der Pause noch mal miteinander reden.");
                 fS.Character.hideAll();
-                
+                await fS.Location.show(location.darkBackground);
+                fS.Speech.hide();
+                fS.Character.hideAll();
+                await fS.update();
+
+                await fS.Progress.delay(3);
+
                 //TODO: *** PAUSEN GONG EINFÜGEN
                 //TODO: *** MENSCHEN DIE IN DER PAUSE REDEN EINFÜGEN ***
                 await fS.Character.show(Sagi, SagiPose.neutral, fS.positionPercent(70, 100));
@@ -182,6 +188,65 @@ namespace Template {
                 // -- -- -- Choice Endingrelevant -- -- --
                 await EndingChoices.firstEnding();
                 break;
+            case StoryState.ConstructionSiteAccidentHappend:
+                console.log("Construction Site Accident happend!");
+                fS.Character.hideAll();
+                fS.Speech.hide();
+                await fS.Location.show(location.classroom);
+                await fS.update();
+
+                await fS.Character.show(Teacher, TeacherPose.neutral, fS.positionPercent(70, 100));
+                await fS.update();
+                await fS.Speech.tell(Teacher, "Guten Morgen. Bevor wir heute mit dem Unterricht anfangen, möchte ich euch zunächst euren neuen Mitschüler vorstellen.");
+                await fS.Character.show(Sho, ShoPose.neutral, fS.positionPercent(30, 100));
+                await fS.update();
+                await fS.Speech.tell(Sho, "Hi, ich bin Sho Rai. Freut mich, euch kennenzulernen.");
+                await fS.Speech.tell(Rika, "<i>… Das ist er. Ich habe von ihm geträumt. Aber was ist passiert?</i> ");
+                // TODO: ***GETUSCHEL VON ANDEREN SCHUELERN SOUND ***
+                await fS.Speech.tell(Teacher, "Okay, beruhigt euch wieder. Ihr könnt in der Pause noch mal miteinander reden.");
+
+                await fS.Location.show(location.darkBackground);
+                fS.Speech.hide();
+                fS.Character.hideAll();
+                await fS.update();
+
+                await fS.Progress.delay(3);
+                //TODO: *** PAUSEN GONG EINFÜGEN
+                //TODO: *** MENSCHEN DIE IN DER PAUSE REDEN EINFÜGEN ***
+                // *** PAUSE ***
+                await fS.Location.show(location.classroom);
+                await fS.update();
+                await fS.Character.show(Sagi, SagiPose.neutral, fS.positionPercent(70, 100));
+                await fS.update(0.5);
+                await fS.Speech.tell(Rika, "… Rika? Du bist etwas abwesend.");
+                await fS.Speech.tell(Rika, "<i>Es hatte mit einem Unfall zu tun. Aber was war es?</i>");
+                await fS.Speech.tell(Sagi, "Rika?!");
+                await fS.Speech.tell(Rika, "… was ist?");
+                await fS.Speech.tell(Sagi, "Ist irgendwas passiert? Warum bist du heute so komisch?");
+                await fS.Speech.tell(Rika, "<i>Sagi hat heute Morgen schon etwas komisch reagiert. Ich denke, ich werde erstmal nichts sagen.</i>");
+                await fS.Speech.tell(Rika, "Ich weiß es nicht. Zurzeit habe ich komische Träume, das ist alles.");
+                await fS.Speech.tell(Sagi, "Okay... Komm, lass uns mit Sho reden. Vielleicht bist du einfach nur etwas nervös.");
+
+                await fS.Character.show(Sho, ShoPose.neutral, fS.positionPercent(30, 100));
+                await fS.Speech.tell(Rika, "Hi, Sho. Ich bin Rika.");
+                await fS.Speech.tell(Sagi, "Hi. Ich bin Sagi.");
+                await fS.Speech.tell(Sho, "Hey, nett euch kennenzulernen. ");
+                await fS.Speech.tell(Sagi, "Wohnst du schon lange in Kyoto?");
+                fS.Character.hide(Sho);
+                await fS.update();
+                await fS.Character.show(Sho,ShoPose.happy, fS.positionPercent(30, 100));
+                await fS.update();
+                await fS.Speech.tell(Sho, "Nein, ich bin erst vor kurzem hergezogen. Deswegen verlaufe ich mich manchmal noch. Haha.");
+                fS.Character.hide(Sho);
+                await fS.Character.show(Sho, ShoPose.neutral, fS.positionPercent(30, 100));
+                await fS.update();
+                await fS.Speech.tell(Rika, "Wohnst du denn hier in der Nähe? Wir könnten dich mal in der Stadt herumführen.");
+                break;
+
+
+
+
+
 
         }
     }

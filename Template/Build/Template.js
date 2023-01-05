@@ -286,7 +286,8 @@ var Template;
             // { id: "toSchoolAfterCarCrash", scene: GoingToSchool, name: "Going to School after Carcrash"},
             // { id: "inClassAfterCarCrash", scene: InClass, name: "In Class after Carcrash"},
             { id: "inClassAfterConstructionAccident", scene: Template.WakingUp, name: "Waking up after Construction Site Accident" },
-            { id: "toSchoolFirstTime", scene: Template.GoingToSchool, name: "Going to School after Construction Site Accident" },
+            { id: "toSchoolAfterConstructionAccident", scene: Template.GoingToSchool, name: "Going to School after Construction Site Accident" },
+            { id: "inClassAfterConstructionAccident", scene: Template.InClass, name: "In Class AfterConstructionAccident" },
         ];
         let uiElement = document.querySelector("[type=interface]");
         Template.dataForSave = Template.fS.Progress.setData(Template.dataForSave, uiElement);
@@ -561,6 +562,11 @@ var Template;
                 // TODO: ***GETUSCHEL VON ANDEREN SCHUELERN SOUND ***
                 await Template.fS.Speech.tell(Template.Teacher, "Okay, beruhigt euch wieder. Ihr könnt in der Pause noch mal miteinander reden.");
                 Template.fS.Character.hideAll();
+                await Template.fS.Location.show(Template.location.darkBackground);
+                Template.fS.Speech.hide();
+                Template.fS.Character.hideAll();
+                await Template.fS.update();
+                await Template.fS.Progress.delay(3);
                 //TODO: *** PAUSEN GONG EINFÜGEN
                 //TODO: *** MENSCHEN DIE IN DER PAUSE REDEN EINFÜGEN ***
                 await Template.fS.Character.show(Template.Sagi, Template.SagiPose.neutral, Template.fS.positionPercent(70, 100));
@@ -609,6 +615,56 @@ var Template;
                 await Template.fS.Speech.tell(Template.Sho, "Ja, ein Moment, ich packe schnell meine Sachen zusammen.");
                 // -- -- -- Choice Endingrelevant -- -- --
                 await Template.EndingChoices.firstEnding();
+                break;
+            case Template.StoryState.ConstructionSiteAccidentHappend:
+                console.log("Construction Site Accident happend!");
+                Template.fS.Character.hideAll();
+                Template.fS.Speech.hide();
+                await Template.fS.Location.show(Template.location.classroom);
+                await Template.fS.update();
+                await Template.fS.Character.show(Template.Teacher, Template.TeacherPose.neutral, Template.fS.positionPercent(70, 100));
+                await Template.fS.update();
+                await Template.fS.Speech.tell(Template.Teacher, "Guten Morgen. Bevor wir heute mit dem Unterricht anfangen, möchte ich euch zunächst euren neuen Mitschüler vorstellen.");
+                await Template.fS.Character.show(Template.Sho, Template.ShoPose.neutral, Template.fS.positionPercent(30, 100));
+                await Template.fS.update();
+                await Template.fS.Speech.tell(Template.Sho, "Hi, ich bin Sho Rai. Freut mich, euch kennenzulernen.");
+                await Template.fS.Speech.tell(Template.Rika, "<i>… Das ist er. Ich habe von ihm geträumt. Aber was ist passiert?</i> ");
+                // TODO: ***GETUSCHEL VON ANDEREN SCHUELERN SOUND ***
+                await Template.fS.Speech.tell(Template.Teacher, "Okay, beruhigt euch wieder. Ihr könnt in der Pause noch mal miteinander reden.");
+                await Template.fS.Location.show(Template.location.darkBackground);
+                Template.fS.Speech.hide();
+                Template.fS.Character.hideAll();
+                await Template.fS.update();
+                await Template.fS.Progress.delay(3);
+                //TODO: *** PAUSEN GONG EINFÜGEN
+                //TODO: *** MENSCHEN DIE IN DER PAUSE REDEN EINFÜGEN ***
+                // *** PAUSE ***
+                await Template.fS.Location.show(Template.location.classroom);
+                await Template.fS.update();
+                await Template.fS.Character.show(Template.Sagi, Template.SagiPose.neutral, Template.fS.positionPercent(70, 100));
+                await Template.fS.update(0.5);
+                await Template.fS.Speech.tell(Template.Rika, "… Rika? Du bist etwas abwesend.");
+                await Template.fS.Speech.tell(Template.Rika, "<i>Es hatte mit einem Unfall zu tun. Aber was war es?</i>");
+                await Template.fS.Speech.tell(Template.Sagi, "Rika?!");
+                await Template.fS.Speech.tell(Template.Rika, "… was ist?");
+                await Template.fS.Speech.tell(Template.Sagi, "Ist irgendwas passiert? Warum bist du heute so komisch?");
+                await Template.fS.Speech.tell(Template.Rika, "<i>Sagi hat heute Morgen schon etwas komisch reagiert. Ich denke, ich werde erstmal nichts sagen.</i>");
+                await Template.fS.Speech.tell(Template.Rika, "Ich weiß es nicht. Zurzeit habe ich komische Träume, das ist alles.");
+                await Template.fS.Speech.tell(Template.Sagi, "Okay... Komm, lass uns mit Sho reden. Vielleicht bist du einfach nur etwas nervös.");
+                await Template.fS.Character.show(Template.Sho, Template.ShoPose.neutral, Template.fS.positionPercent(30, 100));
+                await Template.fS.Speech.tell(Template.Rika, "Hi, Sho. Ich bin Rika.");
+                await Template.fS.Speech.tell(Template.Sagi, "Hi. Ich bin Sagi.");
+                await Template.fS.Speech.tell(Template.Sho, "Hey, nett euch kennenzulernen. ");
+                await Template.fS.Speech.tell(Template.Sagi, "Wohnst du schon lange in Kyoto?");
+                Template.fS.Character.hide(Template.Sho);
+                await Template.fS.update();
+                await Template.fS.Character.show(Template.Sho, Template.ShoPose.happy, Template.fS.positionPercent(30, 100));
+                await Template.fS.update();
+                await Template.fS.Speech.tell(Template.Sho, "Nein, ich bin erst vor kurzem hergezogen. Deswegen verlaufe ich mich manchmal noch. Haha.");
+                Template.fS.Character.hide(Template.Sho);
+                await Template.fS.Character.show(Template.Sho, Template.ShoPose.neutral, Template.fS.positionPercent(30, 100));
+                await Template.fS.update();
+                await Template.fS.Speech.tell(Template.Rika, "Wohnst du denn hier in der Nähe? Wir könnten dich mal in der Stadt herumführen.");
                 break;
         }
     }
