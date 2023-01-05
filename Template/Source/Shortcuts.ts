@@ -18,16 +18,4 @@ namespace Template {
     //*** TEACHER ***
     export  const Teacher = characters.Teacher;
     export  const TeacherPose = characters.Teacher.pose;
-
-    //*** GLOBAL VARIABLES***
-    export let storyState: String = "";
-    
-    export let loveOMeter: number = 0;
-
-    export let choicesState: String = "firstChoice";
-
-    export let endingState: String = "";
-
-    export let carCrashHappend: boolean = false;
-
 }

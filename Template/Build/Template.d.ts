@@ -60,6 +60,10 @@ declare namespace Template {
             name: string;
             background: string;
         };
+        constructionSite: {
+            name: string;
+            background: string;
+        };
     };
     let characters: {
         narrator: {
@@ -191,18 +195,30 @@ declare namespace Template {
     const TeacherPose: {
         neutral: string;
     };
-    let storyState: String;
-    let loveOMeter: number;
-    let choicesState: String;
-    let endingState: String;
-    let carCrashHappend: boolean;
 }
 declare namespace Template {
+    enum StoryState {
+        FirstRun = 0,
+        CarCrashHappend = 1,
+        ConstructionSiteAccidentHappend = 2
+    }
+    class StateManager {
+        static storyState: StoryState;
+        static loveOMeter: number;
+        static choicesState: String;
+        static endingState: String;
+        static carCrashHappend: boolean;
+    }
 }
 declare namespace Template {
     class CarCrash {
         static firstCarCrash(): Promise<void>;
         static carCrashHappend(): Promise<void>;
+    }
+}
+declare namespace Template {
+    class ConstructionSite {
+        static firstConstructionSiteAccident(): Promise<void>;
     }
 }
 declare namespace Template {

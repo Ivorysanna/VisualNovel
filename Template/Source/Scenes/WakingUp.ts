@@ -2,8 +2,8 @@ namespace Template {
     export async function WakingUp(): fS.SceneReturn {
         console.log("Waking Up starting");
         //TODO: *** DONT FORGET DELAYS ***
-        switch (storyState) {
-            case "":
+        switch (StateManager.storyState) {
+            case StoryState.FirstRun:
                 //TODO:fS.Sound.play(sound.alarmClock, 0.5, false);
                 //TODO: await fS.Progress.delay(4);
                 await fS.Location.show(location.bedroom);
@@ -30,7 +30,7 @@ namespace Template {
                 await fS.Speech.tell(RikaMother, "Okay, viel Erfolg!");
                 await fS.Character.animate(Rika, RikaPose.neutral, leavingLeft());
                 break;
-            case "carCrashHappend":
+            case StoryState.CarCrashHappend:
                 //TODO: AFTER ACCIDENT SCENE BAUEN
                 //*** After Car Accident***
                 fS.Sound.play(sound.alarmClock, 0.5, false);

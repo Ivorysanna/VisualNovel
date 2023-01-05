@@ -12,14 +12,14 @@ var Template;
                 case livingHereChoice.movedRecently:
                     // continue path here
                     await Template.fS.Speech.tell(Template.Rika, "Du bist erst vor kurzem hier hergezogen, oder?");
-                    Template.loveOMeter -= 10;
+                    Template.StateManager.loveOMeter -= 10;
                     await Template.fS.Speech.tell(Template.Sho, "Ehm…ja…");
                     break;
                 case livingHereChoice.movedLongAgo:
                     // continue path here
                     await Template.fS.Speech.tell(Template.Rika, "Wohnst du schon lange hier? ");
                     await Template.fS.Speech.tell(Template.Sho, "Nein, meine Familie musste umziehen, da mein Vater oft wegen der Arbeit woanders stationiert wird.");
-                    Template.loveOMeter += 10;
+                    Template.StateManager.loveOMeter += 10;
                     break;
                 default:
                     console.log("Default");
@@ -37,12 +37,12 @@ var Template;
                     await Template.fS.Speech.tell(Template.Rika, "Du wohnst gegenüber vom Umekoji Park, nicht wahr? ");
                     await Template.fS.Speech.tell(Template.Sho, "… J-ja, woher weißt du das?");
                     await Template.fS.Speech.tell(Template.Rika, "Oh, ehm ich habe einfach geraten…");
-                    Template.loveOMeter -= 10;
+                    Template.StateManager.loveOMeter -= 10;
                     break;
                 case livingWhereChoice.goingToCityTogether:
                     await Template.fS.Speech.tell(Template.Rika, "Wenn du möchtest, können wir uns mal am Wochenende treffen und wir zeigen dir ein bisschen die Stadt. ");
                     await Template.fS.Speech.tell(Template.Sho, "Ja, gerne, dann verlaufe ich mich vielleicht nicht mehr so oft. Ich glaube, die Straße, in der ich wohne, heißt Kitsuya-bashi Dori.");
-                    Template.loveOMeter += 10;
+                    Template.StateManager.loveOMeter += 10;
                     break;
             }
         }
@@ -137,6 +137,10 @@ var Template;
         streetCity: {
             name: "Streetcity",
             background: "Images/Backgrounds/streetCity.png"
+        },
+        constructionSite: {
+            name: "ConstructionSite",
+            background: "Images/Backgrounds/constructionSite.png"
         }
     };
     //*** CHARACTERS ***
@@ -304,12 +308,24 @@ var Template;
     //*** TEACHER ***
     Template.Teacher = Template.characters.Teacher;
     Template.TeacherPose = Template.characters.Teacher.pose;
-    //*** GLOBAL VARIABLES***
-    Template.storyState = "";
-    Template.loveOMeter = 0;
-    Template.choicesState = "firstChoice";
-    Template.endingState = "";
-    Template.carCrashHappend = false;
+})(Template || (Template = {}));
+var Template;
+(function (Template) {
+    let StoryState;
+    (function (StoryState) {
+        StoryState[StoryState["FirstRun"] = 0] = "FirstRun";
+        StoryState[StoryState["CarCrashHappend"] = 1] = "CarCrashHappend";
+        StoryState[StoryState["ConstructionSiteAccidentHappend"] = 2] = "ConstructionSiteAccidentHappend";
+    })(StoryState = Template.StoryState || (Template.StoryState = {}));
+    class StateManager {
+        //*** GLOBAL VARIABLES***
+        static storyState = StoryState.FirstRun;
+        static loveOMeter = 0;
+        static choicesState = "firstChoice";
+        static endingState = "";
+        static carCrashHappend = false;
+    }
+    Template.StateManager = StateManager;
 })(Template || (Template = {}));
 var Template;
 (function (Template) {
@@ -318,7 +334,7 @@ var Template;
             await Template.fS.Location.show(Template.location.streetCity);
             await Template.fS.update();
             await Template.fS.Speech.tell(Template.Rika, "So, hier um die Ecke ist auch schon das Einkaufszentrum. Wenn du möchtest, können wir uns hier am Wochenende auf einen Bubble Tea treffen und vielleicht…");
-            Template.storyState = "carCrashHappend";
+            Template.StateManager.storyState = Template.StoryState.CarCrashHappend;
             Template.fS.Speech.hide();
             Template.fS.Character.hideAll();
             //TODO: *** AUTO HUPEN UND REIFEN QUIETSCHEN EINBAUEN ***
@@ -338,10 +354,18 @@ var Template;
 })(Template || (Template = {}));
 var Template;
 (function (Template) {
+    class ConstructionSite {
+        static async firstConstructionSiteAccident() {
+        }
+    }
+    Template.ConstructionSite = ConstructionSite;
+})(Template || (Template = {}));
+var Template;
+(function (Template) {
     async function GoingToSchool() {
         console.log("Going to School starting");
-        switch (Template.storyState) {
-            case "":
+        switch (Template.StateManager.storyState) {
+            case Template.StoryState.FirstRun:
                 console.log("First Run!");
                 Template.fS.Speech.hide();
                 await Template.fS.Location.show(Template.location.alley);
@@ -368,7 +392,7 @@ var Template;
                 await Template.fS.Speech.tell(Template.Sagi, "Komm schnell, wir schaffen es gerade so rechtzeitig.");
                 Template.fS.Character.hideAll();
                 break;
-            case "carCrashHappend":
+            case Template.StoryState.CarCrashHappend:
                 console.log("Crash Happend!");
                 Template.fS.Speech.hide();
                 await Template.fS.Location.show(Template.location.alley);
@@ -399,8 +423,8 @@ var Template;
 (function (Template) {
     async function InClass() {
         console.log("First Class starting");
-        switch (Template.storyState) {
-            case "":
+        switch (Template.StateManager.storyState) {
+            case Template.StoryState.FirstRun:
                 // Sagi und Rika sind im Klassenzimmer
                 console.log("First Run!");
                 Template.fS.Speech.hide();
@@ -482,7 +506,7 @@ var Template;
                 await Template.fS.Speech.tell(Template.Sho, "Oh, ich wusste gar nicht, dass es hier sowas gibt.");
                 await Template.CarCrash.firstCarCrash();
                 break;
-            case "carCrashHappend":
+            case Template.StoryState.CarCrashHappend:
                 console.log("Crash Happend!");
                 Template.fS.Speech.hide();
                 await Template.fS.Location.show(Template.location.classroom);
@@ -553,8 +577,8 @@ var Template;
     async function WakingUp() {
         console.log("Waking Up starting");
         //TODO: *** DONT FORGET DELAYS ***
-        switch (Template.storyState) {
-            case "":
+        switch (Template.StateManager.storyState) {
+            case Template.StoryState.FirstRun:
                 //TODO:fS.Sound.play(sound.alarmClock, 0.5, false);
                 //TODO: await fS.Progress.delay(4);
                 await Template.fS.Location.show(Template.location.bedroom);
@@ -577,7 +601,7 @@ var Template;
                 await Template.fS.Speech.tell(Template.RikaMother, "Okay, viel Erfolg!");
                 await Template.fS.Character.animate(Template.Rika, Template.RikaPose.neutral, Template.leavingLeft());
                 break;
-            case "carCrashHappend":
+            case Template.StoryState.CarCrashHappend:
                 //TODO: AFTER ACCIDENT SCENE BAUEN
                 //*** After Car Accident***
                 Template.fS.Sound.play(Template.sound.alarmClock, 0.5, false);

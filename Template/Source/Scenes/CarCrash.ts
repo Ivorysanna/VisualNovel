@@ -5,7 +5,7 @@ namespace Template {
             await fS.update();
 
             await fS.Speech.tell(Rika, "So, hier um die Ecke ist auch schon das Einkaufszentrum. Wenn du möchtest, können wir uns hier am Wochenende auf einen Bubble Tea treffen und vielleicht…");
-            storyState = "carCrashHappend";
+            StateManager.storyState = StoryState.CarCrashHappend;
             
             
             fS.Speech.hide();

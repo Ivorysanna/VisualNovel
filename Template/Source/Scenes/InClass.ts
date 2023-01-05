@@ -1,8 +1,8 @@
 namespace Template {
     export async function InClass(): fS.SceneReturn {
         console.log("First Class starting");
-        switch (storyState) {
-            case "":
+        switch (StateManager.storyState) {
+            case StoryState.FirstRun:
                 // Sagi und Rika sind im Klassenzimmer
                 console.log("First Run!");
                 fS.Speech.hide();
@@ -101,7 +101,7 @@ namespace Template {
                 await fS.Speech.tell(Sho, "Oh, ich wusste gar nicht, dass es hier sowas gibt.");
                 await CarCrash.firstCarCrash();
                 break;
-            case "carCrashHappend":
+            case StoryState.CarCrashHappend:
                 console.log("Crash Happend!");
                 fS.Speech.hide();
                 await fS.Location.show(location.classroom);

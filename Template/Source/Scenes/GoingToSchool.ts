@@ -2,8 +2,8 @@ namespace Template {
     export async function GoingToSchool(): fS.SceneReturn {
         console.log("Going to School starting");
 
-        switch (storyState) {
-            case "":
+        switch (StateManager.storyState) {
+            case StoryState.FirstRun:
                 console.log("First Run!");
                 fS.Speech.hide();
                 await fS.Location.show(location.alley);
@@ -35,7 +35,7 @@ namespace Template {
                 fS.Character.hideAll();
                 break;
 
-            case "carCrashHappend":
+            case StoryState.CarCrashHappend:
                 console.log("Crash Happend!");
                 fS.Speech.hide();
                 await fS.Location.show(location.alley);
