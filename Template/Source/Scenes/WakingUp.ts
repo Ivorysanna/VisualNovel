@@ -61,6 +61,7 @@ namespace Template {
                 await fS.Speech.tell(RikaMother, "Rika… Dein Wecker hat nicht geklingelt… Bist du schon wach?");
                 await fS.Speech.tell(RikaMother, "<i>Was ist hier los… Habe ich von Sho geträumt? Ich erinnere mich kaum an etwas.</i>");
                 await fS.Speech.tell(Rika, "Ja, ich bin wach…");
+                await fS.Speech.tell(Rika, "<i>Ich sollte mich schnell anziehen, Sagi wartet bestimmt schon…</i>");
 
                 await fS.Location.show(location.darkBackground);
                 fS.Speech.hide();
@@ -77,6 +78,8 @@ namespace Template {
                 await fS.Speech.tell(RikaMother, "Geht es dir gut? Du klingst heute etwas krank.");
                 await fS.Speech.tell(Rika, "Ja, ich denke schon.");
                 await fS.Speech.tell(RikaMother, "Okay… Dann bis heute Abend.");
+                fS.Speech.hide();
+                fS.Character.hideAll();
                 break;
         }
     }

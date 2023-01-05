@@ -103,6 +103,7 @@ namespace Template {
                 break;
             case StoryState.CarCrashHappend:
                 console.log("Crash Happend!");
+                fS.Character.hideAll();
                 fS.Speech.hide();
                 await fS.Location.show(location.classroom);
                 await fS.update();
@@ -116,7 +117,8 @@ namespace Template {
 
                 // TODO: ***GETUSCHEL VON ANDEREN SCHUELERN SOUND ***
                 await fS.Speech.tell(Teacher, "Okay, beruhigt euch wieder. Ihr könnt in der Pause noch mal miteinander reden.");
-
+                fS.Character.hideAll();
+                
                 //TODO: *** PAUSEN GONG EINFÜGEN
                 //TODO: *** MENSCHEN DIE IN DER PAUSE REDEN EINFÜGEN ***
                 await fS.Character.show(Sagi, SagiPose.neutral, fS.positionPercent(70, 100));

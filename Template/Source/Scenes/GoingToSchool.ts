@@ -41,7 +41,7 @@ namespace Template {
                 await fS.Location.show(location.alley);
                 await fS.update();
                 await fS.Character.show(Sagi, SagiPose.neutral, fS.positions.bottomcenter);
-                await fS.Character.show(Rika, SagiPose.neutral, fS.positions.bottomcenter);
+                await fS.Character.show(Rika, RikaPose.neutral, fS.positions.bottomcenter);
                 await fS.Speech.tell(Sagi, "Na, da bist du ja endlich. Komm, sonst kommen wir zu spät!");
                 await fS.Speech.tell(Rika, "Tut mir leid, zurzeit schlafe ich wirklich schlecht. Ich frage mich wirklich, woran das liegt …");
                 await fS.Speech.tell(Sagi, "Vielleicht bist du ja nur nervös, du weißt ja heute kommt der neue Schüler. Ich frage mich, wie er darauf ist. Hey, dann bekommst du ja vielleicht auch mal einen Freund.");
@@ -52,7 +52,11 @@ namespace Template {
                 await fS.Speech.tell(Rika, "Hast du nicht? Ich dachte, dass du das gesagt hättest…");
                 await fS.Speech.tell(Sagi, "Komm, wir gehen los. Sonst kommen wir zu spät.");
 
+                fS.Character.hideAll();
                 await fS.Location.show(location.uni);
+                await fS.update();
+                
+                await fS.Character.show(Sagi, SagiPose.neutral, fS.positions.bottomcenter);
                 await fS.update();
 
                 //TODO: *** GONG KLINGELT***
@@ -65,12 +69,14 @@ namespace Template {
                 console.log("Construction Accident happend!");
                 await fS.Location.show(location.alley);
                 await fS.update();
-                await fS.Character.show(Sagi, SagiPose.neutral, fS.positions.bottomcenter);
-                await fS.Character.show(Rika, RikaPose.neutral, fS.positions.bottomcenter);
+                await fS.Character.show(Sagi, SagiPose.neutral, fS.positionPercent(40, 100));
+                await fS.update();
+                await fS.Character.show(Rika, RikaPose.neutral, fS.positionPercent(70, 100));
+                await fS.update(0.5);
                 fS.Character.hide(Sagi);
                 await fS.Speech.tell(Sagi, "Da bist du ja endlich.");
                 await fS.Speech.tell(Rika, "Sagi, hast du manchmal das Gefühl, dass du den gleichen Tag immer wieder neu erlebst?");
-                await fS.Character.show(Sagi, SagiPose.angry, fS.positions.bottomcenter);
+                await fS.Character.show(Sagi, SagiPose.angry, fS.positionPercent(40, 100));
                 await fS.update();
                 await fS.Speech.tell(Sagi, "Nein. Warum fragst du mich sowas Komisches?");
                 await fS.Speech.tell(Sagi, "<i>Warum hat sie denn so wütend reagiert, hat sie auch solche komischen Träume?</i>");

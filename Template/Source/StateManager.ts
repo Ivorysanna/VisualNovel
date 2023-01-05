@@ -7,7 +7,8 @@ namespace Template {
 
     export class StateManager {
         //*** GLOBAL VARIABLES***
-        public static storyState: StoryState = StoryState.FirstRun;
+        //TODO: EINBLENDEN BEI ABGABE public static storyState: StoryState = StoryState.FirstRun;
+        public static storyState: StoryState = StoryState.ConstructionSiteAccidentHappend;
 
         public static loveOMeter: number = 0;
 

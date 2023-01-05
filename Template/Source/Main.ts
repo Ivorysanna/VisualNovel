@@ -209,10 +209,10 @@ namespace Template {
         let scenes: fS.Scenes = [
             // { id: "wakingUpFirstTime", scene: WakingUp, name: "Waking up" },
             // { id: "toSchoolFirstTime", scene: GoingToSchool, name: "Going to School firstTime"},
-            { id: "inClassFirstTime", scene: InClass, name: "In Class for firstTime"},
-            { id: "wakingUpCarCrash", scene: WakingUp, name: "Waking up Carcrash" },
-            { id: "toSchoolAfterCarCrash", scene: GoingToSchool, name: "Going to School after Carcrash"},
-            { id: "inClassAfterCarCrash", scene: InClass, name: "In Class after Carcrash"},
+            // { id: "inClassFirstTime", scene: InClass, name: "In Class for firstTime"},
+            // { id: "wakingUpCarCrash", scene: WakingUp, name: "Waking up Carcrash" },
+            // { id: "toSchoolAfterCarCrash", scene: GoingToSchool, name: "Going to School after Carcrash"},
+            // { id: "inClassAfterCarCrash", scene: InClass, name: "In Class after Carcrash"},
             { id: "inClassAfterConstructionAccident", scene: WakingUp, name: "Waking up after Construction Site Accident"},
             { id: "toSchoolFirstTime", scene: GoingToSchool, name: "Going to School after Construction Site Accident"},
 
