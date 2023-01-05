@@ -16,7 +16,7 @@ namespace Template {
                 await fS.update();
                 await fS.Speech.tell(Sho, "Hi, ich bin Sho Rai. Freut mich, euch kennenzulernen.");
 
-                // TODO: ***GETUSCHEL VON ANDEREN SCHUELERN SOUND ***
+                //TODO: ***GETUSCHEL VON ANDEREN SCHUELERN SOUND ***
                 await fS.Speech.tell(Teacher, "Okay, beruhigt euch wieder. Ihr könnt in der Pause noch mal miteinander reden.");
 
                 //TODO: *** PAUSEN GONG EINFÜGEN

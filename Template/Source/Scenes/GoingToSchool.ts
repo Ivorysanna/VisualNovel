@@ -60,6 +60,22 @@ namespace Template {
                 await fS.Speech.tell(Rika, "Wir schaffen es zum Unterricht, keine Sorge.");
                 await fS.Speech.tell(Sagi, "...");
                 break;
+
+            case StoryState.ConstructionSiteAccidentHappend:
+                console.log("Construction Accident happend!");
+                await fS.Location.show(location.alley);
+                await fS.update();
+                await fS.Character.show(Sagi, SagiPose.neutral, fS.positions.bottomcenter);
+                await fS.Character.show(Rika, RikaPose.neutral, fS.positions.bottomcenter);
+                fS.Character.hide(Sagi);
+                await fS.Speech.tell(Sagi, "Da bist du ja endlich.");
+                await fS.Speech.tell(Rika, "Sagi, hast du manchmal das Gefühl, dass du den gleichen Tag immer wieder neu erlebst?");
+                await fS.Character.show(Sagi, SagiPose.angry, fS.positions.bottomcenter);
+                await fS.update();
+                await fS.Speech.tell(Sagi, "Nein. Warum fragst du mich sowas Komisches?");
+                await fS.Speech.tell(Sagi, "<i>Warum hat sie denn so wütend reagiert, hat sie auch solche komischen Träume?</i>");
+                await fS.Speech.tell(Sagi, "… Komm wir gehen jetzt, sonst kommen wir zu spät.");
+                break;
         }
     }
 }

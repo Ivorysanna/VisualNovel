@@ -20,6 +20,7 @@ namespace Template {
                     await fS.Speech.tell(Rika, "<i>Irgendwie fühle ich mich seltsam, vielleicht sollten wir den kürzeren Weg nehmen.</i>");
                     await fS.Speech.tell(Rika, "Lass uns den kürzeren Weg nehmen. Ich habe es heute etwas eilig.");
                     await fS.Speech.tell(Sho, "…Ja, klar.");
+                    await ConstructionSite.firstConstructionSiteAccident();
                     break;
                 default:
                     console.log("Nimmt Default!");
