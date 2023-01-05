@@ -2,13 +2,10 @@
 var Template;
 (function (Template) {
     class Choices {
-        // constructor(fieldValue: string) {
-        //     this.myField = fieldValue;
-        // }
-        async livingHereChoice() {
+        static async livingHereChoice() {
             let livingHereChoice = {
                 movedRecently: "Vor kurzem hergezogen?",
-                movedLongAgo: "Wohnst du schon lange hier?"
+                movedLongAgo: "Wohnst du schon lange hier?",
             };
             let firstDialogueElement = await Template.fS.Menu.getInput(livingHereChoice, "choicesCSSClass");
             switch (firstDialogueElement) {
@@ -29,10 +26,10 @@ var Template;
                     break;
             }
         }
-        async livingWhereChoice() {
+        static async livingWhereChoice() {
             let livingWhereChoice = {
                 livingInPark: "Wohnst gegenüber vom Park?",
-                goingToCityTogether: "<i>Anbieten zusammen die Stadt anschauen</i>"
+                goingToCityTogether: "Anbieten zusammen die Stadt anschauen",
             };
             let secondDialogueElement = await Template.fS.Menu.getInput(livingWhereChoice, "choicesCSSClass");
             switch (secondDialogueElement) {
@@ -50,27 +47,37 @@ var Template;
             }
         }
     }
+    Template.Choices = Choices;
 })(Template || (Template = {}));
 var Template;
 (function (Template) {
-    async function ChoicesEndings() {
-        let endingOneChoice = {
-            longPath: "<i>Langen aber schönen Weg vorschlagen</i>",
-            shortPath: "<i>Kurzen Weg vorschlagen</i>"
-        };
-        let firstendingDialogue = await Template.fS.Menu.getInput(endingOneChoice, "choicesCSSClass");
-        if (Template.storyState == "endingOne") {
-            switch (firstendingDialogue) {
-                case endingOneChoice.longPath:
-                    Template.CarCrash();
-                    console.log("Passt!");
-                    break;
-                case endingOneChoice.shortPath:
+    class EndingChoices {
+        static async firstEnding() {
+            let endingOne = {
+                longPath: "Langen Weg vorschalgen",
+                shortPath: "Kurzen Weg vorschlagen"
+            };
+            let dialogueElement = await Template.fS.Menu.getInput(endingOne, "choicesCSSClass");
+            switch (dialogueElement) {
+                case endingOne.longPath:
+                    // continue path here
                     await Template.fS.Speech.tell(Template.Rika, "Lass uns den längeren Weg gehen, er ist nicht viel länger, aber dafür viel schöner.");
+                    await Template.fS.Speech.tell(Template.Sho, "Gerne, ich habe es heute sowieso nicht so eilig.");
+                    await Template.CarCrash.carCrashHappend();
+                    break;
+                case endingOne.shortPath:
+                    // continue path here
+                    await Template.fS.Speech.tell(Template.Rika, "<i>Irgendwie fühle ich mich seltsam, vielleicht sollten wir den kürzeren Weg nehmen.</i>");
+                    await Template.fS.Speech.tell(Template.Rika, "Lass uns den kürzeren Weg nehmen. Ich habe es heute etwas eilig.");
+                    await Template.fS.Speech.tell(Template.Sho, "…Ja, klar.");
+                    break;
+                default:
+                    console.log("Nimmt Default!");
+                    break;
             }
         }
     }
-    Template.ChoicesEndings = ChoicesEndings;
+    Template.EndingChoices = EndingChoices;
 })(Template || (Template = {}));
 var Template;
 (function (Template) {
@@ -270,7 +277,6 @@ var Template;
             // { id: "wakingUpFirstTime", scene: WakingUp, name: "Waking up" },
             // { id: "toSchoolFirstTime", scene: GoingToSchool, name: "Going to School firstTime"},
             { id: "inClassFirstTime", scene: Template.InClass, name: "In Class for firstTime" },
-            { id: "carCrash", scene: Template.CarCrash, name: "CarCrash" },
             { id: "wakingUpCarCrash", scene: Template.WakingUp, name: "Waking up Carcrash" },
             { id: "toSchoolAfterCarCrash", scene: Template.GoingToSchool, name: "Going to School after Carcrash" },
             { id: "inClassAfterCarCrash", scene: Template.InClass, name: "In Class after Carcrash" }
@@ -303,78 +309,32 @@ var Template;
     Template.loveOMeter = 0;
     Template.choicesState = "firstChoice";
     Template.endingState = "";
+    Template.carCrashHappend = false;
 })(Template || (Template = {}));
 var Template;
 (function (Template) {
-    async function CarCrash() {
-        Template.fS.Speech.hide();
-        if (Template.storyState == "") {
+    class CarCrash {
+        static async firstCarCrash() {
             await Template.fS.Location.show(Template.location.streetCity);
             await Template.fS.update();
             await Template.fS.Speech.tell(Template.Rika, "So, hier um die Ecke ist auch schon das Einkaufszentrum. Wenn du möchtest, können wir uns hier am Wochenende auf einen Bubble Tea treffen und vielleicht…");
             Template.storyState = "carCrashHappend";
-            console.log(Template.storyState);
             Template.fS.Speech.hide();
             Template.fS.Character.hideAll();
             //TODO: *** AUTO HUPEN UND REIFEN QUIETSCHEN EINBAUEN ***
             //TODO: *** SZENENBILD ANZEIGEN AUTO ÜBERFAHREN***
         }
-        else if (Template.storyState == "carCrashHappend") {
-            //TODO: *** SZENENBILD ANZEIGEN AUTO ÜBERFAHREN***
+        static async carCrashHappend() {
+            await Template.fS.Location.show(Template.location.streetCity);
+            await Template.fS.update();
+            await Template.fS.Speech.tell(Template.Rika, "So, hier um die Ecke ist auch schon das Einkaufszentrum. Wenn du möchtest, können wir uns hier am Wochenende auf einen Bubble Tea treffen und vielleicht…");
+            console.log("BAD ENDING 1 GAME OVER");
+            Template.fS.Speech.hide();
+            Template.fS.Character.hideAll();
             //TODO: *** ENDING THE GAME***
         }
     }
     Template.CarCrash = CarCrash;
-})(Template || (Template = {}));
-var Template;
-(function (Template) {
-    class Choices {
-        static async livingHereChoice() {
-            let livingHereChoice = {
-                movedRecently: "Vor kurzem hergezogen?",
-                movedLongAgo: "Wohnst du schon lange hier?",
-            };
-            let firstDialogueElement = await Template.fS.Menu.getInput(livingHereChoice, "choicesCSSClass");
-            switch (firstDialogueElement) {
-                case livingHereChoice.movedRecently:
-                    // continue path here
-                    await Template.fS.Speech.tell(Template.Rika, "Du bist erst vor kurzem hier hergezogen, oder?");
-                    Template.loveOMeter -= 10;
-                    await Template.fS.Speech.tell(Template.Sho, "Ehm…ja…");
-                    break;
-                case livingHereChoice.movedLongAgo:
-                    // continue path here
-                    await Template.fS.Speech.tell(Template.Rika, "Wohnst du schon lange hier? ");
-                    await Template.fS.Speech.tell(Template.Sho, "Nein, meine Familie musste umziehen, da mein Vater oft wegen der Arbeit woanders stationiert wird.");
-                    Template.loveOMeter += 10;
-                    break;
-                default:
-                    console.log("Default");
-                    break;
-            }
-        }
-        static async livingWhereChoice() {
-            let livingWhereChoice = {
-                livingInPark: "Wohnst gegenüber vom Park?",
-                goingToCityTogether: "<i>Anbieten zusammen die Stadt anschauen</i>",
-            };
-            let secondDialogueElement = await Template.fS.Menu.getInput(livingWhereChoice, "choicesCSSClass");
-            switch (secondDialogueElement) {
-                case livingWhereChoice.livingInPark:
-                    await Template.fS.Speech.tell(Template.Rika, "Du wohnst gegenüber vom Umekoji Park, nicht wahr? ");
-                    await Template.fS.Speech.tell(Template.Sho, "… J-ja, woher weißt du das?");
-                    await Template.fS.Speech.tell(Template.Rika, "Oh, ehm ich habe einfach geraten…");
-                    Template.loveOMeter -= 10;
-                    break;
-                case livingWhereChoice.goingToCityTogether:
-                    await Template.fS.Speech.tell(Template.Rika, "Wenn du möchtest, können wir uns mal am Wochenende treffen und wir zeigen dir ein bisschen die Stadt. ");
-                    await Template.fS.Speech.tell(Template.Sho, "Ja, gerne, dann verlaufe ich mich vielleicht nicht mehr so oft. Ich glaube, die Straße, in der ich wohne, heißt Kitsuya-bashi Dori.");
-                    Template.loveOMeter += 10;
-                    break;
-            }
-        }
-    }
-    Template.Choices = Choices;
 })(Template || (Template = {}));
 var Template;
 (function (Template) {
@@ -520,6 +480,7 @@ var Template;
                 await Template.fS.Speech.tell(Template.Sho, "Nun, dann gehen wir mal den etwas längeren, außer du hast es eilig.");
                 await Template.fS.Speech.tell(Template.Rika, "Ne, ich habe heute nichts mehr vor. Dann kann ich dir etwas von der Stadt zeigen. Vor allem das große Einkaufszentrum. ");
                 await Template.fS.Speech.tell(Template.Sho, "Oh, ich wusste gar nicht, dass es hier sowas gibt.");
+                await Template.CarCrash.firstCarCrash();
                 break;
             case "carCrashHappend":
                 console.log("Crash Happend!");
@@ -581,8 +542,7 @@ var Template;
                 await Template.fS.Speech.tell(Template.Rika, "Okay, wir können losgehen.");
                 await Template.fS.Speech.tell(Template.Sho, "Ja, ein Moment, ich packe schnell meine Sachen zusammen.");
                 // -- -- -- Choice Endingrelevant -- -- --
-                Template.endingState = "endingOne";
-                await Template.ChoicesEndings();
+                await Template.EndingChoices.firstEnding();
                 break;
         }
     }
@@ -603,7 +563,7 @@ var Template;
                 //await fS.Progress.delay(3);
                 await Template.fS.Speech.tell(Template.RikaMother, "Rika wach auf, sonst kommst du zu spät!");
                 await Template.fS.Speech.tell(Template.Rika, "Ja, ich bin schon wach.");
-                await Template.fS.Speech.tell(Template.Rika, "<i>Ich sollte mich schnell fertig machen, nicht dass Sagi wieder auf mich warten muss …</i>");
+                await Template.fS.Speech.tell(Template.Rika, "Ich sollte mich schnell fertig machen, nicht dass Sagi wieder auf mich warten muss …");
                 //TODO: await fS.Progress.delay(3);
                 await Template.fS.Location.show(Template.location.darkBackground);
                 Template.fS.Speech.hide();
@@ -625,9 +585,9 @@ var Template;
                 await Template.fS.Location.show(Template.location.bedroom);
                 await Template.fS.update(Template.transition.swirl.duration, Template.transition.swirl.alpha, Template.transition.swirl.edge);
                 await Template.fS.Speech.tell(Template.RikaMother, "Rika wach auf, sonst kommst du zu spät!");
-                await Template.fS.Speech.tell(Template.Rika, "<i>Was… Was war das für ein Traum…</i>");
+                await Template.fS.Speech.tell(Template.Rika, "Was… Was war das für ein Traum…");
                 await Template.fS.Speech.tell(Template.Rika, "Ja ich bin schon wach.");
-                await Template.fS.Speech.tell(Template.Rika, "<i>Ich sollte mich schnell anziehen, nicht, dass Sagi auf mich warten muss.</i>");
+                await Template.fS.Speech.tell(Template.Rika, "Ich sollte mich schnell anziehen, nicht, dass Sagi auf mich warten muss.");
                 await Template.fS.Location.show(Template.location.darkBackground);
                 Template.fS.Speech.hide();
                 Template.fS.Character.hideAll();
@@ -637,6 +597,7 @@ var Template;
                 await Template.fS.update(0.5);
                 await Template.fS.Speech.tell(Template.Rika, "Mama, ich gehe jetzt los. Bis heute Abend.");
                 await Template.fS.Speech.tell(Template.RikaMother, "Okay, viel Erfolg!");
+                break;
         }
     }
     Template.WakingUp = WakingUp;

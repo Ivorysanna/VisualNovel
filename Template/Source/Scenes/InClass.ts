@@ -99,6 +99,7 @@ namespace Template {
                 await fS.Speech.tell(Sho, "Nun, dann gehen wir mal den etwas längeren, außer du hast es eilig.");
                 await fS.Speech.tell(Rika, "Ne, ich habe heute nichts mehr vor. Dann kann ich dir etwas von der Stadt zeigen. Vor allem das große Einkaufszentrum. ");
                 await fS.Speech.tell(Sho, "Oh, ich wusste gar nicht, dass es hier sowas gibt.");
+                await CarCrash.firstCarCrash();
                 break;
             case "carCrashHappend":
                 console.log("Crash Happend!");
@@ -177,8 +178,7 @@ namespace Template {
                 await fS.Speech.tell(Sho, "Ja, ein Moment, ich packe schnell meine Sachen zusammen.");
 
                 // -- -- -- Choice Endingrelevant -- -- --
-                endingState = "endingOne";
-                await Template.ChoicesEndings();
+                await EndingChoices.firstEnding();
                 break;
 
         }

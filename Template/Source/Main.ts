@@ -206,7 +206,6 @@ namespace Template {
             // { id: "wakingUpFirstTime", scene: WakingUp, name: "Waking up" },
             // { id: "toSchoolFirstTime", scene: GoingToSchool, name: "Going to School firstTime"},
             { id: "inClassFirstTime", scene: InClass, name: "In Class for firstTime"},
-            { id: "carCrash", scene: CarCrash, name: "CarCrash"},
             { id: "wakingUpCarCrash", scene: WakingUp, name: "Waking up Carcrash" },
             { id: "toSchoolAfterCarCrash", scene: GoingToSchool, name: "Going to School after Carcrash"},
             { id: "inClassAfterCarCrash", scene: InClass, name: "In Class after Carcrash"}

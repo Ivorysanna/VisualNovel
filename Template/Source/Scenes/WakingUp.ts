@@ -13,7 +13,7 @@ namespace Template {
                 //await fS.Progress.delay(3);
                 await fS.Speech.tell(RikaMother, "Rika wach auf, sonst kommst du zu spät!");
                 await fS.Speech.tell(Rika, "Ja, ich bin schon wach.");
-                await fS.Speech.tell(Rika, "<i>Ich sollte mich schnell fertig machen, nicht dass Sagi wieder auf mich warten muss …</i>");
+                await fS.Speech.tell(Rika, "Ich sollte mich schnell fertig machen, nicht dass Sagi wieder auf mich warten muss …");
                 //TODO: await fS.Progress.delay(3);
 
                 await fS.Location.show(location.darkBackground);
@@ -30,7 +30,6 @@ namespace Template {
                 await fS.Speech.tell(RikaMother, "Okay, viel Erfolg!");
                 await fS.Character.animate(Rika, RikaPose.neutral, leavingLeft());
                 break;
-
             case "carCrashHappend":
                 //TODO: AFTER ACCIDENT SCENE BAUEN
                 //*** After Car Accident***
@@ -39,9 +38,9 @@ namespace Template {
                 await fS.Location.show(location.bedroom);
                 await fS.update(transition.swirl.duration, transition.swirl.alpha, transition.swirl.edge);
                 await fS.Speech.tell(RikaMother, "Rika wach auf, sonst kommst du zu spät!");
-                await fS.Speech.tell(Rika, "<i>Was… Was war das für ein Traum…</i>");
+                await fS.Speech.tell(Rika, "Was… Was war das für ein Traum…");
                 await fS.Speech.tell(Rika, "Ja ich bin schon wach.");
-                await fS.Speech.tell(Rika, "<i>Ich sollte mich schnell anziehen, nicht, dass Sagi auf mich warten muss.</i>");
+                await fS.Speech.tell(Rika, "Ich sollte mich schnell anziehen, nicht, dass Sagi auf mich warten muss.");
 
                 await fS.Location.show(location.darkBackground);
                 fS.Speech.hide();
@@ -53,6 +52,7 @@ namespace Template {
                 await fS.update(0.5);
                 await fS.Speech.tell(Rika, "Mama, ich gehe jetzt los. Bis heute Abend.");
                 await fS.Speech.tell(RikaMother, "Okay, viel Erfolg!");
+                break;
         }
     }
 }

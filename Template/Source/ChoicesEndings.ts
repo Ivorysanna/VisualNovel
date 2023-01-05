@@ -1,22 +1,29 @@
 namespace Template {
-    export async function ChoicesEndings(): fS.SceneReturn {
+    export class EndingChoices {
+        public static async firstEnding(): Promise<void> {
+            let endingOne = {
+                longPath: "Langen Weg vorschalgen",
+                shortPath: "Kurzen Weg vorschlagen"
+            };
 
-        let endingOneChoice = {
-            longPath: "<i>Langen aber schönen Weg vorschlagen</i>",
-            shortPath: "<i>Kurzen Weg vorschlagen</i>"
-        };
-        let firstendingDialogue = await fS.Menu.getInput(endingOneChoice, "choicesCSSClass");
-
-        if (storyState == "endingOne") {
-            switch(firstendingDialogue){
-                case endingOneChoice.longPath:
-                    Template.CarCrash();
-                    console.log("Passt!");
-                    break;
-
-                case endingOneChoice.shortPath:
+            let dialogueElement = await fS.Menu.getInput(endingOne, "choicesCSSClass");
+            
+            switch (dialogueElement) {
+                case endingOne.longPath:
+                    // continue path here
                     await fS.Speech.tell(Rika, "Lass uns den längeren Weg gehen, er ist nicht viel länger, aber dafür viel schöner.");
-
+                    await fS.Speech.tell(Sho, "Gerne, ich habe es heute sowieso nicht so eilig.");
+                    await CarCrash.carCrashHappend();
+                    break;
+                case endingOne.shortPath:
+                    // continue path here
+                    await fS.Speech.tell(Rika, "<i>Irgendwie fühle ich mich seltsam, vielleicht sollten wir den kürzeren Weg nehmen.</i>");
+                    await fS.Speech.tell(Rika, "Lass uns den kürzeren Weg nehmen. Ich habe es heute etwas eilig.");
+                    await fS.Speech.tell(Sho, "…Ja, klar.");
+                    break;
+                default:
+                    console.log("Nimmt Default!");
+                    break;
             }
         }
     }

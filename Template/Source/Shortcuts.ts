@@ -1,23 +1,23 @@
 namespace Template {
     //*** RIKA *** 
-    export  let Rika = characters.Rika;
-    export  let RikaPose = characters.Rika.pose;
+    export  const Rika = characters.Rika;
+    export  const RikaPose = characters.Rika.pose;
 
     //*** SAGI ***
-    export  let Sagi = characters.Sagi;
-    export  let SagiPose = characters.Sagi.pose;
+    export  const Sagi = characters.Sagi;
+    export  const SagiPose = characters.Sagi.pose;
 
     //*** SHO ***
-    export  let Sho = characters.Sho;
-    export  let ShoPose = characters.Sho.pose;
+    export  const Sho = characters.Sho;
+    export  const ShoPose = characters.Sho.pose;
 
     //*** RIKAS MOTHER ***
-    export  let RikaMother = characters.RikaMother;
-    export  let RikaMotherPose = characters.RikaMother.pose;
+    export  const RikaMother = characters.RikaMother;
+    export  const RikaMotherPose = characters.RikaMother.pose;
 
     //*** TEACHER ***
-    export  let Teacher = characters.Teacher;
-    export  let TeacherPose = characters.Teacher.pose;
+    export  const Teacher = characters.Teacher;
+    export  const TeacherPose = characters.Teacher.pose;
 
     //*** GLOBAL VARIABLES***
     export let storyState: String = "";
@@ -27,5 +27,7 @@ namespace Template {
     export let choicesState: String = "firstChoice";
 
     export let endingState: String = "";
+
+    export let carCrashHappend: boolean = false;
 
 }

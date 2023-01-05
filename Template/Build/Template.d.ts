@@ -1,7 +1,13 @@
 declare namespace Template {
+    class Choices {
+        static livingHereChoice(): Promise<void>;
+        static livingWhereChoice(): Promise<void>;
+    }
 }
 declare namespace Template {
-    function ChoicesEndings(): fS.SceneReturn;
+    class EndingChoices {
+        static firstEnding(): Promise<void>;
+    }
 }
 declare namespace Template {
     export import f = FudgeCore;
@@ -115,7 +121,7 @@ declare namespace Template {
     function leavingLeft(): fS.AnimationDefinition;
 }
 declare namespace Template {
-    let Rika: {
+    const Rika: {
         name: string;
         origin: f.ORIGIN2D;
         pose: {
@@ -125,13 +131,13 @@ declare namespace Template {
             sad: string;
         };
     };
-    let RikaPose: {
+    const RikaPose: {
         neutral: string;
         happy: string;
         angry: string;
         sad: string;
     };
-    let Sagi: {
+    const Sagi: {
         name: string;
         origin: f.ORIGIN2D;
         pose: {
@@ -142,14 +148,14 @@ declare namespace Template {
             insane: string;
         };
     };
-    let SagiPose: {
+    const SagiPose: {
         neutral: string;
         happy: string;
         angry: string;
         sad: string;
         insane: string;
     };
-    let Sho: {
+    const Sho: {
         name: string;
         origin: f.ORIGIN2D;
         pose: {
@@ -159,44 +165,44 @@ declare namespace Template {
             sad: string;
         };
     };
-    let ShoPose: {
+    const ShoPose: {
         neutral: string;
         happy: string;
         angry: string;
         sad: string;
     };
-    let RikaMother: {
+    const RikaMother: {
         name: string;
         origin: f.ORIGIN2D;
         pose: {
             neutral: string;
         };
     };
-    let RikaMotherPose: {
+    const RikaMotherPose: {
         neutral: string;
     };
-    let Teacher: {
+    const Teacher: {
         name: string;
         origin: f.ORIGIN2D;
         pose: {
             neutral: string;
         };
     };
-    let TeacherPose: {
+    const TeacherPose: {
         neutral: string;
     };
     let storyState: String;
     let loveOMeter: number;
     let choicesState: String;
     let endingState: String;
+    let carCrashHappend: boolean;
 }
 declare namespace Template {
-    function CarCrash(): fS.SceneReturn;
 }
 declare namespace Template {
-    class Choices {
-        static livingHereChoice(): Promise<void>;
-        static livingWhereChoice(): Promise<void>;
+    class CarCrash {
+        static firstCarCrash(): Promise<void>;
+        static carCrashHappend(): Promise<void>;
     }
 }
 declare namespace Template {

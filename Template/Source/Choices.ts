@@ -1,6 +1,7 @@
 namespace Template {
     export class Choices {
-        public static async livingHereChoice() {
+        
+        public static async livingHereChoice(): Promise <void> {
             let livingHereChoice = {
                 movedRecently: "Vor kurzem hergezogen?",
                 movedLongAgo: "Wohnst du schon lange hier?",
@@ -27,10 +28,10 @@ namespace Template {
             }
         }
 
-        public static async livingWhereChoice() {
+        public static async livingWhereChoice(): Promise <void> {
             let livingWhereChoice = {
                 livingInPark: "Wohnst gegenüber vom Park?",
-                goingToCityTogether: "<i>Anbieten zusammen die Stadt anschauen</i>",
+                goingToCityTogether: "Anbieten zusammen die Stadt anschauen",
             };
             let secondDialogueElement = await fS.Menu.getInput(livingWhereChoice, "choicesCSSClass");
 
