@@ -39,6 +39,7 @@ namespace Template {
             switch (dialogueElement) {
                 case endingTwo.stayInSchool:
                     // continue path here
+                    console.log("STAY IN SCHOOL PATH");
                     
                     break;
                 case endingTwo.goHomeFast:

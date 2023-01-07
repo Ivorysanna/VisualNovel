@@ -2,11 +2,13 @@ declare namespace Template {
     class Choices {
         static livingHereChoice(): Promise<void>;
         static livingWhereChoice(): Promise<void>;
+        static goingHomeFastChoice(): Promise<void>;
     }
 }
 declare namespace Template {
     class EndingChoices {
         static firstEnding(): Promise<void>;
+        static secondEnding(): Promise<void>;
     }
 }
 declare namespace Template {
@@ -61,6 +63,10 @@ declare namespace Template {
             background: string;
         };
         constructionSite: {
+            name: string;
+            background: string;
+        };
+        bridge: {
             name: string;
             background: string;
         };
@@ -211,6 +217,11 @@ declare namespace Template {
     }
 }
 declare namespace Template {
+    class TransitionManager {
+        static blendInOut(): Promise<void>;
+    }
+}
+declare namespace Template {
     class CarCrash {
         static firstCarCrash(): Promise<void>;
         static carCrashHappend(): Promise<void>;
@@ -220,6 +231,11 @@ declare namespace Template {
     class ConstructionSite {
         static firstConstructionSiteAccident(): Promise<void>;
         static constructionSiteAccident(): Promise<void>;
+    }
+}
+declare namespace Template {
+    class FallingAccident {
+        static fallingAccident(): Promise<void>;
     }
 }
 declare namespace Template {

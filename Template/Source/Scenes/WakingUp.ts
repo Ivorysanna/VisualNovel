@@ -16,10 +16,7 @@ namespace Template {
                 await fS.Speech.tell(Rika, "Ich sollte mich schnell fertig machen, nicht dass Sagi wieder auf mich warten muss …");
                 //TODO: await fS.Progress.delay(3);
 
-                await fS.Location.show(location.darkBackground);
-                fS.Speech.hide();
-                fS.Character.hideAll();
-                await fS.update();
+                await TransitionManager.blendInOut();
 
                 await fS.Progress.delay(5);
 

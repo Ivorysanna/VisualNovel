@@ -228,6 +228,7 @@ namespace Template {
                 await fS.Speech.tell(Sagi, "Okay... Komm, lass uns mit Sho reden. Vielleicht bist du einfach nur etwas nervös.");
 
                 await fS.Character.show(Sho, ShoPose.neutral, fS.positionPercent(30, 100));
+                await fS.update();
                 await fS.Speech.tell(Rika, "Hi, Sho. Ich bin Rika.");
                 await fS.Speech.tell(Sagi, "Hi. Ich bin Sagi.");
                 await fS.Speech.tell(Sho, "Hey, nett euch kennenzulernen. ");
@@ -243,13 +244,16 @@ namespace Template {
                 await fS.Speech.tell(Rika, "Wohnst du denn hier in der Nähe? Wir könnten dich mal in der Stadt herumführen.");
                 await fS.Speech.tell(Sho, "Nein. Wir müssen oft umziehen, da mein Vater wegen seiner Arbeit oft in eine andere Stadt verlegt wird. Ich wohne gegenüber vom Umekoji Park.");
                 await fS.Speech.tell(Rika, "Ah, da wohne ich auch. Wenn du möchtest, können wir heute gemeinsam nach Hause laufen.");
+                await fS.Speech.tell(Rika, "<i>Vielleicht schaffe ich es heute...</i>");
                 await fS.Speech.tell(Sho, "Das wäre echt cool. Danke.");
                 await fS.Speech.tell(Sho, "Dann müsst ihr das ohne mich machen, ich treffe mich heute nach der Schule mit meiner Mutter.");
                 // *** Pause zu Ende***
                 //TODO: PAUSEN GONG EINFÜGEN
                 await fS.Speech.tell(Rika, "Lass uns wieder an den Platz gehen, Sagi.");
                 // *** Unterricht zu Ende***
-
+                await fS.Speech.tell(Sho, "Können wir los gehen?");
+                // -- -- -- Choices important for Ending -- -- --
+                await EndingChoices.secondEnding();
                 break;
         }
     }

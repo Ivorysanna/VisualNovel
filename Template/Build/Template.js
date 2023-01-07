@@ -46,6 +46,39 @@ var Template;
                     break;
             }
         }
+        static async goingHomeFastChoice() {
+            let goingHomeFastChoice = {
+                tooMuchHomework: "Ich muss noch sehr viele Hausaufgaben machen.",
+                strangeDreams: "Ich habe die letzten Tage was sehr Komisches geträumt.",
+                showingFastestRoute: "Ehm... Um dir den schnellsten Weg zu zeigen. Morgen können wir gerne den schöneren Weg nehmen. ",
+            };
+            let secondDialogueElement = await Template.fS.Menu.getInput(goingHomeFastChoice, "choicesCSSClass");
+            switch (secondDialogueElement) {
+                case goingHomeFastChoice.tooMuchHomework:
+                    await Template.fS.Speech.tell(Template.Rika, "Wir haben heute echt einige Aufgaben für zu Hause bekommen. Ich denke, bei dir wird das nicht anders sein.");
+                    await Template.fS.Speech.tell(Template.Sho, "Ja, stimmt. Wir haben heute auch viele Aufgaben bekommen. Sollen wir das vielleicht zusammen machen?");
+                    await Template.fS.Speech.tell(Template.Rika, "J-Ja klar…");
+                    //TODO: ADDING FALLING SOUND
+                    await Template.fS.Speech.tell(Template.Rika, "SHO, VORSICHT!");
+                    break;
+                case goingHomeFastChoice.strangeDreams:
+                    await Template.fS.Speech.tell(Template.Rika, "Ich habe die letzten Tage etwas echt Komisches geträumt und ich habe das Gefühl, wenn wir schneller nach Hause gehen, dann hören diese Träume auf… ");
+                    await Template.fS.Speech.tell(Template.Sho, "Ach so…");
+                    Template.StateManager.loveOMeter -= 10;
+                    //TODO: ADDING FALLING SOUND
+                    await Template.fS.Speech.tell(Template.Rika, "SHO, VORSICHT!");
+                    break;
+                case goingHomeFastChoice.showingFastestRoute:
+                    await Template.fS.Speech.tell(Template.Rika, "Ehm… Um dir den schnellsten Weg zu zeigen. Wir können morgen gerne den anderen Weg nehmen.");
+                    await Template.fS.Speech.tell(Template.Sho, "Haha. Irgendwie habe ich ein Déjá-vu. Als hättest du das mit dem schnellsten Weg schon einmal gesagt.");
+                    await Template.fS.Speech.tell(Template.Rika, "<i>//Was?!… Hat er auch solche komischen Träume?</i>");
+                    await Template.fS.Speech.tell(Template.Rika, "Witzig, dass du das sagst. Ich habe zurzeit so komisch…");
+                    //TODO: ADDING FALLING SOUND
+                    await Template.fS.Speech.tell(Template.Rika, "SHO, VORSICHT!");
+                    Template.StateManager.loveOMeter += 10;
+                    break;
+            }
+        }
     }
     Template.Choices = Choices;
 })(Template || (Template = {}));
@@ -71,6 +104,42 @@ var Template;
                     await Template.fS.Speech.tell(Template.Rika, "Lass uns den kürzeren Weg nehmen. Ich habe es heute etwas eilig.");
                     await Template.fS.Speech.tell(Template.Sho, "…Ja, klar.");
                     await Template.ConstructionSite.firstConstructionSiteAccident();
+                    break;
+                default:
+                    console.log("Nimmt Default!");
+                    break;
+            }
+        }
+        static async secondEnding() {
+            let endingTwo = {
+                stayInSchool: "Vorschlagen in der Schule zu bleiben.",
+                goHomeFast: "Vorschlagen sich zu beeilen."
+            };
+            let dialogueElement = await Template.fS.Menu.getInput(endingTwo, "choicesCSSClass");
+            switch (dialogueElement) {
+                case endingTwo.stayInSchool:
+                    // continue path here
+                    console.log("STAY IN SCHOOL PATH");
+                    break;
+                case endingTwo.goHomeFast:
+                    // continue path here
+                    await Template.fS.Speech.tell(Template.Rika, "<i>Wenn wir uns beeilen... Vielleicht schaffen wir es dann...</i>");
+                    await Template.fS.Speech.tell(Template.Rika, "Sho, können wir uns beeilen, ich habe es heute doch etwas eiliger.");
+                    await Template.fS.Speech.tell(Template.Sho, "Ja, ich beeile mich. Tut mir leid.");
+                    Template.fS.Character.hideAll();
+                    Template.fS.Speech.hide();
+                    // *** Going outside***
+                    //TODO: ADDING STREET SOUND
+                    await Template.fS.Location.show(Template.location.bridge);
+                    await Template.fS.update();
+                    await Template.fS.Character.show(Template.Rika, Template.RikaPose.neutral, Template.fS.positionPercent(70, 100));
+                    await Template.fS.Character.show(Template.Sho, Template.ShoPose.neutral, Template.fS.positionPercent(30, 100));
+                    await Template.fS.update();
+                    await Template.fS.Speech.tell(Template.Rika, "Lass uns diese Überführung nehmen. Dann kommen wir schneller auf die andere Straßenseite.");
+                    await Template.fS.Speech.tell(Template.Sho, "Ja, können wir machen. Warum hast du es heute so eilig?");
+                    //-- -- -- Auswahlmöglichkeit -- -- --
+                    await Template.Choices.goingHomeFastChoice();
+                    await Template.FallingAccident.fallingAccident();
                     break;
                 default:
                     console.log("Nimmt Default!");
@@ -142,6 +211,10 @@ var Template;
         constructionSite: {
             name: "ConstructionSite",
             background: "Images/Backgrounds/constructionSite.png"
+        },
+        bridge: {
+            name: "Bridge",
+            background: "Images/Backgrounds/bridge.png"
         }
     };
     //*** CHARACTERS ***
@@ -279,12 +352,12 @@ var Template;
         /*** SCENE HIERARCHY ***/
         Template.fS.Speech.hide();
         let scenes = [
-            { id: "wakingUpFirstTime", scene: Template.WakingUp, name: "Waking up" },
-            { id: "toSchoolFirstTime", scene: Template.GoingToSchool, name: "Going to School firstTime" },
-            { id: "inClassFirstTime", scene: Template.InClass, name: "In Class for firstTime" },
-            { id: "wakingUpCarCrash", scene: Template.WakingUp, name: "Waking up Carcrash" },
-            { id: "toSchoolAfterCarCrash", scene: Template.GoingToSchool, name: "Going to School after Carcrash" },
-            { id: "inClassAfterCarCrash", scene: Template.InClass, name: "In Class after Carcrash" },
+            // { id: "wakingUpFirstTime", scene: WakingUp, name: "Waking up" },
+            // { id: "toSchoolFirstTime", scene: GoingToSchool, name: "Going to School firstTime"},
+            // { id: "inClassFirstTime", scene: InClass, name: "In Class for firstTime"},
+            // { id: "wakingUpCarCrash", scene: WakingUp, name: "Waking up Carcrash" },
+            // { id: "toSchoolAfterCarCrash", scene: GoingToSchool, name: "Going to School after Carcrash"},
+            // { id: "inClassAfterCarCrash", scene: InClass, name: "In Class after Carcrash"},
             { id: "inClassAfterConstructionAccident", scene: Template.WakingUp, name: "Waking up after Construction Site Accident" },
             { id: "toSchoolAfterConstructionAccident", scene: Template.GoingToSchool, name: "Going to School after Construction Site Accident" },
             { id: "inClassAfterConstructionAccident", scene: Template.InClass, name: "In Class AfterConstructionAccident" },
@@ -323,14 +396,27 @@ var Template;
     })(StoryState = Template.StoryState || (Template.StoryState = {}));
     class StateManager {
         //*** GLOBAL VARIABLES***
-        static storyState = StoryState.FirstRun;
-        // public static storyState: StoryState = StoryState.ConstructionSiteAccidentHappend;
+        //TODO: FirstRun wieder einblenden 
+        // public static storyState: StoryState = StoryState.FirstRun;
+        static storyState = StoryState.ConstructionSiteAccidentHappend;
         static loveOMeter = 0;
         static choicesState = "firstChoice";
         static endingState = "";
         static carCrashHappend = false;
     }
     Template.StateManager = StateManager;
+})(Template || (Template = {}));
+var Template;
+(function (Template) {
+    class TransitionManager {
+        static async blendInOut() {
+            await Template.fS.Location.show(Template.location.darkBackground);
+            Template.fS.Speech.hide();
+            Template.fS.Character.hideAll();
+            await Template.fS.update();
+        }
+    }
+    Template.TransitionManager = TransitionManager;
 })(Template || (Template = {}));
 var Template;
 (function (Template) {
@@ -380,6 +466,19 @@ var Template;
         }
     }
     Template.ConstructionSite = ConstructionSite;
+})(Template || (Template = {}));
+var Template;
+(function (Template) {
+    class FallingAccident {
+        static async fallingAccident() {
+            //*** THIRD BAD ENDING***
+            //TODO: ADD SOUNDS
+            //TODO: ADD ENDPICUTRE
+            //*** GAME OVER***
+            console.log("GAME OVER: Falling Accident");
+        }
+    }
+    Template.FallingAccident = FallingAccident;
 })(Template || (Template = {}));
 var Template;
 (function (Template) {
@@ -652,6 +751,7 @@ var Template;
                 await Template.fS.Speech.tell(Template.Rika, "Ich weiß es nicht. Zurzeit habe ich komische Träume, das ist alles.");
                 await Template.fS.Speech.tell(Template.Sagi, "Okay... Komm, lass uns mit Sho reden. Vielleicht bist du einfach nur etwas nervös.");
                 await Template.fS.Character.show(Template.Sho, Template.ShoPose.neutral, Template.fS.positionPercent(30, 100));
+                await Template.fS.update();
                 await Template.fS.Speech.tell(Template.Rika, "Hi, Sho. Ich bin Rika.");
                 await Template.fS.Speech.tell(Template.Sagi, "Hi. Ich bin Sagi.");
                 await Template.fS.Speech.tell(Template.Sho, "Hey, nett euch kennenzulernen. ");
@@ -665,6 +765,18 @@ var Template;
                 await Template.fS.Character.show(Template.Sho, Template.ShoPose.neutral, Template.fS.positionPercent(30, 100));
                 await Template.fS.update();
                 await Template.fS.Speech.tell(Template.Rika, "Wohnst du denn hier in der Nähe? Wir könnten dich mal in der Stadt herumführen.");
+                await Template.fS.Speech.tell(Template.Sho, "Nein. Wir müssen oft umziehen, da mein Vater wegen seiner Arbeit oft in eine andere Stadt verlegt wird. Ich wohne gegenüber vom Umekoji Park.");
+                await Template.fS.Speech.tell(Template.Rika, "Ah, da wohne ich auch. Wenn du möchtest, können wir heute gemeinsam nach Hause laufen.");
+                await Template.fS.Speech.tell(Template.Rika, "<i>Vielleicht schaffe ich es heute...</i>");
+                await Template.fS.Speech.tell(Template.Sho, "Das wäre echt cool. Danke.");
+                await Template.fS.Speech.tell(Template.Sho, "Dann müsst ihr das ohne mich machen, ich treffe mich heute nach der Schule mit meiner Mutter.");
+                // *** Pause zu Ende***
+                //TODO: PAUSEN GONG EINFÜGEN
+                await Template.fS.Speech.tell(Template.Rika, "Lass uns wieder an den Platz gehen, Sagi.");
+                // *** Unterricht zu Ende***
+                await Template.fS.Speech.tell(Template.Sho, "Können wir los gehen?");
+                // -- -- -- Choices important for Ending -- -- --
+                await Template.EndingChoices.secondEnding();
                 break;
         }
     }
@@ -687,10 +799,7 @@ var Template;
                 await Template.fS.Speech.tell(Template.Rika, "Ja, ich bin schon wach.");
                 await Template.fS.Speech.tell(Template.Rika, "Ich sollte mich schnell fertig machen, nicht dass Sagi wieder auf mich warten muss …");
                 //TODO: await fS.Progress.delay(3);
-                await Template.fS.Location.show(Template.location.darkBackground);
-                Template.fS.Speech.hide();
-                Template.fS.Character.hideAll();
-                await Template.fS.update();
+                await Template.TransitionManager.blendInOut();
                 await Template.fS.Progress.delay(5);
                 await Template.fS.Location.show(Template.location.bedroom);
                 await Template.fS.Character.show(Template.Rika, Template.RikaPose.neutral, Template.fS.positionPercent(40, 100));
