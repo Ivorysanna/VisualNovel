@@ -3,6 +3,7 @@ declare namespace Template {
         static livingHereChoice(): Promise<void>;
         static livingWhereChoice(): Promise<void>;
         static goingHomeFastChoice(): Promise<void>;
+        static askingShoAboutFriends(): Promise<void>;
     }
 }
 declare namespace Template {

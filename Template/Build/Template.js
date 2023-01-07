@@ -52,8 +52,8 @@ var Template;
                 strangeDreams: "Ich habe die letzten Tage was sehr Komisches geträumt.",
                 showingFastestRoute: "Ehm... Um dir den schnellsten Weg zu zeigen. Morgen können wir gerne den schöneren Weg nehmen. ",
             };
-            let secondDialogueElement = await Template.fS.Menu.getInput(goingHomeFastChoice, "choicesCSSClass");
-            switch (secondDialogueElement) {
+            let thirdDialogueElement = await Template.fS.Menu.getInput(goingHomeFastChoice, "choicesCSSClass");
+            switch (thirdDialogueElement) {
                 case goingHomeFastChoice.tooMuchHomework:
                     await Template.fS.Speech.tell(Template.Rika, "Wir haben heute echt einige Aufgaben für zu Hause bekommen. Ich denke, bei dir wird das nicht anders sein.");
                     await Template.fS.Speech.tell(Template.Sho, "Ja, stimmt. Wir haben heute auch viele Aufgaben bekommen. Sollen wir das vielleicht zusammen machen?");
@@ -76,6 +76,31 @@ var Template;
                     //TODO: ADDING FALLING SOUND
                     await Template.fS.Speech.tell(Template.Rika, "SHO, VORSICHT!");
                     Template.StateManager.loveOMeter += 10;
+                    break;
+            }
+        }
+        static async askingShoAboutFriends() {
+            let askingAboutFriends = {
+                hardToMoveOften: "Das muss schwer sein, so oft umzuziehen.",
+                manyFriends: "Du hast bestimmt viele Freunde, wenn du so oft umziehst.",
+            };
+            let fourthDialogueElement = await Template.fS.Menu.getInput(askingAboutFriends, "choicesCSSClass");
+            switch (fourthDialogueElement) {
+                case askingAboutFriends.hardToMoveOften:
+                    await Template.fS.Speech.tell(Template.Rika, "Das muss schwer sein, so oft umzuziehen.");
+                    await Template.fS.Speech.tell(Template.Sho, "Ja, also es geht eigentlich. Dadurch habe ich viele Bekannte, aber leider kaum gute Freunde.");
+                    await Template.fS.Speech.tell(Template.Rika, "Hoffentlich bleibst du dieses Mal länger hier.");
+                    await Template.fS.Speech.tell(Template.Sho, "… Danke, Rika.");
+                    Template.StateManager.loveOMeter += 10;
+                    //TODO: ADDING FALLING SOUND
+                    await Template.fS.Speech.tell(Template.Rika, "SHO, VORSICHT!");
+                    break;
+                case askingAboutFriends.manyFriends:
+                    await Template.fS.Speech.tell(Template.Rika, "Ich habe die letzten Tage etwas echt Komisches geträumt und ich habe das Gefühl, wenn wir schneller nach Hause gehen, dann hören diese Träume auf… ");
+                    await Template.fS.Speech.tell(Template.Sho, "Ach so…");
+                    Template.StateManager.loveOMeter -= 10;
+                    //TODO: ADDING FALLING SOUND
+                    await Template.fS.Speech.tell(Template.Rika, "SHO, VORSICHT!");
                     break;
             }
         }
@@ -120,6 +145,13 @@ var Template;
                 case endingTwo.stayInSchool:
                     // continue path here
                     console.log("STAY IN SCHOOL PATH");
+                    await Template.fS.Speech.tell(Template.Rika, "Sho, was denkst du, sollen wir heute etwas länger bleiben.");
+                    await Template.fS.Speech.tell(Template.Sho, "Ja, klar. Ich habe heute noch ein paar Hausaufgaben, die ich erledigen muss. Wir können gerne die gerne zusammen machen.");
+                    await Template.fS.Speech.tell(Template.Sho, "Ja, klar, gerne.");
+                    await Template.fS.Speech.tell(Template.Sho, "Wohnst du schon lange in Kyoto?");
+                    await Template.fS.Speech.tell(Template.Sho, "Ja, eigentlich schon. Ich bin zwar nicht hier geboren. Aber meine Eltern sind, als ich klein war, hier hergezogen. Also ich erinnere mich an nichts anderes.");
+                    await Template.fS.Speech.tell(Template.Sho, "Ich glaube, ich erinnere mich nicht mal daran, wie oft wir schon umgezogen sind.");
+                    // -- -- -- Auswahlmöglichkeiten -- -- -- 
                     break;
                 case endingTwo.goHomeFast:
                     // continue path here
@@ -358,8 +390,8 @@ var Template;
             // { id: "wakingUpCarCrash", scene: WakingUp, name: "Waking up Carcrash" },
             // { id: "toSchoolAfterCarCrash", scene: GoingToSchool, name: "Going to School after Carcrash"},
             // { id: "inClassAfterCarCrash", scene: InClass, name: "In Class after Carcrash"},
-            { id: "inClassAfterConstructionAccident", scene: Template.WakingUp, name: "Waking up after Construction Site Accident" },
-            { id: "toSchoolAfterConstructionAccident", scene: Template.GoingToSchool, name: "Going to School after Construction Site Accident" },
+            // { id: "inClassAfterConstructionAccident", scene: WakingUp, name: "Waking up after Construction Site Accident"},
+            // { id: "toSchoolAfterConstructionAccident", scene: GoingToSchool, name: "Going to School after Construction Site Accident"},
             { id: "inClassAfterConstructionAccident", scene: Template.InClass, name: "In Class AfterConstructionAccident" },
         ];
         let uiElement = document.querySelector("[type=interface]");
