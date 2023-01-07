@@ -234,20 +234,23 @@ namespace Template {
                 await fS.Speech.tell(Sagi, "Wohnst du schon lange in Kyoto?");
                 fS.Character.hide(Sho);
                 await fS.update();
-                await fS.Character.show(Sho,ShoPose.happy, fS.positionPercent(30, 100));
+                await fS.Character.show(Sho, ShoPose.happy, fS.positionPercent(30, 100));
                 await fS.update();
                 await fS.Speech.tell(Sho, "Nein, ich bin erst vor kurzem hergezogen. Deswegen verlaufe ich mich manchmal noch. Haha.");
                 fS.Character.hide(Sho);
                 await fS.Character.show(Sho, ShoPose.neutral, fS.positionPercent(30, 100));
                 await fS.update();
                 await fS.Speech.tell(Rika, "Wohnst du denn hier in der Nähe? Wir könnten dich mal in der Stadt herumführen.");
+                await fS.Speech.tell(Sho, "Nein. Wir müssen oft umziehen, da mein Vater wegen seiner Arbeit oft in eine andere Stadt verlegt wird. Ich wohne gegenüber vom Umekoji Park.");
+                await fS.Speech.tell(Rika, "Ah, da wohne ich auch. Wenn du möchtest, können wir heute gemeinsam nach Hause laufen.");
+                await fS.Speech.tell(Sho, "Das wäre echt cool. Danke.");
+                await fS.Speech.tell(Sho, "Dann müsst ihr das ohne mich machen, ich treffe mich heute nach der Schule mit meiner Mutter.");
+                // *** Pause zu Ende***
+                //TODO: PAUSEN GONG EINFÜGEN
+                await fS.Speech.tell(Rika, "Lass uns wieder an den Platz gehen, Sagi.");
+                // *** Unterricht zu Ende***
+
                 break;
-
-
-
-
-
-
         }
     }
 }

@@ -63,6 +63,10 @@ namespace Template {
         constructionSite: {
             name: "ConstructionSite",
             background: "Images/Backgrounds/constructionSite.png"
+        },
+        bridge: {
+            name: "Bridge",
+            background: "Images/Backgrounds/bridge.png"
         }
     };
 

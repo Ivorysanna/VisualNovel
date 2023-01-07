@@ -50,5 +50,42 @@ namespace Template {
                     break;
             }
         }
+
+        public static async goingHomeFastChoice(): Promise <void> {
+            let goingHomeFastChoice = {
+                tooMuchHomework: "Ich muss noch sehr viele Hausaufgaben machen.",
+                strangeDreams: "Ich habe die letzten Tage was sehr Komisches geträumt.",
+                showingFastestRoute: "Ehm... Um dir den schnellsten Weg zu zeigen. Morgen können wir gerne den schöneren Weg nehmen. ",
+            };
+            let secondDialogueElement = await fS.Menu.getInput(goingHomeFastChoice, "choicesCSSClass");
+
+            switch (secondDialogueElement) {
+                case goingHomeFastChoice.tooMuchHomework:
+                    await fS.Speech.tell(Rika, "Wir haben heute echt einige Aufgaben für zu Hause bekommen. Ich denke, bei dir wird das nicht anders sein.");
+                    await fS.Speech.tell(Sho, "Ja, stimmt. Wir haben heute auch viele Aufgaben bekommen. Sollen wir das vielleicht zusammen machen?");
+                    await fS.Speech.tell(Rika, "J-Ja klar…");
+                    //TODO: ADDING FALLING SOUND
+                    await fS.Speech.tell(Rika, "SHO, VORSICHT!");
+                    break;
+
+                case goingHomeFastChoice.strangeDreams:
+                    await fS.Speech.tell(Rika, "Ich habe die letzten Tage etwas echt Komisches geträumt und ich habe das Gefühl, wenn wir schneller nach Hause gehen, dann hören diese Träume auf… ");
+                    await fS.Speech.tell(Sho, "Ach so…");
+                    StateManager.loveOMeter -= 10;
+                    //TODO: ADDING FALLING SOUND
+                    await fS.Speech.tell(Rika, "SHO, VORSICHT!");
+                    break;
+
+                case goingHomeFastChoice.showingFastestRoute:
+                    await fS.Speech.tell(Rika, "Ehm… Um dir den schnellsten Weg zu zeigen. Wir können morgen gerne den anderen Weg nehmen.");
+                    await fS.Speech.tell(Sho, "Haha. Irgendwie habe ich ein Déjá-vu. Als hättest du das mit dem schnellsten Weg schon einmal gesagt.");
+                    await fS.Speech.tell(Rika, "<i>//Was?!… Hat er auch solche komischen Träume?</i>");
+                    await fS.Speech.tell(Rika, "Witzig, dass du das sagst. Ich habe zurzeit so komisch…");
+                    //TODO: ADDING FALLING SOUND
+                    await fS.Speech.tell(Rika, "SHO, VORSICHT!");
+                    StateManager.loveOMeter += 10;
+                    break;
+            }
+        }
     }
 }

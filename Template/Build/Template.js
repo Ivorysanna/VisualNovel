@@ -279,12 +279,12 @@ var Template;
         /*** SCENE HIERARCHY ***/
         Template.fS.Speech.hide();
         let scenes = [
-            // { id: "wakingUpFirstTime", scene: WakingUp, name: "Waking up" },
-            // { id: "toSchoolFirstTime", scene: GoingToSchool, name: "Going to School firstTime"},
-            // { id: "inClassFirstTime", scene: InClass, name: "In Class for firstTime"},
-            // { id: "wakingUpCarCrash", scene: WakingUp, name: "Waking up Carcrash" },
-            // { id: "toSchoolAfterCarCrash", scene: GoingToSchool, name: "Going to School after Carcrash"},
-            // { id: "inClassAfterCarCrash", scene: InClass, name: "In Class after Carcrash"},
+            { id: "wakingUpFirstTime", scene: Template.WakingUp, name: "Waking up" },
+            { id: "toSchoolFirstTime", scene: Template.GoingToSchool, name: "Going to School firstTime" },
+            { id: "inClassFirstTime", scene: Template.InClass, name: "In Class for firstTime" },
+            { id: "wakingUpCarCrash", scene: Template.WakingUp, name: "Waking up Carcrash" },
+            { id: "toSchoolAfterCarCrash", scene: Template.GoingToSchool, name: "Going to School after Carcrash" },
+            { id: "inClassAfterCarCrash", scene: Template.InClass, name: "In Class after Carcrash" },
             { id: "inClassAfterConstructionAccident", scene: Template.WakingUp, name: "Waking up after Construction Site Accident" },
             { id: "toSchoolAfterConstructionAccident", scene: Template.GoingToSchool, name: "Going to School after Construction Site Accident" },
             { id: "inClassAfterConstructionAccident", scene: Template.InClass, name: "In Class AfterConstructionAccident" },
@@ -323,8 +323,8 @@ var Template;
     })(StoryState = Template.StoryState || (Template.StoryState = {}));
     class StateManager {
         //*** GLOBAL VARIABLES***
-        //TODO: EINBLENDEN BEI ABGABE public static storyState: StoryState = StoryState.FirstRun;
-        static storyState = StoryState.ConstructionSiteAccidentHappend;
+        static storyState = StoryState.FirstRun;
+        // public static storyState: StoryState = StoryState.ConstructionSiteAccidentHappend;
         static loveOMeter = 0;
         static choicesState = "firstChoice";
         static endingState = "";
