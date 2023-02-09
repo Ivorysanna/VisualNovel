@@ -152,6 +152,8 @@ var Template;
                     await Template.fS.Speech.tell(Template.Sho, "Ja, eigentlich schon. Ich bin zwar nicht hier geboren. Aber meine Eltern sind, als ich klein war, hier hergezogen. Also ich erinnere mich an nichts anderes.");
                     await Template.fS.Speech.tell(Template.Sho, "Ich glaube, ich erinnere mich nicht mal daran, wie oft wir schon umgezogen sind.");
                     // -- -- -- Auswahlmöglichkeiten -- -- -- 
+                    await Template.Choices.askingShoAboutFriends();
+                    await Template.SchoolAccident.firstSchoolAccident();
                     break;
                 case endingTwo.goHomeFast:
                     // continue path here
@@ -171,7 +173,7 @@ var Template;
                     await Template.fS.Speech.tell(Template.Sho, "Ja, können wir machen. Warum hast du es heute so eilig?");
                     //-- -- -- Auswahlmöglichkeit -- -- --
                     await Template.Choices.goingHomeFastChoice();
-                    await Template.FallingAccident.fallingAccident();
+                    await Template.FallingAccident.firstFallingAccident();
                     break;
                 default:
                     console.log("Nimmt Default!");
@@ -384,14 +386,14 @@ var Template;
         /*** SCENE HIERARCHY ***/
         Template.fS.Speech.hide();
         let scenes = [
-            // { id: "wakingUpFirstTime", scene: WakingUp, name: "Waking up" },
-            // { id: "toSchoolFirstTime", scene: GoingToSchool, name: "Going to School firstTime"},
-            // { id: "inClassFirstTime", scene: InClass, name: "In Class for firstTime"},
-            // { id: "wakingUpCarCrash", scene: WakingUp, name: "Waking up Carcrash" },
-            // { id: "toSchoolAfterCarCrash", scene: GoingToSchool, name: "Going to School after Carcrash"},
-            // { id: "inClassAfterCarCrash", scene: InClass, name: "In Class after Carcrash"},
-            // { id: "inClassAfterConstructionAccident", scene: WakingUp, name: "Waking up after Construction Site Accident"},
-            // { id: "toSchoolAfterConstructionAccident", scene: GoingToSchool, name: "Going to School after Construction Site Accident"},
+            { id: "wakingUpFirstTime", scene: Template.WakingUp, name: "Waking up" },
+            { id: "toSchoolFirstTime", scene: Template.GoingToSchool, name: "Going to School firstTime" },
+            { id: "inClassFirstTime", scene: Template.InClass, name: "In Class for firstTime" },
+            { id: "wakingUpCarCrash", scene: Template.WakingUp, name: "Waking up Carcrash" },
+            { id: "toSchoolAfterCarCrash", scene: Template.GoingToSchool, name: "Going to School after Carcrash" },
+            { id: "inClassAfterCarCrash", scene: Template.InClass, name: "In Class after Carcrash" },
+            { id: "inClassAfterConstructionAccident", scene: Template.WakingUp, name: "Waking up after Construction Site Accident" },
+            { id: "toSchoolAfterConstructionAccident", scene: Template.GoingToSchool, name: "Going to School after Construction Site Accident" },
             { id: "inClassAfterConstructionAccident", scene: Template.InClass, name: "In Class AfterConstructionAccident" },
         ];
         let uiElement = document.querySelector("[type=interface]");
@@ -429,8 +431,8 @@ var Template;
     class StateManager {
         //*** GLOBAL VARIABLES***
         //TODO: FirstRun wieder einblenden 
-        // public static storyState: StoryState = StoryState.FirstRun;
-        static storyState = StoryState.ConstructionSiteAccidentHappend;
+        static storyState = StoryState.FirstRun;
+        // public static storyState: StoryState = StoryState.ConstructionSiteAccidentHappend;
         static loveOMeter = 0;
         static choicesState = "firstChoice";
         static endingState = "";
@@ -502,7 +504,14 @@ var Template;
 var Template;
 (function (Template) {
     class FallingAccident {
-        static async fallingAccident() {
+        static async firstFallingAccident() {
+            //*** THIRD BAD ENDING***
+            //TODO: ADD SOUNDS
+            //TODO: ADD ENDPICUTRE
+            //*** GAME OVER***
+            console.log("GAME OVER: Falling Accident");
+        }
+        static async FallingAccidentHappend() {
             //*** THIRD BAD ENDING***
             //TODO: ADD SOUNDS
             //TODO: ADD ENDPICUTRE
@@ -813,6 +822,26 @@ var Template;
         }
     }
     Template.InClass = InClass;
+})(Template || (Template = {}));
+var Template;
+(function (Template) {
+    class SchoolAccident {
+        static async firstSchoolAccident() {
+            //*** FOURTH BAD ENDING***
+            //TODO: ADD SOUNDS
+            //TODO: ADD ENDPICUTRE
+            //*** GAME OVER***
+            console.log("GAME OVER: School Accident");
+        }
+        static async schoolAccidentHappend() {
+            //*** FOURTH BAD ENDING***
+            //TODO: ADD SOUNDS
+            //TODO: ADD ENDPICUTRE
+            //*** GAME OVER***
+            console.log("GAME OVER: School Accident");
+        }
+    }
+    Template.SchoolAccident = SchoolAccident;
 })(Template || (Template = {}));
 var Template;
 (function (Template) {

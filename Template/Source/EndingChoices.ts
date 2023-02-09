@@ -48,10 +48,10 @@ namespace Template {
                     await fS.Speech.tell(Sho, "Ich glaube, ich erinnere mich nicht mal daran, wie oft wir schon umgezogen sind.");
 
                     // -- -- -- Auswahlmöglichkeiten -- -- -- 
-                    
-
-                    
+                    await Choices.askingShoAboutFriends();
+                    await SchoolAccident.firstSchoolAccident();
                     break;
+
                 case endingTwo.goHomeFast:
                     // continue path here
                     await fS.Speech.tell(Rika, "<i>Wenn wir uns beeilen... Vielleicht schaffen wir es dann...</i>");
@@ -72,7 +72,7 @@ namespace Template {
 
                     //-- -- -- Auswahlmöglichkeit -- -- --
                     await Choices.goingHomeFastChoice();
-                    await FallingAccident.fallingAccident();
+                    await FallingAccident.firstFallingAccident();
                     break;
                 default:
                     console.log("Nimmt Default!");

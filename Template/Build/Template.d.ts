@@ -236,7 +236,8 @@ declare namespace Template {
 }
 declare namespace Template {
     class FallingAccident {
-        static fallingAccident(): Promise<void>;
+        static firstFallingAccident(): Promise<void>;
+        static FallingAccidentHappend(): Promise<void>;
     }
 }
 declare namespace Template {
@@ -244,6 +245,12 @@ declare namespace Template {
 }
 declare namespace Template {
     function InClass(): fS.SceneReturn;
+}
+declare namespace Template {
+    class SchoolAccident {
+        static firstSchoolAccident(): Promise<void>;
+        static schoolAccidentHappend(): Promise<void>;
+    }
 }
 declare namespace Template {
     function WakingUp(): fS.SceneReturn;
