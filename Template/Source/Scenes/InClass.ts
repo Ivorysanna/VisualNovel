@@ -282,7 +282,21 @@ namespace Template {
                 //TODO: *** Talking Sound ***
                 await fS.Speech.tell(Teacher, "Okay, beruhigt euch wieder. Ihr könnt in der Pause noch mal miteinander reden.");
 
-                
+                //fade out screen
+                await fS.Location.show(location.darkBackground);
+                fS.Speech.hide();
+                fS.Character.hideAll();
+                await fS.update();
+                await fS.Progress.delay(3);
+
+                //fade in screen classroom
+                await fS.Location.show(location.classroom);
+                await fS.update();
+                //TODO: *** Talking Sound ***
+                //speech rika   
+                await fS.Speech.tell(Rika, "<i>Ich will nicht, dass sich der Tag wiederholt. Was kann ich bloß machen?</i>");
+
+                // *** Auswahlmöglichkeit*** 
         }
     }
 }
