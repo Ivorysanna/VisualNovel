@@ -1,6 +1,7 @@
 namespace Template {
     export class CarCrash {
         public static async firstCarCrash(): Promise<void> {
+            console.log("1. Car Crash");
             await fS.Location.show(location.streetCity);
             await fS.update();
 

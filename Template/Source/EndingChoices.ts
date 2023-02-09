@@ -39,6 +39,15 @@ namespace Template {
             switch (dialogueElement) {
                 case endingTwo.stayInSchool:
                     // continue path here
+                    //Clear screen
+                    fS.Character.hideAll();
+                    fS.Speech.hide();
+                    fS.update();
+                    //Show background class
+                    await fS.Location.show(location.classroom);
+                    fS.Character.show(Sho, ShoPose.happy, fS.positions.bottomcenter);
+                    fS.update();
+
                     console.log("STAY IN SCHOOL PATH");
                     await fS.Speech.tell(Rika, "Sho, was denkst du, sollen wir heute etwas länger bleiben.");
                     await fS.Speech.tell(Sho, "Ja, klar. Ich habe heute noch ein paar Hausaufgaben, die ich erledigen muss. Wir können gerne die gerne zusammen machen.");
@@ -49,11 +58,20 @@ namespace Template {
 
                     // -- -- -- Auswahlmöglichkeiten -- -- -- 
                     await Choices.askingShoAboutFriends();
-                    await SchoolAccident.firstSchoolAccident();
+                    //await SchoolAccident.firstSchoolAccident();
                     break;
 
                 case endingTwo.goHomeFast:
                     // continue path here
+                    //Clear screen
+                    fS.Character.hideAll();
+                    fS.Speech.hide();
+                    fS.update();
+                    //Show background class
+                    await fS.Location.show(location.classroom);
+                    fS.Character.show(Sho, ShoPose.happy, fS.positions.bottomcenter);
+                    fS.update();
+
                     await fS.Speech.tell(Rika, "<i>Wenn wir uns beeilen... Vielleicht schaffen wir es dann...</i>");
                     await fS.Speech.tell(Rika, "Sho, können wir uns beeilen, ich habe es heute doch etwas eiliger.");
                     await fS.Speech.tell(Sho, "Ja, ich beeile mich. Tut mir leid.");

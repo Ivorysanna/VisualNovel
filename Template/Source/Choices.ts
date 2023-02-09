@@ -103,16 +103,14 @@ namespace Template {
 
                     StateManager.loveOMeter += 10;
 
-                    //TODO: ADDING FALLING SOUND
-                    await fS.Speech.tell(Rika, "SHO, VORSICHT!");
+                    await FallingAccident.firstFallingAccident();
                     break;
 
                 case askingAboutFriends.manyFriends:
                     await fS.Speech.tell(Rika, "Ich habe die letzten Tage etwas echt Komisches geträumt und ich habe das Gefühl, wenn wir schneller nach Hause gehen, dann hören diese Träume auf… ");
                     await fS.Speech.tell(Sho, "Ach so…");
                     StateManager.loveOMeter -= 10;
-                    //TODO: ADDING FALLING SOUND
-                    await fS.Speech.tell(Rika, "SHO, VORSICHT!");
+                    await FallingAccident.firstFallingAccident();
                     break;
             }
         }

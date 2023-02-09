@@ -92,15 +92,13 @@ var Template;
                     await Template.fS.Speech.tell(Template.Rika, "Hoffentlich bleibst du dieses Mal länger hier.");
                     await Template.fS.Speech.tell(Template.Sho, "… Danke, Rika.");
                     Template.StateManager.loveOMeter += 10;
-                    //TODO: ADDING FALLING SOUND
-                    await Template.fS.Speech.tell(Template.Rika, "SHO, VORSICHT!");
+                    await Template.FallingAccident.firstFallingAccident();
                     break;
                 case askingAboutFriends.manyFriends:
                     await Template.fS.Speech.tell(Template.Rika, "Ich habe die letzten Tage etwas echt Komisches geträumt und ich habe das Gefühl, wenn wir schneller nach Hause gehen, dann hören diese Träume auf… ");
                     await Template.fS.Speech.tell(Template.Sho, "Ach so…");
                     Template.StateManager.loveOMeter -= 10;
-                    //TODO: ADDING FALLING SOUND
-                    await Template.fS.Speech.tell(Template.Rika, "SHO, VORSICHT!");
+                    await Template.FallingAccident.firstFallingAccident();
                     break;
             }
         }
@@ -144,6 +142,14 @@ var Template;
             switch (dialogueElement) {
                 case endingTwo.stayInSchool:
                     // continue path here
+                    //Clear screen
+                    Template.fS.Character.hideAll();
+                    Template.fS.Speech.hide();
+                    Template.fS.update();
+                    //Show background class
+                    await Template.fS.Location.show(Template.location.classroom);
+                    Template.fS.Character.show(Template.Sho, Template.ShoPose.happy, Template.fS.positions.bottomcenter);
+                    Template.fS.update();
                     console.log("STAY IN SCHOOL PATH");
                     await Template.fS.Speech.tell(Template.Rika, "Sho, was denkst du, sollen wir heute etwas länger bleiben.");
                     await Template.fS.Speech.tell(Template.Sho, "Ja, klar. Ich habe heute noch ein paar Hausaufgaben, die ich erledigen muss. Wir können gerne die gerne zusammen machen.");
@@ -153,10 +159,18 @@ var Template;
                     await Template.fS.Speech.tell(Template.Sho, "Ich glaube, ich erinnere mich nicht mal daran, wie oft wir schon umgezogen sind.");
                     // -- -- -- Auswahlmöglichkeiten -- -- -- 
                     await Template.Choices.askingShoAboutFriends();
-                    await Template.SchoolAccident.firstSchoolAccident();
+                    //await SchoolAccident.firstSchoolAccident();
                     break;
                 case endingTwo.goHomeFast:
                     // continue path here
+                    //Clear screen
+                    Template.fS.Character.hideAll();
+                    Template.fS.Speech.hide();
+                    Template.fS.update();
+                    //Show background class
+                    await Template.fS.Location.show(Template.location.classroom);
+                    Template.fS.Character.show(Template.Sho, Template.ShoPose.happy, Template.fS.positions.bottomcenter);
+                    Template.fS.update();
                     await Template.fS.Speech.tell(Template.Rika, "<i>Wenn wir uns beeilen... Vielleicht schaffen wir es dann...</i>");
                     await Template.fS.Speech.tell(Template.Rika, "Sho, können wir uns beeilen, ich habe es heute doch etwas eiliger.");
                     await Template.fS.Speech.tell(Template.Sho, "Ja, ich beeile mich. Tut mir leid.");
@@ -386,13 +400,13 @@ var Template;
         /*** SCENE HIERARCHY ***/
         Template.fS.Speech.hide();
         let scenes = [
-            { id: "wakingUpFirstTime", scene: Template.WakingUp, name: "Waking up" },
-            { id: "toSchoolFirstTime", scene: Template.GoingToSchool, name: "Going to School firstTime" },
-            { id: "inClassFirstTime", scene: Template.InClass, name: "In Class for firstTime" },
-            { id: "wakingUpCarCrash", scene: Template.WakingUp, name: "Waking up Carcrash" },
-            { id: "toSchoolAfterCarCrash", scene: Template.GoingToSchool, name: "Going to School after Carcrash" },
-            { id: "inClassAfterCarCrash", scene: Template.InClass, name: "In Class after Carcrash" },
-            { id: "inClassAfterConstructionAccident", scene: Template.WakingUp, name: "Waking up after Construction Site Accident" },
+            // { id: "wakingUpFirstTime", scene: WakingUp, name: "Waking up" },
+            // { id: "toSchoolFirstTime", scene: GoingToSchool, name: "Going to School firstTime"},
+            // { id: "inClassFirstTime", scene: InClass, name: "In Class for firstTime"},
+            // { id: "wakingUpCarCrash", scene: WakingUp, name: "Waking up Carcrash" },
+            // { id: "toSchoolAfterCarCrash", scene: GoingToSchool, name: "Going to School after Carcrash"},
+            // { id: "inClassAfterCarCrash", scene: InClass, name: "In Class after Carcrash"},
+            // { id: "inClassAfterConstructionAccident", scene: WakingUp, name: "Waking up after Construction Site Accident"},
             { id: "toSchoolAfterConstructionAccident", scene: Template.GoingToSchool, name: "Going to School after Construction Site Accident" },
             { id: "inClassAfterConstructionAccident", scene: Template.InClass, name: "In Class AfterConstructionAccident" },
         ];
@@ -427,12 +441,13 @@ var Template;
         StoryState[StoryState["FirstRun"] = 0] = "FirstRun";
         StoryState[StoryState["CarCrashHappend"] = 1] = "CarCrashHappend";
         StoryState[StoryState["ConstructionSiteAccidentHappend"] = 2] = "ConstructionSiteAccidentHappend";
+        StoryState[StoryState["SchoolAccidentHappend"] = 3] = "SchoolAccidentHappend";
     })(StoryState = Template.StoryState || (Template.StoryState = {}));
     class StateManager {
         //*** GLOBAL VARIABLES***
         //TODO: FirstRun wieder einblenden 
-        static storyState = StoryState.FirstRun;
-        // public static storyState: StoryState = StoryState.ConstructionSiteAccidentHappend;
+        // public static storyState: StoryState = StoryState.FirstRun;
+        static storyState = StoryState.ConstructionSiteAccidentHappend;
         static loveOMeter = 0;
         static choicesState = "firstChoice";
         static endingState = "";
@@ -456,6 +471,7 @@ var Template;
 (function (Template) {
     class CarCrash {
         static async firstCarCrash() {
+            console.log("1. Car Crash");
             await Template.fS.Location.show(Template.location.streetCity);
             await Template.fS.update();
             await Template.fS.Speech.tell(Template.Rika, "So, hier um die Ecke ist auch schon das Einkaufszentrum. Wenn du möchtest, können wir uns hier am Wochenende auf einen Bubble Tea treffen und vielleicht…");
@@ -709,6 +725,7 @@ var Template;
                 await Template.fS.Progress.delay(3);
                 //TODO: *** PAUSEN GONG EINFÜGEN
                 //TODO: *** MENSCHEN DIE IN DER PAUSE REDEN EINFÜGEN ***
+                await Template.fS.Location.show(Template.location.classroom);
                 await Template.fS.Character.show(Template.Sagi, Template.SagiPose.neutral, Template.fS.positionPercent(70, 100));
                 await Template.fS.update();
                 await Template.fS.Speech.tell(Template.Sagi, "Rika du bist schon die ganze Zeit abwesend. Ist alles in Ordnung?");
@@ -827,8 +844,14 @@ var Template;
 (function (Template) {
     class SchoolAccident {
         static async firstSchoolAccident() {
+            console.log("1. School Accident");
             //*** FOURTH BAD ENDING***
-            //TODO: ADD SOUNDS
+            await Template.fS.Speech.tell(Template.Sho, "Was für Hausaufgaben hast du heute? Ich muss noch für Kunst was erledigen, hast du eine Schere?");
+            await Template.fS.Speech.tell(Template.Rika, "Nein, leider nicht. Aber ich glaube, im Schrank sollten welche sein.");
+            await Template.fS.Speech.tell(Template.Sho, "Ah, danke.");
+            //TODO: Open Cabinet Sound adding 
+            await Template.fS.Speech.tell(Template.Sho, "Ohje, die stehen ja ganz oben.");
+            //TODO: Sound of things falling down adding 
             //TODO: ADD ENDPICUTRE
             //*** GAME OVER***
             console.log("GAME OVER: School Accident");
@@ -914,6 +937,7 @@ var Template;
                 Template.fS.Speech.hide();
                 Template.fS.Character.hideAll();
                 break;
+            case Template.StoryState.SchoolAccidentHappend:
         }
     }
     Template.WakingUp = WakingUp;

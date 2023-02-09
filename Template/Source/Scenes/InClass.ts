@@ -127,6 +127,7 @@ namespace Template {
 
                 //TODO: *** PAUSEN GONG EINFÜGEN
                 //TODO: *** MENSCHEN DIE IN DER PAUSE REDEN EINFÜGEN ***
+                await fS.Location.show(location.classroom);
                 await fS.Character.show(Sagi, SagiPose.neutral, fS.positionPercent(70, 100));
                 await fS.update();
                 await fS.Speech.tell(Sagi, "Rika du bist schon die ganze Zeit abwesend. Ist alles in Ordnung?");

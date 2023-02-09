@@ -207,7 +207,8 @@ declare namespace Template {
     enum StoryState {
         FirstRun = 0,
         CarCrashHappend = 1,
-        ConstructionSiteAccidentHappend = 2
+        ConstructionSiteAccidentHappend = 2,
+        SchoolAccidentHappend = 3
     }
     class StateManager {
         static storyState: StoryState;

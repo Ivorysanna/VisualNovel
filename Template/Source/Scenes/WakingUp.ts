@@ -78,6 +78,8 @@ namespace Template {
                 fS.Speech.hide();
                 fS.Character.hideAll();
                 break;
+
+                case StoryState.SchoolAccidentHappend:
         }
     }
 }
