@@ -92,13 +92,13 @@ var Template;
                     await Template.fS.Speech.tell(Template.Rika, "Hoffentlich bleibst du dieses Mal länger hier.");
                     await Template.fS.Speech.tell(Template.Sho, "… Danke, Rika.");
                     Template.StateManager.loveOMeter += 10;
-                    await Template.FallingAccident.firstFallingAccident();
+                    await Template.SchoolAccident.firstSchoolAccident();
                     break;
                 case askingAboutFriends.manyFriends:
                     await Template.fS.Speech.tell(Template.Rika, "Ich habe die letzten Tage etwas echt Komisches geträumt und ich habe das Gefühl, wenn wir schneller nach Hause gehen, dann hören diese Träume auf… ");
                     await Template.fS.Speech.tell(Template.Sho, "Ach so…");
                     Template.StateManager.loveOMeter -= 10;
-                    await Template.FallingAccident.firstFallingAccident();
+                    await Template.SchoolAccident.firstSchoolAccident();
                     break;
             }
         }
@@ -142,20 +142,16 @@ var Template;
             switch (dialogueElement) {
                 case endingTwo.stayInSchool:
                     // continue path here
-                    //Clear screen
-                    Template.fS.Character.hideAll();
-                    Template.fS.Speech.hide();
-                    Template.fS.update();
                     //Show background class
                     await Template.fS.Location.show(Template.location.classroom);
-                    Template.fS.Character.show(Template.Sho, Template.ShoPose.happy, Template.fS.positions.bottomcenter);
+                    await Template.fS.Character.show(Template.Sho, Template.ShoPose.neutral, Template.fS.positions.bottomcenter);
                     Template.fS.update();
                     console.log("STAY IN SCHOOL PATH");
                     await Template.fS.Speech.tell(Template.Rika, "Sho, was denkst du, sollen wir heute etwas länger bleiben.");
                     await Template.fS.Speech.tell(Template.Sho, "Ja, klar. Ich habe heute noch ein paar Hausaufgaben, die ich erledigen muss. Wir können gerne die gerne zusammen machen.");
                     await Template.fS.Speech.tell(Template.Sho, "Ja, klar, gerne.");
                     await Template.fS.Speech.tell(Template.Sho, "Wohnst du schon lange in Kyoto?");
-                    await Template.fS.Speech.tell(Template.Sho, "Ja, eigentlich schon. Ich bin zwar nicht hier geboren. Aber meine Eltern sind, als ich klein war, hier hergezogen. Also ich erinnere mich an nichts anderes.");
+                    await Template.fS.Speech.tell(Template.Rika, "Ja, eigentlich schon. Ich bin zwar nicht hier geboren. Aber meine Eltern sind, als ich klein war, hier hergezogen. Also ich erinnere mich an nichts anderes.");
                     await Template.fS.Speech.tell(Template.Sho, "Ich glaube, ich erinnere mich nicht mal daran, wie oft wir schon umgezogen sind.");
                     // -- -- -- Auswahlmöglichkeiten -- -- -- 
                     await Template.Choices.askingShoAboutFriends();
@@ -409,6 +405,8 @@ var Template;
             // { id: "inClassAfterConstructionAccident", scene: WakingUp, name: "Waking up after Construction Site Accident"},
             { id: "toSchoolAfterConstructionAccident", scene: Template.GoingToSchool, name: "Going to School after Construction Site Accident" },
             { id: "inClassAfterConstructionAccident", scene: Template.InClass, name: "In Class AfterConstructionAccident" },
+            { id: "wakingUpAfterSchoolAccident", scene: Template.WakingUp, name: "Waking up after School Accident" },
+            { id: "inClassAfterSchoolAccident", scene: Template.InClass, name: "In Class after School Accident" },
         ];
         let uiElement = document.querySelector("[type=interface]");
         Template.dataForSave = Template.fS.Progress.setData(Template.dataForSave, uiElement);
@@ -611,6 +609,25 @@ var Template;
                 await Template.fS.Speech.tell(Template.Sagi, "Nein. Warum fragst du mich sowas Komisches?");
                 await Template.fS.Speech.tell(Template.Sagi, "<i>Warum hat sie denn so wütend reagiert, hat sie auch solche komischen Träume?</i>");
                 await Template.fS.Speech.tell(Template.Sagi, "… Komm wir gehen jetzt, sonst kommen wir zu spät.");
+                break;
+            case Template.StoryState.SchoolAccidentHappend:
+                console.log("School Accident happend!");
+                await Template.fS.Location.show(Template.location.alley);
+                await Template.fS.update();
+                await Template.fS.Character.show(Template.Sagi, Template.SagiPose.neutral, Template.fS.positionPercent(40, 100));
+                await Template.fS.update();
+                await Template.fS.Speech.tell(Template.Sagi, "Da bist du ja endlich … Du siehst ja gar nicht gut aus.");
+                await Template.fS.Speech.tell(Template.Rika, "Sagi. Welchen Tag haben wir heute?");
+                await Template.fS.Speech.tell(Template.Sagi, "Ehm …ist alles in Ordnung?");
+                await Template.fS.Speech.tell(Template.Rika, "Ich habe zurzeit wirklich komische Träume. Es sind nicht mal wirklich Träume. Ich weiß zum Beispiel, dass wir heute einen neuen Schüler bekommen und dass sein Name Sho ist.");
+                await Template.fS.Speech.tell(Template.Sagi, "…");
+                await Template.fS.Speech.tell(Template.Rika, "Und ich weiß, dass heute was ganz Schlimmes mit Sho passieren wird.");
+                await Template.fS.Speech.tell(Template.Sagi, "Rika. Beruhig dich. Bald sind Prüfungen, vielleicht bist du etwas gestresst.");
+                await Template.fS.Speech.tell(Template.Rika, "Ich glaube, du verstehst mich nicht. Ich lebe den heutigen Tag immer und immer wieder.");
+                await Template.fS.Speech.tell(Template.Rika, "Ich will einfach, dass es aufhört.");
+                await Template.fS.Speech.tell(Template.Sagi, "Ich kann dir nicht wirklich helfen. Lass uns heute Abend noch mal darüber sprechen.");
+                await Template.fS.Speech.tell(Template.Sagi, "Komm, wir gehen erstmal zur Schule.");
+                await Template.fS.Speech.tell(Template.Rika, "Ja…");
                 break;
         }
     }
@@ -831,11 +848,33 @@ var Template;
                 // *** Pause zu Ende***
                 //TODO: PAUSEN GONG EINFÜGEN
                 await Template.fS.Speech.tell(Template.Rika, "Lass uns wieder an den Platz gehen, Sagi.");
+                //Fade out screen 
+                await Template.fS.Location.show(Template.location.darkBackground);
+                Template.fS.Speech.hide();
+                Template.fS.Character.hideAll();
+                await Template.fS.update();
+                await Template.fS.Progress.delay(3);
                 // *** Unterricht zu Ende***
+                //Fade in screen
+                await Template.fS.Location.show(Template.location.classroom);
+                await Template.fS.Character.show(Template.Sho, Template.ShoPose.neutral, Template.fS.positionPercent(30, 100));
+                await Template.fS.update();
                 await Template.fS.Speech.tell(Template.Sho, "Können wir los gehen?");
                 // -- -- -- Choices important for Ending -- -- --
                 await Template.EndingChoices.secondEnding();
                 break;
+            case Template.StoryState.SchoolAccidentHappend:
+                await Template.fS.Location.show(Template.location.classroom);
+                await Template.fS.update();
+                await Template.fS.Character.show(Template.Teacher, Template.TeacherPose.neutral, Template.fS.positionPercent(70, 100));
+                await Template.fS.update();
+                await Template.fS.Speech.tell(Template.Teacher, "Guten Morgen. Bevor wir heute mit dem Unterricht anfangen, möchte ich euch zunächst euren neuen Mitschüler vorstellen.");
+                await Template.fS.Character.show(Template.Sho, Template.ShoPose.neutral, Template.fS.positionPercent(70, 100));
+                await Template.fS.update();
+                await Template.fS.Speech.tell(Template.Sho, "Hi, ich bin Sho Rai. Freut mich, euch kennenzulernen.");
+                await Template.fS.Speech.tell(Template.Rika, "<i>… Das ist er. Ich habe von ihm geträumt. Aber was ist passiert? </i>");
+                //TODO: *** Talking Sound ***
+                await Template.fS.Speech.tell(Template.Teacher, "Okay, beruhigt euch wieder. Ihr könnt in der Pause noch mal miteinander reden.");
         }
     }
     Template.InClass = InClass;
@@ -849,6 +888,8 @@ var Template;
             await Template.fS.Speech.tell(Template.Sho, "Was für Hausaufgaben hast du heute? Ich muss noch für Kunst was erledigen, hast du eine Schere?");
             await Template.fS.Speech.tell(Template.Rika, "Nein, leider nicht. Aber ich glaube, im Schrank sollten welche sein.");
             await Template.fS.Speech.tell(Template.Sho, "Ah, danke.");
+            //Changing storyState to SchoolAccidentHappend
+            Template.StateManager.storyState = Template.StoryState.SchoolAccidentHappend;
             //TODO: Open Cabinet Sound adding 
             await Template.fS.Speech.tell(Template.Sho, "Ohje, die stehen ja ganz oben.");
             //TODO: Sound of things falling down adding 
@@ -938,6 +979,16 @@ var Template;
                 Template.fS.Character.hideAll();
                 break;
             case Template.StoryState.SchoolAccidentHappend:
+                // *** AFTER SCHOOL ACCIDENT ***
+                //show bedroom
+                await Template.fS.Location.show(Template.location.bedroom);
+                await Template.fS.update(Template.transition.swirl.duration, Template.transition.swirl.alpha, Template.transition.swirl.edge);
+                await Template.fS.Speech.tell(Template.Rika, "<i>Ich verstehe nicht, was hier passiert. Wie viele Tage habe ich das schon durchgemacht.</i>");
+                //play sound alarm clock
+                Template.fS.Sound.play(Template.sound.alarmClock, 0.5, false);
+                await Template.fS.Speech.tell(Template.Rika, "<i>Ob Sho sich auch erinnert … Es können keine Träume sein. Ich sollte Sho noch gar nicht kenn.</i>");
+                //TODO: Play sound cloths
+                await Template.fS.Speech.tell(Template.Rika, "<i>Ich sollte mit Sagi reden, ihr muss doch auch was aufgefallen sein.");
         }
     }
     Template.WakingUp = WakingUp;

@@ -79,7 +79,20 @@ namespace Template {
                 fS.Character.hideAll();
                 break;
 
-                case StoryState.SchoolAccidentHappend:
+            case StoryState.SchoolAccidentHappend:
+                // *** AFTER SCHOOL ACCIDENT ***
+                //show bedroom
+                await fS.Location.show(location.bedroom);
+                await fS.update(transition.swirl.duration, transition.swirl.alpha, transition.swirl.edge);
+                await fS.Speech.tell(Rika, "<i>Ich verstehe nicht, was hier passiert. Wie viele Tage habe ich das schon durchgemacht.</i>");
+
+                //play sound alarm clock
+                fS.Sound.play(sound.alarmClock, 0.5, false);
+
+                await fS.Speech.tell(Rika, "<i>Ob Sho sich auch erinnert … Es können keine Träume sein. Ich sollte Sho noch gar nicht kenn.</i>");
+
+                //TODO: Play sound cloths
+                await fS.Speech.tell(Rika, "<i>Ich sollte mit Sagi reden, ihr muss doch auch was aufgefallen sein.");
         }
     }
 }

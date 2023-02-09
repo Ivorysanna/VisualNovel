@@ -251,11 +251,38 @@ namespace Template {
                 // *** Pause zu Ende***
                 //TODO: PAUSEN GONG EINFÜGEN
                 await fS.Speech.tell(Rika, "Lass uns wieder an den Platz gehen, Sagi.");
+                //Fade out screen 
+                await fS.Location.show(location.darkBackground);
+                fS.Speech.hide();
+                fS.Character.hideAll();
+                await fS.update();
+                await fS.Progress.delay(3);
+
                 // *** Unterricht zu Ende***
+                //Fade in screen
+                await fS.Location.show(location.classroom);
+                await fS.Character.show(Sho, ShoPose.neutral, fS.positionPercent(30, 100));
+                await fS.update();
+
                 await fS.Speech.tell(Sho, "Können wir los gehen?");
                 // -- -- -- Choices important for Ending -- -- --
                 await EndingChoices.secondEnding();
                 break;
+            case StoryState.SchoolAccidentHappend:
+                await fS.Location.show(location.classroom);
+                await fS.update();
+                await fS.Character.show(Teacher, TeacherPose.neutral, fS.positionPercent(70, 100));
+                await fS.update();
+                await fS.Speech.tell(Teacher, "Guten Morgen. Bevor wir heute mit dem Unterricht anfangen, möchte ich euch zunächst euren neuen Mitschüler vorstellen.");
+                await fS.Character.show(Sho, ShoPose.neutral, fS.positionPercent(70, 100));
+                await fS.update();
+                await fS.Speech.tell(Sho, "Hi, ich bin Sho Rai. Freut mich, euch kennenzulernen.");
+                await fS.Speech.tell(Rika, "<i>… Das ist er. Ich habe von ihm geträumt. Aber was ist passiert? </i>");
+
+                //TODO: *** Talking Sound ***
+                await fS.Speech.tell(Teacher, "Okay, beruhigt euch wieder. Ihr könnt in der Pause noch mal miteinander reden.");
+
+                
         }
     }
 }

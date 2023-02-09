@@ -82,6 +82,25 @@ namespace Template {
                 await fS.Speech.tell(Sagi, "<i>Warum hat sie denn so wütend reagiert, hat sie auch solche komischen Träume?</i>");
                 await fS.Speech.tell(Sagi, "… Komm wir gehen jetzt, sonst kommen wir zu spät.");
                 break;
+            case StoryState.SchoolAccidentHappend:
+                console.log("School Accident happend!");
+                await fS.Location.show(location.alley);
+                await fS.update();
+                await fS.Character.show(Sagi, SagiPose.neutral, fS.positionPercent(40, 100));
+                await fS.update();
+                await fS.Speech.tell(Sagi, "Da bist du ja endlich … Du siehst ja gar nicht gut aus.");
+                await fS.Speech.tell(Rika, "Sagi. Welchen Tag haben wir heute?");
+                await fS.Speech.tell(Sagi, "Ehm …ist alles in Ordnung?");
+                await fS.Speech.tell(Rika, "Ich habe zurzeit wirklich komische Träume. Es sind nicht mal wirklich Träume. Ich weiß zum Beispiel, dass wir heute einen neuen Schüler bekommen und dass sein Name Sho ist.");
+                await fS.Speech.tell(Sagi, "…");
+                await fS.Speech.tell(Rika, "Und ich weiß, dass heute was ganz Schlimmes mit Sho passieren wird.");
+                await fS.Speech.tell(Sagi, "Rika. Beruhig dich. Bald sind Prüfungen, vielleicht bist du etwas gestresst.");
+                await fS.Speech.tell(Rika, "Ich glaube, du verstehst mich nicht. Ich lebe den heutigen Tag immer und immer wieder.");
+                await fS.Speech.tell(Rika, "Ich will einfach, dass es aufhört.");
+                await fS.Speech.tell(Sagi, "Ich kann dir nicht wirklich helfen. Lass uns heute Abend noch mal darüber sprechen.");
+                await fS.Speech.tell(Sagi, "Komm, wir gehen erstmal zur Schule.");
+                await fS.Speech.tell(Rika, "Ja…");
+                break;
         }
     }
 }

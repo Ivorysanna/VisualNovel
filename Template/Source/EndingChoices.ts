@@ -39,13 +39,9 @@ namespace Template {
             switch (dialogueElement) {
                 case endingTwo.stayInSchool:
                     // continue path here
-                    //Clear screen
-                    fS.Character.hideAll();
-                    fS.Speech.hide();
-                    fS.update();
                     //Show background class
                     await fS.Location.show(location.classroom);
-                    fS.Character.show(Sho, ShoPose.happy, fS.positions.bottomcenter);
+                    await fS.Character.show(Sho, ShoPose.neutral, fS.positions.bottomcenter);
                     fS.update();
 
                     console.log("STAY IN SCHOOL PATH");
@@ -53,7 +49,7 @@ namespace Template {
                     await fS.Speech.tell(Sho, "Ja, klar. Ich habe heute noch ein paar Hausaufgaben, die ich erledigen muss. Wir können gerne die gerne zusammen machen.");
                     await fS.Speech.tell(Sho, "Ja, klar, gerne.");
                     await fS.Speech.tell(Sho, "Wohnst du schon lange in Kyoto?");
-                    await fS.Speech.tell(Sho, "Ja, eigentlich schon. Ich bin zwar nicht hier geboren. Aber meine Eltern sind, als ich klein war, hier hergezogen. Also ich erinnere mich an nichts anderes.");
+                    await fS.Speech.tell(Rika, "Ja, eigentlich schon. Ich bin zwar nicht hier geboren. Aber meine Eltern sind, als ich klein war, hier hergezogen. Also ich erinnere mich an nichts anderes.");
                     await fS.Speech.tell(Sho, "Ich glaube, ich erinnere mich nicht mal daran, wie oft wir schon umgezogen sind.");
 
                     // -- -- -- Auswahlmöglichkeiten -- -- -- 

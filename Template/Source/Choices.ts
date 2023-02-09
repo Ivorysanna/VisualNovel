@@ -103,14 +103,14 @@ namespace Template {
 
                     StateManager.loveOMeter += 10;
 
-                    await FallingAccident.firstFallingAccident();
+                    await SchoolAccident.firstSchoolAccident();
                     break;
 
                 case askingAboutFriends.manyFriends:
                     await fS.Speech.tell(Rika, "Ich habe die letzten Tage etwas echt Komisches geträumt und ich habe das Gefühl, wenn wir schneller nach Hause gehen, dann hören diese Träume auf… ");
                     await fS.Speech.tell(Sho, "Ach so…");
                     StateManager.loveOMeter -= 10;
-                    await FallingAccident.firstFallingAccident();
+                    await SchoolAccident.firstSchoolAccident();
                     break;
             }
         }

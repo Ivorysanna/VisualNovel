@@ -7,6 +7,9 @@ namespace Template {
             await fS.Speech.tell(Rika, "Nein, leider nicht. Aber ich glaube, im Schrank sollten welche sein.");
             await fS.Speech.tell(Sho, "Ah, danke.");
 
+            //Changing storyState to SchoolAccidentHappend
+            StateManager.storyState = StoryState.SchoolAccidentHappend;
+
             //TODO: Open Cabinet Sound adding 
 
             await fS.Speech.tell(Sho, "Ohje, die stehen ja ganz oben.");
