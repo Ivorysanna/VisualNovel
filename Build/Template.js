@@ -232,6 +232,16 @@ var Template;
             edge: 1
         }
     };
+    Template.data = {
+        Protagonist: {
+            name: "Protagonist"
+        },
+        score: {
+            a: 0
+        },
+        ended: false,
+        correct: false
+    };
     //*** SOUND ***
     Template.sound = {
         // Themes
@@ -429,9 +439,9 @@ var Template;
             // { id: "toSchoolAfterCarCrash", scene: GoingToSchool, name: "Going to School after Carcrash"},
             // { id: "inClassAfterCarCrash", scene: InClass, name: "In Class after Carcrash"},
             // { id: "inClassAfterConstructionAccident", scene: WakingUp, name: "Waking up after Construction Site Accident"},
-            { id: "toSchoolAfterConstructionAccident", scene: Template.GoingToSchool, name: "Going to School after Construction Site Accident" },
-            { id: "inClassAfterConstructionAccident", scene: Template.InClass, name: "In Class AfterConstructionAccident" },
-            { id: "wakingUpAfterSchoolAccident", scene: Template.WakingUp, name: "Waking up after School Accident" },
+            // { id: "toSchoolAfterConstructionAccident", scene: GoingToSchool, name: "Going to School after Construction Site Accident"},
+            // { id: "inClassAfterConstructionAccident", scene: InClass, name: "In Class AfterConstructionAccident"},
+            // { id: "wakingUpAfterSchoolAccident", scene: WakingUp, name: "Waking up after School Accident"},
             { id: "inClassAfterSchoolAccident", scene: Template.InClass, name: "In Class after School Accident" },
         ];
         let uiElement = document.querySelector("[type=interface]");
@@ -471,17 +481,13 @@ var Template;
         //*** GLOBAL VARIABLES***
         //TODO: FirstRun wieder einblenden 
         // public static storyState: StoryState = StoryState.FirstRun;
-        static storyState = StoryState.ConstructionSiteAccidentHappend;
+        static storyState = StoryState.SchoolAccidentHappend;
         static loveOMeter = 0;
         static choicesState = "firstChoice";
         static endingState = "";
         static carCrashHappend = false;
     }
     Template.StateManager = StateManager;
-    class demonName {
-        static demonName = "";
-    }
-    Template.demonName = demonName;
 })(Template || (Template = {}));
 var Template;
 (function (Template) {
@@ -939,17 +945,18 @@ var Template;
             //TODO: *** ADDING RIDDLE DOWNLOAD***
             await Template.fS.Speech.tell(Template.Rika, "<i>Okay also, das Buch sagt, ich muss den Namen von diesem Dämon kennen.</i>");
             //TODO: *** ADDING IF FOR CHECKING THE NAME***
-            let demonName = await Template.fS.Menu.getInput("Wie heißt der Dämon?", "text");
             let nameGuessed = false;
-            while (nameGuessed == false) {
-                demonName = await Template.fS.Menu.getInput("Wie heißt der Dämon?", "text");
-                if (demonName == "Sagi" || "sagi") {
+            while (!nameGuessed) {
+                await Template.fS.Speech.tell(Template.Rika, "<i>Wer könnte der Dämon sein?</i>");
+                let demonName = await Template.fS.Speech.getInput();
+                console.log(demonName);
+                if (demonName == "Sagi" || demonName == "sagi" || demonName == "Sagi Aoki" || demonName == "sagi aoki" || demonName == "Sagi aoki" || demonName == "sagi Aoki") {
                     await Template.fS.Speech.tell(Template.Rika, "<i>… Sagi. Wir sind schon so lange Freunde. Wie kann sie mir das antun.</i>");
                     await Template.fS.Speech.tell(Template.Rika, "<i>Soll ich mit Sagi sprechen, oder versuchen Sho überreden, dazubleiben.</i>");
                     nameGuessed = true;
                 }
                 else {
-                    await Template.fS.Speech.tell(Template.Rika, "<i>Nein, das macht ergibt keinen Sinn.</i>");
+                    await Template.fS.Speech.tell(Template.Rika, "<i>Nein, das ergibt keinen Sinn.</i>");
                 }
             }
         }

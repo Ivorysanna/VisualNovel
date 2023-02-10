@@ -23,6 +23,16 @@ declare namespace Template {
             edge: number;
         };
     };
+    let data: {
+        Protagonist: {
+            name: string;
+        };
+        score: {
+            a: number;
+        };
+        ended: boolean;
+        correct: boolean;
+    };
     let sound: {
         outside: string;
         alarmClock: string;
@@ -217,9 +227,6 @@ declare namespace Template {
         static choicesState: String;
         static endingState: String;
         static carCrashHappend: boolean;
-    }
-    class demonName {
-        static demonName: string;
     }
 }
 declare namespace Template {

@@ -13,6 +13,17 @@ namespace Template {
         }
     };
 
+    export let data = {
+        Protagonist: {
+          name: "Protagonist"
+        },
+        score: {
+          a: 0
+        },
+        ended: false,
+        correct: false
+      };
+
     //*** SOUND ***
     export let sound = {
         // Themes
@@ -218,9 +229,9 @@ namespace Template {
             // { id: "toSchoolAfterCarCrash", scene: GoingToSchool, name: "Going to School after Carcrash"},
             // { id: "inClassAfterCarCrash", scene: InClass, name: "In Class after Carcrash"},
             // { id: "inClassAfterConstructionAccident", scene: WakingUp, name: "Waking up after Construction Site Accident"},
-            { id: "toSchoolAfterConstructionAccident", scene: GoingToSchool, name: "Going to School after Construction Site Accident"},
-            { id: "inClassAfterConstructionAccident", scene: InClass, name: "In Class AfterConstructionAccident"},
-            { id: "wakingUpAfterSchoolAccident", scene: WakingUp, name: "Waking up after School Accident"},
+            // { id: "toSchoolAfterConstructionAccident", scene: GoingToSchool, name: "Going to School after Construction Site Accident"},
+            // { id: "inClassAfterConstructionAccident", scene: InClass, name: "In Class AfterConstructionAccident"},
+            // { id: "wakingUpAfterSchoolAccident", scene: WakingUp, name: "Waking up after School Accident"},
             { id: "inClassAfterSchoolAccident", scene: InClass, name: "In Class after School Accident"},
 
         ];

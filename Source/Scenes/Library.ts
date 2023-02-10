@@ -18,26 +18,19 @@ namespace Template {
             await fS.Speech.tell(Rika, "<i>Okay also, das Buch sagt, ich muss den Namen von diesem Dämon kennen.</i>");
 
             //TODO: *** ADDING IF FOR CHECKING THE NAME***
-            let demonName: string = await fS.Menu.getInput("Wie heißt der Dämon?", "text");
             let nameGuessed: boolean = false;
-            while (nameGuessed == false) {
-                demonName = await fS.Menu.getInput("Wie heißt der Dämon?", "text");
-                if (demonName == "Sagi" || "sagi") {
+            while (!nameGuessed) {
+                await fS.Speech.tell(Rika, "<i>Wer könnte der Dämon sein?</i>");
+                let demonName: string  = await fS.Speech.getInput();
+                console.log(demonName);
+                if (demonName == "Sagi" || demonName == "sagi" || demonName == "Sagi Aoki" || demonName == "sagi aoki" || demonName == "Sagi aoki" || demonName == "sagi Aoki") {
                     await fS.Speech.tell(Rika, "<i>… Sagi. Wir sind schon so lange Freunde. Wie kann sie mir das antun.</i>");  
                     await fS.Speech.tell(Rika, "<i>Soll ich mit Sagi sprechen, oder versuchen Sho überreden, dazubleiben.</i>");  
                     nameGuessed = true;
                 } else {
-                    await fS.Speech.tell(Rika, "<i>Nein, das macht ergibt keinen Sinn.</i>");
+                    await fS.Speech.tell(Rika, "<i>Nein, das ergibt keinen Sinn.</i>");
                 }
             }
-
-    
-
-
-    
-
-
-
         }
     }
 }
