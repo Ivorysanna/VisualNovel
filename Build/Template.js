@@ -1024,6 +1024,64 @@ var Template;
     class TalkingSho {
         static async talkingWithSho() {
             console.log("Talking with Sho");
+            await Template.fS.Speech.tell(Template.Rika, "<i>Ich denke, ich versuche Sho zu überreden. Wenn ich das Buch richtig verstanden habe, dann muss ich nur die Zeit tot schlagen.</i>");
+            await Template.fS.Location.show(Template.location.classroom);
+            await Template.fS.update();
+            await Template.fS.Character.show(Template.Sho, Template.ShoPose.neutral, Template.fS.positions.bottomcenter);
+            await Template.fS.Speech.tell(Template.Rika, "Hey Sho. Ich bin Rika.");
+            await Template.fS.Speech.tell(Template.Sho, "Hey. Nett dich kennenzulernen. ");
+            await Template.fS.Speech.tell(Template.Rika, "Willst du heute nach dem Unterricht hier bleiben? Wir können zusammen Hausaufgaben machen und ich kann dir etwas von der Schule zeigen.");
+            await Template.fS.Speech.tell(Template.Sho, "Klar, das wäre echt cool.");
+            await Template.fS.Speech.tell(Template.Rika, "<i>Okay, also wenn ich hier mit ihm bleibe, sollte alles gut sein. Ich muss mich nur erinnern, was wir das letzte Mal gemacht haben.</i>");
+            //TODO: ADDING SOUND EFFECTS SCHOOLBELLS
+            //fade out screen
+            Template.fS.Character.hideAll();
+            Template.fS.Speech.hide();
+            Template.fS.update();
+            await Template.fS.Location.show(Template.location.darkBackground);
+            await Template.fS.update();
+            //fade in screen
+            await Template.fS.Location.show(Template.location.classroom);
+            await Template.fS.update();
+            await Template.fS.Character.show(Template.Sho, Template.ShoPose.neutral, Template.fS.positions.bottomcenter);
+            await Template.fS.update();
+            await Template.fS.Speech.tell(Template.Sho, "Also ich habe noch eine Aufgabe in Zeichnen. Hast du eine Schere?");
+            await Template.fS.Speech.tell(Template.Rika, "<i>Eine Schere?!</i>");
+            await Template.fS.Speech.tell(Template.Rika, "N-nein tut mir Leid. Sollen wir mit etwas anfangen, was wir zusammen machen können?");
+            await Template.fS.Speech.tell(Template.Sho, "Mh, vielleicht gibt es hier welche im Klassenzimmer.");
+            await Template.fS.Speech.tell(Template.Rika, "Halt warte. Wir sollten einfach warten, okay?");
+            await Template.fS.Speech.tell(Template.Sho, "Warten? Worauf?");
+            await Template.fS.Speech.tell(Template.Rika, "Setzt dich bitte, ich weiß nicht wie ich dir das erklären soll, ohne wie eine Verrückte zu klingen.");
+            await Template.fS.Speech.tell(Template.Sho, "Okay, dann versuch es mal.");
+            //if statement for loveometer enough
+            //TODO: ADJUST LOVEOMETER VALUE
+            if (Template.StateManager.loveOMeter == 10) {
+                console.log("Loveometer is high enough");
+                await Template.fS.Speech.tell(Template.Rika, "Also ich habe zurzeit so ein Gefühl, dass ich immer wieder das Gleiche durchlebe. ");
+                await Template.fS.Speech.tell(Template.Rika, "Und um eine bestimmte Zeit … stirbst du…");
+                await Template.fS.Speech.tell(Template.Sho, "…");
+                await Template.fS.Speech.tell(Template.Rika, "Und ich habe das Buch gelesen. Da steht etwas von einem Dämon…");
+                await Template.fS.Speech.tell(Template.Rika, "Jedenfalls, sollten wir die Zeit einfach totschlagen.");
+                await Template.fS.Speech.tell(Template.Sho, "O-okay, ich glaube dir mal…");
+                await Template.fS.Speech.tell(Template.Rika, "Ich weiß es klingt total verrückt. Aber wir müssen einfach nur warten und nichts machen.");
+                await Template.fS.Speech.tell(Template.Rika, "Morgen ist alles wieder normal.");
+                // *** GOOD ENDING 1 ***
+            }
+            else {
+                console.log("Loveometer is not high enough");
+                await Template.fS.Speech.tell(Template.Rika, "Also ich habe zurzeit so ein Gefühl, dass ich immer wieder das Gleiche durchlebe. ");
+                await Template.fS.Speech.tell(Template.Rika, "Und um eine bestimmte Zeit … stirbst du…");
+                await Template.fS.Speech.tell(Template.Sho, "W-was redest du da?");
+                await Template.fS.Speech.tell(Template.Rika, "Ich habe das in einem Buch gelesen. Es handelt sich um einen Zeitdämonen.");
+                await Template.fS.Speech.tell(Template.Sho, "In einem Buch?");
+                await Template.fS.Speech.tell(Template.Sho, "Ich weiß ja nicht was für Fantasy Bücher du liest, aber das ist nicht wahr.");
+                await Template.fS.Speech.tell(Template.Sho, "Ich werde jetzt meine Zeichen Aufgabe machen und du solltest einfach gehen, wenn du keine Hausaufgaben erledigen willst.");
+                await Template.fS.Speech.tell(Template.Rika, "Jetzt warte doch mal…");
+                //TODO: ADDING SOUND EFFECTS OPENING CABINET
+                await Template.fS.Speech.tell(Template.Sho, "Hier gibt es bestimmt eine Schere.");
+                //TODO: ADDING SOUND EFFECTS FALLING OBJECTS
+                // *** BAD ENDING 3 ***
+            }
         }
     }
     Template.TalkingSho = TalkingSho;
