@@ -30,8 +30,8 @@ namespace Template {
 
         public static async secondEnding(): Promise<void> {
             let endingTwo = {
-                stayInSchool: "Vorschlagen in der Schule zu bleiben.",
                 goHomeFast: "Vorschlagen sich zu beeilen.",
+                stayInSchool: "Vorschlagen in der Schule zu bleiben.",
             };
 
             let dialogueElement = await fS.Menu.getInput(endingTwo, "choicesCSSClass");
@@ -96,8 +96,8 @@ namespace Template {
 
         public static async thirdEnding(): Promise<void> {
             let endingThree = {
-                goLibrary: "Vielleicht finde ich irgendwas in der Bibliothek.",
                 todaySuccess: "Heute schaffe ich es, das weiß ich.",
+                goLibrary: "Vielleicht finde ich irgendwas in der Bibliothek.",
             };
             let dialogueElement = await fS.Menu.getInput(endingThree, "choicesCSSClass");
 
@@ -125,19 +125,19 @@ namespace Template {
 
         public static async fourthEnding(): Promise<void> {
             let endingFour = {
-                speakSagi: "Vielleicht finde ich irgendwas in der Bibliothek.",
-                speakSho: "Heute schaffe ich es, das weiß ich.",
+                speakSho: "Mit Sho sprechen",
+                speakSagi: "Mit Sagi sprechen",
             };
             let dialogueElement = await fS.Menu.getInput(endingFour, "choicesCSSClass");
 
             switch (dialogueElement) {
                 case endingFour.speakSagi:
                     // continue path here
-
+                    await TalkingSagi.talkingWithSagi();
                     break;
                 case endingFour.speakSho:
                     // continue path here
-
+                    await TalkingSho.talkingWithSho();
                     break;
             }
         }

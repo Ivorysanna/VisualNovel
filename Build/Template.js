@@ -135,8 +135,8 @@ var Template;
         }
         static async secondEnding() {
             let endingTwo = {
-                stayInSchool: "Vorschlagen in der Schule zu bleiben.",
                 goHomeFast: "Vorschlagen sich zu beeilen.",
+                stayInSchool: "Vorschlagen in der Schule zu bleiben.",
             };
             let dialogueElement = await Template.fS.Menu.getInput(endingTwo, "choicesCSSClass");
             switch (dialogueElement) {
@@ -192,8 +192,8 @@ var Template;
         }
         static async thirdEnding() {
             let endingThree = {
-                goLibrary: "Vielleicht finde ich irgendwas in der Bibliothek.",
                 todaySuccess: "Heute schaffe ich es, das weiß ich.",
+                goLibrary: "Vielleicht finde ich irgendwas in der Bibliothek.",
             };
             let dialogueElement = await Template.fS.Menu.getInput(endingThree, "choicesCSSClass");
             switch (dialogueElement) {
@@ -218,16 +218,18 @@ var Template;
         }
         static async fourthEnding() {
             let endingFour = {
-                speakSagi: "Vielleicht finde ich irgendwas in der Bibliothek.",
-                speakSho: "Heute schaffe ich es, das weiß ich.",
+                speakSho: "Mit Sho sprechen",
+                speakSagi: "Mit Sagi sprechen",
             };
             let dialogueElement = await Template.fS.Menu.getInput(endingFour, "choicesCSSClass");
             switch (dialogueElement) {
                 case endingFour.speakSagi:
                     // continue path here
+                    await Template.TalkingSagi.talkingWithSagi();
                     break;
                 case endingFour.speakSho:
                     // continue path here
+                    await Template.TalkingSho.talkingWithSho();
                     break;
             }
         }
@@ -967,9 +969,10 @@ var Template;
                 console.log(demonName);
                 if (demonName == "Sagi" || demonName == "sagi" || demonName == "Sagi Aoki" || demonName == "sagi aoki" || demonName == "Sagi aoki" || demonName == "sagi Aoki") {
                     await Template.fS.Speech.tell(Template.Rika, "<i>… Sagi. Wir sind schon so lange Freunde. Wie kann sie mir das antun.</i>");
-                    await Template.fS.Speech.tell(Template.Rika, "<i>Soll ich mit Sagi sprechen, oder versuchen Sho überreden, dazubleiben.</i>");
+                    await Template.fS.Speech.tell(Template.Rika, "<i>Soll ich mit Sagi sprechen, oder versuchen Sho überreden, dazubleiben?</i>");
                     nameGuessed = true;
                     // *** Auswahlmöglichkeit ***
+                    await Template.EndingChoices.fourthEnding();
                 }
                 else {
                     await Template.fS.Speech.tell(Template.Rika, "<i>Nein, das ergibt keinen Sinn.</i>");
@@ -1006,6 +1009,24 @@ var Template;
         }
     }
     Template.SchoolAccident = SchoolAccident;
+})(Template || (Template = {}));
+var Template;
+(function (Template) {
+    class TalkingSagi {
+        static async talkingWithSagi() {
+            console.log("Talking with Sagi");
+        }
+    }
+    Template.TalkingSagi = TalkingSagi;
+})(Template || (Template = {}));
+var Template;
+(function (Template) {
+    class TalkingSho {
+        static async talkingWithSho() {
+            console.log("Talking with Sho");
+        }
+    }
+    Template.TalkingSho = TalkingSho;
 })(Template || (Template = {}));
 var Template;
 (function (Template) {

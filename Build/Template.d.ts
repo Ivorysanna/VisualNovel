@@ -271,5 +271,15 @@ declare namespace Template {
     }
 }
 declare namespace Template {
+    class TalkingSagi {
+        static talkingWithSagi(): Promise<void>;
+    }
+}
+declare namespace Template {
+    class TalkingSho {
+        static talkingWithSho(): Promise<void>;
+    }
+}
+declare namespace Template {
     function WakingUp(): fS.SceneReturn;
 }
