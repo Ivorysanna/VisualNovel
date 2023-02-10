@@ -302,6 +302,17 @@ var Template;
 })(Template || (Template = {}));
 var Template;
 (function (Template) {
+    class InterfaceHelper {
+        //toggle css class hidden for the button with id ausleihbutton
+        static toggleAusleihButton() {
+            let ausleihButton = document.getElementById("ausleihbutton");
+            ausleihButton.classList.toggle("hidden");
+        }
+    }
+    Template.InterfaceHelper = InterfaceHelper;
+})(Template || (Template = {}));
+var Template;
+(function (Template) {
     Template.f = FudgeCore;
     Template.fS = FudgeStory;
     console.log("FudgeStory template starting");
@@ -1024,6 +1035,7 @@ var Template;
             await Template.fS.Speech.tell(Template.Rika, "<i>Das ist wirklich viel. Ich sollte das Buch ausleihen.</i>");
             //TODO: *** ADD BORROW BUTTON*** 
             //TODO: *** ADDING RIDDLE DOWNLOAD***
+            Template.InterfaceHelper.toggleAusleihButton();
             await Template.fS.Speech.tell(Template.Rika, "<i>Okay also, das Buch sagt, ich muss den Namen von diesem Dämon kennen.</i>");
             //TODO: *** ADDING IF FOR CHECKING THE NAME***
             let nameGuessed = false;

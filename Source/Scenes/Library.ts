@@ -14,6 +14,8 @@ namespace Template {
 
             //TODO: *** ADD BORROW BUTTON*** 
             //TODO: *** ADDING RIDDLE DOWNLOAD***
+            InterfaceHelper.toggleAusleihButton();
+            
             
             await fS.Speech.tell(Rika, "<i>Okay also, das Buch sagt, ich muss den Namen von diesem Dämon kennen.</i>");
 

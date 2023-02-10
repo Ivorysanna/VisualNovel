@@ -16,6 +16,11 @@ declare namespace Template {
     }
 }
 declare namespace Template {
+    class InterfaceHelper {
+        static toggleAusleihButton(): void;
+    }
+}
+declare namespace Template {
     export import f = FudgeCore;
     export import fS = FudgeStory;
     let transition: {

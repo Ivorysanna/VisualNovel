@@ -43,6 +43,15 @@ dialog[type=splash]>img#FudgeStoryLogo {
   width: 100%;
 }
 
+#ausleihbutton{
+  position: absolute;
+  bottom: 50%;
+  right: 50%;
+}
+#ausleihbutton.hidden{
+  display: none;
+}
+
 /***** SPEECH, CONTENT, NAMES *****/
 speech {
   position: absolute;
