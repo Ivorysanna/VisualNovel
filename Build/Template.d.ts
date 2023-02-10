@@ -10,6 +10,7 @@ declare namespace Template {
     class EndingChoices {
         static firstEnding(): Promise<void>;
         static secondEnding(): Promise<void>;
+        static thirdEnding(): Promise<void>;
     }
 }
 declare namespace Template {
@@ -217,6 +218,9 @@ declare namespace Template {
         static endingState: String;
         static carCrashHappend: boolean;
     }
+    class demonName {
+        static demonName: string;
+    }
 }
 declare namespace Template {
     class TransitionManager {
@@ -246,6 +250,11 @@ declare namespace Template {
 }
 declare namespace Template {
     function InClass(): fS.SceneReturn;
+}
+declare namespace Template {
+    class Library {
+        static inLibrary(): Promise<void>;
+    }
 }
 declare namespace Template {
     class SchoolAccident {

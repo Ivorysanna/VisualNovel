@@ -3,11 +3,11 @@ namespace Template {
         public static async firstEnding(): Promise<void> {
             let endingOne = {
                 longPath: "Langen Weg vorschalgen",
-                shortPath: "Kurzen Weg vorschlagen"
+                shortPath: "Kurzen Weg vorschlagen",
             };
 
             let dialogueElement = await fS.Menu.getInput(endingOne, "choicesCSSClass");
-            
+
             switch (dialogueElement) {
                 case endingOne.longPath:
                     // continue path here
@@ -28,14 +28,14 @@ namespace Template {
             }
         }
 
-        public static async secondEnding(): Promise <void> {
+        public static async secondEnding(): Promise<void> {
             let endingTwo = {
                 stayInSchool: "Vorschlagen in der Schule zu bleiben.",
-                goHomeFast: "Vorschlagen sich zu beeilen."
+                goHomeFast: "Vorschlagen sich zu beeilen.",
             };
 
             let dialogueElement = await fS.Menu.getInput(endingTwo, "choicesCSSClass");
-            
+
             switch (dialogueElement) {
                 case endingTwo.stayInSchool:
                     // continue path here
@@ -52,7 +52,7 @@ namespace Template {
                     await fS.Speech.tell(Rika, "Ja, eigentlich schon. Ich bin zwar nicht hier geboren. Aber meine Eltern sind, als ich klein war, hier hergezogen. Also ich erinnere mich an nichts anderes.");
                     await fS.Speech.tell(Sho, "Ich glaube, ich erinnere mich nicht mal daran, wie oft wir schon umgezogen sind.");
 
-                    // -- -- -- Auswahlmöglichkeiten -- -- -- 
+                    // -- -- -- Auswahlmöglichkeiten -- -- --
                     await Choices.askingShoAboutFriends();
                     //await SchoolAccident.firstSchoolAccident();
                     break;
@@ -91,6 +91,35 @@ namespace Template {
                 default:
                     console.log("Nimmt Default!");
                     break;
+            }
+        }
+
+        public static async thirdEnding(): Promise<void> {
+            let endingThree = {
+                goLibrary: "Vielleicht finde ich irgendwas in der Bibliothek.",
+                todaySuccess: "Heute schaffe ich es, das weiß ich.",
+            };
+            let dialogueElement = await fS.Menu.getInput(endingThree, "choicesCSSClass");
+
+            switch (dialogueElement) {
+                case endingThree.goLibrary:
+                    // continue path here
+                    await fS.Character.show(Sagi, SagiPose.neutral, fS.positions.bottomcenter);
+                    await fS.Speech.tell(Rika, "<i>Vielleicht finde ich etwas in der Bibliothek. Ich kann nicht die erste sein, die sowas erlebt.</i>");
+                    await fS.Speech.tell(Sagi, "Sollen wir uns was zu essen holen und mit Sho sprechen?");
+                    await fS.Speech.tell(Rika, "Geh schon mal vor. Ich möchte noch kurz in die Bibliothek.");
+                    await fS.Speech.tell(Sagi, "Willst du ohne mich auf die Prüfungen lernen?");
+                    await fS.Speech.tell(Rika, "Nein, ich möchte einfach nur ein Buch abgeben.");
+                    await fS.Speech.tell(Sagi, "In Ordnung. Wir sehen uns später.");
+                    await fS.Speech.tell(Rika, "Ja, bis später.");
+                    await fS.Character.hide(Sagi);
+                    fS.Speech.hide();
+                    await fS.update();
+                    await Library.inLibrary();
+                    break;
+                    
+                case endingThree.todaySuccess:
+                    // continue path here
             }
         }
     }

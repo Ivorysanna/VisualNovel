@@ -111,7 +111,7 @@ var Template;
         static async firstEnding() {
             let endingOne = {
                 longPath: "Langen Weg vorschalgen",
-                shortPath: "Kurzen Weg vorschlagen"
+                shortPath: "Kurzen Weg vorschlagen",
             };
             let dialogueElement = await Template.fS.Menu.getInput(endingOne, "choicesCSSClass");
             switch (dialogueElement) {
@@ -136,7 +136,7 @@ var Template;
         static async secondEnding() {
             let endingTwo = {
                 stayInSchool: "Vorschlagen in der Schule zu bleiben.",
-                goHomeFast: "Vorschlagen sich zu beeilen."
+                goHomeFast: "Vorschlagen sich zu beeilen.",
             };
             let dialogueElement = await Template.fS.Menu.getInput(endingTwo, "choicesCSSClass");
             switch (dialogueElement) {
@@ -153,7 +153,7 @@ var Template;
                     await Template.fS.Speech.tell(Template.Sho, "Wohnst du schon lange in Kyoto?");
                     await Template.fS.Speech.tell(Template.Rika, "Ja, eigentlich schon. Ich bin zwar nicht hier geboren. Aber meine Eltern sind, als ich klein war, hier hergezogen. Also ich erinnere mich an nichts anderes.");
                     await Template.fS.Speech.tell(Template.Sho, "Ich glaube, ich erinnere mich nicht mal daran, wie oft wir schon umgezogen sind.");
-                    // -- -- -- Auswahlmöglichkeiten -- -- -- 
+                    // -- -- -- Auswahlmöglichkeiten -- -- --
                     await Template.Choices.askingShoAboutFriends();
                     //await SchoolAccident.firstSchoolAccident();
                     break;
@@ -188,6 +188,32 @@ var Template;
                 default:
                     console.log("Nimmt Default!");
                     break;
+            }
+        }
+        static async thirdEnding() {
+            let endingThree = {
+                goLibrary: "Vielleicht finde ich irgendwas in der Bibliothek.",
+                todaySuccess: "Heute schaffe ich es, das weiß ich.",
+            };
+            let dialogueElement = await Template.fS.Menu.getInput(endingThree, "choicesCSSClass");
+            switch (dialogueElement) {
+                case endingThree.goLibrary:
+                    // continue path here
+                    await Template.fS.Character.show(Template.Sagi, Template.SagiPose.neutral, Template.fS.positions.bottomcenter);
+                    await Template.fS.Speech.tell(Template.Rika, "<i>Vielleicht finde ich etwas in der Bibliothek. Ich kann nicht die erste sein, die sowas erlebt.</i>");
+                    await Template.fS.Speech.tell(Template.Sagi, "Sollen wir uns was zu essen holen und mit Sho sprechen?");
+                    await Template.fS.Speech.tell(Template.Rika, "Geh schon mal vor. Ich möchte noch kurz in die Bibliothek.");
+                    await Template.fS.Speech.tell(Template.Sagi, "Willst du ohne mich auf die Prüfungen lernen?");
+                    await Template.fS.Speech.tell(Template.Rika, "Nein, ich möchte einfach nur ein Buch abgeben.");
+                    await Template.fS.Speech.tell(Template.Sagi, "In Ordnung. Wir sehen uns später.");
+                    await Template.fS.Speech.tell(Template.Rika, "Ja, bis später.");
+                    await Template.fS.Character.hide(Template.Sagi);
+                    Template.fS.Speech.hide();
+                    await Template.fS.update();
+                    await Template.Library.inLibrary();
+                    break;
+                case endingThree.todaySuccess:
+                // continue path here
             }
         }
     }
@@ -452,6 +478,10 @@ var Template;
         static carCrashHappend = false;
     }
     Template.StateManager = StateManager;
+    class demonName {
+        static demonName = "";
+    }
+    Template.demonName = demonName;
 })(Template || (Template = {}));
 var Template;
 (function (Template) {
@@ -875,9 +905,56 @@ var Template;
                 await Template.fS.Speech.tell(Template.Rika, "<i>… Das ist er. Ich habe von ihm geträumt. Aber was ist passiert? </i>");
                 //TODO: *** Talking Sound ***
                 await Template.fS.Speech.tell(Template.Teacher, "Okay, beruhigt euch wieder. Ihr könnt in der Pause noch mal miteinander reden.");
+                //fade out screen
+                await Template.fS.Location.show(Template.location.darkBackground);
+                Template.fS.Speech.hide();
+                Template.fS.Character.hideAll();
+                await Template.fS.update();
+                await Template.fS.Progress.delay(3);
+                //fade in screen classroom
+                await Template.fS.Location.show(Template.location.classroom);
+                await Template.fS.update();
+                //TODO: *** Talking Sound ***
+                //speech rika   
+                await Template.fS.Speech.tell(Template.Rika, "<i>Ich will nicht, dass sich der Tag wiederholt. Was kann ich bloß machen?</i>");
+                // *** Auswahlmöglichkeit*** 
+                await Template.EndingChoices.thirdEnding();
         }
     }
     Template.InClass = InClass;
+})(Template || (Template = {}));
+var Template;
+(function (Template) {
+    class Library {
+        static async inLibrary() {
+            console.log("Library");
+            await Template.fS.Location.show(Template.location.library);
+            await Template.fS.update();
+            //TODO: *** ADDING SOUND LIBRARY***
+            await Template.fS.Speech.tell(Template.Rika, "<i>Okay, wo schaue ich das jetzt nach?</i>");
+            await Template.fS.Speech.tell(Template.Rika, "<i>Mal sehen. “Japanische Mythologie”. Das sieht vielversprechend aus.</i>");
+            //TODO: *** ADDING BOOK SOUND EFFECTS ***
+            await Template.fS.Speech.tell(Template.Rika, "<i>Das ist wirklich viel. Ich sollte das Buch ausleihen.</i>");
+            //TODO: *** ADD BORROW BUTTON*** 
+            //TODO: *** ADDING RIDDLE DOWNLOAD***
+            await Template.fS.Speech.tell(Template.Rika, "<i>Okay also, das Buch sagt, ich muss den Namen von diesem Dämon kennen.</i>");
+            //TODO: *** ADDING IF FOR CHECKING THE NAME***
+            let demonName = await Template.fS.Menu.getInput("Wie heißt der Dämon?", "text");
+            let nameGuessed = false;
+            while (nameGuessed == false) {
+                demonName = await Template.fS.Menu.getInput("Wie heißt der Dämon?", "text");
+                if (demonName == "Sagi" || "sagi") {
+                    await Template.fS.Speech.tell(Template.Rika, "<i>… Sagi. Wir sind schon so lange Freunde. Wie kann sie mir das antun.</i>");
+                    await Template.fS.Speech.tell(Template.Rika, "<i>Soll ich mit Sagi sprechen, oder versuchen Sho überreden, dazubleiben.</i>");
+                    nameGuessed = true;
+                }
+                else {
+                    await Template.fS.Speech.tell(Template.Rika, "<i>Nein, das macht ergibt keinen Sinn.</i>");
+                }
+            }
+        }
+    }
+    Template.Library = Library;
 })(Template || (Template = {}));
 var Template;
 (function (Template) {

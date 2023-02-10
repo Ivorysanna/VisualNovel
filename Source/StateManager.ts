@@ -20,4 +20,8 @@ namespace Template {
 
         public static carCrashHappend: boolean = false;
     }
+
+    export class demonName {
+        public static demonName: string = "";
+    }
 }
