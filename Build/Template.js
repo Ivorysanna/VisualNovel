@@ -288,10 +288,12 @@ var Template;
                 case badEndingOne.saveSho:
                     // continue path here
                     console.log("saveSho");
+                    //TODO: ADD SOUND CRASH
                     break;
                 case badEndingOne.doNothing:
                     // continue path here
                     console.log("doNothing");
+                    //TODO: ADD SOUND CRASH
                     break;
             }
         }

@@ -37,8 +37,6 @@ namespace Template {
             //TODO: *** ADDING SOUND CAR***
             // *** Auswahlmöglichkeit***
             await EndingChoices.firstBadEndingAgain();
-
-
         }
     }
 }
