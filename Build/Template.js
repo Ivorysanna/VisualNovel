@@ -213,7 +213,43 @@ var Template;
                     await Template.Library.inLibrary();
                     break;
                 case endingThree.todaySuccess:
-                // continue path here
+                    // continue path here
+                    await Template.fS.Character.show(Template.Sagi, Template.SagiPose.neutral, Template.fS.positionPercent(70, 100));
+                    await Template.fS.update();
+                    await Template.fS.Speech.tell(Template.Rika, "<i>Heute schaffe ich es, das weiß ich.</i>");
+                    await Template.fS.Speech.tell(Template.Sagi, "Rika, sollen wir zu Sho gehen und mit ihm reden?");
+                    await Template.fS.Speech.tell(Template.Rika, "Ja, lass uns zu ihm gehen.");
+                    await Template.fS.Character.show(Template.Sho, Template.ShoPose.neutral, Template.fS.positionPercent(30, 100));
+                    await Template.fS.update();
+                    await Template.fS.Speech.tell(Template.Rika, "Hi Sho, ich bin Rika und das ist Sagi.");
+                    await Template.fS.Speech.tell(Template.Sho, "Hey, nett euch kennenzulernen.");
+                    await Template.fS.Speech.tell(Template.Sagi, "Du bist erst vor kurzem hergezogen, nicht wahr?");
+                    await Template.fS.Speech.tell(Template.Sho, "Ja genau, mein erstes Mal in Kyoto.");
+                    await Template.fS.Speech.tell(Template.Rika, "Wo bist du denn hingezogen?");
+                    await Template.fS.Speech.tell(Template.Rika, "<i>Ich muss versuchen, wieder mit ihm nach Hause zu gehen.</i>");
+                    await Template.fS.Speech.tell(Template.Sho, "Ah, ich weiß gerade nicht wie die Straße heißt, aber das ist in der Nähe von einem Park.");
+                    await Template.fS.Speech.tell(Template.Rika, "Der Umekoji Park?");
+                    await Template.fS.Speech.tell(Template.Sho, "Ja genau, quasi gegenüber.");
+                    await Template.fS.Speech.tell(Template.Rika, "<i>Das ist meine Chance.</i>");
+                    await Template.fS.Speech.tell(Template.Rika, "Wenn du möchtest, können wir heute zusammen nach Hause gehen, ich wohne in der gleichen Straße.");
+                    await Template.fS.Speech.tell(Template.Sagi, "...");
+                    await Template.fS.Speech.tell(Template.Sho, "Oh, das wäre echt cool.");
+                    //TODO: ADD SCHOOLBELL SOUND
+                    await Template.fS.Speech.tell(Template.Rika, "Wir sehen uns nach dem Unterricht.");
+                    await Template.fS.Speech.tell(Template.Rika, "Komm Sagi.");
+                    Template.fS.Character.hideAll();
+                    Template.fS.Speech.hide();
+                    Template.fS.update();
+                    await Template.fS.Location.show(Template.location.darkBackground);
+                    await Template.fS.update();
+                    await Template.fS.Progress.delay(3);
+                    //TODO: ADD SCHOOLBELL SOUND
+                    await Template.fS.Location.show(Template.location.classroom);
+                    await Template.fS.update();
+                    await Template.fS.Character.show(Template.Sho, Template.ShoPose.neutral, Template.fS.positions.bottomcenter);
+                    await Template.fS.update();
+                    await Template.fS.Speech.tell(Template.Rika, "Okay, können wir los?");
+                    await Template.fS.Speech.tell(Template.Sho, "Ja, ich packe nur schnell meine Sachen zusammen.");
             }
         }
         static async fourthEnding() {
@@ -499,7 +535,7 @@ var Template;
         //TODO: FirstRun wieder einblenden 
         // public static storyState: StoryState = StoryState.FirstRun;
         static storyState = StoryState.SchoolAccidentHappend;
-        static loveOMeter = 0;
+        static loveOMeter = 20;
         static choicesState = "firstChoice";
         static endingState = "";
         static carCrashHappend = false;
@@ -1015,6 +1051,24 @@ var Template;
     class TalkingSagi {
         static async talkingWithSagi() {
             console.log("Talking with Sagi");
+            await Template.fS.Location.show(Template.location.classroom);
+            await Template.fS.update();
+            await Template.fS.Speech.tell(Template.Rika, "<i>Wie konnte Sie mir das antun. Ich weiß nicht, wie oft ich diesen Tag jetzt immer und immer wieder erleben musste.</i>");
+            await Template.fS.Speech.tell(Template.Rika, "<i>Ich werde mit ihr reden, wir sind beste Freundinnen, schon so lange.</i>");
+            await Template.fS.Character.show(Template.Sagi, Template.SagiPose.neutral, Template.fS.positions.bottomcenter);
+            await Template.fS.update();
+            await Template.fS.Speech.tell(Template.Rika, "Sagi?");
+            await Template.fS.Speech.tell(Template.Sagi, "Ja, was gibts?");
+            await Template.fS.Speech.tell(Template.Rika, "Ich weiß, wer du bist … warum tust du mir das an?");
+            await Template.fS.Speech.tell(Template.Sagi, "Wovon redest du?");
+            await Template.fS.Speech.tell(Template.Rika, "Bitte mach es nicht noch schwerer, ich weiß, dass du dafür verantwortlich bist, dass Sho stirbt.");
+            await Template.fS.Speech.tell(Template.Sagi, "...");
+            await Template.fS.Speech.tell(Template.Rika, "Ich dachte wir sind Freunde, wie lange geht das schon so?");
+            await Template.fS.Speech.tell(Template.Rika, "Zum wievielten Mal erlebe ich den heutigen Tag schon?!");
+            await Template.fS.Speech.tell(Template.Sagi, "Ich habe wirklich gehofft, dass du es nicht herausfindest.");
+            await Template.fS.Speech.tell(Template.Sagi, "Dann bleibt mir wohl nichts anderes übrig.");
+            //TODO: ADDING SOUND FIGHTING
+            //*** BAD ENDING 4***             
         }
     }
     Template.TalkingSagi = TalkingSagi;
@@ -1053,9 +1107,10 @@ var Template;
             await Template.fS.Speech.tell(Template.Sho, "Warten? Worauf?");
             await Template.fS.Speech.tell(Template.Rika, "Setzt dich bitte, ich weiß nicht wie ich dir das erklären soll, ohne wie eine Verrückte zu klingen.");
             await Template.fS.Speech.tell(Template.Sho, "Okay, dann versuch es mal.");
+            console.log(Template.StateManager.loveOMeter);
             //if statement for loveometer enough
             //TODO: ADJUST LOVEOMETER VALUE
-            if (Template.StateManager.loveOMeter == 10) {
+            if (Template.StateManager.loveOMeter >= 10) {
                 console.log("Loveometer is high enough");
                 await Template.fS.Speech.tell(Template.Rika, "Also ich habe zurzeit so ein Gefühl, dass ich immer wieder das Gleiche durchlebe. ");
                 await Template.fS.Speech.tell(Template.Rika, "Und um eine bestimmte Zeit … stirbst du…");

@@ -36,10 +36,11 @@ namespace Template {
             await fS.Speech.tell(Sho, "Warten? Worauf?");
             await fS.Speech.tell(Rika, "Setzt dich bitte, ich weiß nicht wie ich dir das erklären soll, ohne wie eine Verrückte zu klingen.");
             await fS.Speech.tell(Sho, "Okay, dann versuch es mal.");
+            console.log(StateManager.loveOMeter);
 
             //if statement for loveometer enough
             //TODO: ADJUST LOVEOMETER VALUE
-            if (StateManager.loveOMeter == 10) {
+            if (StateManager.loveOMeter >= 10) {
                 console.log("Loveometer is high enough");
                 await fS.Speech.tell(Rika, "Also ich habe zurzeit so ein Gefühl, dass ich immer wieder das Gleiche durchlebe. ");
                 await fS.Speech.tell(Rika, "Und um eine bestimmte Zeit … stirbst du…");

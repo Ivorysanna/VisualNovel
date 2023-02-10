@@ -119,7 +119,49 @@ namespace Template {
                     break;
 
                 case endingThree.todaySuccess:
-                // continue path here
+                    // continue path here
+                    await fS.Character.show(Sagi, SagiPose.neutral, fS.positionPercent(70, 100));
+                    await fS.update();
+                    await fS.Speech.tell(Rika, "<i>Heute schaffe ich es, das weiß ich.</i>");
+                    await fS.Speech.tell(Sagi, "Rika, sollen wir zu Sho gehen und mit ihm reden?");
+                    await fS.Speech.tell(Rika, "Ja, lass uns zu ihm gehen.");
+                    
+                    await fS.Character.show(Sho, ShoPose.neutral, fS.positionPercent(30, 100));
+                    await fS.update();
+
+                    await fS.Speech.tell(Rika, "Hi Sho, ich bin Rika und das ist Sagi.");
+                    await fS.Speech.tell(Sho, "Hey, nett euch kennenzulernen.");
+                    await fS.Speech.tell(Sagi, "Du bist erst vor kurzem hergezogen, nicht wahr?");
+                    await fS.Speech.tell(Sho, "Ja genau, mein erstes Mal in Kyoto.");
+                    await fS.Speech.tell(Rika, "Wo bist du denn hingezogen?");
+                    await fS.Speech.tell(Rika, "<i>Ich muss versuchen, wieder mit ihm nach Hause zu gehen.</i>");
+                    await fS.Speech.tell(Sho, "Ah, ich weiß gerade nicht wie die Straße heißt, aber das ist in der Nähe von einem Park.");
+                    await fS.Speech.tell(Rika, "Der Umekoji Park?");
+                    await fS.Speech.tell(Sho, "Ja genau, quasi gegenüber.");
+                    await fS.Speech.tell(Rika, "<i>Das ist meine Chance.</i>");
+                    await fS.Speech.tell(Rika, "Wenn du möchtest, können wir heute zusammen nach Hause gehen, ich wohne in der gleichen Straße.");
+                    await fS.Speech.tell(Sagi, "...");
+                    await fS.Speech.tell(Sho, "Oh, das wäre echt cool.");
+                    //TODO: ADD SCHOOLBELL SOUND
+                    await fS.Speech.tell(Rika, "Wir sehen uns nach dem Unterricht.");
+                    await fS.Speech.tell(Rika, "Komm Sagi.");
+
+                    fS.Character.hideAll();
+                    fS.Speech.hide();
+                    fS.update();
+                    await fS.Location.show(location.darkBackground);
+                    await fS.update();
+                    await fS.Progress.delay(3);
+                    //TODO: ADD SCHOOLBELL SOUND
+                    
+                    await fS.Location.show(location.classroom);
+                    await fS.update();
+                    await fS.Character.show(Sho, ShoPose.neutral, fS.positions.bottomcenter);
+                    await fS.update();
+                    await fS.Speech.tell(Rika, "Okay, können wir los?");
+                    await fS.Speech.tell(Sho, "Ja, ich packe nur schnell meine Sachen zusammen.");
+
+
             }
         }
 
