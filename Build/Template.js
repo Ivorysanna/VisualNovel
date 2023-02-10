@@ -239,7 +239,7 @@ var Template;
                     await Template.fS.Speech.tell(Template.Rika, "Komm Sagi.");
                     Template.fS.Character.hideAll();
                     Template.fS.Speech.hide();
-                    Template.fS.update();
+                    await Template.fS.update();
                     await Template.fS.Location.show(Template.location.darkBackground);
                     await Template.fS.update();
                     await Template.fS.Progress.delay(3);
@@ -250,6 +250,15 @@ var Template;
                     await Template.fS.update();
                     await Template.fS.Speech.tell(Template.Rika, "Okay, können wir los?");
                     await Template.fS.Speech.tell(Template.Sho, "Ja, ich packe nur schnell meine Sachen zusammen.");
+                    //fade out screen
+                    Template.fS.Character.hideAll();
+                    Template.fS.Speech.hide();
+                    await Template.fS.update();
+                    await Template.fS.Location.show(Template.location.darkBackground);
+                    await Template.fS.update();
+                    await Template.fS.Progress.delay(3);
+                    //Saving Sho
+                    await Template.SavingSho.savingSho();
             }
         }
         static async fourthEnding() {
@@ -266,6 +275,23 @@ var Template;
                 case endingFour.speakSho:
                     // continue path here
                     await Template.TalkingSho.talkingWithSho();
+                    break;
+            }
+        }
+        static async firstBadEndingAgain() {
+            let badEndingOne = {
+                saveSho: "Sho retten",
+                doNothing: "Nicht reagieren",
+            };
+            let dialogueElement = await Template.fS.Menu.getInput(badEndingOne, "choicesCSSClass");
+            switch (dialogueElement) {
+                case badEndingOne.saveSho:
+                    // continue path here
+                    console.log("saveSho");
+                    break;
+                case badEndingOne.doNothing:
+                    // continue path here
+                    console.log("doNothing");
                     break;
             }
         }
@@ -1017,6 +1043,42 @@ var Template;
         }
     }
     Template.Library = Library;
+})(Template || (Template = {}));
+var Template;
+(function (Template) {
+    class SavingSho {
+        static async savingSho() {
+            console.log("Saving Sho");
+            await Template.fS.Location.show(Template.location.uni);
+            await Template.fS.update();
+            await Template.fS.Character.show(Template.Sho, Template.ShoPose.neutral, Template.fS.positions.bottomcenter);
+            await Template.fS.update();
+            //sho tell
+            await Template.fS.Speech.tell(Template.Sho, "Okay, dir nach.");
+            await Template.fS.Speech.tell(Template.Rika, "...");
+            await Template.fS.Speech.tell(Template.Rika, "<i>Ich muss den gleichen Weg nehmen wie beim ersten Mal.</i>");
+            await Template.fS.Speech.tell(Template.Rika, "Lass uns den etwas längeren Weg nehmen, er ist nicht arg länger, aber dafür viel schöner.");
+            await Template.fS.Speech.tell(Template.Sho, "Klar, gerne, dann sehe ich auch mal neue Orte in dieser Stadt.");
+            //fade out screen
+            Template.fS.Character.hideAll();
+            Template.fS.Speech.hide();
+            await Template.fS.update();
+            await Template.fS.Location.show(Template.location.darkBackground);
+            await Template.fS.update();
+            await Template.fS.Progress.delay(3);
+            //TODO: *** ADDING SOUND STREET***
+            await Template.fS.Location.show(Template.location.streetCity);
+            await Template.fS.update();
+            await Template.fS.Character.show(Template.Sho, Template.ShoPose.neutral, Template.fS.positions.bottomcenter);
+            await Template.fS.update();
+            await Template.fS.Speech.tell(Template.Rika, "<i>Hier müsste es gleich sein, gleich kommt das Auto.</i>");
+            await Template.fS.Speech.tell(Template.Rika, "So, hier um die Ecke ist auch schon das Einkaufszentrum. Wenn du möchtest, können wir uns hier am Wochenende auf einen Bubble Tea treffen und vielleicht…");
+            //TODO: *** ADDING SOUND CAR***
+            // *** Auswahlmöglichkeit***
+            await Template.EndingChoices.firstBadEndingAgain();
+        }
+    }
+    Template.SavingSho = SavingSho;
 })(Template || (Template = {}));
 var Template;
 (function (Template) {

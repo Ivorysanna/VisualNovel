@@ -125,7 +125,7 @@ namespace Template {
                     await fS.Speech.tell(Rika, "<i>Heute schaffe ich es, das weiß ich.</i>");
                     await fS.Speech.tell(Sagi, "Rika, sollen wir zu Sho gehen und mit ihm reden?");
                     await fS.Speech.tell(Rika, "Ja, lass uns zu ihm gehen.");
-                    
+
                     await fS.Character.show(Sho, ShoPose.neutral, fS.positionPercent(30, 100));
                     await fS.update();
 
@@ -148,20 +148,27 @@ namespace Template {
 
                     fS.Character.hideAll();
                     fS.Speech.hide();
-                    fS.update();
+                    await fS.update();
                     await fS.Location.show(location.darkBackground);
                     await fS.update();
                     await fS.Progress.delay(3);
                     //TODO: ADD SCHOOLBELL SOUND
-                    
+
                     await fS.Location.show(location.classroom);
                     await fS.update();
                     await fS.Character.show(Sho, ShoPose.neutral, fS.positions.bottomcenter);
                     await fS.update();
                     await fS.Speech.tell(Rika, "Okay, können wir los?");
                     await fS.Speech.tell(Sho, "Ja, ich packe nur schnell meine Sachen zusammen.");
-
-
+                    //fade out screen
+                    fS.Character.hideAll();
+                    fS.Speech.hide();
+                    await fS.update();
+                    await fS.Location.show(location.darkBackground);
+                    await fS.update();
+                    await fS.Progress.delay(3);
+                    //Saving Sho
+                    await SavingSho.savingSho();
             }
         }
 
@@ -180,6 +187,26 @@ namespace Template {
                 case endingFour.speakSho:
                     // continue path here
                     await TalkingSho.talkingWithSho();
+                    break;
+            }
+        }
+        public static async firstBadEndingAgain(): Promise<void> {
+            let badEndingOne = {
+                saveSho: "Sho retten",
+                doNothing: "Nicht reagieren",
+            };
+            let dialogueElement = await fS.Menu.getInput(badEndingOne, "choicesCSSClass");
+
+            switch (dialogueElement) {
+                case badEndingOne.saveSho:
+                    // continue path here
+                    console.log("saveSho");
+
+                    break;
+                case badEndingOne.doNothing:
+                    // continue path here
+                    console.log("doNothing");
+
                     break;
             }
         }

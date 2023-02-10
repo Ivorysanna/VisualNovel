@@ -12,6 +12,7 @@ declare namespace Template {
         static secondEnding(): Promise<void>;
         static thirdEnding(): Promise<void>;
         static fourthEnding(): Promise<void>;
+        static firstBadEndingAgain(): Promise<void>;
     }
 }
 declare namespace Template {
@@ -262,6 +263,11 @@ declare namespace Template {
 declare namespace Template {
     class Library {
         static inLibrary(): Promise<void>;
+    }
+}
+declare namespace Template {
+    class SavingSho {
+        static savingSho(): Promise<void>;
     }
 }
 declare namespace Template {
