@@ -117,9 +117,28 @@ namespace Template {
                     await fS.update();
                     await Library.inLibrary();
                     break;
-                    
+
                 case endingThree.todaySuccess:
+                // continue path here
+            }
+        }
+
+        public static async fourthEnding(): Promise<void> {
+            let endingFour = {
+                speakSagi: "Vielleicht finde ich irgendwas in der Bibliothek.",
+                speakSho: "Heute schaffe ich es, das weiß ich.",
+            };
+            let dialogueElement = await fS.Menu.getInput(endingFour, "choicesCSSClass");
+
+            switch (dialogueElement) {
+                case endingFour.speakSagi:
                     // continue path here
+
+                    break;
+                case endingFour.speakSho:
+                    // continue path here
+
+                    break;
             }
         }
     }

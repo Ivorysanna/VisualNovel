@@ -11,6 +11,7 @@ declare namespace Template {
         static firstEnding(): Promise<void>;
         static secondEnding(): Promise<void>;
         static thirdEnding(): Promise<void>;
+        static fourthEnding(): Promise<void>;
     }
 }
 declare namespace Template {

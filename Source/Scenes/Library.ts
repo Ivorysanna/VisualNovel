@@ -25,8 +25,10 @@ namespace Template {
                 console.log(demonName);
                 if (demonName == "Sagi" || demonName == "sagi" || demonName == "Sagi Aoki" || demonName == "sagi aoki" || demonName == "Sagi aoki" || demonName == "sagi Aoki") {
                     await fS.Speech.tell(Rika, "<i>… Sagi. Wir sind schon so lange Freunde. Wie kann sie mir das antun.</i>");  
-                    await fS.Speech.tell(Rika, "<i>Soll ich mit Sagi sprechen, oder versuchen Sho überreden, dazubleiben.</i>");  
+                    await fS.Speech.tell(Rika, "<i>Soll ich mit Sagi sprechen, oder versuchen Sho überreden, dazubleiben.</i>");
                     nameGuessed = true;
+                    // *** Auswahlmöglichkeit ***
+                    
                 } else {
                     await fS.Speech.tell(Rika, "<i>Nein, das ergibt keinen Sinn.</i>");
                 }

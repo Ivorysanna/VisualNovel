@@ -216,6 +216,21 @@ var Template;
                 // continue path here
             }
         }
+        static async fourthEnding() {
+            let endingFour = {
+                speakSagi: "Vielleicht finde ich irgendwas in der Bibliothek.",
+                speakSho: "Heute schaffe ich es, das weiß ich.",
+            };
+            let dialogueElement = await Template.fS.Menu.getInput(endingFour, "choicesCSSClass");
+            switch (dialogueElement) {
+                case endingFour.speakSagi:
+                    // continue path here
+                    break;
+                case endingFour.speakSho:
+                    // continue path here
+                    break;
+            }
+        }
     }
     Template.EndingChoices = EndingChoices;
 })(Template || (Template = {}));
@@ -954,6 +969,7 @@ var Template;
                     await Template.fS.Speech.tell(Template.Rika, "<i>… Sagi. Wir sind schon so lange Freunde. Wie kann sie mir das antun.</i>");
                     await Template.fS.Speech.tell(Template.Rika, "<i>Soll ich mit Sagi sprechen, oder versuchen Sho überreden, dazubleiben.</i>");
                     nameGuessed = true;
+                    // *** Auswahlmöglichkeit ***
                 }
                 else {
                     await Template.fS.Speech.tell(Template.Rika, "<i>Nein, das ergibt keinen Sinn.</i>");
