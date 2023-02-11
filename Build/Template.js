@@ -539,8 +539,8 @@ var Template;
         /*** SCENE HIERARCHY ***/
         Template.fS.Speech.hide();
         let scenes = [
-            // { id: "wakingUpFirstTime", scene: WakingUp, name: "Waking up" },
-            // { id: "toSchoolFirstTime", scene: GoingToSchool, name: "Going to School firstTime"},
+            { id: "wakingUpFirstTime", scene: Template.WakingUp, name: "Waking up" },
+            { id: "toSchoolFirstTime", scene: Template.GoingToSchool, name: "Going to School firstTime" },
             { id: "inClassFirstTime", scene: Template.InClass, name: "In Class for firstTime" },
             { id: "wakingUpCarCrash", scene: Template.WakingUp, name: "Waking up Carcrash" },
             { id: "toSchoolAfterCarCrash", scene: Template.GoingToSchool, name: "Going to School after Carcrash" },
@@ -922,10 +922,10 @@ var Template;
                 Template.fS.Character.hideAll();
                 await Template.fS.update();
                 await Template.fS.Progress.delay(1);
-                await Template.fS.Character.show(Template.Sagi, Template.SagiPose.neutral, Template.fS.positionPercent(20, 100));
-                await Template.fS.Character.show(Template.Sho, Template.ShoPose.neutral, Template.fS.positionPercent(55, 100));
-                await Template.fS.Character.show(Template.Rika, Template.RikaPose.neutral, Template.fS.positionPercent(85, 100));
-                await Template.fS.update();
+                await Template.fS.Character.show(Template.Sagi, Template.SagiPose.neutral, Template.fS.positionPercent(80, 100));
+                await Template.fS.Character.show(Template.Sho, Template.ShoPose.neutral, Template.fS.positionPercent(40, 100));
+                // await fS.Character.show(Rika, RikaPose.neutral, fS.positionPercent(85, 100));
+                await Template.fS.update(0.5);
                 await Template.fS.Speech.tell(Template.Sagi, "Hi, ich bin Sagi Aoki.");
                 await Template.fS.Speech.tell(Template.Rika, "Hey Sho. Ich bin Rika Sato.");
                 await Template.fS.Speech.tell(Template.Sho, "Hey, freut mich euch kennenzulernen.");
@@ -952,8 +952,9 @@ var Template;
                 await Template.fS.Location.show(Template.location.classroom);
                 await Template.fS.update(Template.transition.wipeRight.duration, Template.transition.wipeRight.alpha, Template.transition.wipeRight.edge);
                 await Template.fS.update();
-                await Template.fS.Character.show(Template.Rika, Template.RikaPose.neutral, Template.fS.positionPercent(40, 100));
+                // await fS.Character.show(Rika, RikaPose.neutral, fS.positionPercent(40, 100));
                 await Template.fS.Character.show(Template.Sho, Template.ShoPose.neutral, Template.fS.positionPercent(70, 100));
+                await Template.fS.update(0.5);
                 await Template.fS.Speech.tell(Template.Rika, "Okay, wir können losgehen.");
                 await Template.fS.Speech.tell(Template.Sho, "Ja, ein Moment, ich packe schnell meine Sachen zusammen.");
                 await Template.TransitionManager.blendInOut();

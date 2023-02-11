@@ -149,10 +149,10 @@ namespace Template {
                 await fS.update();
                 await fS.Progress.delay(1);
 
-                await fS.Character.show(Sagi, SagiPose.neutral, fS.positionPercent(20, 100));
-                await fS.Character.show(Sho, ShoPose.neutral, fS.positionPercent(55, 100));
-                await fS.Character.show(Rika, RikaPose.neutral, fS.positionPercent(85, 100));
-                await fS.update();
+                await fS.Character.show(Sagi, SagiPose.neutral, fS.positionPercent(80, 100));
+                await fS.Character.show(Sho, ShoPose.neutral, fS.positionPercent(40, 100));
+                // await fS.Character.show(Rika, RikaPose.neutral, fS.positionPercent(85, 100));
+                await fS.update(0.5);
 
                 await fS.Speech.tell(Sagi, "Hi, ich bin Sagi Aoki.");
                 await fS.Speech.tell(Rika, "Hey Sho. Ich bin Rika Sato.");
@@ -189,8 +189,9 @@ namespace Template {
                 await fS.update(transition.wipeRight.duration, transition.wipeRight.alpha, transition.wipeRight.edge); 
                 await fS.update();
 
-                await fS.Character.show(Rika, RikaPose.neutral, fS.positionPercent(40, 100));
+                // await fS.Character.show(Rika, RikaPose.neutral, fS.positionPercent(40, 100));
                 await fS.Character.show(Sho, ShoPose.neutral, fS.positionPercent(70, 100));
+                await fS.update(0.5);
 
                 await fS.Speech.tell(Rika, "Okay, wir können losgehen.");
                 await fS.Speech.tell(Sho, "Ja, ein Moment, ich packe schnell meine Sachen zusammen.");
