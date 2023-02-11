@@ -13,6 +13,9 @@ namespace Template {
                     // continue path here
                     await fS.Speech.tell(Rika, "Lass uns den längeren Weg gehen, er ist nicht viel länger, aber dafür viel schöner.");
                     await fS.Speech.tell(Sho, "Gerne, ich habe es heute sowieso nicht so eilig.");
+                    fS.Speech.hide();
+                    fS.Character.hideAll();
+                    await fS.update(0.5);
                     await CarCrash.carCrashHappend();
                     
                     break;
@@ -21,6 +24,9 @@ namespace Template {
                     await fS.Speech.tell(Rika, "<i>Irgendwie fühle ich mich seltsam, vielleicht sollten wir den kürzeren Weg nehmen.</i>");
                     await fS.Speech.tell(Rika, "Lass uns den kürzeren Weg nehmen. Ich habe es heute etwas eilig.");
                     await fS.Speech.tell(Sho, "…Ja, klar.");
+                    fS.Speech.hide();
+                    fS.Character.hideAll();
+                    await fS.update(0.5);
                     await ConstructionSite.firstConstructionSiteAccident();
                     break;
                 default:

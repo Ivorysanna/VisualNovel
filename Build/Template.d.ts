@@ -265,7 +265,6 @@ declare namespace Template {
 declare namespace Template {
     class ConstructionSite {
         static firstConstructionSiteAccident(): Promise<void>;
-        static constructionSiteAccident(): Promise<void>;
     }
 }
 declare namespace Template {

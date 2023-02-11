@@ -119,6 +119,9 @@ var Template;
                     // continue path here
                     await Template.fS.Speech.tell(Template.Rika, "Lass uns den längeren Weg gehen, er ist nicht viel länger, aber dafür viel schöner.");
                     await Template.fS.Speech.tell(Template.Sho, "Gerne, ich habe es heute sowieso nicht so eilig.");
+                    Template.fS.Speech.hide();
+                    Template.fS.Character.hideAll();
+                    await Template.fS.update(0.5);
                     await Template.CarCrash.carCrashHappend();
                     break;
                 case endingOne.shortPath:
@@ -126,6 +129,9 @@ var Template;
                     await Template.fS.Speech.tell(Template.Rika, "<i>Irgendwie fühle ich mich seltsam, vielleicht sollten wir den kürzeren Weg nehmen.</i>");
                     await Template.fS.Speech.tell(Template.Rika, "Lass uns den kürzeren Weg nehmen. Ich habe es heute etwas eilig.");
                     await Template.fS.Speech.tell(Template.Sho, "…Ja, klar.");
+                    Template.fS.Speech.hide();
+                    Template.fS.Character.hideAll();
+                    await Template.fS.update(0.5);
                     await Template.ConstructionSite.firstConstructionSiteAccident();
                     break;
                 default:
@@ -539,11 +545,11 @@ var Template;
         /*** SCENE HIERARCHY ***/
         Template.fS.Speech.hide();
         let scenes = [
-            { id: "wakingUpFirstTime", scene: Template.WakingUp, name: "Waking up" },
-            { id: "toSchoolFirstTime", scene: Template.GoingToSchool, name: "Going to School firstTime" },
-            { id: "inClassFirstTime", scene: Template.InClass, name: "In Class for firstTime" },
-            { id: "wakingUpCarCrash", scene: Template.WakingUp, name: "Waking up Carcrash" },
-            { id: "toSchoolAfterCarCrash", scene: Template.GoingToSchool, name: "Going to School after Carcrash" },
+            // { id: "wakingUpFirstTime", scene: WakingUp, name: "Waking up" },
+            // { id: "toSchoolFirstTime", scene: GoingToSchool, name: "Going to School firstTime"},
+            // { id: "inClassFirstTime", scene: InClass, name: "In Class for firstTime"},
+            // { id: "wakingUpCarCrash", scene: WakingUp, name: "Waking up Carcrash" },
+            // { id: "toSchoolAfterCarCrash", scene: GoingToSchool, name: "Going to School after Carcrash"},
             { id: "inClassAfterCarCrash", scene: Template.InClass, name: "In Class after Carcrash" },
             { id: "inClassAfterConstructionAccident", scene: Template.WakingUp, name: "Waking up after Construction Site Accident" },
             { id: "toSchoolAfterConstructionAccident", scene: Template.GoingToSchool, name: "Going to School after Construction Site Accident" },
@@ -587,8 +593,8 @@ var Template;
     class StateManager {
         //*** GLOBAL VARIABLES***
         //TODO: FirstRun wieder einblenden 
-        static storyState = StoryState.FirstRun;
-        // public static storyState: StoryState = StoryState.CarCrashHappend;
+        // public static storyState: StoryState = StoryState.FirstRun;
+        static storyState = StoryState.CarCrashHappend;
         // public static storyState: StoryState = StoryState.ConstructionSiteAccidentHappend;
         // public static storyState: StoryState = StoryState.SchoolAccidentHappend;
         static loveOMeter = 0;
@@ -629,7 +635,8 @@ var Template;
         }
         static async carCrashHappend() {
             await Template.fS.Location.show(Template.location.streetCity);
-            await Template.fS.update();
+            await Template.fS.update(Template.transition.circle.duration, Template.transition.circle.alpha, Template.transition.circle.edge);
+            // await fS.update();
             await Template.fS.Speech.tell(Template.Rika, "So, hier um die Ecke ist auch schon das Einkaufszentrum. Wenn du möchtest, können wir uns hier am Wochenende auf einen Bubble Tea treffen und vielleicht…");
             console.log("BAD ENDING 1 GAME OVER");
             Template.fS.Speech.hide();
@@ -658,12 +665,9 @@ var Template;
             await Template.fS.Speech.tell(Template.Sho, "SHO, VORSICHT!");
             Template.fS.Speech.hide();
             Template.fS.Character.hideAll();
-            await Template.fS.Progress.delay(2);
+            // await fS.Progress.delay(2);
             await Template.TransitionManager.blendInOut();
             //TODO: *** SHOW SCENE PICTURE
-        }
-        static async constructionSiteAccident() {
-            //*** SECOND BAD ENDING*** 
         }
     }
     Template.ConstructionSite = ConstructionSite;
@@ -780,8 +784,8 @@ var Template;
                 Template.fS.Speech.hide();
                 Template.fS.Character.hideAll();
                 await Template.fS.update(0.5);
-                await Template.TransitionManager.blendInOut();
-                await Template.fS.update(0.5);
+                // await TransitionManager.blendInOut();
+                // await fS.update(0.5);
                 break;
             case Template.StoryState.ConstructionSiteAccidentHappend:
                 console.log("Construction Accident happend!");
@@ -903,7 +907,7 @@ var Template;
                 await Template.fS.Speech.tell(Template.Sho, "Nun, dann gehen wir mal den etwas längeren, außer du hast es eilig.");
                 await Template.fS.Speech.tell(Template.Rika, "Ne, ich habe heute nichts mehr vor. Dann kann ich dir etwas von der Stadt zeigen. Vor allem das große Einkaufszentrum. ");
                 await Template.fS.Speech.tell(Template.Sho, "Oh, ich wusste gar nicht, dass es hier sowas gibt.");
-                await Template.TransitionManager.blendInOut();
+                // await TransitionManager.blendInOut();
                 await Template.CarCrash.firstCarCrash();
                 break;
             case Template.StoryState.CarCrashHappend:
@@ -928,6 +932,7 @@ var Template;
                 //TODO: *** PAUSEN GONG EINFÜGEN
                 //TODO: *** MENSCHEN DIE IN DER PAUSE REDEN EINFÜGEN ***
                 await Template.fS.Location.show(Template.location.classroom);
+                await Template.fS.update(0.5);
                 // await fS.update(transition.wipeRight.duration, transition.wipeRight.alpha, transition.wipeRight.edge); 
                 await Template.fS.Character.show(Template.Sagi, Template.SagiPose.neutral, Template.fS.positionPercent(70, 100));
                 await Template.fS.update(0.5);

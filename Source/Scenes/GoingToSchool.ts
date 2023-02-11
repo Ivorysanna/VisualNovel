@@ -80,8 +80,8 @@ namespace Template {
                 fS.Speech.hide();
                 fS.Character.hideAll();
                 await fS.update(0.5);
-                await TransitionManager.blendInOut();
-                await fS.update(0.5);
+                // await TransitionManager.blendInOut();
+                // await fS.update(0.5);
                 break;
 
             case StoryState.ConstructionSiteAccidentHappend:

@@ -90,7 +90,7 @@ namespace Template {
                 await fS.Speech.tell(Sho, "Nun, dann gehen wir mal den etwas längeren, außer du hast es eilig.");
                 await fS.Speech.tell(Rika, "Ne, ich habe heute nichts mehr vor. Dann kann ich dir etwas von der Stadt zeigen. Vor allem das große Einkaufszentrum. ");
                 await fS.Speech.tell(Sho, "Oh, ich wusste gar nicht, dass es hier sowas gibt.");
-                await TransitionManager.blendInOut();
+                // await TransitionManager.blendInOut();
                 await CarCrash.firstCarCrash();
                 break;
             case StoryState.CarCrashHappend:
@@ -119,6 +119,7 @@ namespace Template {
                 //TODO: *** PAUSEN GONG EINFÜGEN
                 //TODO: *** MENSCHEN DIE IN DER PAUSE REDEN EINFÜGEN ***
                 await fS.Location.show(location.classroom);
+                await fS.update(0.5);
                 // await fS.update(transition.wipeRight.duration, transition.wipeRight.alpha, transition.wipeRight.edge); 
                 await fS.Character.show(Sagi, SagiPose.neutral, fS.positionPercent(70, 100));
                 await fS.update(0.5);

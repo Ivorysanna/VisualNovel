@@ -16,14 +16,10 @@ namespace Template {
             await fS.Speech.tell(Sho, "SHO, VORSICHT!");
             fS.Speech.hide();
             fS.Character.hideAll();
-            await fS.Progress.delay(2);
+            // await fS.Progress.delay(2);
             await TransitionManager.blendInOut();
             //TODO: *** SHOW SCENE PICTURE
 
-        }
-
-        public static async constructionSiteAccident(): Promise <void>{
-            //*** SECOND BAD ENDING*** 
         }
     }
 }
