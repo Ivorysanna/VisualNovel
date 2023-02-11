@@ -27,6 +27,7 @@ namespace Template {
 
                 fS.Speech.hide();
                 fS.Character.hideAll();
+                await fS.update(0.5);
                 // Sagi und Rika sind auf dem Campus
                 // await TransitionManager.blendInOut();
                 await fS.Location.show(location.uni);
@@ -38,6 +39,7 @@ namespace Template {
                 await fS.update(0.5);
                 await fS.Speech.tell(Sagi, "Komm schnell, wir schaffen es gerade so rechtzeitig.");
                 fS.Character.hideAll();
+                await fS.update(0.5);
                 // await TransitionManager.blendInOut();
                 break;
 

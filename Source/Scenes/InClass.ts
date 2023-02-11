@@ -21,10 +21,9 @@ namespace Template {
 
                 //TODO: *** PAUSEN GONG EINFÜGEN
                 //TODO: *** MENSCHEN DIE IN DER PAUSE REDEN EINFÜGEN ***
-                await fS.Location.show(location.darkBackground);
-                fS.Speech.hide();
-                fS.Character.hideAll();
-                await fS.update();
+                await fS.Progress.delay(1);
+                await TransitionManager.blendInOut();
+                await fS.update(transition.wipeRight.duration, transition.wipeRight.alpha, transition.wipeRight.edge);
 
                 await fS.Progress.delay(3);
 
@@ -71,10 +70,7 @@ namespace Template {
                 //TODO: *** PAUSEN GONG EINBAUEN***
                 await fS.Speech.tell(Sagi, "Das war eine schnelle Pause. Komm, wir gehen wieder an unseren Platz.");
 
-                await fS.Location.show(location.darkBackground);
-                fS.Speech.hide();
-                fS.Character.hideAll();
-                await fS.update();
+                await TransitionManager.blendInOut();
 
                 await fS.Progress.delay(3);
 
@@ -124,11 +120,9 @@ namespace Template {
 
                 // TODO: ***GETUSCHEL VON ANDEREN SCHUELERN SOUND ***
                 await fS.Speech.tell(Teacher, "Okay, beruhigt euch wieder. Ihr könnt in der Pause noch mal miteinander reden.");
-                fS.Character.hideAll();
-                await fS.Location.show(location.darkBackground);
-                fS.Speech.hide();
-                fS.Character.hideAll();
-                await fS.update();
+                await fS.Progress.delay(1);
+                await TransitionManager.blendInOut();
+                await fS.update(transition.wipeRight.duration, transition.wipeRight.alpha, transition.wipeRight.edge);
 
                 await fS.Progress.delay(3);
 
@@ -137,16 +131,16 @@ namespace Template {
                 await fS.Location.show(location.classroom);
                 await fS.update(transition.wipeRight.duration, transition.wipeRight.alpha, transition.wipeRight.edge); 
                 await fS.Character.show(Sagi, SagiPose.neutral, fS.positionPercent(70, 100));
-                await fS.update();
+                await fS.update(0.5);
                 await fS.Speech.tell(Sagi, "Rika du bist schon die ganze Zeit abwesend. Ist alles in Ordnung?");
-                await fS.Character.show(Rika, RikaPose.neutral, fS.positionPercent(30, 100));
-                await fS.update();
+                // await fS.Character.show(Rika, RikaPose.neutral, fS.positionPercent(30, 100));
+                // await fS.update();
                 await fS.Speech.tell(Rika, "Ja. Ich habe nur irgendwie das Gefühl, dass ich Sho schon mal getroffen habe.");
                 await fS.Speech.tell(Sagi, "Mh, sollen wir mit ihm reden? Vielleicht kennt ihr euch.");
 
                 fS.Speech.hide();
                 fS.Character.hideAll();
-                await fS.update();
+                await fS.update(0.5);
                 await fS.Progress.delay(1);
 
                 await fS.Character.show(Sagi, SagiPose.neutral, fS.positionPercent(80, 100));
