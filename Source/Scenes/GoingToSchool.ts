@@ -30,7 +30,7 @@ namespace Template {
                 // Sagi und Rika sind auf dem Campus
                 // await TransitionManager.blendInOut();
                 await fS.Location.show(location.uni);
-                await fS.update(transition.wipeRight.duration, transition.wipeRight.alpha, transition.wipeRight.edge); 
+                await fS.update(transition.wipeLeft.duration, transition.wipeLeft.alpha, transition.wipeLeft.edge); 
                 await fS.update();
 
                 // TODO: *** GLOCKE KLINGELT SOUND ***
@@ -46,7 +46,7 @@ namespace Template {
                 console.log("Crash Happend!");
                 fS.Speech.hide();
                 await fS.Location.show(location.alley);
-                await fS.update(transition.wipeRight.duration, transition.wipeRight.alpha, transition.wipeRight.edge); 
+                await fS.update(transition.wipeLeft.duration, transition.wipeLeft.alpha, transition.wipeLeft.edge); 
                 await fS.update();
                 await fS.Character.show(Sagi, SagiPose.neutral, fS.positions.bottomcenter);
                 // await fS.Character.show(Rika, RikaPose.neutral, fS.positions.bottomcenter);
@@ -88,7 +88,7 @@ namespace Template {
                 console.log("Construction Accident happend!");
                 fS.Speech.hide();
                 await fS.Location.show(location.alley);
-                await fS.update(transition.wipeRight.duration, transition.wipeRight.alpha, transition.wipeRight.edge); 
+                await fS.update(transition.wipeLeft.duration, transition.wipeLeft.alpha, transition.wipeLeft.edge); 
                 await fS.update(0.5);
                 await fS.Character.show(Sagi, SagiPose.neutral, fS.positions.bottomcenter);
                 await fS.update(0.5);
@@ -103,9 +103,10 @@ namespace Template {
             case StoryState.SchoolAccidentHappend:
                 console.log("School Accident happend!");
                 await fS.Location.show(location.alley);
+                await fS.update(transition.wipeLeft.duration, transition.wipeLeft.alpha, transition.wipeLeft.edge); 
                 await fS.update();
-                await fS.Character.show(Sagi, SagiPose.neutral, fS.positionPercent(40, 100));
-                await fS.update();
+                await fS.Character.show(Sagi, SagiPose.neutral, fS.positions.bottomcenter);
+                await fS.update(0.5);
                 await fS.Speech.tell(Sagi, "Da bist du ja endlich … Du siehst ja gar nicht gut aus.");
                 await fS.Speech.tell(Rika, "Sagi. Welchen Tag haben wir heute?");
                 await fS.Speech.tell(Sagi, "Ehm …ist alles in Ordnung?");

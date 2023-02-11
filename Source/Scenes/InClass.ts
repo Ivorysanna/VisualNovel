@@ -7,7 +7,7 @@ namespace Template {
                 console.log("First Run!");
                 fS.Speech.hide();
                 await fS.Location.show(location.classroom);
-                await fS.update(transition.wipeRight.duration, transition.wipeRight.alpha, transition.wipeRight.edge); 
+                await fS.update(transition.wipeLeft.duration, transition.wipeLeft.alpha, transition.wipeLeft.edge); 
                 
                 await fS.Character.show(Teacher, TeacherPose.neutral, fS.positionPercent(70, 100));
                 await fS.update(0.5);
@@ -79,7 +79,7 @@ namespace Template {
 
                 // *** Auf dem Weg nach Hause***
                 await fS.Location.show(location.uni);
-                await fS.update(transition.wipeRight.duration, transition.wipeRight.alpha, transition.wipeRight.edge); 
+                await fS.update(transition.wipeLeft.duration, transition.wipeLeft.alpha, transition.wipeLeft.edge); 
                 await fS.update();
 
                 await fS.Character.show(Sho, ShoPose.neutral, fS.positionPercent(40, 100));
@@ -98,7 +98,7 @@ namespace Template {
                 fS.Character.hideAll();
                 fS.Speech.hide();
                 await fS.Location.show(location.classroom);
-                await fS.update(transition.wipeRight.duration, transition.wipeRight.alpha, transition.wipeRight.edge); 
+                await fS.update(transition.wipeLeft.duration, transition.wipeLeft.alpha, transition.wipeLeft.edge); 
                 await fS.update();
 
                 await fS.Character.show(Teacher, TeacherPose.neutral, fS.positionPercent(70, 100));
@@ -168,7 +168,7 @@ namespace Template {
                 await fS.Progress.delay(3);
 
                 await fS.Location.show(location.classroom);
-                await fS.update(transition.wipeRight.duration, transition.wipeRight.alpha, transition.wipeRight.edge); 
+                await fS.update(transition.wipeLeft.duration, transition.wipeLeft.alpha, transition.wipeLeft.edge); 
                 await fS.update();
 
                 // await fS.Character.show(Rika, RikaPose.neutral, fS.positionPercent(40, 100));
@@ -186,7 +186,7 @@ namespace Template {
                 fS.Character.hideAll();
                 fS.Speech.hide();
                 await fS.Location.show(location.classroom);
-                await fS.update(transition.wipeRight.duration, transition.wipeRight.alpha, transition.wipeRight.edge); 
+                await fS.update(transition.wipeLeft.duration, transition.wipeLeft.alpha, transition.wipeLeft.edge); 
                 await fS.update();
 
                 await fS.Character.show(Teacher, TeacherPose.neutral, fS.positionPercent(70, 100));
@@ -206,7 +206,7 @@ namespace Template {
                 //TODO: *** MENSCHEN DIE IN DER PAUSE REDEN EINFÜGEN ***
                 // *** PAUSE ***
                 await fS.Location.show(location.classroom);
-                await fS.update(transition.wipeRight.duration, transition.wipeRight.alpha, transition.wipeRight.edge); 
+                await fS.update(transition.wipeLeft.duration, transition.wipeLeft.alpha, transition.wipeLeft.edge); 
                 await fS.update();
                 await fS.Character.show(Sagi, SagiPose.neutral, fS.positionPercent(70, 100));
                 await fS.update(0.5);
@@ -246,7 +246,7 @@ namespace Template {
                 // *** Unterricht zu Ende***
                 //Fade in screen
                 await fS.Location.show(location.classroom);
-                await fS.update(transition.wipeRight.duration, transition.wipeRight.alpha, transition.wipeRight.edge); 
+                await fS.update(transition.wipeLeft.duration, transition.wipeLeft.alpha, transition.wipeLeft.edge); 
                 await fS.Character.show(Sho, ShoPose.neutral, fS.positions.bottomcenter);
                 await fS.update(0.5);
 
@@ -257,13 +257,13 @@ namespace Template {
                 break;
             case StoryState.SchoolAccidentHappend:
                 await fS.Location.show(location.classroom);
-                await fS.update(transition.wipeRight.duration, transition.wipeRight.alpha, transition.wipeRight.edge); 
+                await fS.update(transition.wipeLeft.duration, transition.wipeLeft.alpha, transition.wipeLeft.edge); 
                 await fS.update();
                 await fS.Character.show(Teacher, TeacherPose.neutral, fS.positionPercent(70, 100));
-                await fS.update();
+                await fS.update(0.5);
                 await fS.Speech.tell(Teacher, "Guten Morgen. Bevor wir heute mit dem Unterricht anfangen, möchte ich euch zunächst euren neuen Mitschüler vorstellen.");
-                await fS.Character.show(Sho, ShoPose.neutral, fS.positionPercent(70, 100));
-                await fS.update();
+                await fS.Character.show(Sho, ShoPose.neutral, fS.positionPercent(35, 100));
+                await fS.update(0.5);
                 await fS.Speech.tell(Sho, "Hi, ich bin Sho Rai. Freut mich, euch kennenzulernen.");
                 await fS.Speech.tell(Rika, "<i>… Das ist er. Ich habe von ihm geträumt. Aber was ist passiert? </i>");
 
@@ -271,21 +271,18 @@ namespace Template {
                 await fS.Speech.tell(Teacher, "Okay, beruhigt euch wieder. Ihr könnt in der Pause noch mal miteinander reden.");
 
                 //fade out screen
-                await fS.Location.show(location.darkBackground);
-                fS.Speech.hide();
-                fS.Character.hideAll();
-                await fS.update();
+                await TransitionManager.blendInOut();
                 await fS.Progress.delay(3);
 
                 //fade in screen classroom
                 await fS.Location.show(location.classroom);
-                await fS.update(transition.wipeRight.duration, transition.wipeRight.alpha, transition.wipeRight.edge); 
+                await fS.update(transition.wipeLeft.duration, transition.wipeLeft.alpha, transition.wipeLeft.edge); 
                 await fS.update();
                 //TODO: *** Talking Sound ***
                 //speech rika   
                 await fS.Speech.tell(Rika, "<i>Ich will nicht, dass sich der Tag wiederholt. Was kann ich bloß machen?</i>");
-                await TransitionManager.blendInOut();
                 // *** Auswahlmöglichkeit*** 
+                await TransitionManager.blendInOut();
                 await EndingChoices.thirdEnding();
         }
     }
