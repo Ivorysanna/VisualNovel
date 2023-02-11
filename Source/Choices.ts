@@ -52,9 +52,9 @@ namespace Template {
 
         public static async goingHomeFastChoice(): Promise<void> {
             let goingHomeFastChoice = {
-                tooMuchHomework: "Ich muss noch sehr viele Hausaufgaben machen.",
-                strangeDreams: "Ich habe die letzten Tage was sehr Komisches geträumt.",
-                showingFastestRoute: "Ehm... Um dir den schnellsten Weg zu zeigen. Morgen können wir gerne den schöneren Weg nehmen. ",
+                tooMuchHomework: "Viele Hausaufgaben bekommen",
+                strangeDreams: "Komische Träume",
+                showingFastestRoute: "Schnellsten Weg zeigen"
             };
             let thirdDialogueElement = await fS.Menu.getInput(goingHomeFastChoice, "choicesCSSClass");
 
@@ -78,7 +78,7 @@ namespace Template {
                 case goingHomeFastChoice.showingFastestRoute:
                     await fS.Speech.tell(Rika, "Ehm… Um dir den schnellsten Weg zu zeigen. Wir können morgen gerne den anderen Weg nehmen.");
                     await fS.Speech.tell(Sho, "Haha. Irgendwie habe ich ein Déjá-vu. Als hättest du das mit dem schnellsten Weg schon einmal gesagt.");
-                    await fS.Speech.tell(Rika, "<i>//Was?!… Hat er auch solche komischen Träume?</i>");
+                    await fS.Speech.tell(Rika, "<i>Was?!… Hat er auch solche komischen Träume?</i>");
                     await fS.Speech.tell(Rika, "Witzig, dass du das sagst. Ich habe zurzeit so komisch…");
                     //TODO: ADDING FALLING SOUND
                     await fS.Speech.tell(Rika, "SHO, VORSICHT!");

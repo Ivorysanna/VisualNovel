@@ -161,7 +161,6 @@ declare namespace Template {
     let dataForSave: {
         nameProtagonist: string;
     };
-    function animation(): fS.AnimationDefinition;
     function leavingLeft(): fS.AnimationDefinition;
 }
 declare namespace Template {
@@ -275,7 +274,6 @@ declare namespace Template {
 declare namespace Template {
     class FallingAccident {
         static firstFallingAccident(): Promise<void>;
-        static FallingAccidentHappend(): Promise<void>;
     }
 }
 declare namespace Template {

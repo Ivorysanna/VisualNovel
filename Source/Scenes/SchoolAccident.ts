@@ -24,7 +24,10 @@ namespace Template {
             //TODO: ADD SOUNDS
             //TODO: ADD ENDPICUTRE
             //*** GAME OVER***
-            console.log("GAME OVER: School Accident");  
+            console.log("GAME OVER: School Accident"); 
+            fS.Speech.hide();
+            fS.Character.hideAll();
+            await EndScene.gameOver();
         }
     }
 }

@@ -48,8 +48,9 @@ namespace Template {
                     // continue path here
                     //Show background class
                     await fS.Location.show(location.classroom);
+                    await fS.update(transition.circle.duration, transition.circle.alpha, transition.circle.edge); 
                     await fS.Character.show(Sho, ShoPose.neutral, fS.positions.bottomcenter);
-                    fS.update();
+                    fS.update(0.5);
 
                     console.log("STAY IN SCHOOL PATH");
                     await fS.Speech.tell(Rika, "Sho, was denkst du, sollen wir heute etwas länger bleiben.");
@@ -72,8 +73,9 @@ namespace Template {
                     fS.update();
                     //Show background class
                     await fS.Location.show(location.classroom);
-                    fS.Character.show(Sho, ShoPose.happy, fS.positions.bottomcenter);
-                    fS.update();
+                    await fS.update(transition.circle.duration, transition.circle.alpha, transition.circle.edge); 
+                    fS.Character.show(Sho, ShoPose.neutral, fS.positions.bottomcenter);
+                    fS.update(0.5);
 
                     await fS.Speech.tell(Rika, "<i>Wenn wir uns beeilen... Vielleicht schaffen wir es dann...</i>");
                     await fS.Speech.tell(Rika, "Sho, können wir uns beeilen, ich habe es heute doch etwas eiliger.");
@@ -83,10 +85,12 @@ namespace Template {
                     // *** Going outside***
                     //TODO: ADDING STREET SOUND
                     await fS.Location.show(location.bridge);
+                    await fS.update(transition.circle.duration, transition.circle.alpha, transition.circle.edge); 
+
                     await fS.update();
-                    await fS.Character.show(Rika, RikaPose.neutral, fS.positionPercent(70, 100));
+                    // await fS.Character.show(Rika, RikaPose.neutral, fS.positionPercent(70, 100));
                     await fS.Character.show(Sho, ShoPose.neutral, fS.positionPercent(30, 100));
-                    await fS.update();
+                    await fS.update(0.5);
 
                     await fS.Speech.tell(Rika, "Lass uns diese Überführung nehmen. Dann kommen wir schneller auf die andere Straßenseite.");
                     await fS.Speech.tell(Sho, "Ja, können wir machen. Warum hast du es heute so eilig?");

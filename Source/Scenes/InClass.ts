@@ -219,6 +219,10 @@ namespace Template {
                 await fS.Speech.tell(Rika, "Ich weiß es nicht. Zurzeit habe ich komische Träume, das ist alles.");
                 await fS.Speech.tell(Sagi, "Okay... Komm, lass uns mit Sho reden. Vielleicht bist du einfach nur etwas nervös.");
 
+                fS.Character.hideAll();
+                fS.Speech.hide();
+                
+                await fS.Character.show(Sagi, SagiPose.neutral, fS.positionPercent(70, 100));
                 await fS.Character.show(Sho, ShoPose.neutral, fS.positionPercent(35, 100));
                 await fS.update(0.5);
                 await fS.Speech.tell(Rika, "Hi, Sho. Ich bin Rika.");
@@ -243,7 +247,7 @@ namespace Template {
                 //Fade in screen
                 await fS.Location.show(location.classroom);
                 await fS.update(transition.wipeRight.duration, transition.wipeRight.alpha, transition.wipeRight.edge); 
-                await fS.Character.show(Sho, ShoPose.neutral, fS.positionPercent(35, 100));
+                await fS.Character.show(Sho, ShoPose.neutral, fS.positions.bottomcenter);
                 await fS.update(0.5);
 
                 await fS.Speech.tell(Sho, "Können wir los gehen?");

@@ -157,15 +157,6 @@ namespace Template {
     };
 
     // *** ANIMATION ***
-    export function animation(): fS.AnimationDefinition {
-        return {
-            start: { translation: fS.positions.bottomcenter, color: fS.Color.CSS("blue", 1) },
-            end: { translation: fS.positions.bottomright, color: fS.Color.CSS("green", 0) },
-            duration: 3,
-            playmode: fS.ANIMATION_PLAYMODE.LOOP
-        };
-    }
-
     export function leavingLeft(): fS.AnimationDefinition {
         return {
             start: {translation: fS.positionPercent(40, 100), color: fS.Color.CSS("", 1) },
@@ -242,11 +233,12 @@ namespace Template {
             // { id: "inClassFirstTime", scene: InClass, name: "In Class for firstTime"},
             // { id: "wakingUpCarCrash", scene: WakingUp, name: "Waking up Carcrash" },
             // { id: "toSchoolAfterCarCrash", scene: GoingToSchool, name: "Going to School after Carcrash"},
-            { id: "inClassAfterCarCrash", scene: InClass, name: "In Class after Carcrash"},
-            { id: "inClassAfterConstructionAccident", scene: WakingUp, name: "Waking up after Construction Site Accident"},
+            // { id: "inClassAfterCarCrash", scene: InClass, name: "In Class after Carcrash"},
+            // { id: "inClassAfterConstructionAccident", scene: WakingUp, name: "Waking up after Construction Site Accident"},
             { id: "toSchoolAfterConstructionAccident", scene: GoingToSchool, name: "Going to School after Construction Site Accident"},
             { id: "inClassAfterConstructionAccident", scene: InClass, name: "In Class AfterConstructionAccident"},
             { id: "wakingUpAfterSchoolAccident", scene: WakingUp, name: "Waking up after School Accident"},
+            { id: "toSchoolAfterSchoolAccident", scene: GoingToSchool, name: "Going to School after School Accident"},
             { id: "inClassAfterSchoolAccident", scene: InClass, name: "In Class after School Accident"},
         ];
 
