@@ -48,8 +48,9 @@ namespace Template {
                 await fS.update(0.5);
                 await fS.Speech.tell(Rika, "Mama, ich gehe jetzt los. Bis heute Abend.");
                 await fS.Speech.tell(RikaMother, "Okay, viel Erfolg!");
-                await TransitionManager.blendInOut();
+                await fS.Character.animate(Rika, RikaPose.neutral, leavingLeft());
                 fS.Character.hideAll();
+                await TransitionManager.blendInOut();
                 break;
 
             case StoryState.ConstructionSiteAccidentHappend:
@@ -57,17 +58,15 @@ namespace Template {
                 await fS.Progress.delay(4);
                 await fS.Location.show(location.bedroom);
                 await fS.update(transition.wipeLeft.duration, transition.wipeLeft.alpha, transition.wipeLeft.edge);
+                await fS.Progress.delay(2);
                 await fS.Speech.tell(RikaMother, "Rika… Dein Wecker hat nicht geklingelt… Bist du schon wach?");
                 await fS.Speech.tell(RikaMother, "<i>Was ist hier los… Habe ich von Sho geträumt? Ich erinnere mich kaum an etwas.</i>");
                 await fS.Speech.tell(Rika, "Ja, ich bin wach…");
                 await fS.Speech.tell(Rika, "<i>Ich sollte mich schnell anziehen, Sagi wartet bestimmt schon…</i>");
 
-                await fS.Location.show(location.darkBackground);
-                fS.Speech.hide();
-                fS.Character.hideAll();
-                await fS.update();
+                await TransitionManager.blendInOut();
 
-                await fS.Progress.delay(5);
+                await fS.Progress.delay(3);
 
                 await fS.Location.show(location.bedroom);
                 await fS.update();
@@ -75,9 +74,9 @@ namespace Template {
                 await fS.update(0.5);
                 await fS.Speech.tell(Rika, "Mama, ich gehe jetzt los. Bis heute Abend.");
                 await fS.Speech.tell(RikaMother, "Geht es dir gut? Du klingst heute etwas krank.");
-                await fS.Speech.tell(Rika, "Ja, ich denke schon.");
+                await fS.Speech.tell(Rika, "Ja, mir gehts gut.");
                 await fS.Speech.tell(RikaMother, "Okay… Dann bis heute Abend.");
-                fS.Speech.hide();
+                await fS.Character.animate(Rika, RikaPose.neutral, leavingLeft());
                 fS.Character.hideAll();
                 await TransitionManager.blendInOut();
                 break;

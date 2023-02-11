@@ -13,7 +13,7 @@ namespace Template {
                 await fS.Character.show(Teacher, TeacherPose.neutral, fS.positionPercent(70, 100));
                 await fS.update(0.5);
                 await fS.Speech.tell(Teacher, "Guten Morgen. Bevor wir heute mit dem Unterricht anfangen, möchte ich euch zunächst euren neuen Mitschüler vorstellen.");
-                await fS.Character.show(Sho, ShoPose.neutral, fS.positionPercent(30, 100));
+                await fS.Character.show(Sho, ShoPose.neutral, fS.positionPercent(35, 100));
                 await fS.update(0.5);                await fS.Speech.tell(Sho, "Hi, ich bin Sho Rai. Freut mich, euch kennenzulernen.");
 
                 //TODO: ***GETUSCHEL VON ANDEREN SCHUELERN SOUND ***
@@ -31,9 +31,9 @@ namespace Template {
                 await fS.Location.show(location.classroom);
                 // await fS.update(transition.wipeRight.duration, transition.wipeRight.alpha, transition.wipeRight.edge); 
                 await fS.update(0.5);
-                await fS.Character.show(Sho, ShoPose.neutral, fS.positionPercent(20, 100));
-                await fS.Character.show(Rika, RikaPose.neutral, fS.positionPercent(55, 100));
-                await fS.Character.show(Sagi, SagiPose.neutral, fS.positionPercent(85, 100));
+                await fS.Character.show(Sho, ShoPose.neutral, fS.positionPercent(35, 100));
+                // await fS.Character.show(Rika, RikaPose.neutral, fS.positionPercent(55, 100));
+                await fS.Character.show(Sagi, SagiPose.neutral, fS.positionPercent(70, 100));
                 await fS.update(0.5);
                 await fS.Speech.tell(Rika, "Hey Sho. Ich bin Rika Sato.");
                 await fS.Speech.tell(Sagi, "Hi, ich bin Sagi Aoki.");
@@ -43,13 +43,13 @@ namespace Template {
                 await fS.Speech.tell(Sagi, "Ach komm schon Rika. Du bist doch sicher auch neugierig.");
 
                 fS.Character.hide(Sho);
-                await fS.Character.show(Sho, ShoPose.happy, fS.positionPercent(20, 100));
+                await fS.Character.show(Sho, ShoPose.happy, fS.positionPercent(35, 100));
                 await fS.update();
 
                 await fS.Speech.tell(Sho, "Haha. Ach, das macht doch nichts.");
 
                 fS.Character.hide(Sho);
-                await fS.Character.show(Sho, ShoPose.neutral, fS.positionPercent(20, 100));
+                await fS.Character.show(Sho, ShoPose.neutral, fS.positionPercent(35, 100));
                 await fS.update();
 
                 await fS.Speech.tell(Sho, "Meine Familie muss recht oft umziehen, da mein Vater wegen seiner Arbeit oft in eine andere Stadt versetzt wird. Aber das macht mir nicht so viel aus.");
@@ -80,7 +80,7 @@ namespace Template {
                 // await fS.update(transition.wipeRight.duration, transition.wipeRight.alpha, transition.wipeRight.edge); 
                 await fS.update();
                 await fS.Character.show(Sho, ShoPose.neutral, fS.positionPercent(40, 100));
-                await fS.Character.show(Rika, RikaPose.neutral, fS.positionPercent(80, 100));
+                // await fS.Character.show(Rika, RikaPose.neutral, fS.positionPercent(80, 100));
                 await fS.update(0.5);
                 await fS.Speech.tell(Rika, "Okay, können wir los?");
                 await fS.Speech.tell(Sho, "Ja, ich packe nur schnell meine Sachen zusammen.");
@@ -114,8 +114,8 @@ namespace Template {
                 await fS.Character.show(Teacher, TeacherPose.neutral, fS.positionPercent(70, 100));
                 await fS.update(0.5);
                 await fS.Speech.tell(Teacher, "Guten Morgen. Bevor wir heute mit dem Unterricht anfangen, möchte ich euch zunächst euren neuen Mitschüler vorstellen.");
-                await fS.Character.show(Sho, ShoPose.neutral, fS.positionPercent(30, 100));
-                await fS.update();
+                await fS.Character.show(Sho, ShoPose.neutral, fS.positionPercent(35, 100));
+                await fS.update(0.5);
                 await fS.Speech.tell(Sho, "Hi, ich bin Sho Rai. Freut mich, euch kennenzulernen.");
 
                 // TODO: ***GETUSCHEL VON ANDEREN SCHUELERN SOUND ***
@@ -143,8 +143,8 @@ namespace Template {
                 await fS.update(0.5);
                 await fS.Progress.delay(1);
 
-                await fS.Character.show(Sagi, SagiPose.neutral, fS.positionPercent(80, 100));
-                await fS.Character.show(Sho, ShoPose.neutral, fS.positionPercent(40, 100));
+                await fS.Character.show(Sagi, SagiPose.neutral, fS.positionPercent(70, 100));
+                await fS.Character.show(Sho, ShoPose.neutral, fS.positionPercent(35, 100));
                 // await fS.Character.show(Rika, RikaPose.neutral, fS.positionPercent(85, 100));
                 await fS.update(0.5);
 
@@ -172,10 +172,7 @@ namespace Template {
 
                 //*** Unterricht beendet***
                 //TODO: *** GONG EINBAUEN ***
-                await fS.Location.show(location.darkBackground);
-                fS.Speech.hide();
-                fS.Character.hideAll();
-                await fS.update();
+                await TransitionManager.blendInOut();
 
                 await fS.Progress.delay(3);
 
@@ -186,12 +183,12 @@ namespace Template {
                 // await fS.Character.show(Rika, RikaPose.neutral, fS.positionPercent(40, 100));
                 await fS.Character.show(Sho, ShoPose.neutral, fS.positionPercent(70, 100));
                 await fS.update(0.5);
-
+                await fS.Progress.delay(2);
                 await fS.Speech.tell(Rika, "Okay, wir können losgehen.");
                 await fS.Speech.tell(Sho, "Ja, ein Moment, ich packe schnell meine Sachen zusammen.");
-                await TransitionManager.blendInOut();
                 // -- -- -- Choice Endingrelevant -- -- --
                 await EndingChoices.firstEnding();
+                await TransitionManager.blendInOut();
                 break;
             case StoryState.ConstructionSiteAccidentHappend:
                 console.log("Construction Site Accident happend!");
@@ -204,7 +201,7 @@ namespace Template {
                 await fS.Character.show(Teacher, TeacherPose.neutral, fS.positionPercent(70, 100));
                 await fS.update();
                 await fS.Speech.tell(Teacher, "Guten Morgen. Bevor wir heute mit dem Unterricht anfangen, möchte ich euch zunächst euren neuen Mitschüler vorstellen.");
-                await fS.Character.show(Sho, ShoPose.neutral, fS.positionPercent(30, 100));
+                await fS.Character.show(Sho, ShoPose.neutral, fS.positionPercent(35, 100));
                 await fS.update();
                 await fS.Speech.tell(Sho, "Hi, ich bin Sho Rai. Freut mich, euch kennenzulernen.");
                 await fS.Speech.tell(Rika, "<i>… Das ist er. Ich habe von ihm geträumt. Aber was ist passiert?</i> ");
@@ -234,7 +231,7 @@ namespace Template {
                 await fS.Speech.tell(Rika, "Ich weiß es nicht. Zurzeit habe ich komische Träume, das ist alles.");
                 await fS.Speech.tell(Sagi, "Okay... Komm, lass uns mit Sho reden. Vielleicht bist du einfach nur etwas nervös.");
 
-                await fS.Character.show(Sho, ShoPose.neutral, fS.positionPercent(30, 100));
+                await fS.Character.show(Sho, ShoPose.neutral, fS.positionPercent(35, 100));
                 await fS.update();
                 await fS.Speech.tell(Rika, "Hi, Sho. Ich bin Rika.");
                 await fS.Speech.tell(Sagi, "Hi. Ich bin Sagi.");
@@ -242,11 +239,11 @@ namespace Template {
                 await fS.Speech.tell(Sagi, "Wohnst du schon lange in Kyoto?");
                 fS.Character.hide(Sho);
                 await fS.update();
-                await fS.Character.show(Sho, ShoPose.happy, fS.positionPercent(30, 100));
+                await fS.Character.show(Sho, ShoPose.happy, fS.positionPercent(35, 100));
                 await fS.update();
                 await fS.Speech.tell(Sho, "Nein, ich bin erst vor kurzem hergezogen. Deswegen verlaufe ich mich manchmal noch. Haha.");
                 fS.Character.hide(Sho);
-                await fS.Character.show(Sho, ShoPose.neutral, fS.positionPercent(30, 100));
+                await fS.Character.show(Sho, ShoPose.neutral, fS.positionPercent(35, 100));
                 await fS.update();
                 await fS.Speech.tell(Rika, "Wohnst du denn hier in der Nähe? Wir könnten dich mal in der Stadt herumführen.");
                 await fS.Speech.tell(Sho, "Nein. Wir müssen oft umziehen, da mein Vater wegen seiner Arbeit oft in eine andere Stadt verlegt wird. Ich wohne gegenüber vom Umekoji Park.");
@@ -268,7 +265,7 @@ namespace Template {
                 //Fade in screen
                 await fS.Location.show(location.classroom);
                 await fS.update(transition.wipeRight.duration, transition.wipeRight.alpha, transition.wipeRight.edge); 
-                await fS.Character.show(Sho, ShoPose.neutral, fS.positionPercent(30, 100));
+                await fS.Character.show(Sho, ShoPose.neutral, fS.positionPercent(35, 100));
                 await fS.update();
 
                 await fS.Speech.tell(Sho, "Können wir los gehen?");

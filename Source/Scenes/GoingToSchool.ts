@@ -47,6 +47,7 @@ namespace Template {
                 console.log("Crash Happend!");
                 fS.Speech.hide();
                 await fS.Location.show(location.alley);
+                await fS.update(transition.wipeRight.duration, transition.wipeRight.alpha, transition.wipeRight.edge); 
                 await fS.update();
                 await fS.Character.show(Sagi, SagiPose.neutral, fS.positions.bottomcenter);
                 // await fS.Character.show(Rika, RikaPose.neutral, fS.positions.bottomcenter);
@@ -80,13 +81,13 @@ namespace Template {
 
             case StoryState.ConstructionSiteAccidentHappend:
                 console.log("Construction Accident happend!");
+                fS.Speech.hide();
                 await fS.Location.show(location.alley);
+                await fS.update(transition.wipeRight.duration, transition.wipeRight.alpha, transition.wipeRight.edge); 
                 await fS.update();
-                await fS.Character.show(Sagi, SagiPose.neutral, fS.positionPercent(40, 100));
-                await fS.update();
-                await fS.Character.show(Rika, RikaPose.neutral, fS.positionPercent(70, 100));
+                await fS.Character.show(Sagi, SagiPose.neutral, fS.positions.bottomcenter);
                 await fS.update(0.5);
-                fS.Character.hide(Sagi);
+                
                 await fS.Speech.tell(Sagi, "Da bist du ja endlich.");
                 await fS.Speech.tell(Rika, "Sagi, hast du manchmal das Gefühl, dass du den gleichen Tag immer wieder neu erlebst?");
                 await fS.Character.show(Sagi, SagiPose.angry, fS.positionPercent(40, 100));

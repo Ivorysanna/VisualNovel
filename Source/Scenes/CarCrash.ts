@@ -3,6 +3,7 @@ namespace Template {
         public static async firstCarCrash(): Promise<void> {
             console.log("1. Car Crash");
             await fS.Location.show(location.streetCity);
+            await fS.update(transition.wipeRight.duration, transition.wipeRight.alpha, transition.wipeRight.edge); 
             await fS.update();
 
             await fS.Speech.tell(Rika, "So, hier um die Ecke ist auch schon das Einkaufszentrum. Wenn du möchtest, können wir uns hier am Wochenende auf einen Bubble Tea treffen und vielleicht…");

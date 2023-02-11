@@ -2,7 +2,10 @@ namespace Template {
     export class ConstructionSite {
         public static async firstConstructionSiteAccident(): Promise<void> {
             await fS.Location.show(location.constructionSite);
+            await fS.update(transition.wipeLeft.duration, transition.wipeLeft.alpha, transition.wipeLeft.edge);
             await fS.update();
+            await fS.Character.show(Sho, ShoPose.neutral, fS.positions.bottomcenter);
+            await fS.update(0.5);
             await fS.Speech.tell(Rika, "<i>Komisch ich erinnere mich gar nicht an diese Baustelle, die muss neu sein.</i>");
             await fS.Speech.tell(Sho, "Den Weg kannte ich noch gar nicht.");
             StateManager.storyState = StoryState.ConstructionSiteAccidentHappend;
