@@ -31,14 +31,14 @@ namespace Template {
                 break;
             case StoryState.CarCrashHappend:
                 //*** After Car Accident***
-                fS.Sound.play(sound.alarmClock, 0.5, false);
                 await fS.Progress.delay(4);
                 await fS.Location.show(location.bedroom);
+                fS.Sound.play(sound.alarmClock, 0.5, false);
                 await fS.update(transition.wipeRight.duration, transition.wipeRight.alpha, transition.wipeRight.edge);
                 await fS.Speech.tell(RikaMother, "Rika wach auf, sonst kommst du zu spät!");
-                await fS.Speech.tell(Rika, "Was… Was war das für ein Traum…");
+                await fS.Speech.tell(Rika, "<i>Was… Was war das für ein Traum…</i>");
                 await fS.Speech.tell(Rika, "Ja ich bin schon wach.");
-                await fS.Speech.tell(Rika, "Ich sollte mich schnell anziehen, nicht, dass Sagi auf mich warten muss.");
+                await fS.Speech.tell(Rika, "<i>Ich sollte mich schnell anziehen, nicht, dass Sagi auf mich warten muss.</i>");
 
                 await fS.Location.show(location.darkBackground);
                 fS.Speech.hide();
@@ -46,19 +46,20 @@ namespace Template {
                 await fS.update();
 
                 await fS.Location.show(location.bedroom);
-                await fS.update(transition.block.duration, transition.block.alpha, transition.block.edge);
+                await fS.update(transition.wipeLeft.duration, transition.wipeLeft.alpha, transition.wipeLeft.edge);
                 await fS.Character.show(Rika, RikaPose.neutral, fS.positionPercent(40, 100));
                 await fS.update(0.5);
                 await fS.Speech.tell(Rika, "Mama, ich gehe jetzt los. Bis heute Abend.");
                 await fS.Speech.tell(RikaMother, "Okay, viel Erfolg!");
                 await TransitionManager.blendInOut();
+                fS.Character.hideAll();
                 break;
 
             case StoryState.ConstructionSiteAccidentHappend:
                 // *** AFTER CONSTRUCTION SITE ACCIDENT ***
                 await fS.Progress.delay(4);
                 await fS.Location.show(location.bedroom);
-                await fS.update(transition.block.duration, transition.block.alpha, transition.block.edge);
+                await fS.update(transition.wipeLeft.duration, transition.wipeLeft.alpha, transition.wipeLeft.edge);
                 await fS.Speech.tell(RikaMother, "Rika… Dein Wecker hat nicht geklingelt… Bist du schon wach?");
                 await fS.Speech.tell(RikaMother, "<i>Was ist hier los… Habe ich von Sho geträumt? Ich erinnere mich kaum an etwas.</i>");
                 await fS.Speech.tell(Rika, "Ja, ich bin wach…");
@@ -88,7 +89,7 @@ namespace Template {
                 // *** AFTER SCHOOL ACCIDENT ***
                 //show bedroom
                 await fS.Location.show(location.bedroom);
-                await fS.update(transition.block.duration, transition.block.alpha, transition.block.edge);
+                await fS.update(transition.wipeLeft.duration, transition.wipeLeft.alpha, transition.wipeLeft.edge);
                 await fS.Speech.tell(Rika, "<i>Ich verstehe nicht, was hier passiert. Wie viele Tage habe ich das schon durchgemacht.</i>");
 
                 //play sound alarm clock

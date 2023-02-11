@@ -12,8 +12,7 @@ namespace Template {
 
                 await fS.Character.show(Sagi, SagiPose.neutral, fS.positions.bottomcenter);
                 await fS.Character.show(Rika, SagiPose.neutral, fS.positions.bottomcenter);
-                await fS.update();
-                await fS.Speech.tell(Sagi, "Na, da bist du ja endlich. Komm, sonst kommen wir zu spät!");
+                await fS.update(0.5);                await fS.Speech.tell(Sagi, "Na, da bist du ja endlich. Komm, sonst kommen wir zu spät!");
                 await fS.Speech.tell(Rika, "Tut mir leid, zurzeit schlafe ich wirklich schlecht. Ich frage mich wirklich, woran das liegt …");
                 await fS.Speech.tell(Sagi, "Vielleicht bist du ja nur nervös, du weißt ja heute kommt der neue Schüler. Ich frage mich, wie er drauf ist.");
                 await fS.Speech.tell(Sagi, "Hey, dann bekommst du ja vielleicht auch mal einen Freund.");
@@ -26,18 +25,20 @@ namespace Template {
                 await fS.Speech.tell(Rika, "Ich weiß nicht … irgendwie habe ich gerade ganz schlimme Kopfschmerzen bekommen. Hoffentlich ist es gleich vorbei.");
                 await fS.Speech.tell(Sagi, "Hmm … du solltest wirklich mehr trinken, Rika.");
 
+                fS.Speech.hide();
+                fS.Character.hideAll();
                 // Sagi und Rika sind auf dem Campus
                 // await TransitionManager.blendInOut();
                 await fS.Location.show(location.uni);
-                await fS.update(transition.wipeLeft.duration, transition.wipeLeft.alpha, transition.wipeLeft.edge);
-                // await fS.update();
+                await fS.update(transition.wipeRight.duration, transition.wipeRight.alpha, transition.wipeRight.edge); 
+                await fS.update();
 
                 // TODO: *** GLOCKE KLINGELT SOUND ***
                 await fS.Character.show(Sagi, SagiPose.neutral, fS.positions.bottomcenter);
-                await fS.update();
+                await fS.update(0.5);
                 await fS.Speech.tell(Sagi, "Komm schnell, wir schaffen es gerade so rechtzeitig.");
                 fS.Character.hideAll();
-                await TransitionManager.blendInOut();
+                // await TransitionManager.blendInOut();
                 break;
 
             case StoryState.CarCrashHappend:
@@ -46,7 +47,8 @@ namespace Template {
                 await fS.Location.show(location.alley);
                 await fS.update();
                 await fS.Character.show(Sagi, SagiPose.neutral, fS.positions.bottomcenter);
-                await fS.Character.show(Rika, RikaPose.neutral, fS.positions.bottomcenter);
+                // await fS.Character.show(Rika, RikaPose.neutral, fS.positions.bottomcenter);
+                await fS.update(0.5);
                 await fS.Speech.tell(Sagi, "Na, da bist du ja endlich. Komm, sonst kommen wir zu spät!");
                 await fS.Speech.tell(Rika, "Tut mir leid, zurzeit schlafe ich wirklich schlecht. Ich frage mich wirklich, woran das liegt …");
                 await fS.Speech.tell(Sagi, "Vielleicht bist du ja nur nervös, du weißt ja heute kommt der neue Schüler. Ich frage mich, wie er darauf ist. Hey, dann bekommst du ja vielleicht auch mal einen Freund.");
@@ -59,10 +61,13 @@ namespace Template {
 
                 fS.Character.hideAll();
                 await fS.Location.show(location.uni);
+                await fS.update(transition.wipeLeft.duration, transition.wipeLeft.alpha, transition.wipeLeft.edge);
                 await fS.update();
                 
                 await fS.Character.show(Sagi, SagiPose.neutral, fS.positions.bottomcenter);
-                await fS.update();
+                await fS.update(0.5);
+                
+
 
                 //TODO: *** GONG KLINGELT***
                 await fS.Speech.tell(Sagi, "Komm wir…");

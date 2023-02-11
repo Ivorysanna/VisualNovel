@@ -539,16 +539,16 @@ var Template;
         /*** SCENE HIERARCHY ***/
         Template.fS.Speech.hide();
         let scenes = [
-            { id: "wakingUpFirstTime", scene: Template.WakingUp, name: "Waking up" },
-            { id: "toSchoolFirstTime", scene: Template.GoingToSchool, name: "Going to School firstTime" },
-            // { id: "inClassFirstTime", scene: InClass, name: "In Class for firstTime"},
-            // { id: "wakingUpCarCrash", scene: WakingUp, name: "Waking up Carcrash" },
-            // { id: "toSchoolAfterCarCrash", scene: GoingToSchool, name: "Going to School after Carcrash"},
-            // { id: "inClassAfterCarCrash", scene: InClass, name: "In Class after Carcrash"},
-            // { id: "inClassAfterConstructionAccident", scene: WakingUp, name: "Waking up after Construction Site Accident"},
-            // { id: "toSchoolAfterConstructionAccident", scene: GoingToSchool, name: "Going to School after Construction Site Accident"},
-            // { id: "inClassAfterConstructionAccident", scene: InClass, name: "In Class AfterConstructionAccident"},
-            // { id: "wakingUpAfterSchoolAccident", scene: WakingUp, name: "Waking up after School Accident"},
+            // { id: "wakingUpFirstTime", scene: WakingUp, name: "Waking up" },
+            // { id: "toSchoolFirstTime", scene: GoingToSchool, name: "Going to School firstTime"},
+            { id: "inClassFirstTime", scene: Template.InClass, name: "In Class for firstTime" },
+            { id: "wakingUpCarCrash", scene: Template.WakingUp, name: "Waking up Carcrash" },
+            { id: "toSchoolAfterCarCrash", scene: Template.GoingToSchool, name: "Going to School after Carcrash" },
+            { id: "inClassAfterCarCrash", scene: Template.InClass, name: "In Class after Carcrash" },
+            { id: "inClassAfterConstructionAccident", scene: Template.WakingUp, name: "Waking up after Construction Site Accident" },
+            { id: "toSchoolAfterConstructionAccident", scene: Template.GoingToSchool, name: "Going to School after Construction Site Accident" },
+            { id: "inClassAfterConstructionAccident", scene: Template.InClass, name: "In Class AfterConstructionAccident" },
+            { id: "wakingUpAfterSchoolAccident", scene: Template.WakingUp, name: "Waking up after School Accident" },
             { id: "inClassAfterSchoolAccident", scene: Template.InClass, name: "In Class after School Accident" },
         ];
         let uiElement = document.querySelector("[type=interface]");
@@ -694,7 +694,7 @@ var Template;
                 await Template.fS.update();
                 await Template.fS.Character.show(Template.Sagi, Template.SagiPose.neutral, Template.fS.positions.bottomcenter);
                 await Template.fS.Character.show(Template.Rika, Template.SagiPose.neutral, Template.fS.positions.bottomcenter);
-                await Template.fS.update();
+                await Template.fS.update(0.5);
                 await Template.fS.Speech.tell(Template.Sagi, "Na, da bist du ja endlich. Komm, sonst kommen wir zu spät!");
                 await Template.fS.Speech.tell(Template.Rika, "Tut mir leid, zurzeit schlafe ich wirklich schlecht. Ich frage mich wirklich, woran das liegt …");
                 await Template.fS.Speech.tell(Template.Sagi, "Vielleicht bist du ja nur nervös, du weißt ja heute kommt der neue Schüler. Ich frage mich, wie er drauf ist.");
@@ -706,17 +706,19 @@ var Template;
                 await Template.fS.Speech.tell(Template.Sagi, "Was ist los?!");
                 await Template.fS.Speech.tell(Template.Rika, "Ich weiß nicht … irgendwie habe ich gerade ganz schlimme Kopfschmerzen bekommen. Hoffentlich ist es gleich vorbei.");
                 await Template.fS.Speech.tell(Template.Sagi, "Hmm … du solltest wirklich mehr trinken, Rika.");
+                Template.fS.Speech.hide();
+                Template.fS.Character.hideAll();
                 // Sagi und Rika sind auf dem Campus
                 // await TransitionManager.blendInOut();
                 await Template.fS.Location.show(Template.location.uni);
-                await Template.fS.update(Template.transition.wipeLeft.duration, Template.transition.wipeLeft.alpha, Template.transition.wipeLeft.edge);
-                // await fS.update();
+                await Template.fS.update(Template.transition.wipeRight.duration, Template.transition.wipeRight.alpha, Template.transition.wipeRight.edge);
+                await Template.fS.update();
                 // TODO: *** GLOCKE KLINGELT SOUND ***
                 await Template.fS.Character.show(Template.Sagi, Template.SagiPose.neutral, Template.fS.positions.bottomcenter);
-                await Template.fS.update();
+                await Template.fS.update(0.5);
                 await Template.fS.Speech.tell(Template.Sagi, "Komm schnell, wir schaffen es gerade so rechtzeitig.");
                 Template.fS.Character.hideAll();
-                await Template.TransitionManager.blendInOut();
+                // await TransitionManager.blendInOut();
                 break;
             case Template.StoryState.CarCrashHappend:
                 console.log("Crash Happend!");
@@ -724,7 +726,8 @@ var Template;
                 await Template.fS.Location.show(Template.location.alley);
                 await Template.fS.update();
                 await Template.fS.Character.show(Template.Sagi, Template.SagiPose.neutral, Template.fS.positions.bottomcenter);
-                await Template.fS.Character.show(Template.Rika, Template.RikaPose.neutral, Template.fS.positions.bottomcenter);
+                // await fS.Character.show(Rika, RikaPose.neutral, fS.positions.bottomcenter);
+                await Template.fS.update(0.5);
                 await Template.fS.Speech.tell(Template.Sagi, "Na, da bist du ja endlich. Komm, sonst kommen wir zu spät!");
                 await Template.fS.Speech.tell(Template.Rika, "Tut mir leid, zurzeit schlafe ich wirklich schlecht. Ich frage mich wirklich, woran das liegt …");
                 await Template.fS.Speech.tell(Template.Sagi, "Vielleicht bist du ja nur nervös, du weißt ja heute kommt der neue Schüler. Ich frage mich, wie er darauf ist. Hey, dann bekommst du ja vielleicht auch mal einen Freund.");
@@ -736,9 +739,10 @@ var Template;
                 await Template.fS.Speech.tell(Template.Sagi, "Komm, wir gehen los. Sonst kommen wir zu spät.");
                 Template.fS.Character.hideAll();
                 await Template.fS.Location.show(Template.location.uni);
+                await Template.fS.update(Template.transition.wipeLeft.duration, Template.transition.wipeLeft.alpha, Template.transition.wipeLeft.edge);
                 await Template.fS.update();
                 await Template.fS.Character.show(Template.Sagi, Template.SagiPose.neutral, Template.fS.positions.bottomcenter);
-                await Template.fS.update();
+                await Template.fS.update(0.5);
                 //TODO: *** GONG KLINGELT***
                 await Template.fS.Speech.tell(Template.Sagi, "Komm wir…");
                 await Template.fS.Speech.tell(Template.Rika, "Wir schaffen es zum Unterricht, keine Sorge.");
@@ -797,13 +801,13 @@ var Template;
                 console.log("First Run!");
                 Template.fS.Speech.hide();
                 await Template.fS.Location.show(Template.location.classroom);
-                await Template.fS.update(Template.transition.circle.duration, Template.transition.circle.alpha, Template.transition.circle.edge);
+                await Template.fS.update(Template.transition.wipeRight.duration, Template.transition.wipeRight.alpha, Template.transition.wipeRight.edge);
                 await Template.fS.update();
                 await Template.fS.Character.show(Template.Teacher, Template.TeacherPose.neutral, Template.fS.positionPercent(70, 100));
-                await Template.fS.update();
+                await Template.fS.update(0.5);
                 await Template.fS.Speech.tell(Template.Teacher, "Guten Morgen. Bevor wir heute mit dem Unterricht anfangen, möchte ich euch zunächst euren neuen Mitschüler vorstellen.");
                 await Template.fS.Character.show(Template.Sho, Template.ShoPose.neutral, Template.fS.positionPercent(30, 100));
-                await Template.fS.update();
+                await Template.fS.update(0.5);
                 await Template.fS.Speech.tell(Template.Sho, "Hi, ich bin Sho Rai. Freut mich, euch kennenzulernen.");
                 //TODO: ***GETUSCHEL VON ANDEREN SCHUELERN SOUND ***
                 await Template.fS.Speech.tell(Template.Teacher, "Okay, beruhigt euch wieder. Ihr könnt in der Pause noch mal miteinander reden.");
@@ -816,12 +820,12 @@ var Template;
                 await Template.fS.Progress.delay(3);
                 // *** PAUSE ***
                 await Template.fS.Location.show(Template.location.classroom);
-                await Template.fS.update(Template.transition.circle.duration, Template.transition.circle.alpha, Template.transition.circle.edge);
-                await Template.fS.update();
+                // await fS.update(transition.wipeRight.duration, transition.wipeRight.alpha, transition.wipeRight.edge); 
+                await Template.fS.update(0.5);
                 await Template.fS.Character.show(Template.Sho, Template.ShoPose.neutral, Template.fS.positionPercent(20, 100));
                 await Template.fS.Character.show(Template.Rika, Template.RikaPose.neutral, Template.fS.positionPercent(55, 100));
                 await Template.fS.Character.show(Template.Sagi, Template.SagiPose.neutral, Template.fS.positionPercent(85, 100));
-                await Template.fS.update();
+                await Template.fS.update(0.5);
                 await Template.fS.Speech.tell(Template.Rika, "Hey Sho. Ich bin Rika Sato.");
                 await Template.fS.Speech.tell(Template.Sagi, "Hi, ich bin Sagi Aoki.");
                 await Template.fS.Speech.tell(Template.Sho, "Hi, nett euch kennenzulernen.");
@@ -859,17 +863,21 @@ var Template;
                 // *** Unterricht zu Ende***
                 //TODO: *** GONG EINBAUEN ***
                 await Template.fS.Location.show(Template.location.classroom);
-                await Template.fS.update(Template.transition.circle.duration, Template.transition.circle.alpha, Template.transition.circle.edge);
+                // await fS.update(transition.wipeRight.duration, transition.wipeRight.alpha, transition.wipeRight.edge); 
                 await Template.fS.update();
                 await Template.fS.Character.show(Template.Sho, Template.ShoPose.neutral, Template.fS.positionPercent(40, 100));
                 await Template.fS.Character.show(Template.Rika, Template.RikaPose.neutral, Template.fS.positionPercent(80, 100));
-                await Template.fS.update();
+                await Template.fS.update(0.5);
                 await Template.fS.Speech.tell(Template.Rika, "Okay, können wir los?");
                 await Template.fS.Speech.tell(Template.Sho, "Ja, ich packe nur schnell meine Sachen zusammen.");
+                Template.fS.Speech.hide();
+                Template.fS.Character.hideAll();
                 // *** Auf dem Weg nach Hause***
                 await Template.fS.Location.show(Template.location.uni);
+                await Template.fS.update(Template.transition.wipeRight.duration, Template.transition.wipeRight.alpha, Template.transition.wipeRight.edge);
                 await Template.fS.update();
                 await Template.fS.Character.show(Template.Sho, Template.ShoPose.neutral, Template.fS.positionPercent(40, 100));
+                await Template.fS.update(0.5);
                 await Template.fS.Speech.tell(Template.Rika, "Okay, dir nach.");
                 await Template.fS.Speech.tell(Template.Rika, "Also wir können tatsächlich zwei verschiedene Routen nehmen, die ungefähr gleich lang sind. Aber der etwas längere Weg ist schöner.");
                 await Template.fS.Speech.tell(Template.Sho, "Nun, dann gehen wir mal den etwas längeren, außer du hast es eilig.");
@@ -883,10 +891,10 @@ var Template;
                 Template.fS.Character.hideAll();
                 Template.fS.Speech.hide();
                 await Template.fS.Location.show(Template.location.classroom);
-                await Template.fS.update(Template.transition.circle.duration, Template.transition.circle.alpha, Template.transition.circle.edge);
+                await Template.fS.update(Template.transition.wipeRight.duration, Template.transition.wipeRight.alpha, Template.transition.wipeRight.edge);
                 await Template.fS.update();
                 await Template.fS.Character.show(Template.Teacher, Template.TeacherPose.neutral, Template.fS.positionPercent(70, 100));
-                await Template.fS.update();
+                await Template.fS.update(0.5);
                 await Template.fS.Speech.tell(Template.Teacher, "Guten Morgen. Bevor wir heute mit dem Unterricht anfangen, möchte ich euch zunächst euren neuen Mitschüler vorstellen.");
                 await Template.fS.Character.show(Template.Sho, Template.ShoPose.neutral, Template.fS.positionPercent(30, 100));
                 await Template.fS.update();
@@ -902,7 +910,7 @@ var Template;
                 //TODO: *** PAUSEN GONG EINFÜGEN
                 //TODO: *** MENSCHEN DIE IN DER PAUSE REDEN EINFÜGEN ***
                 await Template.fS.Location.show(Template.location.classroom);
-                await Template.fS.update(Template.transition.circle.duration, Template.transition.circle.alpha, Template.transition.circle.edge);
+                await Template.fS.update(Template.transition.wipeRight.duration, Template.transition.wipeRight.alpha, Template.transition.wipeRight.edge);
                 await Template.fS.Character.show(Template.Sagi, Template.SagiPose.neutral, Template.fS.positionPercent(70, 100));
                 await Template.fS.update();
                 await Template.fS.Speech.tell(Template.Sagi, "Rika du bist schon die ganze Zeit abwesend. Ist alles in Ordnung?");
@@ -942,7 +950,7 @@ var Template;
                 await Template.fS.update();
                 await Template.fS.Progress.delay(3);
                 await Template.fS.Location.show(Template.location.classroom);
-                await Template.fS.update(Template.transition.circle.duration, Template.transition.circle.alpha, Template.transition.circle.edge);
+                await Template.fS.update(Template.transition.wipeRight.duration, Template.transition.wipeRight.alpha, Template.transition.wipeRight.edge);
                 await Template.fS.update();
                 await Template.fS.Character.show(Template.Rika, Template.RikaPose.neutral, Template.fS.positionPercent(40, 100));
                 await Template.fS.Character.show(Template.Sho, Template.ShoPose.neutral, Template.fS.positionPercent(70, 100));
@@ -957,7 +965,7 @@ var Template;
                 Template.fS.Character.hideAll();
                 Template.fS.Speech.hide();
                 await Template.fS.Location.show(Template.location.classroom);
-                await Template.fS.update(Template.transition.circle.duration, Template.transition.circle.alpha, Template.transition.circle.edge);
+                await Template.fS.update(Template.transition.wipeRight.duration, Template.transition.wipeRight.alpha, Template.transition.wipeRight.edge);
                 await Template.fS.update();
                 await Template.fS.Character.show(Template.Teacher, Template.TeacherPose.neutral, Template.fS.positionPercent(70, 100));
                 await Template.fS.update();
@@ -977,7 +985,7 @@ var Template;
                 //TODO: *** MENSCHEN DIE IN DER PAUSE REDEN EINFÜGEN ***
                 // *** PAUSE ***
                 await Template.fS.Location.show(Template.location.classroom);
-                await Template.fS.update(Template.transition.circle.duration, Template.transition.circle.alpha, Template.transition.circle.edge);
+                await Template.fS.update(Template.transition.wipeRight.duration, Template.transition.wipeRight.alpha, Template.transition.wipeRight.edge);
                 await Template.fS.update();
                 await Template.fS.Character.show(Template.Sagi, Template.SagiPose.neutral, Template.fS.positionPercent(70, 100));
                 await Template.fS.update(0.5);
@@ -1021,7 +1029,7 @@ var Template;
                 // *** Unterricht zu Ende***
                 //Fade in screen
                 await Template.fS.Location.show(Template.location.classroom);
-                await Template.fS.update(Template.transition.circle.duration, Template.transition.circle.alpha, Template.transition.circle.edge);
+                await Template.fS.update(Template.transition.wipeRight.duration, Template.transition.wipeRight.alpha, Template.transition.wipeRight.edge);
                 await Template.fS.Character.show(Template.Sho, Template.ShoPose.neutral, Template.fS.positionPercent(30, 100));
                 await Template.fS.update();
                 await Template.fS.Speech.tell(Template.Sho, "Können wir los gehen?");
@@ -1031,7 +1039,7 @@ var Template;
                 break;
             case Template.StoryState.SchoolAccidentHappend:
                 await Template.fS.Location.show(Template.location.classroom);
-                await Template.fS.update(Template.transition.circle.duration, Template.transition.circle.alpha, Template.transition.circle.edge);
+                await Template.fS.update(Template.transition.wipeRight.duration, Template.transition.wipeRight.alpha, Template.transition.wipeRight.edge);
                 await Template.fS.update();
                 await Template.fS.Character.show(Template.Teacher, Template.TeacherPose.neutral, Template.fS.positionPercent(70, 100));
                 await Template.fS.update();
@@ -1050,7 +1058,7 @@ var Template;
                 await Template.fS.Progress.delay(3);
                 //fade in screen classroom
                 await Template.fS.Location.show(Template.location.classroom);
-                await Template.fS.update(Template.transition.circle.duration, Template.transition.circle.alpha, Template.transition.circle.edge);
+                await Template.fS.update(Template.transition.wipeRight.duration, Template.transition.wipeRight.alpha, Template.transition.wipeRight.edge);
                 await Template.fS.update();
                 //TODO: *** Talking Sound ***
                 //speech rika   
@@ -1287,31 +1295,32 @@ var Template;
                 break;
             case Template.StoryState.CarCrashHappend:
                 //*** After Car Accident***
-                Template.fS.Sound.play(Template.sound.alarmClock, 0.5, false);
                 await Template.fS.Progress.delay(4);
                 await Template.fS.Location.show(Template.location.bedroom);
+                Template.fS.Sound.play(Template.sound.alarmClock, 0.5, false);
                 await Template.fS.update(Template.transition.wipeRight.duration, Template.transition.wipeRight.alpha, Template.transition.wipeRight.edge);
                 await Template.fS.Speech.tell(Template.RikaMother, "Rika wach auf, sonst kommst du zu spät!");
-                await Template.fS.Speech.tell(Template.Rika, "Was… Was war das für ein Traum…");
+                await Template.fS.Speech.tell(Template.Rika, "<i>Was… Was war das für ein Traum…</i>");
                 await Template.fS.Speech.tell(Template.Rika, "Ja ich bin schon wach.");
-                await Template.fS.Speech.tell(Template.Rika, "Ich sollte mich schnell anziehen, nicht, dass Sagi auf mich warten muss.");
+                await Template.fS.Speech.tell(Template.Rika, "<i>Ich sollte mich schnell anziehen, nicht, dass Sagi auf mich warten muss.</i>");
                 await Template.fS.Location.show(Template.location.darkBackground);
                 Template.fS.Speech.hide();
                 Template.fS.Character.hideAll();
                 await Template.fS.update();
                 await Template.fS.Location.show(Template.location.bedroom);
-                await Template.fS.update(Template.transition.block.duration, Template.transition.block.alpha, Template.transition.block.edge);
+                await Template.fS.update(Template.transition.wipeLeft.duration, Template.transition.wipeLeft.alpha, Template.transition.wipeLeft.edge);
                 await Template.fS.Character.show(Template.Rika, Template.RikaPose.neutral, Template.fS.positionPercent(40, 100));
                 await Template.fS.update(0.5);
                 await Template.fS.Speech.tell(Template.Rika, "Mama, ich gehe jetzt los. Bis heute Abend.");
                 await Template.fS.Speech.tell(Template.RikaMother, "Okay, viel Erfolg!");
                 await Template.TransitionManager.blendInOut();
+                Template.fS.Character.hideAll();
                 break;
             case Template.StoryState.ConstructionSiteAccidentHappend:
                 // *** AFTER CONSTRUCTION SITE ACCIDENT ***
                 await Template.fS.Progress.delay(4);
                 await Template.fS.Location.show(Template.location.bedroom);
-                await Template.fS.update(Template.transition.block.duration, Template.transition.block.alpha, Template.transition.block.edge);
+                await Template.fS.update(Template.transition.wipeLeft.duration, Template.transition.wipeLeft.alpha, Template.transition.wipeLeft.edge);
                 await Template.fS.Speech.tell(Template.RikaMother, "Rika… Dein Wecker hat nicht geklingelt… Bist du schon wach?");
                 await Template.fS.Speech.tell(Template.RikaMother, "<i>Was ist hier los… Habe ich von Sho geträumt? Ich erinnere mich kaum an etwas.</i>");
                 await Template.fS.Speech.tell(Template.Rika, "Ja, ich bin wach…");
@@ -1337,7 +1346,7 @@ var Template;
                 // *** AFTER SCHOOL ACCIDENT ***
                 //show bedroom
                 await Template.fS.Location.show(Template.location.bedroom);
-                await Template.fS.update(Template.transition.block.duration, Template.transition.block.alpha, Template.transition.block.edge);
+                await Template.fS.update(Template.transition.wipeLeft.duration, Template.transition.wipeLeft.alpha, Template.transition.wipeLeft.edge);
                 await Template.fS.Speech.tell(Template.Rika, "<i>Ich verstehe nicht, was hier passiert. Wie viele Tage habe ich das schon durchgemacht.</i>");
                 //play sound alarm clock
                 Template.fS.Sound.play(Template.sound.alarmClock, 0.5, false);
