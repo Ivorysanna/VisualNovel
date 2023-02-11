@@ -335,7 +335,7 @@ var Template;
         },
         wipeRight: {
             duration: 1.5,
-            alpha: "Images/Transitions/wipeRight.jpg",
+            alpha: "Images/Transitions/wipeRight.png",
             edge: 1
         }
     };
@@ -816,7 +816,6 @@ var Template;
                 Template.fS.Speech.hide();
                 await Template.fS.Location.show(Template.location.classroom);
                 await Template.fS.update(Template.transition.wipeRight.duration, Template.transition.wipeRight.alpha, Template.transition.wipeRight.edge);
-                await Template.fS.update();
                 await Template.fS.Character.show(Template.Teacher, Template.TeacherPose.neutral, Template.fS.positionPercent(70, 100));
                 await Template.fS.update(0.5);
                 await Template.fS.Speech.tell(Template.Teacher, "Guten Morgen. Bevor wir heute mit dem Unterricht anfangen, möchte ich euch zunächst euren neuen Mitschüler vorstellen.");
@@ -1261,10 +1260,9 @@ var Template;
         switch (Template.StateManager.storyState) {
             case Template.StoryState.FirstRun:
                 Template.fS.Sound.play(Template.sound.alarmClock, 0.5, false);
-                await Template.fS.Progress.delay(4);
+                await Template.fS.Progress.delay(3);
                 await Template.fS.Location.show(Template.location.bedroom);
                 await Template.fS.update(Template.transition.wipeRight.duration, Template.transition.wipeRight.alpha, Template.transition.wipeRight.edge);
-                await Template.fS.update();
                 await Template.fS.Progress.delay(3);
                 await Template.fS.Speech.tell(Template.RikaMother, "Rika wach auf, sonst kommst du zu spät!");
                 await Template.fS.Speech.tell(Template.Rika, "Ja, ich bin schon wach.");

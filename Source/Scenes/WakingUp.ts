@@ -5,11 +5,10 @@ namespace Template {
         switch (StateManager.storyState) {
             case StoryState.FirstRun:
                 fS.Sound.play(sound.alarmClock, 0.5, false);
-                await fS.Progress.delay(4);
+                await fS.Progress.delay(3);
                 await fS.Location.show(location.bedroom);
                 await fS.update(transition.wipeRight.duration, transition.wipeRight.alpha, transition.wipeRight.edge);
 
-                await fS.update();
                 await fS.Progress.delay(3);
                 await fS.Speech.tell(RikaMother, "Rika wach auf, sonst kommst du zu spät!");
                 await fS.Speech.tell(Rika, "Ja, ich bin schon wach.");

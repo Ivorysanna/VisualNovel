@@ -8,13 +8,13 @@ namespace Template {
                 fS.Speech.hide();
                 await fS.Location.show(location.classroom);
                 await fS.update(transition.wipeRight.duration, transition.wipeRight.alpha, transition.wipeRight.edge); 
-                await fS.update();
-
+                
                 await fS.Character.show(Teacher, TeacherPose.neutral, fS.positionPercent(70, 100));
                 await fS.update(0.5);
                 await fS.Speech.tell(Teacher, "Guten Morgen. Bevor wir heute mit dem Unterricht anfangen, möchte ich euch zunächst euren neuen Mitschüler vorstellen.");
                 await fS.Character.show(Sho, ShoPose.neutral, fS.positionPercent(35, 100));
-                await fS.update(0.5);                await fS.Speech.tell(Sho, "Hi, ich bin Sho Rai. Freut mich, euch kennenzulernen.");
+                await fS.update(0.5);                
+                await fS.Speech.tell(Sho, "Hi, ich bin Sho Rai. Freut mich, euch kennenzulernen.");
 
                 //TODO: ***GETUSCHEL VON ANDEREN SCHUELERN SOUND ***
                 await fS.Speech.tell(Teacher, "Okay, beruhigt euch wieder. Ihr könnt in der Pause noch mal miteinander reden.");
@@ -24,7 +24,7 @@ namespace Template {
                 await fS.Progress.delay(1);
                 await TransitionManager.blendInOut();
                 await fS.update(transition.wipeRight.duration, transition.wipeRight.alpha, transition.wipeRight.edge);
-
+                
                 await fS.Progress.delay(3);
 
                 // *** PAUSE ***

@@ -23,7 +23,7 @@ namespace Template {
         },
         wipeRight: {
             duration: 1.5,
-            alpha: "Images/Transitions/wipeRight.jpg",
+            alpha: "Images/Transitions/wipeRight.png",
             edge: 1
         }
     };
