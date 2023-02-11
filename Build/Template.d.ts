@@ -269,6 +269,11 @@ declare namespace Template {
     }
 }
 declare namespace Template {
+    class EndScene {
+        static gameOver(): Promise<void>;
+    }
+}
+declare namespace Template {
     class FallingAccident {
         static firstFallingAccident(): Promise<void>;
         static FallingAccidentHappend(): Promise<void>;

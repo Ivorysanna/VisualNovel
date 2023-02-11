@@ -14,6 +14,7 @@ namespace Template {
                     await fS.Speech.tell(Rika, "Lass uns den längeren Weg gehen, er ist nicht viel länger, aber dafür viel schöner.");
                     await fS.Speech.tell(Sho, "Gerne, ich habe es heute sowieso nicht so eilig.");
                     await CarCrash.carCrashHappend();
+                    
                     break;
                 case endingOne.shortPath:
                     // continue path here

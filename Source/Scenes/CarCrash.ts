@@ -26,6 +26,7 @@ namespace Template {
             
             fS.Speech.hide();
             fS.Character.hideAll();
+            await EndScene.gameOver();
             //TODO: *** ENDING THE GAME***
         }
     }

@@ -27,6 +27,7 @@ namespace Template {
                 await fS.Character.animate(Rika, RikaPose.neutral, leavingLeft());
                 // await fS.update(transition.wipeLeft.duration, transition.wipeLeft.alpha, transition.wipeLeft.edge);
                 await TransitionManager.blendInOut();
+                // await fS.update(transition.wipeRight.duration, transition.wipeRight.alpha, transition.wipeRight.edge);
                 break;
             case StoryState.CarCrashHappend:
                 //*** After Car Accident***
@@ -43,7 +44,6 @@ namespace Template {
                 await fS.Progress.delay(2);
 
                 await fS.Location.show(location.bedroom);
-                await fS.update(transition.wipeRight.duration, transition.wipeRight.alpha, transition.wipeRight.edge);
                 await fS.Character.show(Rika, RikaPose.neutral, fS.positionPercent(40, 100));
                 await fS.update(0.5);
                 await fS.Speech.tell(Rika, "Mama, ich gehe jetzt los. Bis heute Abend.");

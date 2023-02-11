@@ -23,7 +23,7 @@ namespace Template {
                 //TODO: *** MENSCHEN DIE IN DER PAUSE REDEN EINFÜGEN ***
                 await fS.Progress.delay(1);
                 await TransitionManager.blendInOut();
-                await fS.update(transition.wipeRight.duration, transition.wipeRight.alpha, transition.wipeRight.edge);
+                // await fS.update(transition.wipeRight.duration, transition.wipeRight.alpha, transition.wipeRight.edge);
                 
                 await fS.Progress.delay(3);
 
@@ -112,14 +112,14 @@ namespace Template {
                 await fS.Speech.tell(Teacher, "Okay, beruhigt euch wieder. Ihr könnt in der Pause noch mal miteinander reden.");
                 await fS.Progress.delay(1);
                 await TransitionManager.blendInOut();
-                await fS.update(transition.wipeRight.duration, transition.wipeRight.alpha, transition.wipeRight.edge);
+                // await fS.update(transition.wipeRight.duration, transition.wipeRight.alpha, transition.wipeRight.edge);
 
                 await fS.Progress.delay(3);
 
                 //TODO: *** PAUSEN GONG EINFÜGEN
                 //TODO: *** MENSCHEN DIE IN DER PAUSE REDEN EINFÜGEN ***
                 await fS.Location.show(location.classroom);
-                await fS.update(transition.wipeRight.duration, transition.wipeRight.alpha, transition.wipeRight.edge); 
+                // await fS.update(transition.wipeRight.duration, transition.wipeRight.alpha, transition.wipeRight.edge); 
                 await fS.Character.show(Sagi, SagiPose.neutral, fS.positionPercent(70, 100));
                 await fS.update(0.5);
                 await fS.Speech.tell(Sagi, "Rika du bist schon die ganze Zeit abwesend. Ist alles in Ordnung?");
@@ -171,7 +171,7 @@ namespace Template {
                 await fS.update();
 
                 // await fS.Character.show(Rika, RikaPose.neutral, fS.positionPercent(40, 100));
-                await fS.Character.show(Sho, ShoPose.neutral, fS.positionPercent(70, 100));
+                await fS.Character.show(Sho, ShoPose.neutral, fS.positions.bottomcenter);
                 await fS.update(0.5);
                 await fS.Progress.delay(2);
                 await fS.Speech.tell(Rika, "Okay, wir können losgehen.");

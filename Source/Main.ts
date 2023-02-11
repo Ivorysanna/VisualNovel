@@ -22,7 +22,7 @@ namespace Template {
             edge: 1
         },
         wipeRight: {
-            duration: 1.5,
+            duration: 1,
             alpha: "Images/Transitions/wipeRight.png",
             edge: 1
         }
@@ -248,7 +248,6 @@ namespace Template {
             { id: "inClassAfterConstructionAccident", scene: InClass, name: "In Class AfterConstructionAccident"},
             { id: "wakingUpAfterSchoolAccident", scene: WakingUp, name: "Waking up after School Accident"},
             { id: "inClassAfterSchoolAccident", scene: InClass, name: "In Class after School Accident"},
-
         ];
 
         let uiElement: HTMLElement = document.querySelector("[type=interface]");
