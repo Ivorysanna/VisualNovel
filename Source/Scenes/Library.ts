@@ -12,10 +12,8 @@ namespace Template {
             //TODO: *** ADDING BOOK SOUND EFFECTS ***
             await fS.Speech.tell(Rika, "<i>Das ist wirklich viel. Ich sollte das Buch ausleihen.</i>");
 
-            //TODO: *** ADD BORROW BUTTON*** 
-            //TODO: *** ADDING RIDDLE DOWNLOAD***
             InterfaceHelper.toggleAusleihButton();
-            
+            await fS.Progress.delay(10);
             
             await fS.Speech.tell(Rika, "<i>Okay also, das Buch sagt, ich muss den Namen von diesem Dämon kennen.</i>");
 

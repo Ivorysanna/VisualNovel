@@ -13,6 +13,7 @@ namespace Template {
             await fS.Speech.tell(Sho, "SHO, VORSICHT!");
             fS.Speech.hide();
             fS.Character.hideAll();
+            await TransitionManager.blendInOut();
             //TODO: *** SHOW SCENE PICTURE
 
         }

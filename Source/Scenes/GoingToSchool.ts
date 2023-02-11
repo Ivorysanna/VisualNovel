@@ -5,12 +5,14 @@ namespace Template {
         switch (StateManager.storyState) {
             case StoryState.FirstRun:
                 console.log("First Run!");
-                fS.Speech.hide();
+                // fS.Speech.hide();
                 await fS.Location.show(location.alley);
+                await fS.update(transition.wipeRight.duration, transition.wipeRight.alpha, transition.wipeRight.edge);                
                 await fS.update();
 
                 await fS.Character.show(Sagi, SagiPose.neutral, fS.positions.bottomcenter);
                 await fS.Character.show(Rika, SagiPose.neutral, fS.positions.bottomcenter);
+                await fS.update();
                 await fS.Speech.tell(Sagi, "Na, da bist du ja endlich. Komm, sonst kommen wir zu spät!");
                 await fS.Speech.tell(Rika, "Tut mir leid, zurzeit schlafe ich wirklich schlecht. Ich frage mich wirklich, woran das liegt …");
                 await fS.Speech.tell(Sagi, "Vielleicht bist du ja nur nervös, du weißt ja heute kommt der neue Schüler. Ich frage mich, wie er drauf ist.");
@@ -25,14 +27,17 @@ namespace Template {
                 await fS.Speech.tell(Sagi, "Hmm … du solltest wirklich mehr trinken, Rika.");
 
                 // Sagi und Rika sind auf dem Campus
+                // await TransitionManager.blendInOut();
                 await fS.Location.show(location.uni);
-                await fS.update();
+                await fS.update(transition.wipeLeft.duration, transition.wipeLeft.alpha, transition.wipeLeft.edge);
+                // await fS.update();
 
                 // TODO: *** GLOCKE KLINGELT SOUND ***
                 await fS.Character.show(Sagi, SagiPose.neutral, fS.positions.bottomcenter);
                 await fS.update();
                 await fS.Speech.tell(Sagi, "Komm schnell, wir schaffen es gerade so rechtzeitig.");
                 fS.Character.hideAll();
+                await TransitionManager.blendInOut();
                 break;
 
             case StoryState.CarCrashHappend:
@@ -63,6 +68,7 @@ namespace Template {
                 await fS.Speech.tell(Sagi, "Komm wir…");
                 await fS.Speech.tell(Rika, "Wir schaffen es zum Unterricht, keine Sorge.");
                 await fS.Speech.tell(Sagi, "...");
+                await TransitionManager.blendInOut();
                 break;
 
             case StoryState.ConstructionSiteAccidentHappend:
@@ -81,6 +87,7 @@ namespace Template {
                 await fS.Speech.tell(Sagi, "Nein. Warum fragst du mich sowas Komisches?");
                 await fS.Speech.tell(Sagi, "<i>Warum hat sie denn so wütend reagiert, hat sie auch solche komischen Träume?</i>");
                 await fS.Speech.tell(Sagi, "… Komm wir gehen jetzt, sonst kommen wir zu spät.");
+                await TransitionManager.blendInOut();
                 break;
             case StoryState.SchoolAccidentHappend:
                 console.log("School Accident happend!");
@@ -100,6 +107,7 @@ namespace Template {
                 await fS.Speech.tell(Sagi, "Ich kann dir nicht wirklich helfen. Lass uns heute Abend noch mal darüber sprechen.");
                 await fS.Speech.tell(Sagi, "Komm, wir gehen erstmal zur Schule.");
                 await fS.Speech.tell(Rika, "Ja…");
+                await TransitionManager.blendInOut();
                 break;
         }
     }

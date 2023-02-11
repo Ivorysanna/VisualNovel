@@ -5,6 +5,7 @@ namespace Template {
             //TODO: ADD SOUNDS
             //TODO: ADD ENDPICUTRE
             //*** GAME OVER***
+            await TransitionManager.blendInOut();
             console.log("GAME OVER: Falling Accident");  
         }
         public static async FallingAccidentHappend(): Promise<void> {
@@ -12,6 +13,7 @@ namespace Template {
             //TODO: ADD SOUNDS
             //TODO: ADD ENDPICUTRE
             //*** GAME OVER***
+            await TransitionManager.blendInOut();
             console.log("GAME OVER: Falling Accident");  
         }
     }

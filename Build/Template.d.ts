@@ -24,7 +24,22 @@ declare namespace Template {
     export import f = FudgeCore;
     export import fS = FudgeStory;
     let transition: {
-        swirl: {
+        block: {
+            duration: number;
+            alpha: string;
+            edge: number;
+        };
+        circle: {
+            duration: number;
+            alpha: string;
+            edge: number;
+        };
+        wipeLeft: {
+            duration: number;
+            alpha: string;
+            edge: number;
+        };
+        wipeRight: {
             duration: number;
             alpha: string;
             edge: number;
