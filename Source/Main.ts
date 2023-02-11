@@ -8,22 +8,22 @@ namespace Template {
     export let transition = {
         block: {
             duration: 1.5,
-            alpha: "/Images/Transitions/block.png",
+            alpha: "Images/Transitions/block.png",
             edge: 1
         },
         circle: {
             duration: 1.5,
-            alpha: "/Images/Transitions/cw-top.jpg",
+            alpha: "Images/Transitions/cw-top.jpg",
             edge: 1
         },
         wipeLeft: {
             duration: 1.5,
-            alpha: "/Images/Transitions/wipeLeft.jpg",
+            alpha: "Images/Transitions/wipeLeft.jpg",
             edge: 1
         },
         wipeRight: {
             duration: 1.5,
-            alpha: "/Images/Transitions/wipeRight.jpg",
+            alpha: "Images/Transitions/wipeRight.jpg",
             edge: 1
         }
     };
