@@ -7,7 +7,7 @@ namespace Template {
                 fS.Sound.play(sound.alarmClock, 0.5, false);
                 await fS.Progress.delay(4);
                 await fS.Location.show(location.bedroom);
-                await fS.update(transition.wipeLeft.duration, transition.wipeLeft.alpha, transition.wipeLeft.edge);
+                await fS.update(transition.wipeRight.duration, transition.wipeRight.alpha, transition.wipeRight.edge);
 
                 await fS.update();
                 await fS.Progress.delay(3);
@@ -18,7 +18,7 @@ namespace Template {
 
                 await TransitionManager.blendInOut();
 
-                await fS.Progress.delay(3);
+                await fS.Progress.delay(2);
 
                 await fS.Location.show(location.bedroom);
                 await fS.Character.show(Rika, RikaPose.neutral, fS.positionPercent(40, 100));
@@ -41,6 +41,7 @@ namespace Template {
                 await fS.Speech.tell(Rika, "<i>Ich sollte mich schnell anziehen, nicht, dass Sagi auf mich warten muss.</i>");
 
                 await TransitionManager.blendInOut();
+                await fS.Progress.delay(2);
 
                 await fS.Location.show(location.bedroom);
                 await fS.update(transition.wipeRight.duration, transition.wipeRight.alpha, transition.wipeRight.edge);
@@ -66,10 +67,10 @@ namespace Template {
 
                 await TransitionManager.blendInOut();
 
-                await fS.Progress.delay(3);
+                await fS.Progress.delay(2);
 
                 await fS.Location.show(location.bedroom);
-                await fS.update();
+                await fS.update(0.5);
                 await fS.Character.show(Rika, RikaPose.neutral, fS.positionPercent(40, 100));
                 await fS.update(0.5);
                 await fS.Speech.tell(Rika, "Mama, ich gehe jetzt los. Bis heute Abend.");

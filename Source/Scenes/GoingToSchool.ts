@@ -62,7 +62,9 @@ namespace Template {
                 await fS.Speech.tell(Rika, "Hast du nicht? Ich dachte, dass du das gesagt hättest…");
                 await fS.Speech.tell(Sagi, "Komm, wir gehen los. Sonst kommen wir zu spät.");
 
+                fS.Speech.hide();
                 fS.Character.hideAll();
+                await fS.update(0.5);
                 await fS.Location.show(location.uni);
                 await fS.update(transition.wipeLeft.duration, transition.wipeLeft.alpha, transition.wipeLeft.edge);
                 await fS.update();
@@ -76,7 +78,11 @@ namespace Template {
                 await fS.Speech.tell(Sagi, "Komm wir…");
                 await fS.Speech.tell(Rika, "Wir schaffen es zum Unterricht, keine Sorge.");
                 await fS.Speech.tell(Sagi, "...");
+                fS.Speech.hide();
+                fS.Character.hideAll();
+                await fS.update(0.5);
                 await TransitionManager.blendInOut();
+                await fS.update(0.5);
                 break;
 
             case StoryState.ConstructionSiteAccidentHappend:
@@ -84,14 +90,12 @@ namespace Template {
                 fS.Speech.hide();
                 await fS.Location.show(location.alley);
                 await fS.update(transition.wipeRight.duration, transition.wipeRight.alpha, transition.wipeRight.edge); 
-                await fS.update();
+                await fS.update(0.5);
                 await fS.Character.show(Sagi, SagiPose.neutral, fS.positions.bottomcenter);
                 await fS.update(0.5);
-                
+
                 await fS.Speech.tell(Sagi, "Da bist du ja endlich.");
                 await fS.Speech.tell(Rika, "Sagi, hast du manchmal das Gefühl, dass du den gleichen Tag immer wieder neu erlebst?");
-                await fS.Character.show(Sagi, SagiPose.angry, fS.positionPercent(40, 100));
-                await fS.update();
                 await fS.Speech.tell(Sagi, "Nein. Warum fragst du mich sowas Komisches?");
                 await fS.Speech.tell(Sagi, "<i>Warum hat sie denn so wütend reagiert, hat sie auch solche komischen Träume?</i>");
                 await fS.Speech.tell(Sagi, "… Komm wir gehen jetzt, sonst kommen wir zu spät.");
