@@ -160,6 +160,7 @@ declare namespace Template {
     };
     let dataForSave: {
         nameProtagonist: string;
+        shoScore: number;
     };
     function leavingLeft(): fS.AnimationDefinition;
 }
@@ -244,7 +245,6 @@ declare namespace Template {
     }
     class StateManager {
         static storyState: StoryState;
-        static loveOMeter: number;
         static choicesState: String;
         static endingState: String;
         static carCrashHappend: boolean;

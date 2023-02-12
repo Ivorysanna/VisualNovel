@@ -10,11 +10,11 @@ namespace Template {
         //*** GLOBAL VARIABLES***
         //TODO: FirstRun wieder einblenden 
         // public static storyState: StoryState = StoryState.FirstRun;
-        // public static storyState: StoryState = StoryState.CarCrashHappend;
+        public static storyState: StoryState = StoryState.CarCrashHappend;
         // public static storyState: StoryState = StoryState.ConstructionSiteAccidentHappend;
-        public static storyState: StoryState = StoryState.SchoolAccidentHappend;
+        // public static storyState: StoryState = StoryState.SchoolAccidentHappend;
 
-        public static loveOMeter: number = 0;
+        
 
         public static choicesState: String = "firstChoice";
 

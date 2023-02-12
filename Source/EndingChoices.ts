@@ -116,6 +116,7 @@ namespace Template {
                 case endingThree.goLibrary:
                     // continue path here
                     await fS.Character.show(Sagi, SagiPose.neutral, fS.positions.bottomcenter);
+                    await fS.update(0.5);
                     await fS.Speech.tell(Rika, "<i>Vielleicht finde ich etwas in der Bibliothek. Ich kann nicht die erste sein, die sowas erlebt.</i>");
                     await fS.Speech.tell(Sagi, "Sollen wir uns was zu essen holen und mit Sho sprechen?");
                     await fS.Speech.tell(Rika, "Geh schon mal vor. Ich möchte noch kurz in die Bibliothek.");
@@ -123,8 +124,8 @@ namespace Template {
                     await fS.Speech.tell(Rika, "Nein, ich möchte einfach nur ein Buch abgeben.");
                     await fS.Speech.tell(Sagi, "In Ordnung. Wir sehen uns später.");
                     await fS.Speech.tell(Rika, "Ja, bis später.");
-                    await fS.Character.hide(Sagi);
                     fS.Speech.hide();
+                    fS.Character.hideAll();
                     await fS.update();
                     await Library.inLibrary();
                     break;
@@ -132,13 +133,13 @@ namespace Template {
                 case endingThree.todaySuccess:
                     // continue path here
                     await fS.Character.show(Sagi, SagiPose.neutral, fS.positionPercent(70, 100));
-                    await fS.update();
+                    await fS.update(0.5);
                     await fS.Speech.tell(Rika, "<i>Heute schaffe ich es, das weiß ich.</i>");
                     await fS.Speech.tell(Sagi, "Rika, sollen wir zu Sho gehen und mit ihm reden?");
                     await fS.Speech.tell(Rika, "Ja, lass uns zu ihm gehen.");
 
-                    await fS.Character.show(Sho, ShoPose.neutral, fS.positionPercent(30, 100));
-                    await fS.update();
+                    await fS.Character.show(Sho, ShoPose.neutral, fS.positionPercent(35, 100));
+                    await fS.update(0.5);
 
                     await fS.Speech.tell(Rika, "Hi Sho, ich bin Rika und das ist Sagi.");
                     await fS.Speech.tell(Sho, "Hey, nett euch kennenzulernen.");
@@ -157,26 +158,18 @@ namespace Template {
                     await fS.Speech.tell(Rika, "Wir sehen uns nach dem Unterricht.");
                     await fS.Speech.tell(Rika, "Komm Sagi.");
 
-                    fS.Character.hideAll();
-                    fS.Speech.hide();
-                    await fS.update();
-                    await fS.Location.show(location.darkBackground);
-                    await fS.update();
+                    await TransitionManager.blendInOut();
+
                     await fS.Progress.delay(3);
                     //TODO: ADD SCHOOLBELL SOUND
 
                     await fS.Location.show(location.classroom);
                     await fS.update();
                     await fS.Character.show(Sho, ShoPose.neutral, fS.positions.bottomcenter);
-                    await fS.update();
+                    await fS.update(0.5);
                     await fS.Speech.tell(Rika, "Okay, können wir los?");
                     await fS.Speech.tell(Sho, "Ja, ich packe nur schnell meine Sachen zusammen.");
                     //fade out screen
-                    fS.Character.hideAll();
-                    fS.Speech.hide();
-                    await fS.update();
-                    await fS.Location.show(location.darkBackground);
-                    await fS.update();
                     await fS.Progress.delay(3);
                     //Saving Sho
                     await SavingSho.savingSho();

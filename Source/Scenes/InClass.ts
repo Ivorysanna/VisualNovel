@@ -282,7 +282,6 @@ namespace Template {
                 //speech rika   
                 await fS.Speech.tell(Rika, "<i>Ich will nicht, dass sich der Tag wiederholt. Was kann ich bloß machen?</i>");
                 // *** Auswahlmöglichkeit*** 
-                await TransitionManager.blendInOut();
                 await EndingChoices.thirdEnding();
         }
     }

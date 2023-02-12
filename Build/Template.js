@@ -12,14 +12,15 @@ var Template;
                 case livingHereChoice.movedRecently:
                     // continue path here
                     await Template.fS.Speech.tell(Template.Rika, "Du bist erst vor kurzem hier hergezogen, oder?");
-                    Template.StateManager.loveOMeter -= 10;
+                    Template.dataForSave.shoScore -= 10;
                     await Template.fS.Speech.tell(Template.Sho, "Ehm…ja…");
                     break;
                 case livingHereChoice.movedLongAgo:
                     // continue path here
                     await Template.fS.Speech.tell(Template.Rika, "Wohnst du schon lange hier? ");
                     await Template.fS.Speech.tell(Template.Sho, "Nein, meine Familie musste umziehen, da mein Vater oft wegen der Arbeit woanders stationiert wird.");
-                    Template.StateManager.loveOMeter += 10;
+                    Template.dataForSave.shoScore += 10;
+                    console.log("LoveOMeter: " + Template.dataForSave.shoScore);
                     break;
                 default:
                     console.log("Default");
@@ -37,12 +38,12 @@ var Template;
                     await Template.fS.Speech.tell(Template.Rika, "Du wohnst gegenüber vom Umekoji Park, nicht wahr? ");
                     await Template.fS.Speech.tell(Template.Sho, "… J-ja, woher weißt du das?");
                     await Template.fS.Speech.tell(Template.Rika, "Oh, ehm ich habe einfach geraten…");
-                    Template.StateManager.loveOMeter -= 10;
+                    Template.dataForSave.shoScore -= 10;
                     break;
                 case livingWhereChoice.goingToCityTogether:
                     await Template.fS.Speech.tell(Template.Rika, "Wenn du möchtest, können wir uns mal am Wochenende treffen und wir zeigen dir ein bisschen die Stadt. ");
                     await Template.fS.Speech.tell(Template.Sho, "Ja, gerne, dann verlaufe ich mich vielleicht nicht mehr so oft. Ich glaube, die Straße, in der ich wohne, heißt Kitsuya-bashi Dori.");
-                    Template.StateManager.loveOMeter += 10;
+                    Template.dataForSave.shoScore += 10;
                     break;
             }
         }
@@ -64,7 +65,7 @@ var Template;
                 case goingHomeFastChoice.strangeDreams:
                     await Template.fS.Speech.tell(Template.Rika, "Ich habe die letzten Tage etwas echt Komisches geträumt und ich habe das Gefühl, wenn wir schneller nach Hause gehen, dann hören diese Träume auf… ");
                     await Template.fS.Speech.tell(Template.Sho, "Ach so…");
-                    Template.StateManager.loveOMeter -= 10;
+                    Template.dataForSave.shoScore -= 10;
                     //TODO: ADDING FALLING SOUND
                     await Template.fS.Speech.tell(Template.Rika, "SHO, VORSICHT!");
                     break;
@@ -75,7 +76,7 @@ var Template;
                     await Template.fS.Speech.tell(Template.Rika, "Witzig, dass du das sagst. Ich habe zurzeit so komisch…");
                     //TODO: ADDING FALLING SOUND
                     await Template.fS.Speech.tell(Template.Rika, "SHO, VORSICHT!");
-                    Template.StateManager.loveOMeter += 10;
+                    Template.dataForSave.shoScore += 10;
                     break;
             }
         }
@@ -91,13 +92,13 @@ var Template;
                     await Template.fS.Speech.tell(Template.Sho, "Ja, also es geht eigentlich. Dadurch habe ich viele Bekannte, aber leider kaum gute Freunde.");
                     await Template.fS.Speech.tell(Template.Rika, "Hoffentlich bleibst du dieses Mal länger hier.");
                     await Template.fS.Speech.tell(Template.Sho, "… Danke, Rika.");
-                    Template.StateManager.loveOMeter += 10;
+                    Template.dataForSave.shoScore += 10;
                     await Template.SchoolAccident.firstSchoolAccident();
                     break;
                 case askingAboutFriends.manyFriends:
                     await Template.fS.Speech.tell(Template.Rika, "Ich habe die letzten Tage etwas echt Komisches geträumt und ich habe das Gefühl, wenn wir schneller nach Hause gehen, dann hören diese Träume auf… ");
                     await Template.fS.Speech.tell(Template.Sho, "Ach so…");
-                    Template.StateManager.loveOMeter -= 10;
+                    Template.dataForSave.shoScore -= 10;
                     await Template.SchoolAccident.firstSchoolAccident();
                     break;
             }
@@ -209,6 +210,7 @@ var Template;
                 case endingThree.goLibrary:
                     // continue path here
                     await Template.fS.Character.show(Template.Sagi, Template.SagiPose.neutral, Template.fS.positions.bottomcenter);
+                    await Template.fS.update(0.5);
                     await Template.fS.Speech.tell(Template.Rika, "<i>Vielleicht finde ich etwas in der Bibliothek. Ich kann nicht die erste sein, die sowas erlebt.</i>");
                     await Template.fS.Speech.tell(Template.Sagi, "Sollen wir uns was zu essen holen und mit Sho sprechen?");
                     await Template.fS.Speech.tell(Template.Rika, "Geh schon mal vor. Ich möchte noch kurz in die Bibliothek.");
@@ -216,20 +218,20 @@ var Template;
                     await Template.fS.Speech.tell(Template.Rika, "Nein, ich möchte einfach nur ein Buch abgeben.");
                     await Template.fS.Speech.tell(Template.Sagi, "In Ordnung. Wir sehen uns später.");
                     await Template.fS.Speech.tell(Template.Rika, "Ja, bis später.");
-                    await Template.fS.Character.hide(Template.Sagi);
                     Template.fS.Speech.hide();
+                    Template.fS.Character.hideAll();
                     await Template.fS.update();
                     await Template.Library.inLibrary();
                     break;
                 case endingThree.todaySuccess:
                     // continue path here
                     await Template.fS.Character.show(Template.Sagi, Template.SagiPose.neutral, Template.fS.positionPercent(70, 100));
-                    await Template.fS.update();
+                    await Template.fS.update(0.5);
                     await Template.fS.Speech.tell(Template.Rika, "<i>Heute schaffe ich es, das weiß ich.</i>");
                     await Template.fS.Speech.tell(Template.Sagi, "Rika, sollen wir zu Sho gehen und mit ihm reden?");
                     await Template.fS.Speech.tell(Template.Rika, "Ja, lass uns zu ihm gehen.");
-                    await Template.fS.Character.show(Template.Sho, Template.ShoPose.neutral, Template.fS.positionPercent(30, 100));
-                    await Template.fS.update();
+                    await Template.fS.Character.show(Template.Sho, Template.ShoPose.neutral, Template.fS.positionPercent(35, 100));
+                    await Template.fS.update(0.5);
                     await Template.fS.Speech.tell(Template.Rika, "Hi Sho, ich bin Rika und das ist Sagi.");
                     await Template.fS.Speech.tell(Template.Sho, "Hey, nett euch kennenzulernen.");
                     await Template.fS.Speech.tell(Template.Sagi, "Du bist erst vor kurzem hergezogen, nicht wahr?");
@@ -246,25 +248,16 @@ var Template;
                     //TODO: ADD SCHOOLBELL SOUND
                     await Template.fS.Speech.tell(Template.Rika, "Wir sehen uns nach dem Unterricht.");
                     await Template.fS.Speech.tell(Template.Rika, "Komm Sagi.");
-                    Template.fS.Character.hideAll();
-                    Template.fS.Speech.hide();
-                    await Template.fS.update();
-                    await Template.fS.Location.show(Template.location.darkBackground);
-                    await Template.fS.update();
+                    await Template.TransitionManager.blendInOut();
                     await Template.fS.Progress.delay(3);
                     //TODO: ADD SCHOOLBELL SOUND
                     await Template.fS.Location.show(Template.location.classroom);
                     await Template.fS.update();
                     await Template.fS.Character.show(Template.Sho, Template.ShoPose.neutral, Template.fS.positions.bottomcenter);
-                    await Template.fS.update();
+                    await Template.fS.update(0.5);
                     await Template.fS.Speech.tell(Template.Rika, "Okay, können wir los?");
                     await Template.fS.Speech.tell(Template.Sho, "Ja, ich packe nur schnell meine Sachen zusammen.");
                     //fade out screen
-                    Template.fS.Character.hideAll();
-                    Template.fS.Speech.hide();
-                    await Template.fS.update();
-                    await Template.fS.Location.show(Template.location.darkBackground);
-                    await Template.fS.update();
                     await Template.fS.Progress.delay(3);
                     //Saving Sho
                     await Template.SavingSho.savingSho();
@@ -469,7 +462,8 @@ var Template;
     };
     // *** DATA THAT WILL BE SAVED (GAME PROGRESS)
     Template.dataForSave = {
-        nameProtagonist: ""
+        nameProtagonist: "",
+        shoScore: 0,
     };
     // *** ANIMATION ***
     function leavingLeft() {
@@ -544,10 +538,10 @@ var Template;
             // { id: "inClassFirstTime", scene: InClass, name: "In Class for firstTime"},
             // { id: "wakingUpCarCrash", scene: WakingUp, name: "Waking up Carcrash" },
             // { id: "toSchoolAfterCarCrash", scene: GoingToSchool, name: "Going to School after Carcrash"},
-            // { id: "inClassAfterCarCrash", scene: InClass, name: "In Class after Carcrash"},
-            // { id: "inClassAfterConstructionAccident", scene: WakingUp, name: "Waking up after Construction Site Accident"},
-            // { id: "toSchoolAfterConstructionAccident", scene: GoingToSchool, name: "Going to School after Construction Site Accident"},
-            // { id: "inClassAfterConstructionAccident", scene: InClass, name: "In Class AfterConstructionAccident"},
+            { id: "inClassAfterCarCrash", scene: Template.InClass, name: "In Class after Carcrash" },
+            { id: "inClassAfterConstructionAccident", scene: Template.WakingUp, name: "Waking up after Construction Site Accident" },
+            { id: "toSchoolAfterConstructionAccident", scene: Template.GoingToSchool, name: "Going to School after Construction Site Accident" },
+            { id: "inClassAfterConstructionAccident", scene: Template.InClass, name: "In Class AfterConstructionAccident" },
             { id: "wakingUpAfterSchoolAccident", scene: Template.WakingUp, name: "Waking up after School Accident" },
             { id: "toSchoolAfterSchoolAccident", scene: Template.GoingToSchool, name: "Going to School after School Accident" },
             { id: "inClassAfterSchoolAccident", scene: Template.InClass, name: "In Class after School Accident" },
@@ -589,10 +583,9 @@ var Template;
         //*** GLOBAL VARIABLES***
         //TODO: FirstRun wieder einblenden 
         // public static storyState: StoryState = StoryState.FirstRun;
-        // public static storyState: StoryState = StoryState.CarCrashHappend;
+        static storyState = StoryState.CarCrashHappend;
         // public static storyState: StoryState = StoryState.ConstructionSiteAccidentHappend;
-        static storyState = StoryState.SchoolAccidentHappend;
-        static loveOMeter = 0;
+        // public static storyState: StoryState = StoryState.SchoolAccidentHappend;
         static choicesState = "firstChoice";
         static endingState = "";
         static carCrashHappend = false;
@@ -1064,7 +1057,6 @@ var Template;
                 //speech rika   
                 await Template.fS.Speech.tell(Template.Rika, "<i>Ich will nicht, dass sich der Tag wiederholt. Was kann ich bloß machen?</i>");
                 // *** Auswahlmöglichkeit*** 
-                await Template.TransitionManager.blendInOut();
                 await Template.EndingChoices.thirdEnding();
         }
     }
@@ -1112,27 +1104,22 @@ var Template;
         static async savingSho() {
             console.log("Saving Sho");
             await Template.fS.Location.show(Template.location.uni);
+            await Template.fS.update(Template.transition.wipeLeft.duration, Template.transition.wipeLeft.alpha, Template.transition.wipeLeft.edge);
             await Template.fS.update();
             await Template.fS.Character.show(Template.Sho, Template.ShoPose.neutral, Template.fS.positions.bottomcenter);
-            await Template.fS.update();
+            await Template.fS.update(0.5);
             //sho tell
             await Template.fS.Speech.tell(Template.Sho, "Okay, dir nach.");
             await Template.fS.Speech.tell(Template.Rika, "...");
             await Template.fS.Speech.tell(Template.Rika, "<i>Ich muss den gleichen Weg nehmen wie beim ersten Mal.</i>");
             await Template.fS.Speech.tell(Template.Rika, "Lass uns den etwas längeren Weg nehmen, er ist nicht arg länger, aber dafür viel schöner.");
             await Template.fS.Speech.tell(Template.Sho, "Klar, gerne, dann sehe ich auch mal neue Orte in dieser Stadt.");
-            //fade out screen
-            Template.fS.Character.hideAll();
-            Template.fS.Speech.hide();
-            await Template.fS.update();
-            await Template.fS.Location.show(Template.location.darkBackground);
-            await Template.fS.update();
-            await Template.fS.Progress.delay(3);
             //TODO: *** ADDING SOUND STREET***
             await Template.fS.Location.show(Template.location.streetCity);
+            await Template.fS.update(Template.transition.wipeLeft.duration, Template.transition.wipeLeft.alpha, Template.transition.wipeLeft.edge);
             await Template.fS.update();
             await Template.fS.Character.show(Template.Sho, Template.ShoPose.neutral, Template.fS.positions.bottomcenter);
-            await Template.fS.update();
+            await Template.fS.update(0.5);
             await Template.fS.Speech.tell(Template.Rika, "<i>Hier müsste es gleich sein, gleich kommt das Auto.</i>");
             await Template.fS.Speech.tell(Template.Rika, "So, hier um die Ecke ist auch schon das Einkaufszentrum. Wenn du möchtest, können wir uns hier am Wochenende auf einen Bubble Tea treffen und vielleicht…");
             //TODO: *** ADDING SOUND CAR***
@@ -1234,10 +1221,10 @@ var Template;
             await Template.fS.Speech.tell(Template.Sho, "Warten? Worauf?");
             await Template.fS.Speech.tell(Template.Rika, "Setzt dich bitte, ich weiß nicht wie ich dir das erklären soll, ohne wie eine Verrückte zu klingen.");
             await Template.fS.Speech.tell(Template.Sho, "Okay, dann versuch es mal.");
-            console.log(Template.StateManager.loveOMeter);
+            console.log(Template.dataForSave.shoScore);
             //if statement for loveometer enough
             //TODO: ADJUST LOVEOMETER VALUE
-            if (Template.StateManager.loveOMeter >= 10) {
+            if (Template.dataForSave.shoScore >= 10) {
                 console.log("Loveometer is high enough");
                 await Template.fS.Speech.tell(Template.Rika, "Also ich habe zurzeit so ein Gefühl, dass ich immer wieder das Gleiche durchlebe. ");
                 await Template.fS.Speech.tell(Template.Rika, "Und um eine bestimmte Zeit … stirbst du…");

@@ -12,14 +12,15 @@ namespace Template {
                 case livingHereChoice.movedRecently:
                     // continue path here
                     await fS.Speech.tell(Rika, "Du bist erst vor kurzem hier hergezogen, oder?");
-                    StateManager.loveOMeter -= 10;
+                    dataForSave.shoScore -= 10;
                     await fS.Speech.tell(Sho, "Ehm…ja…");
                     break;
                 case livingHereChoice.movedLongAgo:
                     // continue path here
                     await fS.Speech.tell(Rika, "Wohnst du schon lange hier? ");
                     await fS.Speech.tell(Sho, "Nein, meine Familie musste umziehen, da mein Vater oft wegen der Arbeit woanders stationiert wird.");
-                    StateManager.loveOMeter += 10;
+                    dataForSave.shoScore += 10;
+                    console.log("LoveOMeter: " + dataForSave.shoScore);
                     break;
                 default:
                     console.log("Default");
@@ -39,13 +40,13 @@ namespace Template {
                     await fS.Speech.tell(Rika, "Du wohnst gegenüber vom Umekoji Park, nicht wahr? ");
                     await fS.Speech.tell(Sho, "… J-ja, woher weißt du das?");
                     await fS.Speech.tell(Rika, "Oh, ehm ich habe einfach geraten…");
-                    StateManager.loveOMeter -= 10;
+                    dataForSave.shoScore -= 10;
                     break;
 
                 case livingWhereChoice.goingToCityTogether:
                     await fS.Speech.tell(Rika, "Wenn du möchtest, können wir uns mal am Wochenende treffen und wir zeigen dir ein bisschen die Stadt. ");
                     await fS.Speech.tell(Sho, "Ja, gerne, dann verlaufe ich mich vielleicht nicht mehr so oft. Ich glaube, die Straße, in der ich wohne, heißt Kitsuya-bashi Dori.");
-                    StateManager.loveOMeter += 10;
+                    dataForSave.shoScore += 10;
                     break;
             }
         }
@@ -70,7 +71,7 @@ namespace Template {
                 case goingHomeFastChoice.strangeDreams:
                     await fS.Speech.tell(Rika, "Ich habe die letzten Tage etwas echt Komisches geträumt und ich habe das Gefühl, wenn wir schneller nach Hause gehen, dann hören diese Träume auf… ");
                     await fS.Speech.tell(Sho, "Ach so…");
-                    StateManager.loveOMeter -= 10;
+                    dataForSave.shoScore -= 10;
                     //TODO: ADDING FALLING SOUND
                     await fS.Speech.tell(Rika, "SHO, VORSICHT!");
                     break;
@@ -82,7 +83,7 @@ namespace Template {
                     await fS.Speech.tell(Rika, "Witzig, dass du das sagst. Ich habe zurzeit so komisch…");
                     //TODO: ADDING FALLING SOUND
                     await fS.Speech.tell(Rika, "SHO, VORSICHT!");
-                    StateManager.loveOMeter += 10;
+                    dataForSave.shoScore += 10;
                     break;
             }
         }
@@ -101,7 +102,7 @@ namespace Template {
                     await fS.Speech.tell(Rika, "Hoffentlich bleibst du dieses Mal länger hier.");
                     await fS.Speech.tell(Sho, "… Danke, Rika.");
 
-                    StateManager.loveOMeter += 10;
+                    dataForSave.shoScore += 10;
 
                     await SchoolAccident.firstSchoolAccident();
                     break;
@@ -109,7 +110,7 @@ namespace Template {
                 case askingAboutFriends.manyFriends:
                     await fS.Speech.tell(Rika, "Ich habe die letzten Tage etwas echt Komisches geträumt und ich habe das Gefühl, wenn wir schneller nach Hause gehen, dann hören diese Träume auf… ");
                     await fS.Speech.tell(Sho, "Ach so…");
-                    StateManager.loveOMeter -= 10;
+                    dataForSave.shoScore -= 10;
                     await SchoolAccident.firstSchoolAccident();
                     break;
             }

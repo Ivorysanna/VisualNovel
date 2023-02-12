@@ -20,8 +20,8 @@ scene {
 }
 
 canvas {
-  width: 90%;
-  height: 90%;
+  width: 100%;
+  height: 100%;
 }
 
 #buttonDL{
@@ -65,8 +65,8 @@ speech {
   background-size: 100%;
   background-repeat: no-repeat;
   bottom: 0;
-  left: 2%;
-  height: 39%;
+  left: 7%;
+  height: 30%;
   width: 80%;
   color: #333333;
 }
@@ -78,8 +78,8 @@ speech content {
   display: block;
   height: 20%;
   width: 75%;
-  top: 33%;
-  left: 12%;
+  top: 41%;
+  left: 11%;
 }
 
 name {
@@ -87,18 +87,27 @@ name {
   position: absolute;
   padding: 2px;
   color: rgb(0, 0, 0);
-  top: 8%;
-  left: 20.5%;
+  top: 32px;
+  left: 270px;
   font-size: 32px;
   font-weight: 600;
 }
 
 /***** METER BAR *****/
-meter::-webkit-meter-bar {
-  background-color: #ececec;
+/* meter::-webkit-meter-bar {
+  background-color: #cacacad5;
+  width: 100%;
+  height: 70%;
+} */
+
+#scoreForSho {
+  position: absolute;
+  bottom: 20%;
+  width: 3%;
+  left: 23px;
 }
 
-meter[id="shoMeter"] {
+meter[id="shoMeter"]{
   position: absolute;
   transform:rotate(-90deg);
   bottom: 50%;
@@ -110,15 +119,8 @@ meter[id="shoMeter"] {
 meter[id="shoMeter"]::-webkit-meter-optimum-value {
   background-image: linear-gradient(
     90deg, 
-    #8bcf69 5%, 
-    #e6d450 5%,
-    #e6d450 15%,
-    #f28f68 15%,
-    #f28f68 55%,
-    #cf82bf 55%,
-    #cf82bf 95%,
-    #719fd1 95%,
-    #719fd1 100%
+    #533cd6 100%, 
+    
   );
   /* background-color: #719fd1; */
 }
