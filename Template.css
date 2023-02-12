@@ -117,10 +117,6 @@ meter[id="shoMeter"]{
 }
 
 meter[id="shoMeter"]::-webkit-meter-optimum-value {
-  background-image: linear-gradient(
-    90deg, 
-    #533cd6 100%, 
-    
-  );
+    background-color: rgb(236, 187, 25);
   /* background-color: #719fd1; */
 }
