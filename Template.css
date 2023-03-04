@@ -94,17 +94,13 @@ name {
 }
 
 /***** METER BAR *****/
-/* meter::-webkit-meter-bar {
-  background-color: #cacacad5;
-  width: 100%;
-  height: 70%;
-} */
-
 #scoreForSho {
   position: absolute;
   bottom: 20%;
   width: 3%;
-  left: 23px;
+  left: 30px;
+  color: black;
+  background-color: rgb(236, 187, 25);
 }
 
 meter[id="shoMeter"]{
