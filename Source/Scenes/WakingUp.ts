@@ -24,7 +24,7 @@ namespace Template {
                 await fS.update(0.5);
                 await fS.Speech.tell(Rika, "Mama, ich gehe jetzt los. Bis heute Abend.");
                 await fS.Speech.tell(RikaMother, "Okay, viel Erfolg!");
-                // await fS.Character.animate(Rika, RikaPose.neutral, leavingLeft());
+                await fS.Character.animate(Rika, RikaPose.neutral, leavingLeft());
                 // await fS.update(transition.wipeLeft.duration, transition.wipeLeft.alpha, transition.wipeLeft.edge);
                 await TransitionManager.blendInOut();
                 // await fS.update(transition.wipeRight.duration, transition.wipeRight.alpha, transition.wipeRight.edge);

@@ -90,6 +90,9 @@ namespace Template {
                 await fS.Speech.tell(Sho, "Nun, dann gehen wir mal den etwas längeren, außer du hast es eilig.");
                 await fS.Speech.tell(Rika, "Ne, ich habe heute nichts mehr vor. Dann kann ich dir etwas von der Stadt zeigen. Vor allem das große Einkaufszentrum. ");
                 await fS.Speech.tell(Sho, "Oh, ich wusste gar nicht, dass es hier sowas gibt.");
+                fS.Speech.hide();
+                fS.Character.hideAll();
+                await fS.update(0.5);
                 // await TransitionManager.blendInOut();
                 await CarCrash.firstCarCrash();
                 break;

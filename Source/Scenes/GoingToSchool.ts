@@ -7,7 +7,7 @@ namespace Template {
                 console.log("First Run!");
                 fS.Speech.hide();
                 await fS.Location.show(location.alley);
-                await fS.update(transition.circle.duration, transition.circle.alpha, transition.circle.edge);
+                await fS.update(transition.wipeLeft.duration, transition.wipeLeft.alpha, transition.wipeLeft.edge);
 
                 await fS.Character.show(Sagi, SagiPose.neutral, fS.positions.bottomcenter);
                 await fS.update(0.5);                

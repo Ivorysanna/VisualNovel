@@ -463,7 +463,7 @@ var Template;
     // *** DATA THAT WILL BE SAVED (GAME PROGRESS)
     Template.dataForSave = {
         nameProtagonist: "",
-        shoScore: 0,
+        shoScore: 70,
     };
     // *** ANIMATION ***
     function leavingLeft() {
@@ -538,12 +538,12 @@ var Template;
             // { id: "inClassFirstTime", scene: InClass, name: "In Class for firstTime"},
             // { id: "wakingUpCarCrash", scene: WakingUp, name: "Waking up Carcrash" },
             // { id: "toSchoolAfterCarCrash", scene: GoingToSchool, name: "Going to School after Carcrash"},
-            { id: "inClassAfterCarCrash", scene: Template.InClass, name: "In Class after Carcrash" },
-            { id: "inClassAfterConstructionAccident", scene: Template.WakingUp, name: "Waking up after Construction Site Accident" },
-            { id: "toSchoolAfterConstructionAccident", scene: Template.GoingToSchool, name: "Going to School after Construction Site Accident" },
-            { id: "inClassAfterConstructionAccident", scene: Template.InClass, name: "In Class AfterConstructionAccident" },
-            { id: "wakingUpAfterSchoolAccident", scene: Template.WakingUp, name: "Waking up after School Accident" },
-            { id: "toSchoolAfterSchoolAccident", scene: Template.GoingToSchool, name: "Going to School after School Accident" },
+            // { id: "inClassAfterCarCrash", scene: InClass, name: "In Class after Carcrash"},
+            // { id: "inClassAfterConstructionAccident", scene: WakingUp, name: "Waking up after Construction Site Accident"},
+            // { id: "toSchoolAfterConstructionAccident", scene: GoingToSchool, name: "Going to School after Construction Site Accident"},
+            // { id: "inClassAfterConstructionAccident", scene: InClass, name: "In Class AfterConstructionAccident"},
+            // { id: "wakingUpAfterSchoolAccident", scene: WakingUp, name: "Waking up after School Accident"},
+            // { id: "toSchoolAfterSchoolAccident", scene: GoingToSchool, name: "Going to School after School Accident"},
             { id: "inClassAfterSchoolAccident", scene: Template.InClass, name: "In Class after School Accident" },
         ];
         let uiElement = document.querySelector("[type=interface]");
@@ -583,9 +583,9 @@ var Template;
         //*** GLOBAL VARIABLES***
         //TODO: FirstRun wieder einblenden 
         // public static storyState: StoryState = StoryState.FirstRun;
-        static storyState = StoryState.CarCrashHappend;
+        // public static storyState: StoryState = StoryState.CarCrashHappend;
         // public static storyState: StoryState = StoryState.ConstructionSiteAccidentHappend;
-        // public static storyState: StoryState = StoryState.SchoolAccidentHappend;
+        static storyState = StoryState.SchoolAccidentHappend;
         static choicesState = "firstChoice";
         static endingState = "";
         static carCrashHappend = false;
@@ -614,6 +614,8 @@ var Template;
             await Template.fS.Location.show(Template.location.streetCity);
             await Template.fS.update(Template.transition.wipeLeft.duration, Template.transition.wipeLeft.alpha, Template.transition.wipeLeft.edge);
             await Template.fS.update();
+            await Template.fS.Character.show(Template.Sho, Template.ShoPose.neutral, Template.fS.positionPercent(40, 100));
+            await Template.fS.update(0.5);
             await Template.fS.Speech.tell(Template.Rika, "So, hier um die Ecke ist auch schon das Einkaufszentrum. Wenn du möchtest, können wir uns hier am Wochenende auf einen Bubble Tea treffen und vielleicht…");
             Template.StateManager.storyState = Template.StoryState.CarCrashHappend;
             Template.fS.Speech.hide();
@@ -704,7 +706,7 @@ var Template;
                 console.log("First Run!");
                 Template.fS.Speech.hide();
                 await Template.fS.Location.show(Template.location.alley);
-                await Template.fS.update(Template.transition.circle.duration, Template.transition.circle.alpha, Template.transition.circle.edge);
+                await Template.fS.update(Template.transition.wipeLeft.duration, Template.transition.wipeLeft.alpha, Template.transition.wipeLeft.edge);
                 await Template.fS.Character.show(Template.Sagi, Template.SagiPose.neutral, Template.fS.positions.bottomcenter);
                 await Template.fS.update(0.5);
                 await Template.fS.Speech.tell(Template.Sagi, "Na, da bist du ja endlich. Komm, sonst kommen wir zu spät!");
@@ -891,6 +893,9 @@ var Template;
                 await Template.fS.Speech.tell(Template.Sho, "Nun, dann gehen wir mal den etwas längeren, außer du hast es eilig.");
                 await Template.fS.Speech.tell(Template.Rika, "Ne, ich habe heute nichts mehr vor. Dann kann ich dir etwas von der Stadt zeigen. Vor allem das große Einkaufszentrum. ");
                 await Template.fS.Speech.tell(Template.Sho, "Oh, ich wusste gar nicht, dass es hier sowas gibt.");
+                Template.fS.Speech.hide();
+                Template.fS.Character.hideAll();
+                await Template.fS.update(0.5);
                 // await TransitionManager.blendInOut();
                 await Template.CarCrash.firstCarCrash();
                 break;
@@ -1278,7 +1283,7 @@ var Template;
                 await Template.fS.update(0.5);
                 await Template.fS.Speech.tell(Template.Rika, "Mama, ich gehe jetzt los. Bis heute Abend.");
                 await Template.fS.Speech.tell(Template.RikaMother, "Okay, viel Erfolg!");
-                // await fS.Character.animate(Rika, RikaPose.neutral, leavingLeft());
+                await Template.fS.Character.animate(Template.Rika, Template.RikaPose.neutral, Template.leavingLeft());
                 // await fS.update(transition.wipeLeft.duration, transition.wipeLeft.alpha, transition.wipeLeft.edge);
                 await Template.TransitionManager.blendInOut();
                 // await fS.update(transition.wipeRight.duration, transition.wipeRight.alpha, transition.wipeRight.edge);

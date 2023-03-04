@@ -5,6 +5,9 @@ namespace Template {
             await fS.Location.show(location.streetCity);
             await fS.update(transition.wipeLeft.duration, transition.wipeLeft.alpha, transition.wipeLeft.edge); 
             await fS.update();
+            await fS.Character.show(Sho, ShoPose.neutral, fS.positionPercent(40, 100));
+            await fS.update(0.5);
+
 
             await fS.Speech.tell(Rika, "So, hier um die Ecke ist auch schon das Einkaufszentrum. Wenn du möchtest, können wir uns hier am Wochenende auf einen Bubble Tea treffen und vielleicht…");
             StateManager.storyState = StoryState.CarCrashHappend;
