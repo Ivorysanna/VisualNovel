@@ -332,33 +332,33 @@ var Template;
         block: {
             duration: 1.5,
             alpha: "Images/Transitions/block.png",
-            edge: 1
+            edge: 1,
         },
         circle: {
             duration: 1.5,
             alpha: "Images/Transitions/cw-top.jpg",
-            edge: 1
+            edge: 1,
         },
         wipeLeft: {
             duration: 1.5,
             alpha: "Images/Transitions/wipeLeft.jpg",
-            edge: 1
+            edge: 1,
         },
         wipeRight: {
             duration: 1,
             alpha: "Images/Transitions/wipeRight.png",
-            edge: 1
-        }
+            edge: 1,
+        },
     };
     Template.data = {
         Protagonist: {
-            name: "Protagonist"
+            name: "Protagonist",
         },
         score: {
-            a: 0
+            a: 0,
         },
         ended: false,
-        correct: false
+        correct: false,
     };
     //*** SOUND ***
     Template.sound = {
@@ -383,57 +383,57 @@ var Template;
     Template.location = {
         alley: {
             name: "Alley",
-            background: "Images/Backgrounds/alley.png"
+            background: "Images/Backgrounds/alley.png",
             //foreground: ""
         },
         bedroom: {
             name: "Bedroom",
-            background: "Images/Backgrounds/bedroom.png"
+            background: "Images/Backgrounds/bedroom.png",
         },
         classroom: {
             name: "Classroom",
-            background: "Images/Backgrounds/classroom.png"
+            background: "Images/Backgrounds/classroom.png",
         },
         library: {
             name: "Library",
-            background: "Images/Backgrounds/library.png"
+            background: "Images/Backgrounds/library.png",
         },
         steps: {
             name: "Steps",
-            background: "Images/Backgrounds/steps.png"
+            background: "Images/Backgrounds/steps.png",
         },
         street: {
             name: "Street",
-            background: "Images/Backgrounds/street.png"
+            background: "Images/Backgrounds/street.png",
         },
         uni: {
             name: "Uni",
-            background: "Images/Backgrounds/uni.png"
+            background: "Images/Backgrounds/uni.png",
         },
         darkBackground: {
             name: "DarkBackground",
-            background: "Images/Backgrounds/darkbackground.png"
+            background: "Images/Backgrounds/darkbackground.png",
         },
         streetCity: {
             name: "Streetcity",
-            background: "Images/Backgrounds/streetCity.png"
+            background: "Images/Backgrounds/streetCity.png",
         },
         constructionSite: {
             name: "ConstructionSite",
-            background: "Images/Backgrounds/constructionSite.png"
+            background: "Images/Backgrounds/constructionSite.png",
         },
         bridge: {
             name: "Bridge",
-            background: "Images/Backgrounds/bridge.png"
-        }
+            background: "Images/Backgrounds/bridge.png",
+        },
     };
     //*** CHARACTERS ***
     Template.characters = {
         narrator: {
-            name: ""
+            name: "",
         },
         protagonist: {
-            name: ""
+            name: "",
         },
         Rika: {
             name: "Rika Satō",
@@ -442,15 +442,15 @@ var Template;
                 neutral: "Images/Character/Rika/rika_neutral.png",
                 happy: "Images/Character/Rika/rika_happy.png",
                 angry: "Images/Character/Rika/rika_angry.png",
-                sad: "Images/Character/Rika/rika_sad.png"
-            }
+                sad: "Images/Character/Rika/rika_sad.png",
+            },
         },
         RikaMother: {
             name: "Rikas Mutter",
             origin: Template.fS.ORIGIN.BOTTOMCENTER,
             pose: {
-                neutral: "Images/Character/aisaka_happy.png"
-            }
+                neutral: "Images/Character/aisaka_happy.png",
+            },
         },
         Sagi: {
             name: "Sagi Aoki",
@@ -460,8 +460,8 @@ var Template;
                 happy: "Images/Character/Sagi/sagi_happy.png",
                 angry: "Images/Character/Sagi/sagi_angry.png",
                 sad: "Images/Character/Sagi/sagi_happy.png",
-                insane: "Images/Character/Rika/rika_insane.png"
-            }
+                insane: "Images/Character/Rika/rika_insane.png",
+            },
         },
         Sho: {
             name: "Shō Rai",
@@ -470,16 +470,16 @@ var Template;
                 neutral: "Images/Character/Sho/sho_neutral.png",
                 happy: "Images/Character/Sho/sho_happy.png",
                 angry: "Images/Character/Sho/sho_angry.png",
-                sad: "Images/Character/Sho/sho_sad.png"
-            }
+                sad: "Images/Character/Sho/sho_sad.png",
+            },
         },
         Teacher: {
             name: "Lehrerin",
             origin: Template.fS.ORIGIN.BOTTOMCENTER,
             pose: {
-                neutral: "Images/Character/Teacher/teacher_neutral.png"
-            }
-        }
+                neutral: "Images/Character/Teacher/teacher_neutral.png",
+            },
+        },
     };
     // *** DATA THAT WILL BE SAVED (GAME PROGRESS)
     Template.dataForSave = {
@@ -492,7 +492,7 @@ var Template;
             start: { translation: Template.fS.positionPercent(40, 100), color: Template.fS.Color.CSS("", 1) },
             end: { translation: Template.fS.positionPercent(20, 100), color: Template.fS.Color.CSS("", 0) },
             duration: 3,
-            playmode: Template.fS.ANIMATION_PLAYMODE.PLAYONCE
+            playmode: Template.fS.ANIMATION_PLAYMODE.PLAYONCE,
         };
     }
     Template.leavingLeft = leavingLeft;
@@ -501,7 +501,7 @@ var Template;
     let inGameMenuButtons = {
         save: "Save",
         load: "Load",
-        close: "Close"
+        close: "Close",
     };
     let gameMenu;
     //open = true, closed = false
@@ -521,6 +521,12 @@ var Template;
                 break;
         }
     }
+    //***  Hide Button ***
+    document.addEventListener("DOMContentLoaded", () => {
+        document.getElementById("ausleihbutton").addEventListener("click", () => {
+            Template.InterfaceHelper.toggleAusleihButton();
+        });
+    }, false);
     // Menu shortcuts
     document.addEventListener("keydown", hndKeyPres);
     async function hndKeyPres(_event) {
@@ -1102,7 +1108,7 @@ var Template;
             await Template.fS.Speech.tell(Template.Rika, "<i>Das ist wirklich viel. Ich sollte das Buch ausleihen.</i>");
             Template.InterfaceHelper.toggleAusleihButton();
             await Template.fS.Progress.delay(10);
-            Template.InterfaceHelper.toggleAusleihButton();
+            // InterfaceHelper.toggleAusleihButton();
             await Template.fS.Speech.tell(Template.Rika, "<i>Okay also, das Buch sagt, ich muss den Namen von diesem Dämon kennen.</i>");
             //TODO: *** ADDING IF FOR CHECKING THE NAME***
             let nameGuessed = false;
