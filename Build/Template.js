@@ -295,7 +295,8 @@ var Template;
                     // continue path here
                     console.log("saveSho");
                     //TODO: ADD SOUND CRASH
-                    // fS.Sound.play(sound.alarmClock, 0.5, false);
+                    Template.fS.Sound.play(Template.sound.carHorn, 0.5, false);
+                    // fS.Sound.play(sound.carHorn, 0.5, false);
                     Template.fS.Character.hideAll();
                     Template.fS.Speech.hide();
                     await Template.fS.update();

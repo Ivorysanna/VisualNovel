@@ -213,7 +213,8 @@ namespace Template {
                     // continue path here
                     console.log("saveSho");
                     //TODO: ADD SOUND CRASH
-                    // fS.Sound.play(sound.alarmClock, 0.5, false);
+                    fS.Sound.play(sound.carHorn, 0.5, false);
+                    // fS.Sound.play(sound.carHorn, 0.5, false);
                     fS.Character.hideAll();
                     fS.Speech.hide();
                     await fS.update();
