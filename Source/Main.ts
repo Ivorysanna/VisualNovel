@@ -44,7 +44,19 @@ namespace Template {
         // Themes
         // SFX
         outside: "Sounds/outside.wav",
-        alarmClock: "Sounds/alarmClock.wav"
+        alarmClock: "Sounds/alarmClock.wav",
+        book: "Sounds/book.wav",
+        breakChatter: "Sounds/breakChatter.mp3",
+        carHorn: "Sounds/carHorn.mp3",
+        cityNoise: "Sounds/cityNoise.mp3",
+        classWhispering: "Sounds/classWhispering.mp3",
+        cloth: "Sounds/cloth.mp3",
+        constructionSite: "Sounds/constructionSite.mp3",
+        intenseSound: "Sounds/intenseSound.wav",
+        librarySound: "Sounds/librarySound.mp3",
+        neckCracking: "Sounds/neckCracking.mp3",
+        packingBack: "Sounds/packingBack.mp3",
+        schoolBell: "Sounds/schoolBell.mp3",
     };
 
     //*** BACKGROUNDS ***
