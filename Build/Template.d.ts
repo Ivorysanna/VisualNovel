@@ -58,6 +58,18 @@ declare namespace Template {
     let sound: {
         outside: string;
         alarmClock: string;
+        book: string;
+        breakChatter: string;
+        carHorn: string;
+        cityNoise: string;
+        classWhispering: string;
+        cloth: string;
+        constructionSite: string;
+        intenseSound: string;
+        librarySound: string;
+        neckCracking: string;
+        packingBack: string;
+        schoolBell: string;
     };
     let location: {
         alley: {

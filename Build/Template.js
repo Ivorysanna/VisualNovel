@@ -248,6 +248,9 @@ var Template;
                     //TODO: ADD SCHOOLBELL SOUND
                     await Template.fS.Speech.tell(Template.Rika, "Wir sehen uns nach dem Unterricht.");
                     await Template.fS.Speech.tell(Template.Rika, "Komm Sagi.");
+                    Template.fS.Character.hideAll();
+                    Template.fS.Speech.hide();
+                    await Template.fS.update();
                     await Template.TransitionManager.blendInOut();
                     await Template.fS.Progress.delay(3);
                     //TODO: ADD SCHOOLBELL SOUND
@@ -257,8 +260,9 @@ var Template;
                     await Template.fS.update(0.5);
                     await Template.fS.Speech.tell(Template.Rika, "Okay, können wir los?");
                     await Template.fS.Speech.tell(Template.Sho, "Ja, ich packe nur schnell meine Sachen zusammen.");
-                    //fade out screen
-                    await Template.fS.Progress.delay(3);
+                    Template.fS.Character.hideAll();
+                    Template.fS.Speech.hide();
+                    await Template.fS.update(0.5);
                     //Saving Sho
                     await Template.SavingSho.savingSho();
             }
@@ -291,6 +295,10 @@ var Template;
                     // continue path here
                     console.log("saveSho");
                     //TODO: ADD SOUND CRASH
+                    // fS.Sound.play(sound.alarmClock, 0.5, false);
+                    Template.fS.Character.hideAll();
+                    Template.fS.Speech.hide();
+                    await Template.fS.update();
                     break;
                 case badEndingOne.doNothing:
                     // continue path here
@@ -356,7 +364,19 @@ var Template;
         // Themes
         // SFX
         outside: "Sounds/outside.wav",
-        alarmClock: "Sounds/alarmClock.wav"
+        alarmClock: "Sounds/alarmClock.wav",
+        book: "Sounds/book.wav",
+        breakChatter: "Sounds/breakChatter.mp3",
+        carHorn: "Sounds/carHorn.mp3",
+        cityNoise: "Sounds/cityNoise.mp3",
+        classWhispering: "Sounds/classWhispering.mp3",
+        cloth: "Sounds/cloth.mp3",
+        constructionSite: "Sounds/constructionSite.mp3",
+        intenseSound: "Sounds/intenseSound.wav",
+        librarySound: "Sounds/librarySound.mp3",
+        neckCracking: "Sounds/neckCracking.mp3",
+        packingBack: "Sounds/packingBack.mp3",
+        schoolBell: "Sounds/schoolBell.mp3",
     };
     //*** BACKGROUNDS ***
     Template.location = {
@@ -1081,6 +1101,7 @@ var Template;
             await Template.fS.Speech.tell(Template.Rika, "<i>Das ist wirklich viel. Ich sollte das Buch ausleihen.</i>");
             Template.InterfaceHelper.toggleAusleihButton();
             await Template.fS.Progress.delay(10);
+            Template.InterfaceHelper.toggleAusleihButton();
             await Template.fS.Speech.tell(Template.Rika, "<i>Okay also, das Buch sagt, ich muss den Namen von diesem Dämon kennen.</i>");
             //TODO: *** ADDING IF FOR CHECKING THE NAME***
             let nameGuessed = false;
@@ -1119,6 +1140,10 @@ var Template;
             await Template.fS.Speech.tell(Template.Rika, "<i>Ich muss den gleichen Weg nehmen wie beim ersten Mal.</i>");
             await Template.fS.Speech.tell(Template.Rika, "Lass uns den etwas längeren Weg nehmen, er ist nicht arg länger, aber dafür viel schöner.");
             await Template.fS.Speech.tell(Template.Sho, "Klar, gerne, dann sehe ich auch mal neue Orte in dieser Stadt.");
+            //hide charakter
+            Template.fS.Character.hideAll();
+            Template.fS.Speech.hide();
+            await Template.fS.update(0.5);
             //TODO: *** ADDING SOUND STREET***
             await Template.fS.Location.show(Template.location.streetCity);
             await Template.fS.update(Template.transition.wipeLeft.duration, Template.transition.wipeLeft.alpha, Template.transition.wipeLeft.edge);

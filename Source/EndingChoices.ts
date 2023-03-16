@@ -157,6 +157,11 @@ namespace Template {
                     //TODO: ADD SCHOOLBELL SOUND
                     await fS.Speech.tell(Rika, "Wir sehen uns nach dem Unterricht.");
                     await fS.Speech.tell(Rika, "Komm Sagi.");
+        
+                    fS.Character.hideAll();
+                    fS.Speech.hide();
+                    await fS.update();
+
 
                     await TransitionManager.blendInOut();
 
@@ -169,8 +174,10 @@ namespace Template {
                     await fS.update(0.5);
                     await fS.Speech.tell(Rika, "Okay, können wir los?");
                     await fS.Speech.tell(Sho, "Ja, ich packe nur schnell meine Sachen zusammen.");
-                    //fade out screen
-                    await fS.Progress.delay(3);
+                    fS.Character.hideAll();
+                    fS.Speech.hide();
+                    await fS.update(0.5);
+
                     //Saving Sho
                     await SavingSho.savingSho();
             }
@@ -206,6 +213,10 @@ namespace Template {
                     // continue path here
                     console.log("saveSho");
                     //TODO: ADD SOUND CRASH
+                    // fS.Sound.play(sound.alarmClock, 0.5, false);
+                    fS.Character.hideAll();
+                    fS.Speech.hide();
+                    await fS.update();
 
                     break;
                 case badEndingOne.doNothing:

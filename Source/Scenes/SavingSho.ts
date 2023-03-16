@@ -17,6 +17,10 @@ namespace Template {
             await fS.Speech.tell(Rika, "Lass uns den etwas längeren Weg nehmen, er ist nicht arg länger, aber dafür viel schöner.");
             await fS.Speech.tell(Sho, "Klar, gerne, dann sehe ich auch mal neue Orte in dieser Stadt.");
             
+            //hide charakter
+            fS.Character.hideAll();
+            fS.Speech.hide();
+            await fS.update(0.5);
 
             //TODO: *** ADDING SOUND STREET***
             await fS.Location.show(location.streetCity);

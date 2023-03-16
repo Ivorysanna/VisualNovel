@@ -14,9 +14,9 @@ namespace Template {
 
             InterfaceHelper.toggleAusleihButton();
             await fS.Progress.delay(10);
+            InterfaceHelper.toggleAusleihButton();
             
             await fS.Speech.tell(Rika, "<i>Okay also, das Buch sagt, ich muss den Namen von diesem Dämon kennen.</i>");
-
             //TODO: *** ADDING IF FOR CHECKING THE NAME***
             let nameGuessed: boolean = false;
             while (!nameGuessed) {
