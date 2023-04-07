@@ -209,7 +209,7 @@ namespace Template {
                 //TODO: *** MENSCHEN DIE IN DER PAUSE REDEN EINFÜGEN ***
                 // *** PAUSE ***
                 await fS.Location.show(location.classroom);
-                await fS.update(transition.wipeLeft.duration, transition.wipeLeft.alpha, transition.wipeLeft.edge); 
+                // await fS.update(transition.wipeLeft.duration, transition.wipeLeft.alpha, transition.wipeLeft.edge); 
                 await fS.update();
                 await fS.Character.show(Sagi, SagiPose.neutral, fS.positionPercent(70, 100));
                 await fS.update(0.5);

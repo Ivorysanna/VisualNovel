@@ -11,8 +11,8 @@ namespace Template {
         //TODO: FirstRun wieder einblenden 
         // public static storyState: StoryState = StoryState.FirstRun;
         // public static storyState: StoryState = StoryState.CarCrashHappend;
-        // public static storyState: StoryState = StoryState.ConstructionSiteAccidentHappend;
-        public static storyState: StoryState = StoryState.SchoolAccidentHappend;
+        public static storyState: StoryState = StoryState.ConstructionSiteAccidentHappend;
+        // public static storyState: StoryState = StoryState.SchoolAccidentHappend;
 
         
 

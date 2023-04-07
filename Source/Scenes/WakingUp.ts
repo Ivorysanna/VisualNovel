@@ -48,9 +48,9 @@ namespace Template {
                 await fS.update(0.5);
                 await fS.Speech.tell(Rika, "Mama, ich gehe jetzt los. Bis heute Abend.");
                 await fS.Speech.tell(RikaMother, "Okay, viel Erfolg!");
-                // await fS.Character.animate(Rika, RikaPose.neutral, leavingLeft());
+                await fS.Character.animate(Rika, RikaPose.neutral, leavingLeft());
                 fS.Character.hideAll();
-                await TransitionManager.blendInOut();
+                // await TransitionManager.blendInOut();
                 break;
 
             case StoryState.ConstructionSiteAccidentHappend:
@@ -76,9 +76,9 @@ namespace Template {
                 await fS.Speech.tell(RikaMother, "Geht es dir gut? Du klingst heute etwas krank.");
                 await fS.Speech.tell(Rika, "Ja, mir gehts gut.");
                 await fS.Speech.tell(RikaMother, "Okay… Dann bis heute Abend.");
-                // await fS.Character.animate(Rika, RikaPose.neutral, leavingLeft());
+                await fS.Character.animate(Rika, RikaPose.neutral, leavingLeft());
                 fS.Character.hideAll();
-                await TransitionManager.blendInOut();
+                // await TransitionManager.blendInOut();
                 break;
 
             case StoryState.SchoolAccidentHappend:
@@ -95,7 +95,8 @@ namespace Template {
 
                 //TODO: Play sound cloths
                 await fS.Speech.tell(Rika, "<i>Ich sollte mit Sagi reden, ihr muss doch auch was aufgefallen sein.");
-                await TransitionManager.blendInOut();
+                await fS.Character.animate(Rika, RikaPose.neutral, leavingLeft());
+                // await TransitionManager.blendInOut();
                 break;
         }
     }

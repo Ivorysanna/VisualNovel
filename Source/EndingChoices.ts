@@ -54,7 +54,7 @@ namespace Template {
 
                     console.log("STAY IN SCHOOL PATH");
                     await fS.Speech.tell(Rika, "Sho, was denkst du, sollen wir heute etwas länger bleiben.");
-                    await fS.Speech.tell(Sho, "Ja, klar. Ich habe heute noch ein paar Hausaufgaben, die ich erledigen muss. Wir können gerne die gerne zusammen machen.");
+                    await fS.Speech.tell(Sho, "Ja, klar. Ich habe heute noch ein paar Hausaufgaben, die ich erledigen muss. Wir können die gerne zusammen machen.");
                     await fS.Speech.tell(Sho, "Ja, klar, gerne.");
                     await fS.Speech.tell(Sho, "Wohnst du schon lange in Kyoto?");
                     await fS.Speech.tell(Rika, "Ja, eigentlich schon. Ich bin zwar nicht hier geboren. Aber meine Eltern sind, als ich klein war, hier hergezogen. Also ich erinnere mich an nichts anderes.");
@@ -68,9 +68,9 @@ namespace Template {
                 case endingTwo.goHomeFast:
                     // continue path here
                     //Clear screen
-                    fS.Character.hideAll();
-                    fS.Speech.hide();
-                    fS.update();
+                    // fS.Character.hideAll();
+                    // fS.Speech.hide();
+                    // fS.update();
                     //Show background class
                     await fS.Location.show(location.classroom);
                     await fS.update(transition.circle.duration, transition.circle.alpha, transition.circle.edge); 

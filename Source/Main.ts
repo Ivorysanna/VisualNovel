@@ -166,7 +166,7 @@ namespace Template {
     // *** DATA THAT WILL BE SAVED (GAME PROGRESS)
     export let dataForSave = {
         nameProtagonist: "",
-        shoScore: 70,
+        shoScore: 0,
     };
 
     // *** ANIMATION ***
@@ -260,9 +260,9 @@ namespace Template {
             // { id: "inClassAfterCarCrash", scene: InClass, name: "In Class after Carcrash"},
             // { id: "inClassAfterConstructionAccident", scene: WakingUp, name: "Waking up after Construction Site Accident"},
             // { id: "toSchoolAfterConstructionAccident", scene: GoingToSchool, name: "Going to School after Construction Site Accident"},
-            // { id: "inClassAfterConstructionAccident", scene: InClass, name: "In Class AfterConstructionAccident"},
-            // { id: "wakingUpAfterSchoolAccident", scene: WakingUp, name: "Waking up after School Accident"},
-            // { id: "toSchoolAfterSchoolAccident", scene: GoingToSchool, name: "Going to School after School Accident"},
+            { id: "inClassAfterConstructionAccident", scene: InClass, name: "In Class AfterConstructionAccident"},
+            { id: "wakingUpAfterSchoolAccident", scene: WakingUp, name: "Waking up after School Accident"},
+            { id: "toSchoolAfterSchoolAccident", scene: GoingToSchool, name: "Going to School after School Accident"},
             { id: "inClassAfterSchoolAccident", scene: InClass, name: "In Class after School Accident" },
         ];
 
