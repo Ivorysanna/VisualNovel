@@ -505,6 +505,7 @@ var Template;
         credits: "Credits",
     };
     let gameMenu;
+    let shoBar;
     //open = true, closed = false
     let menuIsOpen = true;
     async function btnFunctionalities(_option) {
@@ -543,11 +544,13 @@ var Template;
             case Template.f.KEYBOARD_CODE.M:
                 if (menuIsOpen) {
                     console.log("Close");
+                    shoBar.classList.add("hidden");
                     gameMenu.close();
                     menuIsOpen = false;
                 }
                 else {
                     console.log("Open");
+                    shoBar.classList.remove("hidden");
                     gameMenu.open();
                     menuIsOpen = true;
                 }
@@ -556,6 +559,7 @@ var Template;
     }
     window.addEventListener("load", start);
     function start(_event) {
+        shoBar = document.getElementById("shoBar");
         gameMenu = Template.fS.Menu.create(inGameMenuButtons, btnFunctionalities, "gameMenuCSSClass");
         btnFunctionalities("Close");
         /*** SCENE HIERARCHY ***/

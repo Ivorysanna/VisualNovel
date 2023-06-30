@@ -190,6 +190,7 @@ namespace Template {
     };
 
     let gameMenu: fS.Menu;
+    let shoBar: HTMLElement;
     //open = true, closed = false
     let menuIsOpen: boolean = true;
 
@@ -220,6 +221,7 @@ namespace Template {
         false
     );
 
+    
     // Menu shortcuts
     document.addEventListener("keydown", hndKeyPres);
     async function hndKeyPres(_event: KeyboardEvent): Promise<void> {
@@ -235,10 +237,12 @@ namespace Template {
             case f.KEYBOARD_CODE.M:
                 if (menuIsOpen) {
                     console.log("Close");
+                    shoBar.classList.add("hidden");
                     gameMenu.close();
                     menuIsOpen = false;
                 } else {
                     console.log("Open");
+                    shoBar.classList.remove("hidden");
                     gameMenu.open();
                     menuIsOpen = true;
                 }
@@ -248,6 +252,7 @@ namespace Template {
 
     window.addEventListener("load", start);
     function start(_event: Event): void {
+        shoBar = <HTMLElement>document.getElementById("shoBar");
         gameMenu = fS.Menu.create(inGameMenuButtons, btnFunctionalities, "gameMenuCSSClass");
         btnFunctionalities("Close");
         /*** SCENE HIERARCHY ***/

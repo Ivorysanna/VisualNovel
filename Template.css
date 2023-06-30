@@ -82,7 +82,7 @@ dialog[type=splash]>img#FudgeStoryLogo {
   cursor: pointer;
   outline: none;
 }
-#ausleihbutton.hidden{
+.hidden{
   display: none;
 }
 
