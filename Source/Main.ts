@@ -186,13 +186,14 @@ namespace Template {
         save: "Save",
         load: "Load",
         close: "Close",
+        credits: "Credits",
     };
 
     let gameMenu: fS.Menu;
     //open = true, closed = false
     let menuIsOpen: boolean = true;
 
-    async function buttonFunctionalities(_option: string): Promise<void> {
+    async function btnFunctionalities(_option: string): Promise<void> {
         console.log(_option);
         switch (_option) {
             case inGameMenuButtons.save:
@@ -247,8 +248,8 @@ namespace Template {
 
     window.addEventListener("load", start);
     function start(_event: Event): void {
-        gameMenu = fS.Menu.create(inGameMenuButtons, buttonFunctionalities, "gameMenuCSSClass");
-        buttonFunctionalities("Close");
+        gameMenu = fS.Menu.create(inGameMenuButtons, btnFunctionalities, "gameMenuCSSClass");
+        btnFunctionalities("Close");
         /*** SCENE HIERARCHY ***/
         fS.Speech.hide();
         let scenes: fS.Scenes = [
@@ -260,9 +261,9 @@ namespace Template {
             // { id: "inClassAfterCarCrash", scene: InClass, name: "In Class after Carcrash"},
             // { id: "inClassAfterConstructionAccident", scene: WakingUp, name: "Waking up after Construction Site Accident"},
             // { id: "toSchoolAfterConstructionAccident", scene: GoingToSchool, name: "Going to School after Construction Site Accident"},
-            { id: "inClassAfterConstructionAccident", scene: InClass, name: "In Class AfterConstructionAccident"},
-            { id: "wakingUpAfterSchoolAccident", scene: WakingUp, name: "Waking up after School Accident"},
-            { id: "toSchoolAfterSchoolAccident", scene: GoingToSchool, name: "Going to School after School Accident"},
+            { id: "inClassAfterConstructionAccident", scene: InClass, name: "In Class AfterConstructionAccident" },
+            { id: "wakingUpAfterSchoolAccident", scene: WakingUp, name: "Waking up after School Accident" },
+            { id: "toSchoolAfterSchoolAccident", scene: GoingToSchool, name: "Going to School after School Accident" },
             { id: "inClassAfterSchoolAccident", scene: InClass, name: "In Class after School Accident" },
         ];
 

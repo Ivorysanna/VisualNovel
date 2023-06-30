@@ -502,11 +502,12 @@ var Template;
         save: "Save",
         load: "Load",
         close: "Close",
+        credits: "Credits",
     };
     let gameMenu;
     //open = true, closed = false
     let menuIsOpen = true;
-    async function buttonFunctionalities(_option) {
+    async function btnFunctionalities(_option) {
         console.log(_option);
         switch (_option) {
             case inGameMenuButtons.save:
@@ -555,8 +556,8 @@ var Template;
     }
     window.addEventListener("load", start);
     function start(_event) {
-        gameMenu = Template.fS.Menu.create(inGameMenuButtons, buttonFunctionalities, "gameMenuCSSClass");
-        buttonFunctionalities("Close");
+        gameMenu = Template.fS.Menu.create(inGameMenuButtons, btnFunctionalities, "gameMenuCSSClass");
+        btnFunctionalities("Close");
         /*** SCENE HIERARCHY ***/
         Template.fS.Speech.hide();
         let scenes = [
