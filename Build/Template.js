@@ -489,25 +489,25 @@ var Template;
     // *** ITEMS ***
     Template.items = {
         pictureStreet: {
-            name: "PictureStreet",
-            image: "Images/Backgrounds/steps.png",
+            name: "Straßenbild",
+            image: "Images/Backgrounds/streetCity.png",
             description: "Ein Bild von der Straße",
             static: true,
         },
         pictureConstructionSite: {
-            name: "PictureConstructionSite",
-            image: "Images/Backgrounds/steps.png",
+            name: "Baustellenbild",
+            image: "Images/Backgrounds/constructionSite.png",
             description: "Ein Bild von der Baustelle",
             static: true,
         },
         pictureSteps: {
-            name: "PictureSteps",
+            name: "Stufenbild",
             image: "Images/Backgrounds/steps.png",
             description: "Ein Bild von Stufen",
             static: true,
         },
         pictureClassroom: {
-            name: "PictureClassroom",
+            name: "Klassenzimmerbild",
             image: "Images/Backgrounds/steps.png",
             description: "Ein Bild von unserem Klassenzimmer",
             static: true,
@@ -636,8 +636,8 @@ var Template;
         /*** SCENE HIERARCHY ***/
         Template.fS.Speech.hide();
         let scenes = [
-            { id: "wakingUpFirstTime", scene: Template.WakingUp, name: "Waking up" },
-            { id: "toSchoolFirstTime", scene: Template.GoingToSchool, name: "Going to School firstTime" },
+            // { id: "wakingUpFirstTime", scene: WakingUp, name: "Waking up" },
+            // { id: "toSchoolFirstTime", scene: GoingToSchool, name: "Going to School firstTime" },
             { id: "inClassFirstTime", scene: Template.InClass, name: "In Class for firstTime" },
             { id: "wakingUpCarCrash", scene: Template.WakingUp, name: "Waking up Carcrash" },
             { id: "toSchoolAfterCarCrash", scene: Template.GoingToSchool, name: "Going to School after Carcrash" },
@@ -721,7 +721,8 @@ var Template;
             await Template.fS.update(0.5);
             await Template.fS.Speech.tell(Template.Rika, "So, hier um die Ecke ist auch schon das Einkaufszentrum. Wenn du möchtest, können wir uns hier am Wochenende auf einen Bubble Tea treffen und vielleicht…");
             Template.StateManager.storyState = Template.StoryState.CarCrashHappend;
-            // fS.Inventory.add(items.pictureStreet);
+            Template.fS.Inventory.add(Template.items.pictureStreet);
+            Template.fS.Inventory.add(Template.items.pictureConstructionSite);
             Template.fS.Speech.hide();
             Template.fS.Character.hideAll();
             //TODO: *** AUTO HUPEN UND REIFEN QUIETSCHEN EINBAUEN ***

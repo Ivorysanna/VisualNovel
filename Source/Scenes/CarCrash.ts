@@ -11,7 +11,8 @@ namespace Template {
 
             await fS.Speech.tell(Rika, "So, hier um die Ecke ist auch schon das Einkaufszentrum. Wenn du möchtest, können wir uns hier am Wochenende auf einen Bubble Tea treffen und vielleicht…");
             StateManager.storyState = StoryState.CarCrashHappend;
-            // fS.Inventory.add(items.pictureStreet);
+            fS.Inventory.add(items.pictureStreet);
+            fS.Inventory.add(items.pictureConstructionSite);
             
             fS.Speech.hide();
             fS.Character.hideAll();
