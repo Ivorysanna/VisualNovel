@@ -128,10 +128,9 @@ name {
 }
 
 /**** MENU ****/
-
 .gameMenuCSSClass {
   position: absolute;
-  bottom: 21%;
+  bottom: 20%;
   background-color: #0000;
   border: none;
   left: 23%;
@@ -141,8 +140,7 @@ name {
   background-color: #0000;
   border: none;
   margin: 0 25px 0 25px;
-  color: white;
-  text-shadow: 0 0 5px #821dc6;
+  color: rgb(236, 187, 25);
   font-size: larger;
 }
 
