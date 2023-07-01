@@ -233,16 +233,16 @@ namespace Template {
 
     //Menu shortcuts
     let inGameMenuButtons = {
-        save: "Save",
-        load: "Load",
-        close: "Close",
+        save: "Speichern",
+        load: "Laden",
+        close: "Schließen",
         credits: "Credits",
     };
 
     let gameMenu: fS.Menu;
     let shoBar: HTMLElement;
     //open = true, closed = false
-    let menuIsOpen: boolean = true;
+    let menuIsOpen: boolean = false;
 
     async function btnFunctionalities(_option: string): Promise<void> {
         console.log(_option);
@@ -259,7 +259,7 @@ namespace Template {
                 break;
             case inGameMenuButtons.credits:
                 let current: number = 0;
-                let flip = { back: "Zurück", next: "Weiter", close: "Schließen" };
+                let flip = { back: "Zurück", next: "Weiter", close: "X" };
                 let choice: string;
                 fS.Text.addClass("credits");
                 do {
@@ -316,6 +316,10 @@ namespace Template {
                     menuIsOpen = true;
                 }
                 break;
+            case f.KEYBOARD_CODE.I:
+                await fS.Inventory.open();
+                break;
+            
         }
     }
 
@@ -323,7 +327,7 @@ namespace Template {
     function start(_event: Event): void {
         shoBar = <HTMLElement>document.getElementById("shoBar");
         gameMenu = fS.Menu.create(inGameMenuButtons, btnFunctionalities, "gameMenuCSSClass");
-        btnFunctionalities("Close");
+        gameMenu.close();
         /*** SCENE HIERARCHY ***/
         fS.Speech.hide();
         let scenes: fS.Scenes = [

@@ -547,15 +547,15 @@ var Template;
     // *** DATA THAT WILL BE SAVED (GAME PROGRESS) ***
     //Menu shortcuts
     let inGameMenuButtons = {
-        save: "Save",
-        load: "Load",
-        close: "Close",
+        save: "Speichern",
+        load: "Laden",
+        close: "Schließen",
         credits: "Credits",
     };
     let gameMenu;
     let shoBar;
     //open = true, closed = false
-    let menuIsOpen = true;
+    let menuIsOpen = false;
     async function btnFunctionalities(_option) {
         console.log(_option);
         switch (_option) {
@@ -571,7 +571,7 @@ var Template;
                 break;
             case inGameMenuButtons.credits:
                 let current = 0;
-                let flip = { back: "Zurück", next: "Weiter", close: "Schließen" };
+                let flip = { back: "Zurück", next: "Weiter", close: "X" };
                 let choice;
                 Template.fS.Text.addClass("credits");
                 do {
@@ -623,13 +623,16 @@ var Template;
                     menuIsOpen = true;
                 }
                 break;
+            case Template.f.KEYBOARD_CODE.I:
+                await Template.fS.Inventory.open();
+                break;
         }
     }
     window.addEventListener("load", start);
     function start(_event) {
         shoBar = document.getElementById("shoBar");
         gameMenu = Template.fS.Menu.create(inGameMenuButtons, btnFunctionalities, "gameMenuCSSClass");
-        btnFunctionalities("Close");
+        gameMenu.close();
         /*** SCENE HIERARCHY ***/
         Template.fS.Speech.hide();
         let scenes = [
