@@ -10,6 +10,7 @@ html, body {
   font-size: 2.7vmin;
   color: rgb(230, 205, 222);
   user-select: none;
+
 }
 
 scene {
@@ -142,6 +143,53 @@ name {
   margin: 0 25px 0 25px;
   color: rgb(236, 187, 25);
   font-size: larger;
+}
+
+/***  CREDITS ***/
+dialog.flip{
+  background-color: rgb(236, 187, 25, 0.5);
+  border: solid 3px rgb(236, 187, 25, 0.5);
+  border-radius: 10px;
+  color: white;
+  position: absolute;
+  left: 72.5%;
+  width: 5%;
+  top: 43%;
+  margin: 0;
+}
+dialog.flip button{
+  background-color: rgb(236, 187, 25, 0.5);
+  border: none;
+  color: white;
+  margin: 1% 0;
+  width: 100%;
+  padding: 3%;
+  font-size: large;
+}
+
+dialog.flip button#back::before{
+  content: "<< ";
+  color: white;
+}
+dialog.flip button#next::after{
+  content: " >>";
+  color: white;
+}
+
+.credits{
+  background-color: rgb(236, 187, 25, 0.5);;
+  border: solid 3px rgb(236, 187, 25, 0.5);
+  color: white;
+  font-size: larger;
+  width: 41%;
+}
+.credits b{
+  color: white;
+  font-size: xx-large;
+}
+.credits i{
+  color: white;
+  font-size: x-large;
 }
 
 /***** METER BAR *****/

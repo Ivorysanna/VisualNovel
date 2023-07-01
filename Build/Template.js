@@ -481,11 +481,59 @@ var Template;
             },
         },
     };
-    // *** DATA THAT WILL BE SAVED (GAME PROGRESS)
+    // *** DATA THAT WILL BE SAVED (GAME PROGRESS) ***
     Template.dataForSave = {
         nameProtagonist: "",
         shoScore: 0,
     };
+    // *** ITEMS ***
+    Template.items = {
+        pictureStreet: {
+            name: "PictureStreet",
+            image: "Images/Backgrounds/steps.png",
+            description: "Ein Bild von der Straße",
+            static: true,
+        },
+        pictureConstructionSite: {
+            name: "PictureConstructionSite",
+            image: "Images/Backgrounds/steps.png",
+            description: "Ein Bild von der Baustelle",
+            static: true,
+        },
+        pictureSteps: {
+            name: "PictureSteps",
+            image: "Images/Backgrounds/steps.png",
+            description: "Ein Bild von Stufen",
+            static: true,
+        },
+        pictureClassroom: {
+            name: "PictureClassroom",
+            image: "Images/Backgrounds/steps.png",
+            description: "Ein Bild von unserem Klassenzimmer",
+            static: true,
+        },
+    };
+    // *** CREDITS ***
+    let credits = [
+        "<b>Titlescreen:</b></br>\
+        <i>Car:</i> Daniel Zhabotinsky on Sketchfab</br>\
+        <i>Font:</i> Perfect Dark BRK by Ænigma Fonts",
+        "<b>Backgrounds:</b></br>\
+        Futuristic Reality 2 Pack by Rachel Chen",
+        "<b>Hairstyles:</b></br>\
+        <i>JJ & Dio:</i> https://booth.pm/en/items/2870629 / Male protagonist hair by Atelier Echo ~ アトリエ・エコー</br>\
+        <i>Justice:</i> https://booth.pm/en/items/3028807 / Vroid Blonde Ponytail by nyxxxnoctis</br>\
+        <i>Yuri:</i> 【Serena Kupopo - https://kupopo.net/】</br>\
+        <i>Amelia:</i> https://booth.pm/en/items/3020826 / Vroid Hair Preset ane texture by nyxxxnoctis</br>\
+        <i>Books:</i> https://booth.pm/ja/items/2933774 / Long Curly hair With headbang Preset by scarletanimefox</br>\
+        <i>Nao:</i> https://booth.pm/ja/items/3044682 / Vroid~ Free hair preset 3 by alis</br>\
+        <i>Azami:</i> https://booth.pm/ja/items/3044516 / Vroid~ Free hair preset by alis</br>\
+        ",
+        "<b>Music:</b></br>\
+        <i>Alumo:</i> https://soundcloud.com/alumomusic/sets/synthwave",
+        "<b>Textbox:</b></br>\
+        https://otomeflag.itch.io/futuristic-hologram-01 by OTOME	&#10084; FLAG",
+    ];
     // *** ANIMATION ***
     function leavingLeft() {
         return {
@@ -496,7 +544,7 @@ var Template;
         };
     }
     Template.leavingLeft = leavingLeft;
-    // *** DATA THAT WILL BE SAVED (GAME PROGRESS)
+    // *** DATA THAT WILL BE SAVED (GAME PROGRESS) ***
     //Menu shortcuts
     let inGameMenuButtons = {
         save: "Save",
@@ -521,6 +569,26 @@ var Template;
                 gameMenu.close();
                 menuIsOpen = false;
                 break;
+            case inGameMenuButtons.credits:
+                let current = 0;
+                let flip = { back: "Zurück", next: "Weiter", close: "Schließen" };
+                let choice;
+                Template.fS.Text.addClass("credits");
+                do {
+                    Template.fS.Text.print(credits[current]);
+                    choice = await Template.fS.Menu.getInput(flip, "flip");
+                    switch (choice) {
+                        case flip.back:
+                            current = Math.max(0, current - 1);
+                            break;
+                        case flip.next:
+                            current = Math.min(credits.length - 1, current + 1);
+                            break;
+                    }
+                } while (choice != flip.close);
+                Template.fS.Text.close();
+                break;
+            default:
         }
     }
     //***  Hide Button ***
@@ -565,14 +633,14 @@ var Template;
         /*** SCENE HIERARCHY ***/
         Template.fS.Speech.hide();
         let scenes = [
-            // { id: "wakingUpFirstTime", scene: WakingUp, name: "Waking up" },
-            // { id: "toSchoolFirstTime", scene: GoingToSchool, name: "Going to School firstTime"},
-            // { id: "inClassFirstTime", scene: InClass, name: "In Class for firstTime"},
-            // { id: "wakingUpCarCrash", scene: WakingUp, name: "Waking up Carcrash" },
-            // { id: "toSchoolAfterCarCrash", scene: GoingToSchool, name: "Going to School after Carcrash"},
-            // { id: "inClassAfterCarCrash", scene: InClass, name: "In Class after Carcrash"},
-            // { id: "inClassAfterConstructionAccident", scene: WakingUp, name: "Waking up after Construction Site Accident"},
-            // { id: "toSchoolAfterConstructionAccident", scene: GoingToSchool, name: "Going to School after Construction Site Accident"},
+            { id: "wakingUpFirstTime", scene: Template.WakingUp, name: "Waking up" },
+            { id: "toSchoolFirstTime", scene: Template.GoingToSchool, name: "Going to School firstTime" },
+            { id: "inClassFirstTime", scene: Template.InClass, name: "In Class for firstTime" },
+            { id: "wakingUpCarCrash", scene: Template.WakingUp, name: "Waking up Carcrash" },
+            { id: "toSchoolAfterCarCrash", scene: Template.GoingToSchool, name: "Going to School after Carcrash" },
+            { id: "inClassAfterCarCrash", scene: Template.InClass, name: "In Class after Carcrash" },
+            { id: "inClassAfterConstructionAccident", scene: Template.WakingUp, name: "Waking up after Construction Site Accident" },
+            { id: "toSchoolAfterConstructionAccident", scene: Template.GoingToSchool, name: "Going to School after Construction Site Accident" },
             { id: "inClassAfterConstructionAccident", scene: Template.InClass, name: "In Class AfterConstructionAccident" },
             { id: "wakingUpAfterSchoolAccident", scene: Template.WakingUp, name: "Waking up after School Accident" },
             { id: "toSchoolAfterSchoolAccident", scene: Template.GoingToSchool, name: "Going to School after School Accident" },
@@ -614,9 +682,9 @@ var Template;
     class StateManager {
         //*** GLOBAL VARIABLES***
         //TODO: FirstRun wieder einblenden 
-        // public static storyState: StoryState = StoryState.FirstRun;
+        static storyState = StoryState.FirstRun;
         // public static storyState: StoryState = StoryState.CarCrashHappend;
-        static storyState = StoryState.ConstructionSiteAccidentHappend;
+        // public static storyState: StoryState = StoryState.ConstructionSiteAccidentHappend;
         // public static storyState: StoryState = StoryState.SchoolAccidentHappend;
         static choicesState = "firstChoice";
         static endingState = "";
@@ -650,6 +718,7 @@ var Template;
             await Template.fS.update(0.5);
             await Template.fS.Speech.tell(Template.Rika, "So, hier um die Ecke ist auch schon das Einkaufszentrum. Wenn du möchtest, können wir uns hier am Wochenende auf einen Bubble Tea treffen und vielleicht…");
             Template.StateManager.storyState = Template.StoryState.CarCrashHappend;
+            // fS.Inventory.add(items.pictureStreet);
             Template.fS.Speech.hide();
             Template.fS.Character.hideAll();
             //TODO: *** AUTO HUPEN UND REIFEN QUIETSCHEN EINBAUEN ***

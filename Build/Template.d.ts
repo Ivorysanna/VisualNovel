@@ -174,6 +174,32 @@ declare namespace Template {
         nameProtagonist: string;
         shoScore: number;
     };
+    let items: {
+        pictureStreet: {
+            name: string;
+            image: string;
+            description: string;
+            static: boolean;
+        };
+        pictureConstructionSite: {
+            name: string;
+            image: string;
+            description: string;
+            static: boolean;
+        };
+        pictureSteps: {
+            name: string;
+            image: string;
+            description: string;
+            static: boolean;
+        };
+        pictureClassroom: {
+            name: string;
+            image: string;
+            description: string;
+            static: boolean;
+        };
+    };
     function leavingLeft(): fS.AnimationDefinition;
 }
 declare namespace Template {
