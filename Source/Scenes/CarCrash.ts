@@ -3,6 +3,7 @@ namespace Template {
         public static async firstCarCrash(): Promise<void> {
             console.log("1. Car Crash");
             await fS.Location.show(location.streetCity);
+            fS.Sound.play(sound.cityNoise, 0.2, true);
             await fS.update(transition.wipeLeft.duration, transition.wipeLeft.alpha, transition.wipeLeft.edge); 
             await fS.update();
             await fS.Character.show(Sho, ShoPose.neutral, fS.positionPercent(40, 100));
@@ -16,8 +17,13 @@ namespace Template {
             
             fS.Speech.hide();
             fS.Character.hideAll();
+            await fS.update();
             //TODO: *** AUTO HUPEN UND REIFEN QUIETSCHEN EINBAUEN ***
+            fS.Sound.play(sound.carHorn, 0.3, false);
+            fS.Sound.play(sound.carCrash, 0.3, false);
             //TODO: *** SZENENBILD ANZEIGEN AUTO ÜBERFAHREN***
+
+            fS.Sound.fade(sound.cityNoise, 0, 1);
         }
 
         public static async carCrashHappend(): Promise <void> {

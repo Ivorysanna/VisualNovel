@@ -6,6 +6,7 @@ namespace Template {
             case StoryState.FirstRun:
                 console.log("First Run!");
                 fS.Speech.hide();
+                fS.Sound.play(sound.outside, 0.5, true);
                 await fS.Location.show(location.alley);
                 await fS.update(transition.wipeLeft.duration, transition.wipeLeft.alpha, transition.wipeLeft.edge);
 
@@ -33,12 +34,14 @@ namespace Template {
                 await fS.update(transition.wipeLeft.duration, transition.wipeLeft.alpha, transition.wipeLeft.edge); 
                 await fS.update();
 
-                // TODO: *** GLOCKE KLINGELT SOUND ***
+                fS.Sound.play(sound.schoolBell, 0.5, false);
                 await fS.Character.show(Sagi, SagiPose.neutral, fS.positions.bottomcenter);
                 await fS.update(0.5);
                 await fS.Speech.tell(Sagi, "Komm schnell, wir schaffen es gerade so rechtzeitig.");
+                await fS.Progress.delay(3);
                 fS.Character.hideAll();
                 await fS.update(0.5);
+                fS.Sound.fade(sound.outside, 0, 1);
                 // await TransitionManager.blendInOut();
                 break;
 
@@ -73,7 +76,8 @@ namespace Template {
                 
 
 
-                //TODO: *** GONG KLINGELT***
+                fS.Sound.play(sound.schoolBell, 0.5, false);
+                await fS.Progress.delay(3);
                 await fS.Speech.tell(Sagi, "Komm wir…");
                 await fS.Speech.tell(Rika, "Wir schaffen es zum Unterricht, keine Sorge.");
                 await fS.Speech.tell(Sagi, "...");

@@ -5,7 +5,7 @@ namespace Template {
         switch (StateManager.storyState) {
             case StoryState.FirstRun:
                 fS.Sound.play(sound.alarmClock, 0.5, false);
-                await fS.Progress.delay(3);
+                await fS.Progress.delay(2);
                 await fS.Location.show(location.bedroom);
                 await fS.update(transition.wipeLeft.duration, transition.wipeLeft.alpha, transition.wipeLeft.edge);
 
@@ -15,9 +15,13 @@ namespace Template {
                 await fS.Speech.tell(Rika, "<i>Ich sollte mich schnell fertig machen, nicht dass Sagi wieder auf mich warten muss …</i>");
                 await fS.Progress.delay(1);
 
-                await TransitionManager.blendInOut();
+                await fS.Location.show(location.darkBackground);
+                fS.Speech.hide();
+                fS.Character.hideAll();
+                await fS.update(0.5);
+                fS.Sound.play(sound.cloth, 0.5, false);
 
-                await fS.Progress.delay(2);
+                await fS.Progress.delay(8);
 
                 await fS.Location.show(location.bedroom);
                 await fS.Character.show(Rika, RikaPose.neutral, fS.positionPercent(40, 100));
@@ -40,8 +44,13 @@ namespace Template {
                 await fS.Speech.tell(Rika, "Ja ich bin schon wach.");
                 await fS.Speech.tell(Rika, "<i>Ich sollte mich schnell anziehen, nicht, dass Sagi auf mich warten muss.</i>");
 
-                await TransitionManager.blendInOut();
-                await fS.Progress.delay(2);
+                await fS.Location.show(location.darkBackground);
+                fS.Speech.hide();
+                fS.Character.hideAll();
+                await fS.update(0.5);
+                fS.Sound.play(sound.cloth, 0.5, false);
+
+                await fS.Progress.delay(8);
 
                 await fS.Location.show(location.bedroom);
                 await fS.Character.show(Rika, RikaPose.neutral, fS.positionPercent(40, 100));
@@ -64,7 +73,13 @@ namespace Template {
                 await fS.Speech.tell(Rika, "Ja, ich bin wach…");
                 await fS.Speech.tell(Rika, "<i>Ich sollte mich schnell anziehen, Sagi wartet bestimmt schon…</i>");
 
-                await TransitionManager.blendInOut();
+                await fS.Location.show(location.darkBackground);
+                fS.Speech.hide();
+                fS.Character.hideAll();
+                await fS.update(0.5);
+                fS.Sound.play(sound.cloth, 0.5, false);
+
+                await fS.Progress.delay(8);
 
                 await fS.Progress.delay(2);
 
@@ -93,7 +108,13 @@ namespace Template {
 
                 await fS.Speech.tell(Rika, "<i>Ob Sho sich auch erinnert … Es können keine Träume sein. Ich sollte Sho noch gar nicht kenn.</i>");
 
-                //TODO: Play sound cloths
+                await fS.Location.show(location.darkBackground);
+                fS.Speech.hide();
+                fS.Character.hideAll();
+                await fS.update(0.5);
+                fS.Sound.play(sound.cloth, 0.5, false);
+
+                await fS.Progress.delay(8);
                 await fS.Speech.tell(Rika, "<i>Ich sollte mit Sagi reden, ihr muss doch auch was aufgefallen sein.");
                 await fS.Character.animate(Rika, RikaPose.neutral, leavingLeft());
                 // await TransitionManager.blendInOut();

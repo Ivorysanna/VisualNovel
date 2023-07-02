@@ -17,12 +17,18 @@ namespace Template {
                 await fS.Speech.tell(Sho, "Hi, ich bin Sho Rai. Freut mich, euch kennenzulernen.");
 
                 //TODO: ***GETUSCHEL VON ANDEREN SCHUELERN SOUND ***
+                // fS.Sound.play(sound.classTalking, 0.5, true);
+                fS.Sound.fade(sound.classTalking, 0.5, 0, true);
+                await fS.Progress.delay(4);
                 await fS.Speech.tell(Teacher, "Okay, beruhigt euch wieder. Ihr könnt in der Pause noch mal miteinander reden.");
-
+                fS.Sound.fade(sound.classTalking, 0, 1);
                 //TODO: *** PAUSEN GONG EINFÜGEN
                 //TODO: *** MENSCHEN DIE IN DER PAUSE REDEN EINFÜGEN ***
                 await fS.Progress.delay(1);
                 await TransitionManager.blendInOut();
+                fS.Sound.play(sound.schoolBell, 0.5, false);
+                await fS.Progress.delay(4);
+                fS.Sound.fade(sound.classTalking, 0.5, 1,true);
                 // await fS.update(transition.wipeRight.duration, transition.wipeRight.alpha, transition.wipeRight.edge);
                 
                 await fS.Progress.delay(3);
@@ -58,14 +64,18 @@ namespace Template {
 
                 // *** Pause Beendet***
                 //TODO: *** PAUSEN GONG EINBAUEN***
+                fS.Sound.play(sound.schoolBell, 0.5, false);
+                await fS.Progress.delay(4);
                 await fS.Speech.tell(Sagi, "Das war eine schnelle Pause. Komm, wir gehen wieder an unseren Platz.");
-
+                fS.Sound.fade(sound.classTalking, 0, 1);
                 await TransitionManager.blendInOut();
 
                 await fS.Progress.delay(3);
 
                 // *** Unterricht zu Ende***
                 //TODO: *** GONG EINBAUEN ***
+                fS.Sound.play(sound.schoolBell, 0.5, false);
+                await fS.Progress.delay(4);
                 await fS.Location.show(location.classroom);
                 // await fS.update(transition.wipeRight.duration, transition.wipeRight.alpha, transition.wipeRight.edge); 
                 await fS.update();
@@ -74,11 +84,14 @@ namespace Template {
                 await fS.update(0.5);
                 await fS.Speech.tell(Rika, "Okay, können wir los?");
                 await fS.Speech.tell(Sho, "Ja, ich packe nur schnell meine Sachen zusammen.");
+                fS.Sound.play(sound.packingBag, 0.5, false);
+                await fS.Progress.delay(7);
                 fS.Speech.hide();
                 fS.Character.hideAll();
 
                 // *** Auf dem Weg nach Hause***
                 await fS.Location.show(location.uni);
+                fS.Sound.play(sound.outside, 0.5, true);
                 await fS.update(transition.wipeLeft.duration, transition.wipeLeft.alpha, transition.wipeLeft.edge); 
                 await fS.update();
 
@@ -93,6 +106,7 @@ namespace Template {
                 fS.Speech.hide();
                 fS.Character.hideAll();
                 await fS.update(0.5);
+                fS.Sound.fade(sound.outside, 0, 1);
                 // await TransitionManager.blendInOut();
                 await CarCrash.firstCarCrash();
                 break;
