@@ -14,6 +14,7 @@ namespace Template {
             //TODO: *** SCREEN SHAKING ***
             fS.Character.hideAll();
             await fS.Speech.tell(Sho, "SHO, VORSICHT!");
+            fS.Inventory.add(items.pictureConstructionSite);
             fS.Speech.hide();
             // await fS.Progress.delay(2);
             fS.Sound.fade(sound.constructionSite, 0, 1);

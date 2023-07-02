@@ -764,6 +764,7 @@ var Template;
             //TODO: *** SCREEN SHAKING ***
             Template.fS.Character.hideAll();
             await Template.fS.Speech.tell(Template.Sho, "SHO, VORSICHT!");
+            Template.fS.Inventory.add(Template.items.pictureConstructionSite);
             Template.fS.Speech.hide();
             // await fS.Progress.delay(2);
             Template.fS.Sound.fade(Template.sound.constructionSite, 0, 1);
