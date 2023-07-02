@@ -382,6 +382,7 @@ var Template;
         schoolBell: "Sounds/schoolBell.mp3",
         classTalking: "Sounds/classTalking.mp3",
         carCrash: "Sounds/carCrash.wav",
+        metalFalling: "Sounds/metalFalling.mp3",
     };
     //*** BACKGROUNDS ***
     Template.location = {
@@ -763,20 +764,20 @@ var Template;
     class ConstructionSite {
         static async firstConstructionSiteAccident() {
             await Template.fS.Location.show(Template.location.constructionSite);
+            Template.fS.Sound.play(Template.sound.constructionSite, 0.3, true);
             await Template.fS.update(Template.transition.wipeLeft.duration, Template.transition.wipeLeft.alpha, Template.transition.wipeLeft.edge);
             await Template.fS.Character.show(Template.Sho, Template.ShoPose.neutral, Template.fS.positions.bottomcenter);
             await Template.fS.update(0.5);
             await Template.fS.Speech.tell(Template.Rika, "<i>Komisch ich erinnere mich gar nicht an diese Baustelle, die muss neu sein.</i>");
             await Template.fS.Speech.tell(Template.Sho, "Den Weg kannte ich noch gar nicht.");
             Template.StateManager.storyState = Template.StoryState.ConstructionSiteAccidentHappend;
-            //TODO: *** ADDING FALLING SOUND ***
-            //TODO: *** ADDING CRACKING SOUND ***
+            Template.fS.Sound.play(Template.sound.metalFalling, 0.8, false);
             //TODO: *** SCREEN SHAKING ***
-            //TODO: *** LOUD CONSTRUCTION SITE NOISE ***
+            Template.fS.Character.hideAll();
             await Template.fS.Speech.tell(Template.Sho, "SHO, VORSICHT!");
             Template.fS.Speech.hide();
-            Template.fS.Character.hideAll();
             // await fS.Progress.delay(2);
+            Template.fS.Sound.fade(Template.sound.constructionSite, 0, 1);
             await Template.TransitionManager.blendInOut();
             //TODO: *** SHOW SCENE PICTURE
         }
@@ -1096,13 +1097,14 @@ var Template;
                 await Template.fS.Speech.tell(Template.Sho, "Können wir gerne machen, dann kann ich dir noch etwas die Stadt zeigen.");
                 // *** Break finished***
                 Template.fS.Sound.play(Template.sound.schoolBell, 0.5, false);
-                await Template.fS.Progress.delay(3);
+                await Template.fS.Progress.delay(4);
                 await Template.fS.Speech.tell(Template.Sagi, "Komm, wir gehen an unseren Platz.");
                 Template.fS.Sound.fade(Template.sound.classTalking, 0, 1);
                 //*** lecture finished ***
                 await Template.TransitionManager.blendInOut();
-                Template.fS.Sound.play(Template.sound.schoolBell, 0.5, false);
                 await Template.fS.Progress.delay(3);
+                Template.fS.Sound.play(Template.sound.schoolBell, 0.5, false);
+                await Template.fS.Progress.delay(4);
                 await Template.fS.Location.show(Template.location.classroom);
                 await Template.fS.update(Template.transition.wipeLeft.duration, Template.transition.wipeLeft.alpha, Template.transition.wipeLeft.edge);
                 await Template.fS.update();

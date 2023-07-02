@@ -177,14 +177,15 @@ namespace Template {
 
                 // *** Break finished***
                 fS.Sound.play(sound.schoolBell, 0.5, false);
-                await fS.Progress.delay(3);
+                await fS.Progress.delay(4);
                 await fS.Speech.tell(Sagi, "Komm, wir gehen an unseren Platz.");
                 fS.Sound.fade(sound.classTalking, 0, 1);
                 //*** lecture finished ***
                 await TransitionManager.blendInOut();
+                await fS.Progress.delay(3);
                 fS.Sound.play(sound.schoolBell, 0.5, false);
 
-                await fS.Progress.delay(3);
+                await fS.Progress.delay(4);
 
                 await fS.Location.show(location.classroom);
                 await fS.update(transition.wipeLeft.duration, transition.wipeLeft.alpha, transition.wipeLeft.edge); 

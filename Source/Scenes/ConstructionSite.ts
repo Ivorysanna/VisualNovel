@@ -2,6 +2,7 @@ namespace Template {
     export class ConstructionSite {
         public static async firstConstructionSiteAccident(): Promise<void> {
             await fS.Location.show(location.constructionSite);
+            fS.Sound.play(sound.constructionSite, 0.3, true);
             await fS.update(transition.wipeLeft.duration, transition.wipeLeft.alpha, transition.wipeLeft.edge);
             
             await fS.Character.show(Sho, ShoPose.neutral, fS.positions.bottomcenter);
@@ -9,14 +10,13 @@ namespace Template {
             await fS.Speech.tell(Rika, "<i>Komisch ich erinnere mich gar nicht an diese Baustelle, die muss neu sein.</i>");
             await fS.Speech.tell(Sho, "Den Weg kannte ich noch gar nicht.");
             StateManager.storyState = StoryState.ConstructionSiteAccidentHappend;
-            //TODO: *** ADDING FALLING SOUND ***
-            //TODO: *** ADDING CRACKING SOUND ***
+            fS.Sound.play(sound.metalFalling, 0.8, false);
             //TODO: *** SCREEN SHAKING ***
-            //TODO: *** LOUD CONSTRUCTION SITE NOISE ***
+            fS.Character.hideAll();
             await fS.Speech.tell(Sho, "SHO, VORSICHT!");
             fS.Speech.hide();
-            fS.Character.hideAll();
             // await fS.Progress.delay(2);
+            fS.Sound.fade(sound.constructionSite, 0, 1);
             await TransitionManager.blendInOut();
             //TODO: *** SHOW SCENE PICTURE
 

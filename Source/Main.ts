@@ -59,6 +59,7 @@ namespace Template {
         schoolBell: "Sounds/schoolBell.mp3",
         classTalking: "Sounds/classTalking.mp3",
         carCrash: "Sounds/carCrash.wav",
+        metalFalling: "Sounds/metalFalling.mp3",
     };
 
     //*** BACKGROUNDS ***

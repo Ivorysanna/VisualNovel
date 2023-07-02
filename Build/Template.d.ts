@@ -71,6 +71,7 @@ declare namespace Template {
         schoolBell: string;
         classTalking: string;
         carCrash: string;
+        metalFalling: string;
     };
     let location: {
         alley: {
