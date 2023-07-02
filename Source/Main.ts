@@ -202,24 +202,13 @@ namespace Template {
 
     // *** CREDITS ***
     let credits: string[] = [
-        "<b>Titlescreen:</b></br>\
-        <i>Car:</i> Daniel Zhabotinsky on Sketchfab</br>\
-        <i>Font:</i> Perfect Dark BRK by Ænigma Fonts",
-        "<b>Backgrounds:</b></br>\
-        Futuristic Reality 2 Pack by Rachel Chen",
-        "<b>Hairstyles:</b></br>\
-        <i>JJ & Dio:</i> https://booth.pm/en/items/2870629 / Male protagonist hair by Atelier Echo ~ アトリエ・エコー</br>\
-        <i>Justice:</i> https://booth.pm/en/items/3028807 / Vroid Blonde Ponytail by nyxxxnoctis</br>\
-        <i>Yuri:</i> 【Serena Kupopo - https://kupopo.net/】</br>\
-        <i>Amelia:</i> https://booth.pm/en/items/3020826 / Vroid Hair Preset ane texture by nyxxxnoctis</br>\
-        <i>Books:</i> https://booth.pm/ja/items/2933774 / Long Curly hair With headbang Preset by scarletanimefox</br>\
-        <i>Nao:</i> https://booth.pm/ja/items/3044682 / Vroid~ Free hair preset 3 by alis</br>\
-        <i>Azami:</i> https://booth.pm/ja/items/3044516 / Vroid~ Free hair preset by alis</br>\
-        ",
-        "<b>Music:</b></br>\
-        <i>Alumo:</i> https://soundcloud.com/alumomusic/sets/synthwave",
-        "<b>Textbox:</b></br>\
-        https://otomeflag.itch.io/futuristic-hologram-01 by OTOME	&#10084; FLAG",
+        "<b>Bilder:</b></br>\
+        <i>Hintergrundbilder/Taschenuhr: Pixabay</i> </br>\
+        <i>Animefilter: Animefilter.com</i>",
+        "<b>Sounds:</b></br>\
+        <i>Freesound.org und Youtube</i>",
+        "<b>Storyinspiration: </b></br>\
+        <i>Vocaloid Lied: Heat-Haze Days / カゲロウデイズ</i> </br>\ ",
     ];
 
     // *** ANIMATION ***

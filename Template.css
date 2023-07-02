@@ -182,6 +182,7 @@ dialog.flip button#next::after{
   color: white;
   font-size: larger;
   width: 41%;
+  border-radius: 10px;
 }
 .credits b{
   color: white;
