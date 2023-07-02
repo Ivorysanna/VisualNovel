@@ -13,6 +13,8 @@ namespace Template {
                     // continue path here
                     await fS.Speech.tell(Rika, "Lass uns den längeren Weg gehen, er ist nicht viel länger, aber dafür viel schöner.");
                     await fS.Speech.tell(Sho, "Gerne, ich habe es heute sowieso nicht so eilig.");
+                    fS.Sound.play(sound.packingBag, 0.5, false);
+                    await fS.Progress.delay(8);
                     fS.Speech.hide();
                     fS.Character.hideAll();
                     await fS.update(0.5);

@@ -48,6 +48,7 @@ namespace Template {
             case StoryState.CarCrashHappend:
                 console.log("Crash Happend!");
                 fS.Speech.hide();
+                fS.Sound.play(sound.outside, 0.5, true);
                 await fS.Location.show(location.alley);
                 await fS.update(transition.wipeLeft.duration, transition.wipeLeft.alpha, transition.wipeLeft.edge); 
                 await fS.update();
@@ -71,13 +72,13 @@ namespace Template {
                 await fS.update(transition.wipeLeft.duration, transition.wipeLeft.alpha, transition.wipeLeft.edge);
                 await fS.update();
                 
+                fS.Sound.play(sound.schoolBell, 0.5, false);
+                await fS.Progress.delay(3);
                 await fS.Character.show(Sagi, SagiPose.neutral, fS.positions.bottomcenter);
                 await fS.update(0.5);
                 
 
 
-                fS.Sound.play(sound.schoolBell, 0.5, false);
-                await fS.Progress.delay(3);
                 await fS.Speech.tell(Sagi, "Komm wir…");
                 await fS.Speech.tell(Rika, "Wir schaffen es zum Unterricht, keine Sorge.");
                 await fS.Speech.tell(Sagi, "...");
@@ -86,6 +87,7 @@ namespace Template {
                 await fS.update(0.5);
                 // await TransitionManager.blendInOut();
                 // await fS.update(0.5);
+                fS.Sound.fade(sound.outside, 0, 1);
                 break;
 
             case StoryState.ConstructionSiteAccidentHappend:

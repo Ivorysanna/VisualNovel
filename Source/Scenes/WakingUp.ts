@@ -48,7 +48,7 @@ namespace Template {
                 fS.Speech.hide();
                 fS.Character.hideAll();
                 await fS.update(0.5);
-                fS.Sound.play(sound.cloth, 0.5, false);
+                fS.Sound.play(sound.cloth, 0.6, false);
 
                 await fS.Progress.delay(8);
 

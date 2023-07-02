@@ -62,7 +62,6 @@ declare namespace Template {
         breakChatter: string;
         carHorn: string;
         cityNoise: string;
-        classWhispering: string;
         cloth: string;
         constructionSite: string;
         intenseSound: string;

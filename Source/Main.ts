@@ -49,7 +49,7 @@ namespace Template {
         breakChatter: "Sounds/breakChatter.mp3",
         carHorn: "Sounds/carHorn.mp3",
         cityNoise: "Sounds/cityNoise.mp3",
-        classWhispering: "Sounds/classWhispering.mp3",
+        // classWhispering: "Sounds/classWhispering.mp3",
         cloth: "Sounds/cloths.wav",
         constructionSite: "Sounds/constructionSite.mp3",
         intenseSound: "Sounds/intenseSound.wav",
@@ -333,8 +333,8 @@ namespace Template {
         /*** SCENE HIERARCHY ***/
         fS.Speech.hide();
         let scenes: fS.Scenes = [
-            { id: "wakingUpFirstTime", scene: WakingUp, name: "Waking up" },
-            { id: "toSchoolFirstTime", scene: GoingToSchool, name: "Going to School firstTime" },
+            // { id: "wakingUpFirstTime", scene: WakingUp, name: "Waking up" },
+            // { id: "toSchoolFirstTime", scene: GoingToSchool, name: "Going to School firstTime" },
             { id: "inClassFirstTime", scene: InClass, name: "In Class for firstTime" },
             { id: "wakingUpCarCrash", scene: WakingUp, name: "Waking up Carcrash" },
             { id: "toSchoolAfterCarCrash", scene: GoingToSchool, name: "Going to School after Carcrash" },
