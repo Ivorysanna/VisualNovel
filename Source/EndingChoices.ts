@@ -117,7 +117,7 @@ namespace Template {
 
             switch (dialogueElement) {
                 case endingThree.goLibrary:
-                    // continue path here
+                    fS.Sound.play(sound.classTalking, 0.5, true);
                     await fS.Character.show(Sagi, SagiPose.neutral, fS.positions.bottomcenter);
                     await fS.update(0.5);
                     await fS.Speech.tell(Rika, "<i>Vielleicht finde ich etwas in der Bibliothek. Ich kann nicht die erste sein, die sowas erlebt.</i>");
@@ -130,11 +130,12 @@ namespace Template {
                     fS.Speech.hide();
                     fS.Character.hideAll();
                     await fS.update();
+                    fS.Sound.fade(sound.classTalking, 0, 1);
                     await Library.inLibrary();
                     break;
 
                 case endingThree.todaySuccess:
-                    // continue path here
+                    fS.Sound.play(sound.classTalking, 0.5, true);
                     await fS.Character.show(Sagi, SagiPose.neutral, fS.positionPercent(70, 100));
                     await fS.update(0.5);
                     await fS.Speech.tell(Rika, "<i>Heute schaffe ich es, das weiß ich.</i>");
@@ -157,19 +158,23 @@ namespace Template {
                     await fS.Speech.tell(Rika, "Wenn du möchtest, können wir heute zusammen nach Hause gehen, ich wohne in der gleichen Straße.");
                     await fS.Speech.tell(Sagi, "...");
                     await fS.Speech.tell(Sho, "Oh, das wäre echt cool.");
-                    //TODO: ADD SCHOOLBELL SOUND
+        
+                    fS.Sound.play(sound.schoolBell, 0.5, false);
+                    await fS.Progress.delay(3);
                     await fS.Speech.tell(Rika, "Wir sehen uns nach dem Unterricht.");
                     await fS.Speech.tell(Rika, "Komm Sagi.");
         
                     fS.Character.hideAll();
                     fS.Speech.hide();
-                    await fS.update();
-
+                    await fS.update(0.5);
+                    fS.Sound.fade(sound.classTalking, 0, 1);
 
                     await TransitionManager.blendInOut();
 
                     await fS.Progress.delay(3);
-                    //TODO: ADD SCHOOLBELL SOUND
+                    
+                    fS.Sound.play(sound.schoolBell, 0.5, false);
+                    await fS.Progress.delay(3);
 
                     await fS.Location.show(location.classroom);
                     await fS.update();
@@ -177,6 +182,8 @@ namespace Template {
                     await fS.update(0.5);
                     await fS.Speech.tell(Rika, "Okay, können wir los?");
                     await fS.Speech.tell(Sho, "Ja, ich packe nur schnell meine Sachen zusammen.");
+                    fS.Sound.play(sound.packingBag, 0.5, false);
+                    await fS.Progress.delay(8);
                     fS.Character.hideAll();
                     fS.Speech.hide();
                     await fS.update(0.5);
@@ -216,11 +223,14 @@ namespace Template {
                     // continue path here
                     console.log("saveSho");
                     //TODO: ADD SOUND CRASH
-                    fS.Sound.play(sound.carHorn, 0.5, false);
-                    // fS.Sound.play(sound.carHorn, 0.5, false);
+                    fS.Sound.play(sound.carCrash, 0.3, false);
+                    
                     fS.Character.hideAll();
                     fS.Speech.hide();
-                    await fS.update();
+                    await fS.update(0.5);
+                    await fS.Progress.delay(2);
+                    fS.Sound.fade(sound.cityNoise, 0, 1);
+                    await EndScene.carEnding();
 
                     break;
                 case badEndingOne.doNothing:

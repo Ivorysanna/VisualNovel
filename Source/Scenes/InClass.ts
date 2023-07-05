@@ -294,13 +294,17 @@ namespace Template {
                 await fS.Character.show(Sho, ShoPose.neutral, fS.positionPercent(35, 100));
                 await fS.update(0.5);
                 await fS.Speech.tell(Sho, "Hi, ich bin Sho Rai. Freut mich, euch kennenzulernen.");
+                fS.Sound.play(sound.classTalking, 0.5, true);
+                await fS.Progress.delay(2);
                 await fS.Speech.tell(Rika, "<i>… Das ist er. Ich habe von ihm geträumt. Aber was ist passiert? </i>");
 
                 //TODO: *** Talking Sound ***
                 await fS.Speech.tell(Teacher, "Okay, beruhigt euch wieder. Ihr könnt in der Pause noch mal miteinander reden.");
-
+                fS.Sound.fade(sound.classTalking, 0, 1);
                 //fade out screen
                 await TransitionManager.blendInOut();
+                await fS.Progress.delay(3);
+                fS.Sound.play(sound.schoolBell, 0.5, false);
                 await fS.Progress.delay(3);
 
                 //fade in screen classroom

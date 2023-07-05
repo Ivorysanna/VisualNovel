@@ -319,6 +319,7 @@ declare namespace Template {
 declare namespace Template {
     class EndScene {
         static gameOver(): Promise<void>;
+        static carEnding(): Promise<void>;
     }
 }
 declare namespace Template {
