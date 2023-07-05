@@ -1293,6 +1293,7 @@ var Template;
             await Template.fS.Speech.tell(Template.Rika, "<i>Das ist wirklich viel. Ich sollte das Buch ausleihen.</i>");
             Template.InterfaceHelper.toggleAusleihButton();
             await Template.fS.Progress.delay(10);
+            Template.InterfaceHelper.toggleAusleihButton();
             // InterfaceHelper.toggleAusleihButton();
             await Template.fS.Speech.tell(Template.Rika, "<i>Okay also, das Buch sagt, ich muss den Namen von diesem Dämon kennen.</i>");
             //TODO: *** ADDING IF FOR CHECKING THE NAME***
