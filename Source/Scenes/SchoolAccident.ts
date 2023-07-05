@@ -10,21 +10,30 @@ namespace Template {
             //Changing storyState to SchoolAccidentHappend
             StateManager.storyState = StoryState.SchoolAccidentHappend;
 
-            //TODO: Open Cabinet Sound adding 
+            fS.Sound.play(sound.openCabin, 0.5, false);
+            await fS.Progress.delay(3);
 
             await fS.Speech.tell(Sho, "Ohje, die stehen ja ganz oben.");
 
-            //TODO: Sound of things falling down adding 
-            //TODO: ADD ENDPICUTRE
+            fS.Sound.play(sound.fallingObjects, 0.5, false);
+            await fS.Progress.delay(1);
+            fS.Sound.play(sound.cutThrowFlesh, 0.5, false);
+            await fS.Progress.delay(3);
+            fS.Inventory.add(items.pictureClassroom);
+
+            fS.Character.hideAll();
+            fS.Speech.hide();
+            await fS.update(0.5);
+
             //*** GAME OVER***
-            console.log("GAME OVER: School Accident");  
+            console.log("GAME OVER: School Accident");
         }
         public static async schoolAccidentHappend(): Promise<void> {
             //*** FOURTH BAD ENDING***
             //TODO: ADD SOUNDS
             //TODO: ADD ENDPICUTRE
             //*** GAME OVER***
-            console.log("GAME OVER: School Accident"); 
+            console.log("GAME OVER: School Accident");
             fS.Speech.hide();
             fS.Character.hideAll();
             await EndScene.gameOver();

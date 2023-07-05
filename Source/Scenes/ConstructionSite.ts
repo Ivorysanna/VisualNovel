@@ -15,7 +15,9 @@ namespace Template {
             fS.Character.hideAll();
             await fS.Speech.tell(Sho, "SHO, VORSICHT!");
             fS.Inventory.add(items.pictureConstructionSite);
+            fS.Character.hideAll();
             fS.Speech.hide();
+            await fS.update(0.5);
             // await fS.Progress.delay(2);
             fS.Sound.fade(sound.constructionSite, 0, 1);
             await TransitionManager.blendInOut();

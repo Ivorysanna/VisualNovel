@@ -75,7 +75,7 @@ namespace Template {
                     // fS.update();
                     //Show background class
                     await fS.Location.show(location.classroom);
-                    await fS.update(transition.circle.duration, transition.circle.alpha, transition.circle.edge); 
+                    await fS.update(transition.wipeLeft.duration, transition.wipeLeft.alpha, transition.wipeLeft.edge); 
                     fS.Character.show(Sho, ShoPose.neutral, fS.positions.bottomcenter);
                     fS.update(0.5);
 
@@ -86,8 +86,9 @@ namespace Template {
                     fS.Speech.hide();
                     // *** Going outside***
                     //TODO: ADDING STREET SOUND
+                    fS.Sound.play(sound.cityNoise, 0.2, true);
                     await fS.Location.show(location.bridge);
-                    await fS.update(transition.circle.duration, transition.circle.alpha, transition.circle.edge); 
+                    await fS.update(transition.wipeLeft.duration, transition.wipeLeft.alpha, transition.wipeLeft.edge); 
 
                     await fS.update();
                     // await fS.Character.show(Rika, RikaPose.neutral, fS.positionPercent(70, 100));

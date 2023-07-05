@@ -215,16 +215,21 @@ namespace Template {
                 await fS.Character.show(Sho, ShoPose.neutral, fS.positionPercent(35, 100));
                 await fS.update(0.5);
                 await fS.Speech.tell(Sho, "Hi, ich bin Sho Rai. Freut mich, euch kennenzulernen.");
+                fS.Sound.play(sound.classTalking, 0.5, true);
                 await fS.Speech.tell(Rika, "<i>… Das ist er. Ich habe von ihm geträumt. Aber was ist passiert?</i> ");
                 // TODO: ***GETUSCHEL VON ANDEREN SCHUELERN SOUND ***
+                await fS.Progress.delay(2);
                 await fS.Speech.tell(Teacher, "Okay, beruhigt euch wieder. Ihr könnt in der Pause noch mal miteinander reden.");
-
+                
+                fS.Sound.fade(sound.classTalking, 0, 1);
                 await TransitionManager.blendInOut();
-
-                await fS.Progress.delay(3);
+                fS.Sound.play(sound.schoolBell, 0.5, false);
+                await fS.Progress.delay(7);
                 //TODO: *** PAUSEN GONG EINFÜGEN
                 //TODO: *** MENSCHEN DIE IN DER PAUSE REDEN EINFÜGEN ***
                 // *** PAUSE ***
+                fS.Sound.play(sound.classTalking, 0.5, true);
+                await fS.Progress.delay(2);
                 await fS.Location.show(location.classroom);
                 // await fS.update(transition.wipeLeft.duration, transition.wipeLeft.alpha, transition.wipeLeft.edge); 
                 await fS.update();
@@ -238,7 +243,7 @@ namespace Template {
                 await fS.Speech.tell(Rika, "<i>Sagi hat heute Morgen schon etwas komisch reagiert. Ich denke, ich werde erstmal nichts sagen.</i>");
                 await fS.Speech.tell(Rika, "Ich weiß es nicht. Zurzeit habe ich komische Träume, das ist alles.");
                 await fS.Speech.tell(Sagi, "Okay... Komm, lass uns mit Sho reden. Vielleicht bist du einfach nur etwas nervös.");
-
+                
                 fS.Character.hideAll();
                 fS.Speech.hide();
                 
@@ -257,8 +262,12 @@ namespace Template {
                 await fS.Speech.tell(Sho, "Das wäre echt cool. Danke.");
                 await fS.Speech.tell(Sho, "Dann müsst ihr das ohne mich machen, ich treffe mich heute nach der Schule mit meiner Mutter.");
                 // *** Pause zu Ende***
+
                 //TODO: PAUSEN GONG EINFÜGEN
                 await fS.Speech.tell(Rika, "Lass uns wieder an den Platz gehen, Sagi.");
+                fS.Sound.play(sound.schoolBell, 0.5, false);
+                fS.Sound.fade(sound.classTalking, 0, 1);
+                await fS.Progress.delay(2);
                 //Fade out screen 
                 await TransitionManager.blendInOut();
                 await fS.Progress.delay(3);

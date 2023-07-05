@@ -72,6 +72,10 @@ declare namespace Template {
         classTalking: string;
         carCrash: string;
         metalFalling: string;
+        fallingStairs: string;
+        fallingObjects: string;
+        cutThrowFlesh: string;
+        openCabin: string;
     };
     let location: {
         alley: {
@@ -196,6 +200,12 @@ declare namespace Template {
             static: boolean;
         };
         pictureClassroom: {
+            name: string;
+            image: string;
+            description: string;
+            static: boolean;
+        };
+        pictureBridge: {
             name: string;
             image: string;
             description: string;

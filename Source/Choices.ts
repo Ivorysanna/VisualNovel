@@ -65,15 +65,13 @@ namespace Template {
                     await fS.Speech.tell(Sho, "Ja, stimmt. Wir haben heute auch viele Aufgaben bekommen. Sollen wir das vielleicht zusammen machen?");
                     await fS.Speech.tell(Rika, "J-Ja klar…");
                     //TODO: ADDING FALLING SOUND
-                    await fS.Speech.tell(Rika, "SHO, VORSICHT!");
                     break;
 
                 case goingHomeFastChoice.strangeDreams:
                     await fS.Speech.tell(Rika, "Ich habe die letzten Tage etwas echt Komisches geträumt und ich habe das Gefühl, wenn wir schneller nach Hause gehen, dann hören diese Träume auf… ");
                     await fS.Speech.tell(Sho, "Ach so…");
                     dataForSave.shoScore -= 10;
-                    //TODO: ADDING FALLING SOUND
-                    await fS.Speech.tell(Rika, "SHO, VORSICHT!");
+                    //TODO: ADDING FALLING SOUND              
                     break;
 
                 case goingHomeFastChoice.showingFastestRoute:
@@ -82,7 +80,6 @@ namespace Template {
                     await fS.Speech.tell(Rika, "<i>Was?!… Hat er auch solche komischen Träume?</i>");
                     await fS.Speech.tell(Rika, "Witzig, dass du das sagst. Ich habe zurzeit so komisch…");
                     //TODO: ADDING FALLING SOUND
-                    await fS.Speech.tell(Rika, "SHO, VORSICHT!");
                     dataForSave.shoScore += 10;
                     break;
             }

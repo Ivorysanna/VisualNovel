@@ -40,6 +40,7 @@ namespace Template {
                 await fS.Speech.tell(Sagi, "Komm schnell, wir schaffen es gerade so rechtzeitig.");
                 await fS.Progress.delay(3);
                 fS.Character.hideAll();
+                fS.Speech.hide();
                 await fS.update(0.5);
                 fS.Sound.fade(sound.outside, 0, 1);
                 // await TransitionManager.blendInOut();
@@ -93,6 +94,7 @@ namespace Template {
             case StoryState.ConstructionSiteAccidentHappend:
                 console.log("Construction Accident happend!");
                 fS.Speech.hide();
+                fS.Sound.play(sound.outside, 0.5, true);
                 await fS.Location.show(location.alley);
                 await fS.update(transition.wipeLeft.duration, transition.wipeLeft.alpha, transition.wipeLeft.edge); 
                 await fS.update(0.5);
@@ -104,11 +106,16 @@ namespace Template {
                 await fS.Speech.tell(Sagi, "Nein. Warum fragst du mich sowas Komisches?");
                 await fS.Speech.tell(Sagi, "<i>Warum hat sie denn so wütend reagiert, hat sie auch solche komischen Träume?</i>");
                 await fS.Speech.tell(Sagi, "… Komm wir gehen jetzt, sonst kommen wir zu spät.");
-                await TransitionManager.blendInOut();
+                fS.Character.hideAll();
+                fS.Speech.hide();
+                await fS.update(0.5);
+                // await TransitionManager.blendInOut();
+                fS.Sound.fade(sound.outside, 0, 1);
                 break;
             case StoryState.SchoolAccidentHappend:
                 console.log("School Accident happend!");
                 await fS.Location.show(location.alley);
+                fS.Sound.play(sound.outside, 0.5, true);
                 await fS.update(transition.wipeLeft.duration, transition.wipeLeft.alpha, transition.wipeLeft.edge); 
                 await fS.update();
                 await fS.Character.show(Sagi, SagiPose.neutral, fS.positions.bottomcenter);
@@ -125,7 +132,11 @@ namespace Template {
                 await fS.Speech.tell(Sagi, "Ich kann dir nicht wirklich helfen. Lass uns heute Abend noch mal darüber sprechen.");
                 await fS.Speech.tell(Sagi, "Komm, wir gehen erstmal zur Schule.");
                 await fS.Speech.tell(Rika, "Ja…");
-                await TransitionManager.blendInOut();
+                fS.Character.hideAll();
+                fS.Speech.hide();
+                await fS.update(0.5);
+                // await TransitionManager.blendInOut();
+                fS.Sound.fade(sound.outside, 0, 1);
                 break;
         }
     }

@@ -60,6 +60,10 @@ namespace Template {
         classTalking: "Sounds/classTalking.mp3",
         carCrash: "Sounds/carCrash.wav",
         metalFalling: "Sounds/metalFalling.mp3",
+        fallingStairs: "Sounds/fallingStairs.wav",
+        fallingObjects: "Sounds/fallingObjects.mp3",
+        cutThrowFlesh: "Sounds/cutFleshSound.mp3",
+        openCabin: "Sounds/openCabin.wav",
     };
 
     //*** BACKGROUNDS ***
@@ -173,6 +177,7 @@ namespace Template {
     };
 
     // *** ITEMS ***
+    //Static = true Item  wird nicht konsumiert
     export let items = {
         pictureStreet: {
             name: "Straßenbild",
@@ -198,6 +203,12 @@ namespace Template {
             description: "Ein Bild von unserem Klassenzimmer",
             static: true,
         },
+        pictureBridge: {
+            name: "Brückenbild",
+            image: "Images/Backgrounds/bridge.png",
+            description: "Ein Bild von der Brücke",
+            static: true,
+        }
     };
 
     // *** CREDITS ***
@@ -323,8 +334,8 @@ namespace Template {
         /*** SCENE HIERARCHY ***/
         fS.Speech.hide();
         let scenes: fS.Scenes = [
-            // { id: "wakingUpFirstTime", scene: WakingUp, name: "Waking up" },
-            // { id: "toSchoolFirstTime", scene: GoingToSchool, name: "Going to School firstTime" },
+            { id: "wakingUpFirstTime", scene: WakingUp, name: "Waking up" },
+            { id: "toSchoolFirstTime", scene: GoingToSchool, name: "Going to School firstTime" },
             { id: "inClassFirstTime", scene: InClass, name: "In Class for firstTime" },
             { id: "wakingUpCarCrash", scene: WakingUp, name: "Waking up Carcrash" },
             { id: "toSchoolAfterCarCrash", scene: GoingToSchool, name: "Going to School after Carcrash" },
