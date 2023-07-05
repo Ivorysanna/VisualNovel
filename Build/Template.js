@@ -298,9 +298,7 @@ var Template;
             let dialogueElement = await Template.fS.Menu.getInput(badEndingOne, "choicesCSSClass");
             switch (dialogueElement) {
                 case badEndingOne.saveSho:
-                    // continue path here
                     console.log("saveSho");
-                    //TODO: ADD SOUND CRASH
                     Template.fS.Sound.play(Template.sound.carCrash, 0.3, false);
                     Template.fS.Character.hideAll();
                     Template.fS.Speech.hide();
@@ -310,9 +308,14 @@ var Template;
                     await Template.EndScene.carEnding();
                     break;
                 case badEndingOne.doNothing:
-                    // continue path here
                     console.log("doNothing");
-                    //TODO: ADD SOUND CRASH
+                    Template.fS.Sound.play(Template.sound.carCrash, 0.3, false);
+                    Template.fS.Character.hideAll();
+                    Template.fS.Speech.hide();
+                    await Template.fS.update();
+                    await Template.fS.Progress.delay(2);
+                    Template.fS.Sound.fade(Template.sound.cityNoise, 0.3, 1);
+                    await Template.EndScene.gameOver();
                     break;
             }
         }
@@ -815,7 +818,7 @@ var Template;
             await Template.fS.update(0.5);
             await Template.fS.Speech.tell(Template.characters.narrator, "Du hast es geschafft, Sho zu retten.");
             await Template.fS.Speech.tell(Template.characters.narrator, "Aber du musstest dafür dein Leben geben.");
-            await Template.fS.Speech.tell(Template.characters.narrator, "ENDING: Car Crash");
+            await Template.fS.Speech.tell(Template.characters.narrator, "ENDING: Auto Unfall");
         }
     }
     Template.EndScene = EndScene;

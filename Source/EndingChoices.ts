@@ -220,9 +220,7 @@ namespace Template {
 
             switch (dialogueElement) {
                 case badEndingOne.saveSho:
-                    // continue path here
                     console.log("saveSho");
-                    //TODO: ADD SOUND CRASH
                     fS.Sound.play(sound.carCrash, 0.3, false);
                     
                     fS.Character.hideAll();
@@ -234,10 +232,14 @@ namespace Template {
 
                     break;
                 case badEndingOne.doNothing:
-                    // continue path here
                     console.log("doNothing");
-                    //TODO: ADD SOUND CRASH
-
+                    fS.Sound.play(sound.carCrash, 0.3, false);
+                    fS.Character.hideAll();
+                    fS.Speech.hide();
+                    await fS.update();
+                    await fS.Progress.delay(2);
+                    fS.Sound.fade(sound.cityNoise, 0.3, 1);
+                    await EndScene.gameOver();
                     break;
             }
         }
