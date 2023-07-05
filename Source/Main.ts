@@ -173,7 +173,7 @@ namespace Template {
     // *** DATA THAT WILL BE SAVED (GAME PROGRESS) ***
     export let dataForSave = {
         nameProtagonist: "",
-        shoScore: 0,
+        shoScore: 90,
     };
 
     // *** ITEMS ***

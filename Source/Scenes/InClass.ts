@@ -25,7 +25,7 @@ namespace Template {
                 // *** Lecture starting ***
                 await fS.Progress.delay(1);
                 await TransitionManager.blendInOut();
-                fS.Sound.play(sound.schoolBell, 0.5, false);
+                fS.Sound.play(sound.schoolBell, 0.3, false);
                 await fS.Progress.delay(4);
                 fS.Sound.fade(sound.classTalking, 0.5, 1,true);
                 // await fS.update(transition.wipeRight.duration, transition.wipeRight.alpha, transition.wipeRight.edge);
@@ -62,7 +62,7 @@ namespace Template {
                 await fS.Speech.tell(Rika, "Ja, kein Problem. Können gerne zusammen gehen.");
 
                 // *** Pause Beendet***
-                fS.Sound.play(sound.schoolBell, 0.5, false);
+                fS.Sound.play(sound.schoolBell, 0.3, false);
                 await fS.Progress.delay(4);
                 await fS.Speech.tell(Sagi, "Das war eine schnelle Pause. Komm, wir gehen wieder an unseren Platz.");
                 fS.Sound.fade(sound.classTalking, 0, 1);
@@ -71,7 +71,7 @@ namespace Template {
                 await fS.Progress.delay(3);
 
                 // *** Lecture finished ***
-                fS.Sound.play(sound.schoolBell, 0.5, false);
+                fS.Sound.play(sound.schoolBell, 0.3, false);
                 await fS.Progress.delay(4);
                 await fS.Location.show(location.classroom);
                 // await fS.update(transition.wipeRight.duration, transition.wipeRight.alpha, transition.wipeRight.edge); 
@@ -134,7 +134,7 @@ namespace Template {
 
                 //TODO: *** PAUSEN GONG EINFÜGEN
                 //TODO: *** MENSCHEN DIE IN DER PAUSE REDEN EINFÜGEN ***
-                fS.Sound.play(sound.schoolBell, 0.5, false);
+                fS.Sound.play(sound.schoolBell, 0.3, false);
                 fS.Sound.play(sound.classTalking, 0.5, true);
                 await fS.Location.show(location.classroom);
                 await fS.update(0.5);
@@ -176,14 +176,14 @@ namespace Template {
                 await fS.Speech.tell(Sho, "Können wir gerne machen, dann kann ich dir noch etwas die Stadt zeigen.");
 
                 // *** Break finished***
-                fS.Sound.play(sound.schoolBell, 0.5, false);
+                fS.Sound.play(sound.schoolBell, 0.3, false);
                 await fS.Progress.delay(4);
                 await fS.Speech.tell(Sagi, "Komm, wir gehen an unseren Platz.");
                 fS.Sound.fade(sound.classTalking, 0, 1);
                 //*** lecture finished ***
                 await TransitionManager.blendInOut();
                 await fS.Progress.delay(3);
-                fS.Sound.play(sound.schoolBell, 0.5, false);
+                fS.Sound.play(sound.schoolBell, 0.3, false);
 
                 await fS.Progress.delay(4);
 
@@ -223,7 +223,7 @@ namespace Template {
                 
                 fS.Sound.fade(sound.classTalking, 0, 1);
                 await TransitionManager.blendInOut();
-                fS.Sound.play(sound.schoolBell, 0.5, false);
+                fS.Sound.play(sound.schoolBell, 0.3, false);
                 await fS.Progress.delay(7);
                 //TODO: *** PAUSEN GONG EINFÜGEN
                 //TODO: *** MENSCHEN DIE IN DER PAUSE REDEN EINFÜGEN ***
@@ -265,7 +265,7 @@ namespace Template {
 
                 //TODO: PAUSEN GONG EINFÜGEN
                 await fS.Speech.tell(Rika, "Lass uns wieder an den Platz gehen, Sagi.");
-                fS.Sound.play(sound.schoolBell, 0.5, false);
+                fS.Sound.play(sound.schoolBell, 0.3, false);
                 fS.Sound.fade(sound.classTalking, 0, 1);
                 await fS.Progress.delay(2);
                 //Fade out screen 
@@ -304,7 +304,7 @@ namespace Template {
                 //fade out screen
                 await TransitionManager.blendInOut();
                 await fS.Progress.delay(3);
-                fS.Sound.play(sound.schoolBell, 0.5, false);
+                fS.Sound.play(sound.schoolBell, 0.3, false);
                 await fS.Progress.delay(3);
 
                 //fade in screen classroom

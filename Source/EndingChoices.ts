@@ -159,7 +159,7 @@ namespace Template {
                     await fS.Speech.tell(Sagi, "...");
                     await fS.Speech.tell(Sho, "Oh, das wäre echt cool.");
         
-                    fS.Sound.play(sound.schoolBell, 0.5, false);
+                    fS.Sound.play(sound.schoolBell, 0.3, false);
                     await fS.Progress.delay(3);
                     await fS.Speech.tell(Rika, "Wir sehen uns nach dem Unterricht.");
                     await fS.Speech.tell(Rika, "Komm Sagi.");
@@ -206,7 +206,7 @@ namespace Template {
                     await TalkingSagi.talkingWithSagi();
                     break;
                 case endingFour.speakSho:
-                    // continue path here
+                    fS.Sound.fade(sound.librarySound, 0, 1);
                     await TalkingSho.talkingWithSho();
                     break;
             }

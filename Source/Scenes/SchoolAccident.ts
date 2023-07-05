@@ -29,13 +29,22 @@ namespace Template {
             console.log("GAME OVER: School Accident");
         }
         public static async schoolAccidentHappend(): Promise<void> {
-            //*** FOURTH BAD ENDING***
-            //TODO: ADD SOUNDS
-            //TODO: ADD ENDPICUTRE
-            //*** GAME OVER***
             console.log("GAME OVER: School Accident");
+
+            fS.Sound.play(sound.openCabin, 0.5, false);
+            await fS.Progress.delay(3);
+
+            await fS.Speech.tell(Sho, "Hier gibt es bestimmt eine Schere.");
+
+            fS.Sound.play(sound.fallingObjects, 0.5, false);
+            await fS.Progress.delay(1);
+            fS.Sound.play(sound.cutThrowFlesh, 0.5, false);
+            await fS.Progress.delay(3);
+            fS.Inventory.add(items.pictureClassroom);
+
             fS.Speech.hide();
             fS.Character.hideAll();
+            fS.update(0.5);
             await EndScene.gameOver();
         }
     }

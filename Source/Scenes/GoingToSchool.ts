@@ -34,7 +34,7 @@ namespace Template {
                 await fS.update(transition.wipeLeft.duration, transition.wipeLeft.alpha, transition.wipeLeft.edge); 
                 await fS.update();
 
-                fS.Sound.play(sound.schoolBell, 0.5, false);
+                fS.Sound.play(sound.schoolBell, 0.3, false);
                 await fS.Character.show(Sagi, SagiPose.neutral, fS.positions.bottomcenter);
                 await fS.update(0.5);
                 await fS.Speech.tell(Sagi, "Komm schnell, wir schaffen es gerade so rechtzeitig.");
@@ -73,7 +73,7 @@ namespace Template {
                 await fS.update(transition.wipeLeft.duration, transition.wipeLeft.alpha, transition.wipeLeft.edge);
                 await fS.update();
                 
-                fS.Sound.play(sound.schoolBell, 0.5, false);
+                fS.Sound.play(sound.schoolBell, 0.3, false);
                 await fS.Progress.delay(3);
                 await fS.Character.show(Sagi, SagiPose.neutral, fS.positions.bottomcenter);
                 await fS.update(0.5);

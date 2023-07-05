@@ -34,9 +34,10 @@ namespace Template {
                     await fS.Speech.tell(Rika, "<i>Soll ich mit Sagi sprechen, oder versuchen Sho überreden, dazubleiben?</i>");
                     nameGuessed = true;
                     // *** Auswahlmöglichkeit ***
+                    // fS.Sound.fade(sound.librarySound, 0, 1);
                     await EndingChoices.fourthEnding();
                 } else {
-                    await fS.Speech.tell(Rika, "<i>Nein, das ergibt keinen Sinn.</i>");
+                    await fS.Speech.tell(Rika, demonName + ". ... " + "<i>Nein, das ergibt keinen Sinn.</i>");
                 }
             }
         }

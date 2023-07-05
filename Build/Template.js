@@ -246,7 +246,7 @@ var Template;
                     await Template.fS.Speech.tell(Template.Rika, "Wenn du möchtest, können wir heute zusammen nach Hause gehen, ich wohne in der gleichen Straße.");
                     await Template.fS.Speech.tell(Template.Sagi, "...");
                     await Template.fS.Speech.tell(Template.Sho, "Oh, das wäre echt cool.");
-                    Template.fS.Sound.play(Template.sound.schoolBell, 0.5, false);
+                    Template.fS.Sound.play(Template.sound.schoolBell, 0.3, false);
                     await Template.fS.Progress.delay(3);
                     await Template.fS.Speech.tell(Template.Rika, "Wir sehen uns nach dem Unterricht.");
                     await Template.fS.Speech.tell(Template.Rika, "Komm Sagi.");
@@ -285,7 +285,7 @@ var Template;
                     await Template.TalkingSagi.talkingWithSagi();
                     break;
                 case endingFour.speakSho:
-                    // continue path here
+                    Template.fS.Sound.fade(Template.sound.librarySound, 0, 1);
                     await Template.TalkingSho.talkingWithSho();
                     break;
             }
@@ -502,7 +502,7 @@ var Template;
     // *** DATA THAT WILL BE SAVED (GAME PROGRESS) ***
     Template.dataForSave = {
         nameProtagonist: "",
-        shoScore: 0,
+        shoScore: 90,
     };
     // *** ITEMS ***
     //Static = true Item  wird nicht konsumiert
@@ -820,6 +820,13 @@ var Template;
             await Template.fS.Speech.tell(Template.characters.narrator, "Aber du musstest dafür dein Leben geben.");
             await Template.fS.Speech.tell(Template.characters.narrator, "ENDING: Auto Unfall");
         }
+        static async goodEndingWaiting() {
+            console.log("Good Ending starting");
+            await Template.fS.Location.show(Template.location.darkBackground);
+            await Template.fS.update(0.5);
+            await Template.fS.Speech.tell(Template.characters.narrator, "Du hast es geschafft, Sho zu retten.");
+            await Template.fS.Speech.tell(Template.characters.narrator, "ENDING: Gewartet");
+        }
     }
     Template.EndScene = EndScene;
 })(Template || (Template = {}));
@@ -878,7 +885,7 @@ var Template;
                 await Template.fS.Location.show(Template.location.uni);
                 await Template.fS.update(Template.transition.wipeLeft.duration, Template.transition.wipeLeft.alpha, Template.transition.wipeLeft.edge);
                 await Template.fS.update();
-                Template.fS.Sound.play(Template.sound.schoolBell, 0.5, false);
+                Template.fS.Sound.play(Template.sound.schoolBell, 0.3, false);
                 await Template.fS.Character.show(Template.Sagi, Template.SagiPose.neutral, Template.fS.positions.bottomcenter);
                 await Template.fS.update(0.5);
                 await Template.fS.Speech.tell(Template.Sagi, "Komm schnell, wir schaffen es gerade so rechtzeitig.");
@@ -914,7 +921,7 @@ var Template;
                 await Template.fS.Location.show(Template.location.uni);
                 await Template.fS.update(Template.transition.wipeLeft.duration, Template.transition.wipeLeft.alpha, Template.transition.wipeLeft.edge);
                 await Template.fS.update();
-                Template.fS.Sound.play(Template.sound.schoolBell, 0.5, false);
+                Template.fS.Sound.play(Template.sound.schoolBell, 0.3, false);
                 await Template.fS.Progress.delay(3);
                 await Template.fS.Character.show(Template.Sagi, Template.SagiPose.neutral, Template.fS.positions.bottomcenter);
                 await Template.fS.update(0.5);
@@ -1003,7 +1010,7 @@ var Template;
                 // *** Lecture starting ***
                 await Template.fS.Progress.delay(1);
                 await Template.TransitionManager.blendInOut();
-                Template.fS.Sound.play(Template.sound.schoolBell, 0.5, false);
+                Template.fS.Sound.play(Template.sound.schoolBell, 0.3, false);
                 await Template.fS.Progress.delay(4);
                 Template.fS.Sound.fade(Template.sound.classTalking, 0.5, 1, true);
                 // await fS.update(transition.wipeRight.duration, transition.wipeRight.alpha, transition.wipeRight.edge);
@@ -1037,14 +1044,14 @@ var Template;
                 await Template.fS.Speech.tell(Template.Sagi, "Dann müsst ihr wohl ohne mich heute gehen. Ich treffe mich heute mit meiner Mutter nach der Schule.");
                 await Template.fS.Speech.tell(Template.Rika, "Ja, kein Problem. Können gerne zusammen gehen.");
                 // *** Pause Beendet***
-                Template.fS.Sound.play(Template.sound.schoolBell, 0.5, false);
+                Template.fS.Sound.play(Template.sound.schoolBell, 0.3, false);
                 await Template.fS.Progress.delay(4);
                 await Template.fS.Speech.tell(Template.Sagi, "Das war eine schnelle Pause. Komm, wir gehen wieder an unseren Platz.");
                 Template.fS.Sound.fade(Template.sound.classTalking, 0, 1);
                 await Template.TransitionManager.blendInOut();
                 await Template.fS.Progress.delay(3);
                 // *** Lecture finished ***
-                Template.fS.Sound.play(Template.sound.schoolBell, 0.5, false);
+                Template.fS.Sound.play(Template.sound.schoolBell, 0.3, false);
                 await Template.fS.Progress.delay(4);
                 await Template.fS.Location.show(Template.location.classroom);
                 // await fS.update(transition.wipeRight.duration, transition.wipeRight.alpha, transition.wipeRight.edge); 
@@ -1100,7 +1107,7 @@ var Template;
                 await Template.fS.Progress.delay(3);
                 //TODO: *** PAUSEN GONG EINFÜGEN
                 //TODO: *** MENSCHEN DIE IN DER PAUSE REDEN EINFÜGEN ***
-                Template.fS.Sound.play(Template.sound.schoolBell, 0.5, false);
+                Template.fS.Sound.play(Template.sound.schoolBell, 0.3, false);
                 Template.fS.Sound.play(Template.sound.classTalking, 0.5, true);
                 await Template.fS.Location.show(Template.location.classroom);
                 await Template.fS.update(0.5);
@@ -1134,14 +1141,14 @@ var Template;
                 await Template.fS.Speech.tell(Template.Sho, "Wirklich?! Ja, das wäre ganz gut.");
                 await Template.fS.Speech.tell(Template.Sho, "Können wir gerne machen, dann kann ich dir noch etwas die Stadt zeigen.");
                 // *** Break finished***
-                Template.fS.Sound.play(Template.sound.schoolBell, 0.5, false);
+                Template.fS.Sound.play(Template.sound.schoolBell, 0.3, false);
                 await Template.fS.Progress.delay(4);
                 await Template.fS.Speech.tell(Template.Sagi, "Komm, wir gehen an unseren Platz.");
                 Template.fS.Sound.fade(Template.sound.classTalking, 0, 1);
                 //*** lecture finished ***
                 await Template.TransitionManager.blendInOut();
                 await Template.fS.Progress.delay(3);
-                Template.fS.Sound.play(Template.sound.schoolBell, 0.5, false);
+                Template.fS.Sound.play(Template.sound.schoolBell, 0.3, false);
                 await Template.fS.Progress.delay(4);
                 await Template.fS.Location.show(Template.location.classroom);
                 await Template.fS.update(Template.transition.wipeLeft.duration, Template.transition.wipeLeft.alpha, Template.transition.wipeLeft.edge);
@@ -1176,7 +1183,7 @@ var Template;
                 await Template.fS.Speech.tell(Template.Teacher, "Okay, beruhigt euch wieder. Ihr könnt in der Pause noch mal miteinander reden.");
                 Template.fS.Sound.fade(Template.sound.classTalking, 0, 1);
                 await Template.TransitionManager.blendInOut();
-                Template.fS.Sound.play(Template.sound.schoolBell, 0.5, false);
+                Template.fS.Sound.play(Template.sound.schoolBell, 0.3, false);
                 await Template.fS.Progress.delay(7);
                 //TODO: *** PAUSEN GONG EINFÜGEN
                 //TODO: *** MENSCHEN DIE IN DER PAUSE REDEN EINFÜGEN ***
@@ -1215,7 +1222,7 @@ var Template;
                 // *** Pause zu Ende***
                 //TODO: PAUSEN GONG EINFÜGEN
                 await Template.fS.Speech.tell(Template.Rika, "Lass uns wieder an den Platz gehen, Sagi.");
-                Template.fS.Sound.play(Template.sound.schoolBell, 0.5, false);
+                Template.fS.Sound.play(Template.sound.schoolBell, 0.3, false);
                 Template.fS.Sound.fade(Template.sound.classTalking, 0, 1);
                 await Template.fS.Progress.delay(2);
                 //Fade out screen 
@@ -1251,7 +1258,7 @@ var Template;
                 //fade out screen
                 await Template.TransitionManager.blendInOut();
                 await Template.fS.Progress.delay(3);
-                Template.fS.Sound.play(Template.sound.schoolBell, 0.5, false);
+                Template.fS.Sound.play(Template.sound.schoolBell, 0.3, false);
                 await Template.fS.Progress.delay(3);
                 //fade in screen classroom
                 await Template.fS.Location.show(Template.location.classroom);
@@ -1299,10 +1306,11 @@ var Template;
                     await Template.fS.Speech.tell(Template.Rika, "<i>Soll ich mit Sagi sprechen, oder versuchen Sho überreden, dazubleiben?</i>");
                     nameGuessed = true;
                     // *** Auswahlmöglichkeit ***
+                    // fS.Sound.fade(sound.librarySound, 0, 1);
                     await Template.EndingChoices.fourthEnding();
                 }
                 else {
-                    await Template.fS.Speech.tell(Template.Rika, "<i>Nein, das ergibt keinen Sinn.</i>");
+                    await Template.fS.Speech.tell(Template.Rika, demonName + ". ... " + "<i>Nein, das ergibt keinen Sinn.</i>");
                 }
             }
         }
@@ -1374,13 +1382,18 @@ var Template;
             console.log("GAME OVER: School Accident");
         }
         static async schoolAccidentHappend() {
-            //*** FOURTH BAD ENDING***
-            //TODO: ADD SOUNDS
-            //TODO: ADD ENDPICUTRE
-            //*** GAME OVER***
             console.log("GAME OVER: School Accident");
+            Template.fS.Sound.play(Template.sound.openCabin, 0.5, false);
+            await Template.fS.Progress.delay(3);
+            await Template.fS.Speech.tell(Template.Sho, "Hier gibt es bestimmt eine Schere.");
+            Template.fS.Sound.play(Template.sound.fallingObjects, 0.5, false);
+            await Template.fS.Progress.delay(1);
+            Template.fS.Sound.play(Template.sound.cutThrowFlesh, 0.5, false);
+            await Template.fS.Progress.delay(3);
+            Template.fS.Inventory.add(Template.items.pictureClassroom);
             Template.fS.Speech.hide();
             Template.fS.Character.hideAll();
+            Template.fS.update(0.5);
             await Template.EndScene.gameOver();
         }
     }
@@ -1419,26 +1432,33 @@ var Template;
         static async talkingWithSho() {
             console.log("Talking with Sho");
             await Template.fS.Speech.tell(Template.Rika, "<i>Ich denke, ich versuche Sho zu überreden. Wenn ich das Buch richtig verstanden habe, dann muss ich nur die Zeit tot schlagen.</i>");
+            Template.fS.Speech.hide();
+            await Template.fS.update();
             await Template.fS.Location.show(Template.location.classroom);
+            Template.fS.Sound.play(Template.sound.classTalking, 0.3, true);
+            await Template.fS.update(Template.transition.wipeLeft.duration, Template.transition.wipeLeft.alpha, Template.transition.wipeLeft.edge);
             await Template.fS.update();
             await Template.fS.Character.show(Template.Sho, Template.ShoPose.neutral, Template.fS.positions.bottomcenter);
+            await Template.fS.update(0.5);
             await Template.fS.Speech.tell(Template.Rika, "Hey Sho. Ich bin Rika.");
             await Template.fS.Speech.tell(Template.Sho, "Hey. Nett dich kennenzulernen. ");
             await Template.fS.Speech.tell(Template.Rika, "Willst du heute nach dem Unterricht hier bleiben? Wir können zusammen Hausaufgaben machen und ich kann dir etwas von der Schule zeigen.");
             await Template.fS.Speech.tell(Template.Sho, "Klar, das wäre echt cool.");
             await Template.fS.Speech.tell(Template.Rika, "<i>Okay, also wenn ich hier mit ihm bleibe, sollte alles gut sein. Ich muss mich nur erinnern, was wir das letzte Mal gemacht haben.</i>");
-            //TODO: ADDING SOUND EFFECTS SCHOOLBELLS
-            //fade out screen
+            Template.fS.Sound.play(Template.sound.schoolBell, 0.3, false);
+            await Template.fS.Progress.delay(6);
             Template.fS.Character.hideAll();
             Template.fS.Speech.hide();
             Template.fS.update();
-            await Template.fS.Location.show(Template.location.darkBackground);
-            await Template.fS.update();
-            //fade in screen
+            Template.fS.Sound.fade(Template.sound.classTalking, 0, 1);
+            await Template.fS.Progress.delay(1);
+            //TODO: ADDING SOUND EFFECTS SCHOOLBELLS
+            //fade out screen
+            await Template.TransitionManager.blendInOut();
             await Template.fS.Location.show(Template.location.classroom);
             await Template.fS.update();
             await Template.fS.Character.show(Template.Sho, Template.ShoPose.neutral, Template.fS.positions.bottomcenter);
-            await Template.fS.update();
+            await Template.fS.update(0.5);
             await Template.fS.Speech.tell(Template.Sho, "Also ich habe noch eine Aufgabe in Zeichnen. Hast du eine Schere?");
             await Template.fS.Speech.tell(Template.Rika, "<i>Eine Schere?!</i>");
             await Template.fS.Speech.tell(Template.Rika, "N-nein tut mir Leid. Sollen wir mit etwas anfangen, was wir zusammen machen können?");
@@ -1460,7 +1480,10 @@ var Template;
                 await Template.fS.Speech.tell(Template.Sho, "O-okay, ich glaube dir mal…");
                 await Template.fS.Speech.tell(Template.Rika, "Ich weiß es klingt total verrückt. Aber wir müssen einfach nur warten und nichts machen.");
                 await Template.fS.Speech.tell(Template.Rika, "Morgen ist alles wieder normal.");
-                // *** GOOD ENDING 1 ***
+                Template.fS.Character.hideAll();
+                Template.fS.Speech.hide();
+                await Template.fS.update(0.5);
+                await Template.EndScene.goodEndingWaiting();
             }
             else {
                 console.log("Loveometer is not high enough");
@@ -1472,10 +1495,7 @@ var Template;
                 await Template.fS.Speech.tell(Template.Sho, "Ich weiß ja nicht was für Fantasy Bücher du liest, aber das ist nicht wahr.");
                 await Template.fS.Speech.tell(Template.Sho, "Ich werde jetzt meine Zeichen Aufgabe machen und du solltest einfach gehen, wenn du keine Hausaufgaben erledigen willst.");
                 await Template.fS.Speech.tell(Template.Rika, "Jetzt warte doch mal…");
-                //TODO: ADDING SOUND EFFECTS OPENING CABINET
-                await Template.fS.Speech.tell(Template.Sho, "Hier gibt es bestimmt eine Schere.");
-                //TODO: ADDING SOUND EFFECTS FALLING OBJECTS
-                // *** BAD ENDING 3 ***
+                await Template.SchoolAccident.schoolAccidentHappend();
             }
         }
     }

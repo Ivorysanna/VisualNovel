@@ -4,9 +4,14 @@ namespace Template {
             console.log("Talking with Sho");
             await fS.Speech.tell(Rika, "<i>Ich denke, ich versuche Sho zu überreden. Wenn ich das Buch richtig verstanden habe, dann muss ich nur die Zeit tot schlagen.</i>");
 
+            fS.Speech.hide();
+            await fS.update();
             await fS.Location.show(location.classroom);
+            fS.Sound.play(sound.classTalking, 0.3, true);
+            await fS.update(transition.wipeLeft.duration, transition.wipeLeft.alpha, transition.wipeLeft.edge);
             await fS.update();
             await fS.Character.show(Sho, ShoPose.neutral, fS.positions.bottomcenter);
+            await fS.update(0.5);
 
             await fS.Speech.tell(Rika, "Hey Sho. Ich bin Rika.");
             await fS.Speech.tell(Sho, "Hey. Nett dich kennenzulernen. ");
@@ -14,19 +19,20 @@ namespace Template {
             await fS.Speech.tell(Sho, "Klar, das wäre echt cool.");
             await fS.Speech.tell(Rika, "<i>Okay, also wenn ich hier mit ihm bleibe, sollte alles gut sein. Ich muss mich nur erinnern, was wir das letzte Mal gemacht haben.</i>");
 
-            //TODO: ADDING SOUND EFFECTS SCHOOLBELLS
-            //fade out screen
+            fS.Sound.play(sound.schoolBell, 0.3, false);
+            await fS.Progress.delay(6);
             fS.Character.hideAll();
             fS.Speech.hide();
             fS.update();
-            await fS.Location.show(location.darkBackground);
-            await fS.update();
-
-            //fade in screen
+            fS.Sound.fade(sound.classTalking, 0, 1);
+            await fS.Progress.delay(1);
+            //TODO: ADDING SOUND EFFECTS SCHOOLBELLS
+            //fade out screen
+            await TransitionManager.blendInOut();
             await fS.Location.show(location.classroom);
             await fS.update();
             await fS.Character.show(Sho, ShoPose.neutral, fS.positions.bottomcenter);
-            await fS.update();
+            await fS.update(0.5);
 
             await fS.Speech.tell(Sho, "Also ich habe noch eine Aufgabe in Zeichnen. Hast du eine Schere?");
             await fS.Speech.tell(Rika, "<i>Eine Schere?!</i>");
@@ -50,7 +56,10 @@ namespace Template {
                 await fS.Speech.tell(Sho, "O-okay, ich glaube dir mal…");
                 await fS.Speech.tell(Rika, "Ich weiß es klingt total verrückt. Aber wir müssen einfach nur warten und nichts machen.");
                 await fS.Speech.tell(Rika, "Morgen ist alles wieder normal.");
-                // *** GOOD ENDING 1 ***
+                fS.Character.hideAll();
+                fS.Speech.hide();
+                await fS.update(0.5);
+                await EndScene.goodEndingWaiting();
             } else {
                 console.log("Loveometer is not high enough");
                 await fS.Speech.tell(Rika, "Also ich habe zurzeit so ein Gefühl, dass ich immer wieder das Gleiche durchlebe. ");
@@ -61,10 +70,7 @@ namespace Template {
                 await fS.Speech.tell(Sho, "Ich weiß ja nicht was für Fantasy Bücher du liest, aber das ist nicht wahr.");
                 await fS.Speech.tell(Sho, "Ich werde jetzt meine Zeichen Aufgabe machen und du solltest einfach gehen, wenn du keine Hausaufgaben erledigen willst.");
                 await fS.Speech.tell(Rika, "Jetzt warte doch mal…");
-                //TODO: ADDING SOUND EFFECTS OPENING CABINET
-                await fS.Speech.tell(Sho, "Hier gibt es bestimmt eine Schere.");
-                //TODO: ADDING SOUND EFFECTS FALLING OBJECTS
-                // *** BAD ENDING 3 ***
+                await SchoolAccident.schoolAccidentHappend();
 
             }
         }
