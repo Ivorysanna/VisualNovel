@@ -211,7 +211,7 @@ var Template;
                     Template.fS.Sound.play(Template.sound.classTalking, 0.5, true);
                     await Template.fS.Character.show(Template.Sagi, Template.SagiPose.neutral, Template.fS.positions.bottomcenter);
                     await Template.fS.update(0.5);
-                    await Template.fS.Speech.tell(Template.Rika, "<i>Vielleicht finde ich etwas in der Bibliothek. Ich kann nicht die erste sein, die sowas erlebt.</i>");
+                    await Template.fS.Speech.tell(Template.Rika, "<i>Vielleicht finde ich etwas in der Bibliothek. Ich kann nicht die Erste sein, die sowas erlebt.</i>");
                     await Template.fS.Speech.tell(Template.Sagi, "Sollen wir uns was zu essen holen und mit Sho sprechen?");
                     await Template.fS.Speech.tell(Template.Rika, "Geh schon mal vor. Ich möchte noch kurz in die Bibliothek.");
                     await Template.fS.Speech.tell(Template.Sagi, "Willst du ohne mich auf die Prüfungen lernen?");
@@ -220,7 +220,7 @@ var Template;
                     await Template.fS.Speech.tell(Template.Rika, "Ja, bis später.");
                     Template.fS.Speech.hide();
                     Template.fS.Character.hideAll();
-                    await Template.fS.update();
+                    await Template.fS.update(0.5);
                     Template.fS.Sound.fade(Template.sound.classTalking, 0, 1);
                     await Template.Library.inLibrary();
                     break;
@@ -1272,11 +1272,17 @@ var Template;
         static async inLibrary() {
             console.log("Library");
             await Template.fS.Location.show(Template.location.library);
+            await Template.fS.update(Template.transition.wipeLeft.duration, Template.transition.wipeLeft.alpha, Template.transition.wipeLeft.edge);
             await Template.fS.update();
-            //TODO: *** ADDING SOUND LIBRARY***
+            Template.fS.Sound.play(Template.sound.librarySound, 0.5, true);
             await Template.fS.Speech.tell(Template.Rika, "<i>Okay, wo schaue ich das jetzt nach?</i>");
+            Template.fS.Sound.play(Template.sound.book, 0.7, false);
+            await Template.fS.Progress.delay(1);
+            Template.fS.Sound.play(Template.sound.book, 0.7, false);
+            await Template.fS.Progress.delay(1);
             await Template.fS.Speech.tell(Template.Rika, "<i>Mal sehen. “Japanische Mythologie”. Das sieht vielversprechend aus.</i>");
-            //TODO: *** ADDING BOOK SOUND EFFECTS ***
+            Template.fS.Sound.play(Template.sound.book, 0.7, false);
+            await Template.fS.Progress.delay(1);
             await Template.fS.Speech.tell(Template.Rika, "<i>Das ist wirklich viel. Ich sollte das Buch ausleihen.</i>");
             Template.InterfaceHelper.toggleAusleihButton();
             await Template.fS.Progress.delay(10);

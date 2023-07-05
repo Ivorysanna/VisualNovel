@@ -120,7 +120,7 @@ namespace Template {
                     fS.Sound.play(sound.classTalking, 0.5, true);
                     await fS.Character.show(Sagi, SagiPose.neutral, fS.positions.bottomcenter);
                     await fS.update(0.5);
-                    await fS.Speech.tell(Rika, "<i>Vielleicht finde ich etwas in der Bibliothek. Ich kann nicht die erste sein, die sowas erlebt.</i>");
+                    await fS.Speech.tell(Rika, "<i>Vielleicht finde ich etwas in der Bibliothek. Ich kann nicht die Erste sein, die sowas erlebt.</i>");
                     await fS.Speech.tell(Sagi, "Sollen wir uns was zu essen holen und mit Sho sprechen?");
                     await fS.Speech.tell(Rika, "Geh schon mal vor. Ich möchte noch kurz in die Bibliothek.");
                     await fS.Speech.tell(Sagi, "Willst du ohne mich auf die Prüfungen lernen?");
@@ -129,7 +129,7 @@ namespace Template {
                     await fS.Speech.tell(Rika, "Ja, bis später.");
                     fS.Speech.hide();
                     fS.Character.hideAll();
-                    await fS.update();
+                    await fS.update(0.5);
                     fS.Sound.fade(sound.classTalking, 0, 1);
                     await Library.inLibrary();
                     break;

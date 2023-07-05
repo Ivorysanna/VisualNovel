@@ -3,13 +3,19 @@ namespace Template {
         public static async inLibrary(): Promise<void> {
             console.log("Library");
             await fS.Location.show(location.library);
+            await fS.update(transition.wipeLeft.duration, transition.wipeLeft.alpha, transition.wipeLeft.edge);
             await fS.update();
-            //TODO: *** ADDING SOUND LIBRARY***
+            
+            fS.Sound.play(sound.librarySound, 0.5, true);
 
             await fS.Speech.tell(Rika, "<i>Okay, wo schaue ich das jetzt nach?</i>");
+            fS.Sound.play(sound.book, 0.7, false);
+            await fS.Progress.delay(1);
+            fS.Sound.play(sound.book, 0.7, false);
+            await fS.Progress.delay(1);
             await fS.Speech.tell(Rika, "<i>Mal sehen. “Japanische Mythologie”. Das sieht vielversprechend aus.</i>");
-
-            //TODO: *** ADDING BOOK SOUND EFFECTS ***
+            fS.Sound.play(sound.book, 0.7, false);
+            await fS.Progress.delay(1);
             await fS.Speech.tell(Rika, "<i>Das ist wirklich viel. Ich sollte das Buch ausleihen.</i>");
 
             InterfaceHelper.toggleAusleihButton();
