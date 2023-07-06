@@ -23,12 +23,13 @@ namespace Template {
             await fS.Progress.delay(6);
             fS.Character.hideAll();
             fS.Speech.hide();
-            fS.update();
+            await fS.update(0.5);
             fS.Sound.fade(sound.classTalking, 0, 1);
             await fS.Progress.delay(1);
             //TODO: ADDING SOUND EFFECTS SCHOOLBELLS
             //fade out screen
             await TransitionManager.blendInOut();
+            await fS.Progress.delay(3);
             await fS.Location.show(location.classroom);
             await fS.update();
             await fS.Character.show(Sho, ShoPose.neutral, fS.positions.bottomcenter);

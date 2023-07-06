@@ -40,11 +40,11 @@ namespace Template {
             await fS.Progress.delay(1);
             fS.Sound.play(sound.cutThrowFlesh, 0.5, false);
             await fS.Progress.delay(3);
-            fS.Inventory.add(items.pictureClassroom);
+            // fS.Inventory.add(items.pictureClassroom);
 
             fS.Speech.hide();
             fS.Character.hideAll();
-            fS.update(0.5);
+            await fS.update(0.5);
             await EndScene.gameOver();
         }
     }

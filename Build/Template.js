@@ -502,7 +502,7 @@ var Template;
     // *** DATA THAT WILL BE SAVED (GAME PROGRESS) ***
     Template.dataForSave = {
         nameProtagonist: "",
-        shoScore: 90,
+        shoScore: 0,
     };
     // *** ITEMS ***
     //Static = true Item  wird nicht konsumiert
@@ -1391,10 +1391,10 @@ var Template;
             await Template.fS.Progress.delay(1);
             Template.fS.Sound.play(Template.sound.cutThrowFlesh, 0.5, false);
             await Template.fS.Progress.delay(3);
-            Template.fS.Inventory.add(Template.items.pictureClassroom);
+            // fS.Inventory.add(items.pictureClassroom);
             Template.fS.Speech.hide();
             Template.fS.Character.hideAll();
-            Template.fS.update(0.5);
+            await Template.fS.update(0.5);
             await Template.EndScene.gameOver();
         }
     }
@@ -1450,12 +1450,13 @@ var Template;
             await Template.fS.Progress.delay(6);
             Template.fS.Character.hideAll();
             Template.fS.Speech.hide();
-            Template.fS.update();
+            await Template.fS.update(0.5);
             Template.fS.Sound.fade(Template.sound.classTalking, 0, 1);
             await Template.fS.Progress.delay(1);
             //TODO: ADDING SOUND EFFECTS SCHOOLBELLS
             //fade out screen
             await Template.TransitionManager.blendInOut();
+            await Template.fS.Progress.delay(3);
             await Template.fS.Location.show(Template.location.classroom);
             await Template.fS.update();
             await Template.fS.Character.show(Template.Sho, Template.ShoPose.neutral, Template.fS.positions.bottomcenter);
