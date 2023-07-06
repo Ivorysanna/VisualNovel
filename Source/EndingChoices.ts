@@ -91,7 +91,6 @@ namespace Template {
                     await fS.update(transition.wipeLeft.duration, transition.wipeLeft.alpha, transition.wipeLeft.edge); 
 
                     await fS.update();
-                    // await fS.Character.show(Rika, RikaPose.neutral, fS.positionPercent(70, 100));
                     await fS.Character.show(Sho, ShoPose.neutral, fS.positionPercent(30, 100));
                     await fS.update(0.5);
 

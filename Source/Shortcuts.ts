@@ -1,7 +1,7 @@
 namespace Template {
     //*** RIKA *** 
     export  const Rika = characters.Rika;
-    export  const RikaPose = characters.Rika.pose;
+    // export  const RikaPose = characters.Rika.pose;
 
     //*** SAGI ***
     export  const Sagi = characters.Sagi;

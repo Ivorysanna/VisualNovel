@@ -16,7 +16,6 @@ namespace Template {
                 await fS.update(0.5);                
                 await fS.Speech.tell(Sho, "Hi, ich bin Sho Rai. Freut mich, euch kennenzulernen.");
 
-                // fS.Sound.play(sound.classTalking, 0.5, true);
                 fS.Sound.fade(sound.classTalking, 0.5, 0, true);
                 await fS.Progress.delay(4);
                 await fS.Speech.tell(Teacher, "Okay, beruhigt euch wieder. Ihr könnt in der Pause noch mal miteinander reden.");
@@ -28,16 +27,13 @@ namespace Template {
                 fS.Sound.play(sound.schoolBell, 0.3, false);
                 await fS.Progress.delay(4);
                 fS.Sound.fade(sound.classTalking, 0.5, 1,true);
-                // await fS.update(transition.wipeRight.duration, transition.wipeRight.alpha, transition.wipeRight.edge);
                 
                 await fS.Progress.delay(3);
 
                 // *** Break ***
                 await fS.Location.show(location.classroom);
-                // await fS.update(transition.wipeRight.duration, transition.wipeRight.alpha, transition.wipeRight.edge); 
                 await fS.update(0.5);
                 await fS.Character.show(Sho, ShoPose.neutral, fS.positionPercent(35, 100));
-                // await fS.Character.show(Rika, RikaPose.neutral, fS.positionPercent(55, 100));
                 await fS.Character.show(Sagi, SagiPose.neutral, fS.positionPercent(70, 100));
                 await fS.update(0.5);
                 await fS.Speech.tell(Rika, "Hey Sho. Ich bin Rika Sato.");
@@ -74,10 +70,8 @@ namespace Template {
                 fS.Sound.play(sound.schoolBell, 0.3, false);
                 await fS.Progress.delay(4);
                 await fS.Location.show(location.classroom);
-                // await fS.update(transition.wipeRight.duration, transition.wipeRight.alpha, transition.wipeRight.edge); 
                 await fS.update();
                 await fS.Character.show(Sho, ShoPose.neutral, fS.positionPercent(40, 100));
-                // await fS.Character.show(Rika, RikaPose.neutral, fS.positionPercent(80, 100));
                 await fS.update(0.5);
                 await fS.Speech.tell(Rika, "Okay, können wir los?");
                 await fS.Speech.tell(Sho, "Ja, ich packe nur schnell meine Sachen zusammen.");
@@ -104,7 +98,6 @@ namespace Template {
                 fS.Character.hideAll();
                 await fS.update(0.5);
                 fS.Sound.fade(sound.outside, 0, 1);
-                // await TransitionManager.blendInOut();
                 await CarCrash.firstCarCrash();
                 break;
             case StoryState.CarCrashHappend:
@@ -128,22 +121,16 @@ namespace Template {
                 await fS.Progress.delay(1);
                 fS.Sound.fade(sound.classTalking, 0, 1);
                 await TransitionManager.blendInOut();
-                // await fS.update(transition.wipeRight.duration, transition.wipeRight.alpha, transition.wipeRight.edge);
 
                 await fS.Progress.delay(3);
 
-                //TODO: *** PAUSEN GONG EINFÜGEN
-                //TODO: *** MENSCHEN DIE IN DER PAUSE REDEN EINFÜGEN ***
                 fS.Sound.play(sound.schoolBell, 0.3, false);
                 fS.Sound.play(sound.classTalking, 0.5, true);
                 await fS.Location.show(location.classroom);
-                await fS.update(0.5);
-                // await fS.update(transition.wipeRight.duration, transition.wipeRight.alpha, transition.wipeRight.edge); 
+                await fS.update(0.5); 
                 await fS.Character.show(Sagi, SagiPose.neutral, fS.positionPercent(70, 100));
                 await fS.update(0.5);
                 await fS.Speech.tell(Sagi, "Rika du bist schon die ganze Zeit abwesend. Ist alles in Ordnung?");
-                // await fS.Character.show(Rika, RikaPose.neutral, fS.positionPercent(30, 100));
-                // await fS.update();
                 await fS.Speech.tell(Rika, "Ja. Ich habe nur irgendwie das Gefühl, dass ich Sho schon mal getroffen habe.");
                 await fS.Speech.tell(Sagi, "Mh, sollen wir mit ihm reden? Vielleicht kennt ihr euch.");
 
@@ -154,7 +141,6 @@ namespace Template {
 
                 await fS.Character.show(Sagi, SagiPose.neutral, fS.positionPercent(70, 100));
                 await fS.Character.show(Sho, ShoPose.neutral, fS.positionPercent(35, 100));
-                // await fS.Character.show(Rika, RikaPose.neutral, fS.positionPercent(85, 100));
                 await fS.update(0.5);
 
                 await fS.Speech.tell(Sagi, "Hi, ich bin Sagi Aoki.");
@@ -191,7 +177,6 @@ namespace Template {
                 await fS.update(transition.wipeLeft.duration, transition.wipeLeft.alpha, transition.wipeLeft.edge); 
                 await fS.update();
 
-                // await fS.Character.show(Rika, RikaPose.neutral, fS.positionPercent(40, 100));
                 await fS.Character.show(Sho, ShoPose.neutral, fS.positions.bottomcenter);
                 await fS.update(0.5);
                 await fS.Progress.delay(2);
@@ -217,7 +202,6 @@ namespace Template {
                 await fS.Speech.tell(Sho, "Hi, ich bin Sho Rai. Freut mich, euch kennenzulernen.");
                 fS.Sound.play(sound.classTalking, 0.5, true);
                 await fS.Speech.tell(Rika, "<i>… Das ist er. Ich habe von ihm geträumt. Aber was ist passiert?</i> ");
-                // TODO: ***GETUSCHEL VON ANDEREN SCHUELERN SOUND ***
                 await fS.Progress.delay(2);
                 await fS.Speech.tell(Teacher, "Okay, beruhigt euch wieder. Ihr könnt in der Pause noch mal miteinander reden.");
                 
@@ -225,13 +209,10 @@ namespace Template {
                 await TransitionManager.blendInOut();
                 fS.Sound.play(sound.schoolBell, 0.3, false);
                 await fS.Progress.delay(7);
-                //TODO: *** PAUSEN GONG EINFÜGEN
-                //TODO: *** MENSCHEN DIE IN DER PAUSE REDEN EINFÜGEN ***
                 // *** PAUSE ***
                 fS.Sound.play(sound.classTalking, 0.5, true);
                 await fS.Progress.delay(2);
                 await fS.Location.show(location.classroom);
-                // await fS.update(transition.wipeLeft.duration, transition.wipeLeft.alpha, transition.wipeLeft.edge); 
                 await fS.update();
                 await fS.Character.show(Sagi, SagiPose.neutral, fS.positionPercent(70, 100));
                 await fS.update(0.5);
@@ -311,8 +292,7 @@ namespace Template {
                 await fS.Location.show(location.classroom);
                 await fS.update(transition.wipeLeft.duration, transition.wipeLeft.alpha, transition.wipeLeft.edge); 
                 await fS.update();
-                //TODO: *** Talking Sound ***
-                //speech rika   
+                //TODO: *** Talking Sound *** 
                 await fS.Speech.tell(Rika, "<i>Ich will nicht, dass sich der Tag wiederholt. Was kann ich bloß machen?</i>");
                 // *** Auswahlmöglichkeit*** 
                 await EndingChoices.thirdEnding();

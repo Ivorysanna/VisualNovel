@@ -223,15 +223,6 @@ namespace Template {
     ];
 
     // *** ANIMATION ***
-    export function leavingLeft(): fS.AnimationDefinition {
-        return {
-            start: { translation: fS.positionPercent(40, 100), color: fS.Color.CSS("", 1) },
-            end: { translation: fS.positionPercent(20, 100), color: fS.Color.CSS("", 0) },
-            duration: 3,
-            playmode: fS.ANIMATION_PLAYMODE.PLAYONCE,
-        };
-    }
-
     export function redSagiRight(): fS.AnimationDefinition {
         return {
             start: { translation: fS.positionPercent(20, 100), color: fS.Color.CSS("red", 1) },
@@ -255,7 +246,6 @@ namespace Template {
     let inGameMenuButtons = {
         save: "Speichern",
         load: "Laden",
-        // close: "Schließen",
         credits: "Credits",
     };
 
@@ -273,10 +263,6 @@ namespace Template {
             case inGameMenuButtons.load:
                 await fS.Progress.load();
                 break;
-            // case inGameMenuButtons.close:
-            //     gameMenu.close();
-            //     menuIsOpen = false;
-            //     break;
             case inGameMenuButtons.credits:
                 let current: number = 0;
                 let flip = { back: "Zurück", next: "Weiter", close: "X" };
@@ -351,15 +337,19 @@ namespace Template {
         /*** SCENE HIERARCHY ***/
         fS.Speech.hide();
         let scenes: fS.Scenes = [
-            // { id: "wakingUpFirstTime", scene: WakingUp, name: "Waking up" },
-            // { id: "toSchoolFirstTime", scene: GoingToSchool, name: "Going to School firstTime" },
+            // *** FIRST RUN ***
+            { id: "wakingUpFirstTime", scene: WakingUp, name: "Waking up" },
+            { id: "toSchoolFirstTime", scene: GoingToSchool, name: "Going to School firstTime" },
             { id: "inClassFirstTime", scene: InClass, name: "In Class for firstTime" },
+            // *** SECOND RUN ***
             { id: "wakingUpCarCrash", scene: WakingUp, name: "Waking up Carcrash" },
             { id: "toSchoolAfterCarCrash", scene: GoingToSchool, name: "Going to School after Carcrash" },
             { id: "inClassAfterCarCrash", scene: InClass, name: "In Class after Carcrash" },
+            // *** THIRD RUN ***
             { id: "inClassAfterConstructionAccident", scene: WakingUp, name: "Waking up after Construction Site Accident" },
             { id: "toSchoolAfterConstructionAccident", scene: GoingToSchool, name: "Going to School after Construction Site Accident" },
             { id: "inClassAfterConstructionAccident", scene: InClass, name: "In Class AfterConstructionAccident" },
+            // *** LAST RUN ***
             { id: "wakingUpAfterSchoolAccident", scene: WakingUp, name: "Waking up after School Accident" },
             { id: "toSchoolAfterSchoolAccident", scene: GoingToSchool, name: "Going to School after School Accident" },
             { id: "inClassAfterSchoolAccident", scene: InClass, name: "In Class after School Accident" },

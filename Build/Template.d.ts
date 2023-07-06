@@ -212,7 +212,6 @@ declare namespace Template {
             static: boolean;
         };
     };
-    function leavingLeft(): fS.AnimationDefinition;
     function redSagiRight(): fS.AnimationDefinition;
     function redSagiLeft(): fS.AnimationDefinition;
 }
@@ -226,12 +225,6 @@ declare namespace Template {
             angry: string;
             sad: string;
         };
-    };
-    const RikaPose: {
-        neutral: string;
-        happy: string;
-        angry: string;
-        sad: string;
     };
     const Sagi: {
         name: string;
