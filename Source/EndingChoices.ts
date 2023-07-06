@@ -2,7 +2,7 @@ namespace Template {
     export class EndingChoices {
         public static async firstEnding(): Promise<void> {
             let endingOne = {
-                longPath: "Langen Weg vorschalgen",
+                longPath: "Langen Weg vorschlagen",
                 shortPath: "Kurzen Weg vorschlagen",
             };
 

@@ -154,7 +154,7 @@ var Template;
                     await Template.fS.Character.show(Template.Sho, Template.ShoPose.neutral, Template.fS.positions.bottomcenter);
                     Template.fS.update(0.5);
                     console.log("STAY IN SCHOOL PATH");
-                    await Template.fS.Speech.tell(Template.Rika, "Sho, was denkst du, sollen wir heute etwas länger bleiben.");
+                    await Template.fS.Speech.tell(Template.Rika, "Sho, was denkst du, sollen wir heute etwas länger bleiben?");
                     await Template.fS.Speech.tell(Template.Sho, "Ja, klar. Ich habe heute noch ein paar Hausaufgaben, die ich erledigen muss. Wir können die gerne zusammen machen.");
                     await Template.fS.Speech.tell(Template.Sho, "Ja, klar, gerne.");
                     await Template.fS.Speech.tell(Template.Sho, "Wohnst du schon lange in Kyoto?");
