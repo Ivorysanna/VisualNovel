@@ -562,6 +562,24 @@ var Template;
         };
     }
     Template.leavingLeft = leavingLeft;
+    function redSagiRight() {
+        return {
+            start: { translation: Template.fS.positionPercent(20, 100), color: Template.fS.Color.CSS("red", 1) },
+            end: { translation: Template.fS.positionPercent(20, 100), color: Template.fS.Color.CSS("red", 0) },
+            duration: 4,
+            playmode: Template.fS.ANIMATION_PLAYMODE.PLAYONCE,
+        };
+    }
+    Template.redSagiRight = redSagiRight;
+    function redSagiLeft() {
+        return {
+            start: { translation: Template.fS.positionPercent(70, 100), color: Template.fS.Color.CSS("red", 1) },
+            end: { translation: Template.fS.positionPercent(70, 100), color: Template.fS.Color.CSS("red", 0) },
+            duration: 4,
+            playmode: Template.fS.ANIMATION_PLAYMODE.PLAYONCE,
+        };
+    }
+    Template.redSagiLeft = redSagiLeft;
     // *** DATA THAT WILL BE SAVED (GAME PROGRESS) ***
     //Menu shortcuts
     let inGameMenuButtons = {
@@ -1433,7 +1451,11 @@ var Template;
             await Template.fS.Speech.tell(Template.Rika, "Zum wievielten Mal erlebe ich den heutigen Tag schon?!");
             Template.fS.Sound.fade(Template.sound.intenseSound, 0.2, 1);
             await Template.fS.Speech.tell(Template.Sagi, "Ich habe wirklich gehofft, dass du es nicht herausfindest.");
+            await Template.fS.Character.animate(Template.Sagi, Template.SagiPose.neutral, Template.redSagiRight());
             await Template.fS.Speech.tell(Template.Sagi, "Dann bleibt mir wohl nichts anderes übrig.");
+            await Template.fS.Character.animate(Template.Sagi, Template.SagiPose.neutral, Template.redSagiLeft());
+            await Template.fS.Character.show(Template.Sagi, Template.SagiPose.neutral, Template.fS.positions.bottomcenter);
+            await Template.fS.update();
             Template.fS.Sound.play(Template.sound.neckCracking, 0.5, false);
             Template.fS.Character.hideAll();
             Template.fS.Speech.hide();

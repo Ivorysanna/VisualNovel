@@ -22,7 +22,11 @@ namespace Template {
             await fS.Speech.tell(Rika, "Zum wievielten Mal erlebe ich den heutigen Tag schon?!");
             fS.Sound.fade(sound.intenseSound, 0.2, 1);
             await fS.Speech.tell(Sagi, "Ich habe wirklich gehofft, dass du es nicht herausfindest.");
+            await fS.Character.animate(Sagi, SagiPose.neutral, redSagiRight());
             await fS.Speech.tell(Sagi, "Dann bleibt mir wohl nichts anderes übrig.");
+            await fS.Character.animate(Sagi, SagiPose.neutral, redSagiLeft());
+            await fS.Character.show(Sagi, SagiPose.neutral, fS.positions.bottomcenter);
+            await fS.update();
             fS.Sound.play(sound.neckCracking, 0.5, false);
 
             fS.Character.hideAll();

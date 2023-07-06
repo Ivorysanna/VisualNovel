@@ -232,6 +232,23 @@ namespace Template {
         };
     }
 
+    export function redSagiRight(): fS.AnimationDefinition {
+        return {
+            start: { translation: fS.positionPercent(20, 100), color: fS.Color.CSS("red", 1) },
+            end: { translation: fS.positionPercent(20, 100), color: fS.Color.CSS("red", 0) },
+            duration: 4,
+            playmode: fS.ANIMATION_PLAYMODE.PLAYONCE,
+        };
+    }
+    export function redSagiLeft(): fS.AnimationDefinition {
+        return {
+            start: { translation: fS.positionPercent(70, 100), color: fS.Color.CSS("red", 1) },
+            end: { translation: fS.positionPercent(70, 100), color: fS.Color.CSS("red", 0) },
+            duration: 4,
+            playmode: fS.ANIMATION_PLAYMODE.PLAYONCE,
+        };
+    }
+
     // *** DATA THAT WILL BE SAVED (GAME PROGRESS) ***
 
     //Menu shortcuts

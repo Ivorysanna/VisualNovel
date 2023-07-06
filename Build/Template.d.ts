@@ -213,6 +213,8 @@ declare namespace Template {
         };
     };
     function leavingLeft(): fS.AnimationDefinition;
+    function redSagiRight(): fS.AnimationDefinition;
+    function redSagiLeft(): fS.AnimationDefinition;
 }
 declare namespace Template {
     const Rika: {
