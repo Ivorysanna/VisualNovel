@@ -281,11 +281,15 @@ var Template;
             let dialogueElement = await Template.fS.Menu.getInput(endingFour, "choicesCSSClass");
             switch (dialogueElement) {
                 case endingFour.speakSagi:
-                    // continue path here
+                    Template.fS.Sound.fade(Template.sound.librarySound, 0, 1);
+                    Template.fS.Speech.hide();
+                    await Template.fS.update();
                     await Template.TalkingSagi.talkingWithSagi();
                     break;
                 case endingFour.speakSho:
                     Template.fS.Sound.fade(Template.sound.librarySound, 0, 1);
+                    Template.fS.Speech.hide();
+                    await Template.fS.update();
                     await Template.TalkingSho.talkingWithSho();
                     break;
             }
@@ -826,6 +830,13 @@ var Template;
             await Template.fS.update(0.5);
             await Template.fS.Speech.tell(Template.characters.narrator, "Du hast es geschafft, Sho zu retten.");
             await Template.fS.Speech.tell(Template.characters.narrator, "ENDING: Gewartet");
+        }
+        static async badEndingSagi() {
+            console.log("Bad Ending Sagi starting");
+            await Template.fS.Location.show(Template.location.darkBackground);
+            await Template.fS.update(0.5);
+            await Template.fS.Speech.tell(Template.characters.narrator, "Du hast es nicht geschafft, Sho zu retten.");
+            await Template.fS.Speech.tell(Template.characters.narrator, "ENDING: Sagi konfrontiert");
         }
     }
     Template.EndScene = EndScene;
@@ -1406,11 +1417,12 @@ var Template;
         static async talkingWithSagi() {
             console.log("Talking with Sagi");
             await Template.fS.Location.show(Template.location.classroom);
+            await Template.fS.update(Template.transition.wipeLeft.duration, Template.transition.wipeLeft.alpha, Template.transition.wipeLeft.edge);
             await Template.fS.update();
             await Template.fS.Speech.tell(Template.Rika, "<i>Wie konnte Sie mir das antun. Ich weiß nicht, wie oft ich diesen Tag jetzt immer und immer wieder erleben musste.</i>");
             await Template.fS.Speech.tell(Template.Rika, "<i>Ich werde mit ihr reden, wir sind beste Freundinnen, schon so lange.</i>");
             await Template.fS.Character.show(Template.Sagi, Template.SagiPose.neutral, Template.fS.positions.bottomcenter);
-            await Template.fS.update();
+            await Template.fS.update(0.5);
             await Template.fS.Speech.tell(Template.Rika, "Sagi?");
             await Template.fS.Speech.tell(Template.Sagi, "Ja, was gibts?");
             await Template.fS.Speech.tell(Template.Rika, "Ich weiß, wer du bist … warum tust du mir das an?");
@@ -1419,10 +1431,17 @@ var Template;
             await Template.fS.Speech.tell(Template.Sagi, "...");
             await Template.fS.Speech.tell(Template.Rika, "Ich dachte wir sind Freunde, wie lange geht das schon so?");
             await Template.fS.Speech.tell(Template.Rika, "Zum wievielten Mal erlebe ich den heutigen Tag schon?!");
+            Template.fS.Sound.fade(Template.sound.intenseSound, 0.2, 1);
             await Template.fS.Speech.tell(Template.Sagi, "Ich habe wirklich gehofft, dass du es nicht herausfindest.");
             await Template.fS.Speech.tell(Template.Sagi, "Dann bleibt mir wohl nichts anderes übrig.");
+            Template.fS.Sound.play(Template.sound.neckCracking, 0.5, false);
+            Template.fS.Character.hideAll();
+            Template.fS.Speech.hide();
+            await Template.fS.update(0.5);
+            Template.fS.Sound.fade(Template.sound.intenseSound, 0, 1);
             //TODO: ADDING SOUND FIGHTING
-            //*** BAD ENDING 4***             
+            //*** BAD ENDING 4*** 
+            await Template.EndScene.badEndingSagi();
         }
     }
     Template.TalkingSagi = TalkingSagi;

@@ -33,5 +33,13 @@ namespace Template {
             await fS.Speech.tell(characters.narrator, "Du hast es geschafft, Sho zu retten.");
             await fS.Speech.tell(characters.narrator, "ENDING: Gewartet");
         }
+
+        public static async badEndingSagi(): Promise<void> {
+            console.log("Bad Ending Sagi starting");
+            await fS.Location.show(location.darkBackground);
+            await fS.update(0.5);
+            await fS.Speech.tell(characters.narrator, "Du hast es nicht geschafft, Sho zu retten.");
+            await fS.Speech.tell(characters.narrator, "ENDING: Sagi konfrontiert");
+        }
     }
 }

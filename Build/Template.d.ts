@@ -321,6 +321,7 @@ declare namespace Template {
         static gameOver(): Promise<void>;
         static carEnding(): Promise<void>;
         static goodEndingWaiting(): Promise<void>;
+        static badEndingSagi(): Promise<void>;
     }
 }
 declare namespace Template {

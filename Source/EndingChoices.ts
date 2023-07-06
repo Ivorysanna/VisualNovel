@@ -202,11 +202,15 @@ namespace Template {
 
             switch (dialogueElement) {
                 case endingFour.speakSagi:
-                    // continue path here
+                    fS.Sound.fade(sound.librarySound, 0, 1);
+                    fS.Speech.hide();
+                    await fS.update();
                     await TalkingSagi.talkingWithSagi();
                     break;
                 case endingFour.speakSho:
                     fS.Sound.fade(sound.librarySound, 0, 1);
+                    fS.Speech.hide();
+                    await fS.update();
                     await TalkingSho.talkingWithSho();
                     break;
             }
