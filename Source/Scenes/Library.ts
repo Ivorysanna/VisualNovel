@@ -1,4 +1,4 @@
-namespace Template {
+namespace YesterdayGame {
     export class Library {
         public static async inLibrary(): Promise<void> {
             console.log("Library");

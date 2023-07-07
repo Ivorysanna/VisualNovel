@@ -1,4 +1,4 @@
-namespace Template {
+namespace YesterdayGame {
     export class EndingChoices {
         public static async firstEnding(): Promise<void> {
             let endingOne = {

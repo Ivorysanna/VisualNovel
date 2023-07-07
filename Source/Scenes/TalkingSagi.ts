@@ -1,4 +1,4 @@
-namespace Template {
+namespace YesterdayGame {
     export class TalkingSagi {
         public static async talkingWithSagi(): Promise<void> {
             console.log("Talking with Sagi");

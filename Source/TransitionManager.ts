@@ -1,4 +1,4 @@
-namespace Template {
+namespace YesterdayGame {
     export class TransitionManager {
         //Transition blending in black screen
         public static async blendInOut(): Promise<void> {

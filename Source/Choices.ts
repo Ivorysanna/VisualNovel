@@ -1,4 +1,4 @@
-namespace Template {
+namespace YesterdayGame {
     export class Choices {
         public static async livingHereChoice(): Promise<void> {
             let livingHereChoice = {

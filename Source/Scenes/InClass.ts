@@ -1,7 +1,7 @@
-namespace Template {
+namespace YesterdayGame {
     export async function InClass(): fS.SceneReturn {
         console.log("First Class starting");
-        switch (StateManager.storyState) {
+        switch (YesterdayGame.dataForSave.storyState) {
             case StoryState.FirstRun:
                 // Sagi und Rika sind im Klassenzimmer
                 console.log("First Run!");
@@ -148,13 +148,13 @@ namespace Template {
                 await fS.Speech.tell(Sho, "Hey, freut mich euch kennenzulernen.");
 
                 //-- -- --  Choice -- -- --
-                await Template.Choices.livingHereChoice();
+                await YesterdayGame.Choices.livingHereChoice();
 
                 await fS.Speech.tell(Sagi, "Kennst du dich denn schon in Kyoto etwas aus?");
                 await fS.Speech.tell(Sho, "Nein, nicht wirklich. Ich verlaufe mich manchmal noch auf dem Weg nach Hause. Haha.");
 
                 //-- -- --  Choice -- -- --
-                await Template.Choices.livingWhereChoice();
+                await YesterdayGame.Choices.livingWhereChoice();
 
                 await fS.Speech.tell(Sagi, "Na ja, dann könnt ihr beiden heute zusammen nach Hause laufen, dann findest du sicher den Weg. Rika wohnt auch in der Straße.");
                 await fS.Speech.tell(Sagi, "Ich kann leider nicht mitkommen, treffe mich heute nach der Schule mit meiner Mutter.");

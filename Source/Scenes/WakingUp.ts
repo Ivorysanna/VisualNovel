@@ -1,8 +1,8 @@
-namespace Template {
+namespace YesterdayGame {
     export async function WakingUp(): fS.SceneReturn {
         console.log("Waking Up starting");
         //TODO: *** DONT FORGET DELAYS ***
-        switch (StateManager.storyState) {
+        switch (YesterdayGame.dataForSave.storyState) {
             case StoryState.FirstRun:
                 fS.Sound.play(sound.alarmClock, 0.5, false);
                 await fS.Progress.delay(2);

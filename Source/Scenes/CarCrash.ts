@@ -1,4 +1,4 @@
-namespace Template {
+namespace YesterdayGame {
     export class CarCrash {
         public static async firstCarCrash(): Promise<void> {
             console.log("1. Car Crash");
@@ -11,7 +11,7 @@ namespace Template {
 
 
             await fS.Speech.tell(Rika, "So, hier um die Ecke ist auch schon das Einkaufszentrum. Wenn du möchtest, können wir uns hier am Wochenende auf einen Bubble Tea treffen und vielleicht…");
-            StateManager.storyState = StoryState.CarCrashHappend;
+            YesterdayGame.dataForSave.storyState = YesterdayGame.StoryState.CarCrashHappend;
             fS.Inventory.add(items.pictureStreet);
             
             fS.Speech.hide();

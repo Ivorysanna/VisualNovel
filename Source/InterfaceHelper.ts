@@ -1,4 +1,4 @@
-namespace Template {
+namespace YesterdayGame {
     export class InterfaceHelper{
         //toggle css class hidden for the button with id ausleihbutton
         public static toggleAusleihButton(): void {

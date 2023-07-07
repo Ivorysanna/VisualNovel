@@ -1,6 +1,7 @@
-namespace Template {
+namespace YesterdayGame {
     export import f = FudgeCore;
     export import fS = FudgeStory;
+    
 
     console.log("FudgeStory template starting");
 
@@ -170,10 +171,23 @@ namespace Template {
         },
     };
 
+    export enum StoryState {
+        FirstRun,
+        CarCrashHappend,
+        ConstructionSiteAccidentHappend,
+        SchoolAccidentHappend,
+    }
+
     // *** DATA THAT WILL BE SAVED (GAME PROGRESS) ***
     export let dataForSave = {
-        nameProtagonist: "",
+        // nameProtagonist: "",
         shoScore: 0,
+        // items: "", Items speichern hat nicht funktioniert
+        storyState: StoryState.FirstRun,
+        choicesState: "firstChoice",
+        endingState: "",
+        carCrashHappend: false,
+
     };
 
     // *** ITEMS ***

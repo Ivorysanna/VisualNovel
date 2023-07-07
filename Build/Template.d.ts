@@ -1,4 +1,4 @@
-declare namespace Template {
+declare namespace YesterdayGame {
     class Choices {
         static livingHereChoice(): Promise<void>;
         static livingWhereChoice(): Promise<void>;
@@ -6,7 +6,7 @@ declare namespace Template {
         static askingShoAboutFriends(): Promise<void>;
     }
 }
-declare namespace Template {
+declare namespace YesterdayGame {
     class EndingChoices {
         static firstEnding(): Promise<void>;
         static secondEnding(): Promise<void>;
@@ -15,14 +15,14 @@ declare namespace Template {
         static firstBadEndingAgain(): Promise<void>;
     }
 }
-declare namespace Template {
+declare namespace YesterdayGame {
     class InterfaceHelper {
         static toggleAusleihButton(): void;
         static showAusleihButton(): void;
         static hideAusleihButton(): void;
     }
 }
-declare namespace Template {
+declare namespace YesterdayGame {
     export import f = FudgeCore;
     export import fS = FudgeStory;
     let transition: {
@@ -178,9 +178,18 @@ declare namespace Template {
             };
         };
     };
+    enum StoryState {
+        FirstRun = 0,
+        CarCrashHappend = 1,
+        ConstructionSiteAccidentHappend = 2,
+        SchoolAccidentHappend = 3
+    }
     let dataForSave: {
-        nameProtagonist: string;
         shoScore: number;
+        storyState: StoryState;
+        choicesState: string;
+        endingState: string;
+        carCrashHappend: boolean;
     };
     let items: {
         pictureStreet: {
@@ -217,7 +226,7 @@ declare namespace Template {
     function redSagiRight(): fS.AnimationDefinition;
     function redSagiLeft(): fS.AnimationDefinition;
 }
-declare namespace Template {
+declare namespace YesterdayGame {
     const Rika: {
         name: string;
         origin: f.ORIGIN2D;
@@ -283,37 +292,23 @@ declare namespace Template {
         neutral: string;
     };
 }
-declare namespace Template {
-    enum StoryState {
-        FirstRun = 0,
-        CarCrashHappend = 1,
-        ConstructionSiteAccidentHappend = 2,
-        SchoolAccidentHappend = 3
-    }
-    class StateManager {
-        static storyState: StoryState;
-        static choicesState: String;
-        static endingState: String;
-        static carCrashHappend: boolean;
-    }
-}
-declare namespace Template {
+declare namespace YesterdayGame {
     class TransitionManager {
         static blendInOut(): Promise<void>;
     }
 }
-declare namespace Template {
+declare namespace YesterdayGame {
     class CarCrash {
         static firstCarCrash(): Promise<void>;
         static carCrashHappend(): Promise<void>;
     }
 }
-declare namespace Template {
+declare namespace YesterdayGame {
     class ConstructionSite {
         static firstConstructionSiteAccident(): Promise<void>;
     }
 }
-declare namespace Template {
+declare namespace YesterdayGame {
     class EndScene {
         static gameOver(): Promise<void>;
         static carEnding(): Promise<void>;
@@ -321,43 +316,43 @@ declare namespace Template {
         static badEndingSagi(): Promise<void>;
     }
 }
-declare namespace Template {
+declare namespace YesterdayGame {
     class FallingAccident {
         static firstFallingAccident(): Promise<void>;
     }
 }
-declare namespace Template {
+declare namespace YesterdayGame {
     function GoingToSchool(): fS.SceneReturn;
 }
-declare namespace Template {
+declare namespace YesterdayGame {
     function InClass(): fS.SceneReturn;
 }
-declare namespace Template {
+declare namespace YesterdayGame {
     class Library {
         static inLibrary(): Promise<void>;
     }
 }
-declare namespace Template {
+declare namespace YesterdayGame {
     class SavingSho {
         static savingSho(): Promise<void>;
     }
 }
-declare namespace Template {
+declare namespace YesterdayGame {
     class SchoolAccident {
         static firstSchoolAccident(): Promise<void>;
         static schoolAccidentHappend(): Promise<void>;
     }
 }
-declare namespace Template {
+declare namespace YesterdayGame {
     class TalkingSagi {
         static talkingWithSagi(): Promise<void>;
     }
 }
-declare namespace Template {
+declare namespace YesterdayGame {
     class TalkingSho {
         static talkingWithSho(): Promise<void>;
     }
 }
-declare namespace Template {
+declare namespace YesterdayGame {
     function WakingUp(): fS.SceneReturn;
 }

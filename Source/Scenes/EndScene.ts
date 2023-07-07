@@ -1,4 +1,4 @@
-namespace Template {
+namespace YesterdayGame {
     export class EndScene {
         public static async gameOver(): Promise<void> {
             console.log("End Scene starting");

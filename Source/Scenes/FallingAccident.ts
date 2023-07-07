@@ -1,4 +1,4 @@
-namespace Template {
+namespace YesterdayGame {
     export class FallingAccident {
         public static async firstFallingAccident(): Promise<void> {
             //*** THIRD BAD ENDING***

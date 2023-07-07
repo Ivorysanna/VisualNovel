@@ -1,4 +1,4 @@
-namespace Template {
+namespace YesterdayGame {
     //*** RIKA *** 
     export  const Rika = characters.Rika;
     // export  const RikaPose = characters.Rika.pose;

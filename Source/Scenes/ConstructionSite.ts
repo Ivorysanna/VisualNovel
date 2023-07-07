@@ -1,4 +1,4 @@
-namespace Template {
+namespace YesterdayGame {
     export class ConstructionSite {
         public static async firstConstructionSiteAccident(): Promise<void> {
             await fS.Location.show(location.constructionSite);
@@ -9,7 +9,7 @@ namespace Template {
             await fS.update(0.5);
             await fS.Speech.tell(Rika, "<i>Komisch ich erinnere mich gar nicht an diese Baustelle, die muss neu sein.</i>");
             await fS.Speech.tell(Sho, "Den Weg kannte ich noch gar nicht.");
-            StateManager.storyState = StoryState.ConstructionSiteAccidentHappend;
+            YesterdayGame.dataForSave.storyState = StoryState.ConstructionSiteAccidentHappend;
             fS.Sound.play(sound.metalFalling, 0.8, false);
             //TODO: *** SCREEN SHAKING ***
             fS.Character.hideAll();

@@ -1,4 +1,4 @@
-namespace Template {
+namespace YesterdayGame {
     export class SavingSho {
         public static async savingSho(): Promise<void> {
             console.log("Saving Sho");

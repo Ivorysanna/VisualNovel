@@ -1,4 +1,4 @@
-namespace Template {
+namespace YesterdayGame {
     export class SchoolAccident {
         public static async firstSchoolAccident(): Promise<void> {
             console.log("1. School Accident");
@@ -8,7 +8,7 @@ namespace Template {
             await fS.Speech.tell(Sho, "Ah, danke.");
 
             //Changing storyState to SchoolAccidentHappend
-            StateManager.storyState = StoryState.SchoolAccidentHappend;
+            YesterdayGame.dataForSave.storyState = StoryState.SchoolAccidentHappend;
 
             fS.Sound.play(sound.openCabin, 0.5, false);
             await fS.Progress.delay(3);

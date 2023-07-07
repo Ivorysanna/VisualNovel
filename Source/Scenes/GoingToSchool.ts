@@ -1,8 +1,8 @@
-namespace Template {
+namespace YesterdayGame {
     export async function GoingToSchool(): fS.SceneReturn {
         console.log("Going to School starting");
 
-        switch (StateManager.storyState) {
+        switch (YesterdayGame.dataForSave.storyState) {
             case StoryState.FirstRun:
                 console.log("First Run!");
                 fS.Speech.hide();
