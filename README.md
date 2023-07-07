@@ -3,7 +3,7 @@ Bei dieser Visual Novel handelt es sich um kein fertiges Spiel. Weshalb die Char
 
 # Links
 Game: https://ivorysanna.github.io/VisualNovel/Yesterday.html
-Repository:
+Repository: https://github.com/Ivorysanna/VisualNovel
 Konzept:
 
 
