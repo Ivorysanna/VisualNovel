@@ -26,7 +26,6 @@ namespace YesterdayGame {
             await fS.update(0.5);
             fS.Sound.fade(sound.classTalking, 0, 1);
             await fS.Progress.delay(1);
-            //TODO: ADDING SOUND EFFECTS SCHOOLBELLS
             //fade out screen
             await TransitionManager.blendInOut();
             await fS.Progress.delay(3);
@@ -47,7 +46,7 @@ namespace YesterdayGame {
 
             //if statement for loveometer enough
             //TODO: ADJUST LOVEOMETER VALUE
-            if (dataForSave.shoScore >= 10) {
+            if (dataForSave.shoScore >= 30) {
                 console.log("Loveometer is high enough");
                 await fS.Speech.tell(Rika, "Also ich habe zurzeit so ein Gefühl, dass ich immer wieder das Gleiche durchlebe. ");
                 await fS.Speech.tell(Rika, "Und um eine bestimmte Zeit … stirbst du…");

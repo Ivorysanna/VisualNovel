@@ -30,7 +30,7 @@ var YesterdayGame;
         static async livingWhereChoice() {
             let livingWhereChoice = {
                 livingInPark: "Wohnst gegenüber vom Park?",
-                goingToCityTogether: "Anbieten zusammen die Stadt anschauen",
+                goingToCityTogether: "Anbieten zusammen die Stadt anzuschauen",
             };
             let secondDialogueElement = await YesterdayGame.fS.Menu.getInput(livingWhereChoice, "choicesCSSClass");
             switch (secondDialogueElement) {
@@ -1455,7 +1455,6 @@ var YesterdayGame;
             await YesterdayGame.fS.update(0.5);
             YesterdayGame.fS.Sound.fade(YesterdayGame.sound.classTalking, 0, 1);
             await YesterdayGame.fS.Progress.delay(1);
-            //TODO: ADDING SOUND EFFECTS SCHOOLBELLS
             //fade out screen
             await YesterdayGame.TransitionManager.blendInOut();
             await YesterdayGame.fS.Progress.delay(3);
@@ -1474,7 +1473,7 @@ var YesterdayGame;
             console.log(YesterdayGame.dataForSave.shoScore);
             //if statement for loveometer enough
             //TODO: ADJUST LOVEOMETER VALUE
-            if (YesterdayGame.dataForSave.shoScore >= 10) {
+            if (YesterdayGame.dataForSave.shoScore >= 30) {
                 console.log("Loveometer is high enough");
                 await YesterdayGame.fS.Speech.tell(YesterdayGame.Rika, "Also ich habe zurzeit so ein Gefühl, dass ich immer wieder das Gleiche durchlebe. ");
                 await YesterdayGame.fS.Speech.tell(YesterdayGame.Rika, "Und um eine bestimmte Zeit … stirbst du…");

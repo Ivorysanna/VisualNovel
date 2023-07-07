@@ -31,7 +31,7 @@ namespace YesterdayGame {
         public static async livingWhereChoice(): Promise<void> {
             let livingWhereChoice = {
                 livingInPark: "Wohnst gegenüber vom Park?",
-                goingToCityTogether: "Anbieten zusammen die Stadt anschauen",
+                goingToCityTogether: "Anbieten zusammen die Stadt anzuschauen",
             };
             let secondDialogueElement = await fS.Menu.getInput(livingWhereChoice, "choicesCSSClass");
 
