@@ -663,8 +663,8 @@ var Template;
         Template.fS.Speech.hide();
         let scenes = [
             // *** FIRST RUN ***
-            // { id: "wakingUpFirstTime", scene: WakingUp, name: "Waking up" },
-            // { id: "toSchoolFirstTime", scene: GoingToSchool, name: "Going to School firstTime" },
+            { id: "wakingUpFirstTime", scene: Template.WakingUp, name: "Waking up" },
+            { id: "toSchoolFirstTime", scene: Template.GoingToSchool, name: "Going to School firstTime" },
             { id: "inClassFirstTime", scene: Template.InClass, name: "In Class for firstTime" },
             // *** SECOND RUN ***
             { id: "wakingUpCarCrash", scene: Template.WakingUp, name: "Waking up Carcrash" },
@@ -714,11 +714,11 @@ var Template;
     })(StoryState = Template.StoryState || (Template.StoryState = {}));
     class StateManager {
         //*** GLOBAL VARIABLES***
-        // public static storyState: StoryState = StoryState.FirstRun;
+        static storyState = StoryState.FirstRun;
         //
         // public static storyState: StoryState = StoryState.CarCrashHappend;
         // public static storyState: StoryState = StoryState.ConstructionSiteAccidentHappend;
-        static storyState = StoryState.SchoolAccidentHappend;
+        // public static storyState: StoryState = StoryState.SchoolAccidentHappend;
         static choicesState = "firstChoice";
         static endingState = "";
         static carCrashHappend = false;
