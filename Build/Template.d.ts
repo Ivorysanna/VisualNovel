@@ -18,6 +18,8 @@ declare namespace Template {
 declare namespace Template {
     class InterfaceHelper {
         static toggleAusleihButton(): void;
+        static showAusleihButton(): void;
+        static hideAusleihButton(): void;
     }
 }
 declare namespace Template {

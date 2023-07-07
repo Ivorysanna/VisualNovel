@@ -18,13 +18,11 @@ namespace Template {
             await fS.Progress.delay(1);
             await fS.Speech.tell(Rika, "<i>Das ist wirklich viel. Ich sollte das Buch ausleihen.</i>");
 
-            InterfaceHelper.toggleAusleihButton();
-            await fS.Progress.delay(10);
-            InterfaceHelper.toggleAusleihButton();
-            // InterfaceHelper.toggleAusleihButton();
+            InterfaceHelper.showAusleihButton();
             
+            await fS.Speech.tell(Rika, "<i>Ich sollte das Buch jetzt lesen.</i>");
+            InterfaceHelper.hideAusleihButton();
             await fS.Speech.tell(Rika, "<i>Okay also, das Buch sagt, ich muss den Namen von diesem Dämon kennen.</i>");
-            //TODO: *** ADDING IF FOR CHECKING THE NAME***
             let nameGuessed: boolean = false;
             while (!nameGuessed) {
                 await fS.Speech.tell(Rika, "<i>Wer könnte der Dämon sein?</i>");

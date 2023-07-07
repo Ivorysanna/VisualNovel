@@ -59,20 +59,17 @@ var Template;
                     await Template.fS.Speech.tell(Template.Rika, "Wir haben heute echt einige Aufgaben für zu Hause bekommen. Ich denke, bei dir wird das nicht anders sein.");
                     await Template.fS.Speech.tell(Template.Sho, "Ja, stimmt. Wir haben heute auch viele Aufgaben bekommen. Sollen wir das vielleicht zusammen machen?");
                     await Template.fS.Speech.tell(Template.Rika, "J-Ja klar…");
-                    //TODO: ADDING FALLING SOUND
                     break;
                 case goingHomeFastChoice.strangeDreams:
                     await Template.fS.Speech.tell(Template.Rika, "Ich habe die letzten Tage etwas echt Komisches geträumt und ich habe das Gefühl, wenn wir schneller nach Hause gehen, dann hören diese Träume auf… ");
                     await Template.fS.Speech.tell(Template.Sho, "Ach so…");
                     Template.dataForSave.shoScore -= 10;
-                    //TODO: ADDING FALLING SOUND              
                     break;
                 case goingHomeFastChoice.showingFastestRoute:
                     await Template.fS.Speech.tell(Template.Rika, "Ehm… Um dir den schnellsten Weg zu zeigen. Wir können morgen gerne den anderen Weg nehmen.");
                     await Template.fS.Speech.tell(Template.Sho, "Haha. Irgendwie habe ich ein Déjá-vu. Als hättest du das mit dem schnellsten Weg schon einmal gesagt.");
                     await Template.fS.Speech.tell(Template.Rika, "<i>Was?!… Hat er auch solche komischen Träume?</i>");
                     await Template.fS.Speech.tell(Template.Rika, "Witzig, dass du das sagst. Ich habe zurzeit so komisch…");
-                    //TODO: ADDING FALLING SOUND
                     Template.dataForSave.shoScore += 10;
                     break;
             }
@@ -108,7 +105,7 @@ var Template;
     class EndingChoices {
         static async firstEnding() {
             let endingOne = {
-                longPath: "Langen Weg vorschalgen",
+                longPath: "Langen Weg vorschlagen",
                 shortPath: "Kurzen Weg vorschlagen",
             };
             let dialogueElement = await Template.fS.Menu.getInput(endingOne, "choicesCSSClass");
@@ -154,7 +151,7 @@ var Template;
                     await Template.fS.Character.show(Template.Sho, Template.ShoPose.neutral, Template.fS.positions.bottomcenter);
                     Template.fS.update(0.5);
                     console.log("STAY IN SCHOOL PATH");
-                    await Template.fS.Speech.tell(Template.Rika, "Sho, was denkst du, sollen wir heute etwas länger bleiben?");
+                    await Template.fS.Speech.tell(Template.Rika, "Sho, was denkst du, sollen wir heute etwas länger bleiben.");
                     await Template.fS.Speech.tell(Template.Sho, "Ja, klar. Ich habe heute noch ein paar Hausaufgaben, die ich erledigen muss. Wir können die gerne zusammen machen.");
                     await Template.fS.Speech.tell(Template.Sho, "Ja, klar, gerne.");
                     await Template.fS.Speech.tell(Template.Sho, "Wohnst du schon lange in Kyoto?");
@@ -332,6 +329,14 @@ var Template;
         static toggleAusleihButton() {
             let ausleihButton = document.getElementById("ausleihbutton");
             ausleihButton.classList.toggle("hidden");
+        }
+        static showAusleihButton() {
+            let ausleihButton = document.getElementById("ausleihbutton");
+            ausleihButton.classList.remove("hidden");
+        }
+        static hideAusleihButton() {
+            let ausleihButton = document.getElementById("ausleihbutton");
+            ausleihButton.classList.add("hidden");
         }
     }
     Template.InterfaceHelper = InterfaceHelper;
@@ -658,8 +663,8 @@ var Template;
         Template.fS.Speech.hide();
         let scenes = [
             // *** FIRST RUN ***
-            { id: "wakingUpFirstTime", scene: Template.WakingUp, name: "Waking up" },
-            { id: "toSchoolFirstTime", scene: Template.GoingToSchool, name: "Going to School firstTime" },
+            // { id: "wakingUpFirstTime", scene: WakingUp, name: "Waking up" },
+            // { id: "toSchoolFirstTime", scene: GoingToSchool, name: "Going to School firstTime" },
             { id: "inClassFirstTime", scene: Template.InClass, name: "In Class for firstTime" },
             // *** SECOND RUN ***
             { id: "wakingUpCarCrash", scene: Template.WakingUp, name: "Waking up Carcrash" },
@@ -709,11 +714,11 @@ var Template;
     })(StoryState = Template.StoryState || (Template.StoryState = {}));
     class StateManager {
         //*** GLOBAL VARIABLES***
-        static storyState = StoryState.FirstRun;
+        // public static storyState: StoryState = StoryState.FirstRun;
         //
         // public static storyState: StoryState = StoryState.CarCrashHappend;
         // public static storyState: StoryState = StoryState.ConstructionSiteAccidentHappend;
-        // public static storyState: StoryState = StoryState.SchoolAccidentHappend;
+        static storyState = StoryState.SchoolAccidentHappend;
         static choicesState = "firstChoice";
         static endingState = "";
         static carCrashHappend = false;
@@ -1288,12 +1293,10 @@ var Template;
             Template.fS.Sound.play(Template.sound.book, 0.7, false);
             await Template.fS.Progress.delay(1);
             await Template.fS.Speech.tell(Template.Rika, "<i>Das ist wirklich viel. Ich sollte das Buch ausleihen.</i>");
-            Template.InterfaceHelper.toggleAusleihButton();
-            await Template.fS.Progress.delay(10);
-            Template.InterfaceHelper.toggleAusleihButton();
-            // InterfaceHelper.toggleAusleihButton();
+            Template.InterfaceHelper.showAusleihButton();
+            await Template.fS.Speech.tell(Template.Rika, "<i>Ich sollte das Buch jetzt lesen.</i>");
+            Template.InterfaceHelper.hideAusleihButton();
             await Template.fS.Speech.tell(Template.Rika, "<i>Okay also, das Buch sagt, ich muss den Namen von diesem Dämon kennen.</i>");
-            //TODO: *** ADDING IF FOR CHECKING THE NAME***
             let nameGuessed = false;
             while (!nameGuessed) {
                 await Template.fS.Speech.tell(Template.Rika, "<i>Wer könnte der Dämon sein?</i>");
